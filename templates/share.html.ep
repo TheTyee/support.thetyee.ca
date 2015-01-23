@@ -1,4 +1,4 @@
-% layout 'default', title => 'Welcome to the team. Share the news -- The Tyee';
+% layout 'default', title => 'Welcome to the team. Share the news -- The Tyee', body_id => 'share';
 
 
 
