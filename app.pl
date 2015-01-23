@@ -167,7 +167,7 @@ group {
 
     any [qw(GET POST)] => '/' => sub {
         my $self = shift;
-    } => 'builders';
+    } => 'evergreen';
 
     any [qw(GET POST)] => '/builders' => sub {
         my $self = shift;
