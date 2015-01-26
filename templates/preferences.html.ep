@@ -1,4 +1,4 @@
-% layout 'default', title => 'Time to vote -- The Tyee';
+% layout 'default', title => 'Time to vote -- The Tyee', body_id => 'preferences';
 
 %  my $err_anon = validation->error('pref_anonymous');
 %  my $err_freq = validation->error('pref_frequency');

@@ -23,12 +23,10 @@ DISTRIBUTIONS
       App::Sqitch 0.996
       App::Sqitch::Command 0.996
       App::Sqitch::Command::add 0.996
-      App::Sqitch::Command::bad undef
       App::Sqitch::Command::bundle 0.996
       App::Sqitch::Command::checkout 0.996
       App::Sqitch::Command::config 0.996
       App::Sqitch::Command::deploy 0.996
-      App::Sqitch::Command::good undef
       App::Sqitch::Command::help 0.996
       App::Sqitch::Command::init 0.996
       App::Sqitch::Command::log 0.996
@@ -44,9 +42,7 @@ DISTRIBUTIONS
       App::Sqitch::Config 0.996
       App::Sqitch::DateTime 0.996
       App::Sqitch::Engine 0.996
-      App::Sqitch::Engine::bad undef
       App::Sqitch::Engine::firebird 0.996
-      App::Sqitch::Engine::good undef
       App::Sqitch::Engine::mysql 0.996
       App::Sqitch::Engine::oracle 0.996
       App::Sqitch::Engine::pg 0.996
@@ -66,9 +62,6 @@ DISTRIBUTIONS
       App::Sqitch::Role::RevertDeployCommand 0.996
       App::Sqitch::Types undef
       App::Sqitch::X 0.996
-      DBIEngineTest undef
-      MockOutput undef
-      Module::Build::Sqitch undef
     requirements:
       Clone 0
       Config::GitLike 1.11
@@ -387,6 +380,10 @@ DISTRIBUTIONS
     provides:
       Bundle::DBD::Pg 3.004002
       DBD::Pg 3.004002
+      DBD::Pg::DefaultValue 3.004002
+      DBD::Pg::db 3.004002
+      DBD::Pg::dr 3.004002
+      DBD::Pg::st 3.004002
     requirements:
       DBI 1.614
       ExtUtils::MakeMaker 6.11
@@ -653,7 +650,7 @@ DISTRIBUTIONS
       DBIx::Class::IntrospectableM2M 0.001001
     requirements:
       DBIx::Class 0
-      ExtUtils::MakeMaker 6.98
+      ExtUtils::MakeMaker 7.02
       Test::More 0
   DBIx-Class-Schema-Loader-0.07042
     pathname: I/IL/ILMARI/DBIx-Class-Schema-Loader-0.07042.tar.gz
@@ -802,6 +799,8 @@ DISTRIBUTIONS
       DateTime::Duration 1.12
       DateTime::Helpers 1.12
       DateTime::Infinite 1.12
+      DateTime::Infinite::Future 1.12
+      DateTime::Infinite::Past 1.12
       DateTime::LeapSecond 1.12
     requirements:
       Carp 0
@@ -876,6 +875,7 @@ DISTRIBUTIONS
       DateTime 0.1
       DateTime::Format::Builder 0.6
       ExtUtils::MakeMaker 0
+      perl 5.003
   DateTime-Format-Strptime-1.56
     pathname: D/DR/DROLSKY/DateTime-Format-Strptime-1.56.tar.gz
     provides:
@@ -1876,6 +1876,51 @@ DISTRIBUTIONS
       File::Spec 0
       strict 0
       warnings 0
+  ExtUtils-MakeMaker-7.02
+    pathname: B/BI/BINGOS/ExtUtils-MakeMaker-7.02.tar.gz
+    provides:
+      ExtUtils::Command::MM 7.02
+      ExtUtils::Liblist 7.02
+      ExtUtils::Liblist::Kid 7.02
+      ExtUtils::MM 7.02
+      ExtUtils::MM_AIX 7.02
+      ExtUtils::MM_Any 7.02
+      ExtUtils::MM_BeOS 7.02
+      ExtUtils::MM_Cygwin 7.02
+      ExtUtils::MM_DOS 7.02
+      ExtUtils::MM_Darwin 7.02
+      ExtUtils::MM_MacOS 7.02
+      ExtUtils::MM_NW5 7.02
+      ExtUtils::MM_OS2 7.02
+      ExtUtils::MM_QNX 7.02
+      ExtUtils::MM_UWIN 7.02
+      ExtUtils::MM_Unix 7.02
+      ExtUtils::MM_VMS 7.02
+      ExtUtils::MM_VOS 7.02
+      ExtUtils::MM_Win32 7.02
+      ExtUtils::MM_Win95 7.02
+      ExtUtils::MY 7.02
+      ExtUtils::MakeMaker 7.02
+      ExtUtils::MakeMaker::Config 7.02
+      ExtUtils::MakeMaker::Locale 7.02
+      ExtUtils::MakeMaker::_version 7.02
+      ExtUtils::MakeMaker::charstar 7.02
+      ExtUtils::MakeMaker::version 7.02
+      ExtUtils::MakeMaker::version::regex 7.02
+      ExtUtils::MakeMaker::version::vpp 7.02
+      ExtUtils::Mkbootstrap 7.02
+      ExtUtils::Mksymlists 7.02
+      ExtUtils::testlib 7.02
+      MM 7.02
+      MY 7.02
+    requirements:
+      Data::Dumper 0
+      DirHandle 0
+      Encode 0
+      File::Basename 0
+      File::Spec 0.8
+      Pod::Man 0
+      perl 5.006
   File-Find-Rule-0.33
     pathname: R/RC/RCLAMP/File-Find-Rule-0.33.tar.gz
     provides:
@@ -2456,7 +2501,7 @@ DISTRIBUTIONS
       Mojolicious::Command::generate::app undef
       Mojolicious::Command::generate::lite_app undef
       Mojolicious::Command::generate::makefile undef
-      Mojolicious::Command::generate::plugin 0.01
+      Mojolicious::Command::generate::plugin undef
       Mojolicious::Command::get undef
       Mojolicious::Command::inflate undef
       Mojolicious::Command::prefork undef
@@ -2558,8 +2603,7 @@ DISTRIBUTIONS
   Net-SSLeay-1.66
     pathname: M/MI/MIKEM/Net-SSLeay-1.66.tar.gz
     provides:
-      Net::SSLeay 1.66
-      Net::SSLeay::Handle 0.61
+      Net::SSLeay undef
     requirements:
       ExtUtils::MakeMaker 6.36
       MIME::Base64 0
@@ -2603,7 +2647,6 @@ DISTRIBUTIONS
   Package-Stash-XS-0.28
     pathname: D/DO/DOY/Package-Stash-XS-0.28.tar.gz
     provides:
-      CompileTime undef
       Package::Stash::XS 0.28
     requirements:
       ExtUtils::MakeMaker 6.30
@@ -2614,7 +2657,6 @@ DISTRIBUTIONS
     pathname: H/HA/HAARG/Package-Variant-1.002002.tar.gz
     provides:
       Package::Variant 1.002002
-      string 1.002002
     requirements:
       Carp 0
       Import::Into 1
@@ -2636,23 +2678,10 @@ DISTRIBUTIONS
     pathname: D/DR/DROLSKY/Params-Validate-1.13.tar.gz
     provides:
       Attribute::Params::Validate 1.13
-      Bar undef
-      Baz undef
-      Foo undef
-      PVTests undef
-      PVTests::Callbacks undef
-      PVTests::Defaults undef
-      PVTests::Regex undef
-      PVTests::Standard undef
-      PVTests::With undef
       Params::Validate 1.13
       Params::Validate::Constants 1.13
       Params::Validate::PP 1.13
       Params::Validate::XS 1.13
-      Quux undef
-      Testing::X undef
-      Yadda undef
-      inc::MyModuleBuild undef
     requirements:
       Attribute::Handlers 0.79
       Carp 0
@@ -2671,6 +2700,23 @@ DISTRIBUTIONS
     pathname: J/JT/JTBRAUN/Parse-RecDescent-1.967009.tar.gz
     provides:
       Parse::RecDescent 1.967009
+      Parse::RecDescent::Action 1.967009
+      Parse::RecDescent::ColCounter 1.967009
+      Parse::RecDescent::Directive 1.967009
+      Parse::RecDescent::Error 1.967009
+      Parse::RecDescent::Expectation 1.967009
+      Parse::RecDescent::InterpLit 1.967009
+      Parse::RecDescent::LineCounter 1.967009
+      Parse::RecDescent::Literal 1.967009
+      Parse::RecDescent::OffsetCounter 1.967009
+      Parse::RecDescent::Operator 1.967009
+      Parse::RecDescent::Production 1.967009
+      Parse::RecDescent::Repetition 1.967009
+      Parse::RecDescent::Result 1.967009
+      Parse::RecDescent::Rule 1.967009
+      Parse::RecDescent::Subrule 1.967009
+      Parse::RecDescent::Token 1.967009
+      Parse::RecDescent::UncondReject 1.967009
     requirements:
       Test::More 0
       Text::Balanced 1.95
@@ -2703,7 +2749,6 @@ DISTRIBUTIONS
     pathname: L/LE/LEONT/PerlIO-utf8_strict-0.004.tar.gz
     provides:
       PerlIO::utf8_strict 0.004
-      t::Util undef
     requirements:
       Carp 0
       Exporter 0
@@ -2740,7 +2785,6 @@ DISTRIBUTIONS
   SQL-Abstract-1.78
     pathname: R/RI/RIBASUSHI/SQL-Abstract-1.78.tar.gz
     provides:
-      DBIx::Class::Storage::Debug::PrettyPrint undef
       SQL::Abstract 1.78
       SQL::Abstract::Test undef
       SQL::Abstract::Tree undef
@@ -2931,13 +2975,6 @@ DISTRIBUTIONS
     provides:
       Sub::Exporter 0.987
       Sub::Exporter::Util 0.987
-      Test::SubExporter::DashSetup undef
-      Test::SubExporter::Faux undef
-      Test::SubExporter::GroupGen undef
-      Test::SubExporter::GroupGenSubclass undef
-      Test::SubExporter::ObjGen undef
-      Test::SubExporter::ObjGen::Obj undef
-      Test::SubExporter::s_e undef
     requirements:
       Carp 0
       Data::OptList 0.100
@@ -3256,6 +3293,7 @@ DISTRIBUTIONS
       Type::Tiny::Intersection 1.000004
       Type::Tiny::Role 1.000004
       Type::Tiny::Union 1.000004
+      Type::Tiny::_HalfOp undef
       Type::Utils 1.000004
       Types::Common::Numeric 1.000004
       Types::Common::String 1.000004
@@ -3346,6 +3384,7 @@ DISTRIBUTIONS
   URI-db-0.15
     pathname: D/DW/DWHEELER/URI-db-0.15.tar.gz
     provides:
+      URI::_db undef
       URI::cassandra 0.15
       URI::couch 0.15
       URI::couchdb 0.15
@@ -3407,7 +3446,6 @@ DISTRIBUTIONS
     pathname: J/JO/JOSEPHW/XML-Writer-0.625.tar.gz
     provides:
       XML::Writer 0.625
-      XML::Writer::Namespaces 0.625
       XML::Writer::_PrintChecker 0.625
       XML::Writer::_String 0.625
     requirements:
@@ -3443,7 +3481,6 @@ DISTRIBUTIONS
     pathname: I/IL/ILMARI/bareword-filehandles-0.003.tar.gz
     provides:
       bareword::filehandles 0.003
-      inc::BarewordFilehandlesMakeMaker undef
     requirements:
       B::Hooks::OP::Check 0
       ExtUtils::Depends 0
@@ -3623,8 +3660,6 @@ DISTRIBUTIONS
   multidimensional-0.011
     pathname: I/IL/ILMARI/multidimensional-0.011.tar.gz
     provides:
-      MyTest undef
-      inc::MultidimensionalMakeMaker undef
       multidimensional 0.011
     requirements:
       B::Hooks::OP::Check 0.19

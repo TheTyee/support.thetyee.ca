@@ -1,4 +1,4 @@
-% layout 'default', title => 'Welcome to the team. Share the news -- The Tyee';
+% layout 'default', title => 'Welcome to the team. Share the news -- The Tyee', body_id => 'share';
 
 
 
@@ -18,7 +18,7 @@
     </p>
     <br />
     <div style="float: left; with: 50%; margin-right: 20px;">
-        <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-count="none" data-size="large" data-text="Does media concentration in Canada worry you? It does me. That's why I support @TheTyee. You can too!" data-url="http://thetyee.ca/national">Tweet</a>
+        <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-count="none" data-size="large" data-text="Does media concentration in Canada worry you? It does me. That's why I support @TheTyee. You can too!" data-url="http://support.thetyee.ca/">Tweet</a>
     <span style="margin-left: 10px;" class='st_email_large' displayText='Email'></span>
     </div>
     <div class="fb-like" data-href="http://support.thetyee.ca" data-width="300" data-action="recommend" data-show-faces="true" data-send="true"></div>

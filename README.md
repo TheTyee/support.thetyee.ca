@@ -89,7 +89,9 @@ You'll want to udpate the values in `app.development.json` and `sqitch/sqitch.co
 Next, you'll want to load the required table(s) into PostgreSQL using sqitch. You can do that like so:
 
 `cd sqitch`
-`sqitch deploy`
+`carton exec sqitch deploy`
+
+
 
 If that worked, you should see something like:
 
@@ -108,7 +110,7 @@ At this point you should have everything needed to start developing. Run the app
 
 `carton exec morbo app.pl`
 
-And, if everythign worked, you should see:
+And, if everything worked, you should see:
 
 `Server available at http://127.0.0.1:3000.`
 
@@ -122,6 +124,58 @@ Errors will be written to your terminal, as well as shown in the browser.
 
 ### 8. Send a pull request with the changes
 
-When you're done making changes, create a new pull request pointing from the branch that you're working on lcoally (probaby `develop`) pointing to the `develop` branch at https://github.com/phillipadsmith/support.thetyee.ca
+When you're done making changes, create a new pull request pointing from the branch that you're working on locally (probaby `develop`) pointing to the `develop` branch at https://github.com/phillipadsmith/support.thetyee.ca
 
 Submit the pull request and congratulate yourself on a job well done. :)
+
+## Updating the preview site
+
+### 1. Updating the app
+
+First, you need to update the files on the server. 
+
+Using terminal, log in to the remote server (thetyee.ca)
+
+`cd preview.support.thetyee.ca/www/`
+
+Make sure you're on the develop branch: 
+
+`git branch`
+
+Then sync up!
+
+`git pull`
+
+Then, redeploy the application:
+
+`MOJO_MODE='preview' MOJO_LOG_LEVEL='debug' hypnotoad app.pl`
+
+MOJE_MODE tells the app which config file to use. I.e. `MOJO_MODE='preview'` will look for the app.preview.json file. 
+
+### 2. Updating the static files
+
+Static files stored on a different part of the server. 
+
+To access, log in to thetyee.ca
+
+`cd static.thetyee.ca/www/support/[version]`
+
+`git pull`
+
+### 3. Version Control
+
+For more substantial changes, you'll want to create a new directory. 
+
+Log in to thetyee.ca
+
+`cd static.thetyee.ca/www/support`
+
+`git clone https://github.com/phillipadsmith/support.thetyee.ca-static.git v[version number]`
+
+`cd v[version number]`
+
+`bower install`
+
+
+
+

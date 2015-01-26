@@ -1,0 +1,145 @@
+% layout 'default', title => 'Support fact-based independent journalism -- The Tyee'; 
+
+       <div class="container" id="content">
+            <div id="campaign-copy" class="row">
+                <h1>Canada needs more independent journalism. Join us <span>&nbsp;</span></h1>
+                <p class="lead">Support The Tyee and bring more diverse, fact-driven reporting to the national conversation.</p>
+            </div>
+
+            <span id="campaign-end"></span>
+            %= include 'includes/form'
+            <div id="atf" class="row">
+            <h2>Who are we?</h2>
+                <div class="col-md-8 video-container">
+                    <iframe width="560" height="315" src="//www.youtube.com/embed/KlTRrRyBs98" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="col-md-4">
+                    %= include 'includes/about'
+                </div>
+            </div> <!-- / #atf -->
+        </div><!-- / .container -->
+        <div id="featurettes1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2>Our vision</h2>
+                        <p>Canada is undergoing radical change at a time when our national media is in collapse. Federal scientists have been muzzled, far-reaching trade deals have been negotiated in secret, environmental regulations have been slashed, and inequality has increased. At the same time, the oil and gas industry has held unprecedented sway in the public policy of the nation. We are in the lead-up to another federal election -- the time for tough, fact-driven reporting is now. </p>
+                        <p>Canada needs more diverse reporting to strengthen our democracy -- reporting that cares more about its readers than shareholder profits. That's what The Tyee has done for more than 10 years in B.C., garnering numerous reporting awards and a loyal readership. So, join us now and together we'll bring this spirit to the national conversation. </p>
+
+                    </div><!-- /.col-md-6 -->
+                    <div class="col-md-6">
+                        <h2>How you can help</h2>
+                        <p>Sign up as a Tyee Builder for less than the cost of a newspaper subscription and support The Tyee’s award-winning independent journalism.</p>
+                        <p>Your money will pay proven journalists to cover the national stories other media miss. What stories exactly? You tell us. When you sign up, you'll complete a news-priority survey that will help inform this reporting. Plus, your money keeps The Tyee paywall free, which means you're giving the gift of excellent independent reporting to all Canadians, regardless of income level. Because news is for the people. But good reporting costs money.</p>
+                        <p>As a special thanks for signing up, you’ll receive editorial reports, random swag giveaways, and discounts on Tyee Master Classes. 
+
+                        </p>
+                    </div><!-- /.col-md-6 -->
+                   
+                </div><!-- /.row -->
+            </div><!-- / .container -->
+        </div><!-- / #featurettes1 -->
+
+        <div id="people" class="testimonial">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <p class="quotation">“I support The Tyee because its reporters are brave, independent and smart as hell — and because Canadians need to learn the truth behind government spin more than ever before.”</p>
+                        <p class="cite">Naomi Klein</p>
+                    </div>
+                    <div class="col-md-4">
+                        <img src="<%= $config->{'static_asset_path'} %>/ui/img/naomi-klein.jpg">
+                    </div>
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </div><!-- featurettes2 -->
+
+      
+    
+% content_for javascript => begin
+%= javascript begin
+            $('[rel="popover"]').popover();
+
+            var onetime = '<%= $onetime %>';
+            var amount = '<%= $amount %>';
+
+            Recurly.config({
+                subdomain: '<%= $config->{'subdomain'} %>',
+                currency: 'CAD'
+            });
+
+            if ( onetime ) {
+                $('#onetime a:last').tab('show');
+            };
+            if ( amount ) {
+                showTransactionForm();
+                $('form#form-onetime').hide();
+            };
+
+            function showSubscriptionForm ( planCode ) { 
+                Recurly.buildSubscriptionForm({
+                    target: '#recurly-subscribe',
+                    // Signature must be generated server-side with a utility method provided
+                    // in client libraries.
+                    signature: '<%== $recurly_sig %>',
+                    successURL: '/successful_transaction',
+                    planCode: planCode,
+                    distinguishContactFromBillingInfo: false,
+                    collectCompany: false,
+                    collectContact: true,
+                    // termsOfServiceURL: 'http://example.com/tos',
+                    acceptPaypal: false,
+                    enableCoupons: false,
+                    acceptedCards: ['mastercard',
+                    'visa'],
+                    billingInfo: {
+                        state: 'BC',
+                        country: 'CA'
+                    }
+                });
+                $('#recurly-subscribe').fadeIn(1000);
+                $('#transaction-secure').fadeIn(1000);
+            };
+
+            function showTransactionForm () { 
+                Recurly.buildTransactionForm({
+                    target: '#transactionForm',
+                    signature: '<%== $recurly_sig %>',
+                    successURL: '/successful_transaction',
+                    collectCompany: false,
+                    collectContactInfo: true,
+                    // distinguishContactFromBillingInfo: false,
+                    // termsOfServiceURL: 'http://example.com/tos',
+                    acceptPaypal: false,
+                    acceptedCards: ['mastercard',
+                    'visa'],
+                    billingInfo: {
+                        state: 'BC',
+                        country: 'CA'
+                    }
+                });
+                $('#transactionForm').fadeIn(1000);
+                $('#transaction-secure').fadeIn(1000);
+            };
+
+            $( "label.btn" ).on( "click", function( event ) {
+                var amount = $(this).text();
+                var selectedInput = $('input', this)[0];
+                showSubscriptionForm( selectedInput.value );
+            });
+            $( "a#amount-change" ).on( "click", function( event ) {
+                event.preventDefault();
+                $('form#form-onetime').show();
+                $('#transactionForm').hide();
+                $('#payment-onetime-confirmation').hide();
+            });
+            $('a#link-tab-monthly').on('click', function( event ) {
+                event.preventDefault();
+                $('#monthly a:last').tab('show');
+            });
+            $('a#link-tab-onetime').on('click', function( event ) {
+                event.preventDefault();
+                $('#onetime a:last').tab('show');
+            });
+%   end
+% end
