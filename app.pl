@@ -1,4 +1,8 @@
 #!/usr/bin/env perl
+
+use FindBin;
+use lib "$FindBin::Bin/local/lib/perl5";
+
 use Mojolicious::Lite;
 use Mojo::UserAgent;
 use Data::Dumper;
@@ -182,6 +186,10 @@ group {
         my $self = shift;
         $self->stash( body_id => 'evergreen' );
     } => 'evergreen';
+    any [qw(GET POST)] => '/spring2015' => sub {
+        my $self = shift;
+        $self->stash( body_id => 'spring2015' );
+    } => 'spring2015';
 };
 
 post '/successful_transaction' => sub {
