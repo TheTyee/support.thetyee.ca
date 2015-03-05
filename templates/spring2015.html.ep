@@ -1,0 +1,153 @@
+% layout 'default', title => 'Support fact-based independent journalism -- The Tyee';
+
+       <div class="container" id="content">
+            <div id="campaign-copy" class="row">
+                <h1>Canada needs more independent journalism. Join us <span>&nbsp;</span></h1>
+                <p class="lead">Support The Tyee and invest in critical, in-depth reporting on the future of Canada’s leadership.</p>
+            </div>
+
+            <span id="campaign-end"></span>
+            %= include 'includes/form'
+            <div id="atf" class="row">
+                <div class="col-md-8 video-container">
+                    <iframe src="https://player.vimeo.com/video/77548585?title=0&amp;byline=0&amp;portrait=0&amp;color=309c54" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                </div>
+                <div class="col-md-4">
+                    %= include 'includes/widget'
+                </div>
+            </div> <!-- / #atf -->
+        </div><!-- / .container -->
+        <div id="featurettes1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h2>Our vision</h2>
+                        Canada is undergoing radical change at a time when our national media is in collapse. In two years there will be another federal election. Canada needs more diverse reporting to inform that democratic moment -- reporting that cares more about your values than shareholder profits. That's what The Tyee has done for more than 10 years in B.C., garnering numerous reporting awards and a loyal readership. So, join us now and together we'll bring this spirit to the national conversation. 
+                    </div><!-- /.col-md-4 -->
+                    <div class="col-md-4">
+                        <h2>How you can help</h2>
+                        <p>Your money will pay proven journalists to cover the national stories other media miss. What stories exactly? You tell us. When you sign up, you'll complete a news-priority survey that will help inform this reporting. Choose from priorities like energy &amp; environment, trade &amp; foreign affairs or inequality. Plus, your money keeps The Tyee paywall free, which means you're giving the gift of excellent independent reporting to all Canadians, regardless of income level. Because news is for the people. But good reporting costs money.
+                        </p>
+                    </div><!-- /.col-md-4 -->
+                    <div class="col-md-4">
+                        <h2>Pull the strings</h2>
+                        <img id="harper" src="<%= $config->{'static_asset_path'} %>/ui/img/Stephen-Harper-Paper-Doll-bw.png" />
+                        <p>For years, politicians have been playing with you. Now it's your turn to play with them. In anticipation of the 2015 federal election, we present The Party Leader Paper Dolls. Just a little gift from the political nerds at The Tyee to the political nerds who subscribe at $15/month or higher levels. Prorogue away, parliamentary puppet master! <a href="http://TheTyee.ca/About/National/Paper-Dolls">See the dolls...</a>
+
+                        </p>
+                    </div><!-- /.col-md-4 -->
+                </div><!-- /.row -->
+            </div><!-- / .container -->
+        </div><!-- / #featurettes1 -->
+        %= include 'includes/people'
+
+        <div id="featurettes2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h2>Why now?</h2>
+                        In the last two years, federal scientists have been muzzled, far-reaching trade deals have been negotiated in secret, environmental programs have been slashed, and inequality has increased. At the same time, the oil and gas industry has held unprecedented sway in the public policy of the nation. The next federal election is in two years. The time for tough, fact-driven reporting is now. 
+                    </div><!-- /.col-md-4 -->
+                    <div class="col-md-4">
+                        <h2>Who are we?</h2>
+                        <p>We're an independent, online news magazine from BC. We're devoted to fact-driven reporting and analysis that informs and enlivens our democratic conversation. Our reporting has garnered numerous awards and the respect of our peers and readers. While some journalism gives the last word to power, we try  to give the last word to ordinary folks. <a href="http://TheTyee.ca/"> Go to The Tyee...</a>                        </p>
+                    </div><!-- /.col-md-4 -->
+                    <div class="col-md-4">
+                        <h2>Who's with us?</h2>
+                        <p>
+                        A number of civil-society groups are supporting our bid to bring more independent reporting to the national conversation. The list includes Friends of Canadian Broadcasting, FairVote Canada, the Canadian Centre for Policy Alternatives, the Council of Canadians and many more. <a data-toggle="modal" href="#partner-orgs">See the full list...</a>
+                        </p>
+                    </div><!-- /.col-md-4 -->
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </div><!-- / #featurettes2 -->
+        %= include 'includes/builder_list'
+        %= include 'includes/partners'
+
+% content_for javascript => begin
+%= javascript begin
+            $('[rel="popover"]').popover();
+
+            var onetime = '<%= $onetime %>';
+            var amount = '<%= $amount %>';
+
+            Recurly.config({
+                subdomain: '<%= $config->{'subdomain'} %>',
+                currency: 'CAD'
+            });
+
+            if ( onetime ) {
+                $('#onetime a:last').tab('show');
+            };
+            if ( amount ) {
+                showTransactionForm();
+                $('form#form-onetime').hide();
+            };
+
+            function showSubscriptionForm ( planCode ) { 
+                Recurly.buildSubscriptionForm({
+                    target: '#recurly-subscribe',
+                    // Signature must be generated server-side with a utility method provided
+                    // in client libraries.
+                    signature: '<%== $recurly_sig %>',
+                    successURL: '/successful_transaction',
+                    planCode: planCode,
+                    distinguishContactFromBillingInfo: false,
+                    collectCompany: false,
+                    collectContact: true,
+                    // termsOfServiceURL: 'http://example.com/tos',
+                    acceptPaypal: false,
+                    enableCoupons: false,
+                    acceptedCards: ['mastercard',
+                    'visa'],
+                    billingInfo: {
+                        state: 'BC',
+                        country: 'CA'
+                    }
+                });
+                $('#recurly-subscribe').fadeIn(1000);
+                $('#transaction-secure').fadeIn(1000);
+            };
+
+            function showTransactionForm () { 
+                Recurly.buildTransactionForm({
+                    target: '#transactionForm',
+                    signature: '<%== $recurly_sig %>',
+                    successURL: '/successful_transaction',
+                    collectCompany: false,
+                    collectContactInfo: true,
+                    // distinguishContactFromBillingInfo: false,
+                    // termsOfServiceURL: 'http://example.com/tos',
+                    acceptPaypal: false,
+                    acceptedCards: ['mastercard',
+                    'visa'],
+                    billingInfo: {
+                        state: 'BC',
+                        country: 'CA'
+                    }
+                });
+                $('#transactionForm').fadeIn(1000);
+                $('#transaction-secure').fadeIn(1000);
+            };
+
+            $( "label.btn" ).on( "click", function( event ) {
+                var amount = $(this).text();
+                var selectedInput = $('input', this)[0];
+                showSubscriptionForm( selectedInput.value );
+            });
+            $( "a#amount-change" ).on( "click", function( event ) {
+                event.preventDefault();
+                $('form#form-onetime').show();
+                $('#transactionForm').hide();
+                $('#payment-onetime-confirmation').hide();
+            });
+            $('a#link-tab-monthly').on('click', function( event ) {
+                event.preventDefault();
+                $('#monthly a:last').tab('show');
+            });
+            $('a#link-tab-onetime').on('click', function( event ) {
+                event.preventDefault();
+                $('#onetime a:last').tab('show');
+            });
+%   end
+% end
