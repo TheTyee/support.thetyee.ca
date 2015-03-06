@@ -16,23 +16,42 @@
                     %= include 'includes/widget'
                 </div>
             </div> <!-- / #atf -->
+            <div class="row awards">
+                <div class="col-md-12 awards">
+                    <div class="col-md-3 award">
+                        <img id="murrow" src="<%= $config->{'static_asset_path'} %>/ui/img/award-cjf.png" />
+                        <p>Excellence in Journalism Award (CDN), 2013, 2009</p>
+                    </div>
+                    <div class="col-md-3 award">
+                        <img id="murrow" src="<%= $config->{'static_asset_path'} %>/ui/img/award-western.png" />
+                        <p>Western Magazine Award 2012</p>
+                    </div>
+                    <div class="col-md-3 award">
+                        <img id="murrow" src="<%= $config->{'static_asset_path'} %>/ui/img/award-murrow.png" />
+                        <p>Edward R. Murrow Award (NA), 2011, 2009</p>
+                    </div>
+                    <div class="col-md-3 award">
+                        <img id="murrow" src="<%= $config->{'static_asset_path'} %>/ui/img/award-webby.png" />
+                        <p>Webby Honourable Mention (Intl), 2010, 2009</p>
+                    </div>
+                </div>
+            </div>
         </div><!-- / .container -->
         <div id="featurettes1">
             <div class="container">
                 <div class="row">
                     <div class="col-md-4">
                         <h2>Our vision</h2>
-                        Canada is undergoing radical change at a time when our national media is in collapse. In two years there will be another federal election. Canada needs more diverse reporting to inform that democratic moment -- reporting that cares more about your values than shareholder profits. That's what The Tyee has done for more than 10 years in B.C., garnering numerous reporting awards and a loyal readership. So, join us now and together we'll bring this spirit to the national conversation. 
+                        <p>Canada is headed towards an important federal election. At the same time, our national media is in collapse. Newsrooms continue to shrink and consolidate under the control of fewer and fewer corporations, and during the last election several of Canada’s major newspapers directly endorsed political candidates. The Tyee doesn’t endorse politicians, just good journalism. We believe we all deserve solid, in-depth reporting about our government’s track record, delivered by media who are answerable first and foremost to readers.</p>
                     </div><!-- /.col-md-4 -->
                     <div class="col-md-4">
                         <h2>How you can help</h2>
-                        <p>Your money will pay proven journalists to cover the national stories other media miss. What stories exactly? You tell us. When you sign up, you'll complete a news-priority survey that will help inform this reporting. Choose from priorities like energy &amp; environment, trade &amp; foreign affairs or inequality. Plus, your money keeps The Tyee paywall free, which means you're giving the gift of excellent independent reporting to all Canadians, regardless of income level. Because news is for the people. But good reporting costs money.
+                        <p>In 2013 our readers pitched in to hire a Tyee reporter in Ottawa, to bring more diverse reporting to the national conversation. But one reporter can’t cover this election alone, so we’re aiming to build a strong, experienced team to do justice to this momentous national event. We want to put many more journalists to work right now on election-related investigations, and we need your help. Contribute today as a Tyee Builder and we’ll be able to give a team of tough-minded reporters the resources they need to get the job done.
                         </p>
                     </div><!-- /.col-md-4 -->
                     <div class="col-md-4">
-                        <h2>Pull the strings</h2>
-                        <img id="harper" src="<%= $config->{'static_asset_path'} %>/ui/img/Stephen-Harper-Paper-Doll-bw.png" />
-                        <p>For years, politicians have been playing with you. Now it's your turn to play with them. In anticipation of the 2015 federal election, we present The Party Leader Paper Dolls. Just a little gift from the political nerds at The Tyee to the political nerds who subscribe at $15/month or higher levels. Prorogue away, parliamentary puppet master! <a href="http://TheTyee.ca/About/National/Paper-Dolls">See the dolls...</a>
+                        <h2>Paywall-free since 2003</h2>
+                        <p>We don’t hide our articles behind paywalls because we believe that news is for everyone, not just those who can afford it. But good journalism costs money. That means that when you contribute as a Tyee Builder, you are helping to keep everyone informed. </a>
 
                         </p>
                     </div><!-- /.col-md-4 -->
@@ -43,20 +62,25 @@
 
         <div id="featurettes2">
             <div class="container">
+                <h2>Need more convincing? Here’s what Tyee Builders have to say about us:</h2>
                 <div class="row">
                     <div class="col-md-4">
-                        <h2>Why now?</h2>
-                        In the last two years, federal scientists have been muzzled, far-reaching trade deals have been negotiated in secret, environmental programs have been slashed, and inequality has increased. At the same time, the oil and gas industry has held unprecedented sway in the public policy of the nation. The next federal election is in two years. The time for tough, fact-driven reporting is now. 
+                        <blockquote>
+                            <p>“If you want gain the perspective necessary to understand the events shaping the world around you; and view news from a vista point of view; The Tyee is a valuable stop that can meaningfully contribute to attaining that goal.”</p>
+                            <small>Andy B., Avonmore, ON</small>
+                        </blockquote>                   
                     </div><!-- /.col-md-4 -->
                     <div class="col-md-4">
-                        <h2>Who are we?</h2>
-                        <p>We're an independent, online news magazine from BC. We're devoted to fact-driven reporting and analysis that informs and enlivens our democratic conversation. Our reporting has garnered numerous awards and the respect of our peers and readers. While some journalism gives the last word to power, we try  to give the last word to ordinary folks. <a href="http://TheTyee.ca/"> Go to The Tyee...</a>                        </p>
+                        <blockquote>
+                            <p>“This is the most reliable and best researched source of news in Western Canada.”</p>
+                            <small>Christoph D., Smithers, BC</small>
+                        </blockquote>
                     </div><!-- /.col-md-4 -->
                     <div class="col-md-4">
-                        <h2>Who's with us?</h2>
-                        <p>
-                        A number of civil-society groups are supporting our bid to bring more independent reporting to the national conversation. The list includes Friends of Canadian Broadcasting, FairVote Canada, the Canadian Centre for Policy Alternatives, the Council of Canadians and many more. <a data-toggle="modal" href="#partner-orgs">See the full list...</a>
-                        </p>
+                        <blockquote>
+                            <p>“I'm grateful for the Tyee's independent, hard hitting journalism, which is vital to democracy in BC and Canada.”</p>
+                            <small>Rick C., Kimberley, BC</small>
+                        </blockquote>
                     </div><!-- /.col-md-4 -->
                 </div><!-- /.row -->
             </div><!-- /.container -->
