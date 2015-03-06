@@ -2,7 +2,7 @@
 
        <div class="container" id="content">
             <div id="campaign-copy" class="row">
-                <h1>Canada needs more independent journalism. Join us <span>&nbsp;</span></h1>
+                <h1>Canada needs more independent journalism. <span class="join-us">Join us</span></h1>
                 <p class="lead">Support The Tyee and invest in critical, in-depth reporting on the future of Canada’s leadership.</p>
             </div>
 
@@ -18,19 +18,19 @@
             </div> <!-- / #atf -->
             <div class="row awards">
                 <div class="col-md-12 awards">
-                    <div class="col-md-3 award">
+                    <div class="col-md-3 col-sm-3 award">
                         <img id="murrow" src="<%= $config->{'static_asset_path'} %>/ui/img/award-cjf.png" />
                         <p>Excellence in Journalism Award (CDN), 2013, 2009</p>
                     </div>
-                    <div class="col-md-3 award">
+                    <div class="col-md-3 col-sm-3 award">
                         <img id="murrow" src="<%= $config->{'static_asset_path'} %>/ui/img/award-western.png" />
                         <p>Western Magazine Award 2012</p>
                     </div>
-                    <div class="col-md-3 award">
+                    <div class="col-md-3 col-sm-3 award">
                         <img id="murrow" src="<%= $config->{'static_asset_path'} %>/ui/img/award-murrow.png" />
                         <p>Edward R. Murrow Award (NA), 2011, 2009</p>
                     </div>
-                    <div class="col-md-3 award">
+                    <div class="col-md-3 col-sm-3 award">
                         <img id="murrow" src="<%= $config->{'static_asset_path'} %>/ui/img/award-webby.png" />
                         <p>Webby Honourable Mention (Intl), 2010, 2009</p>
                     </div>
