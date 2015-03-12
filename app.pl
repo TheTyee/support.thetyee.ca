@@ -1,4 +1,8 @@
 #!/usr/bin/env perl
+
+use FindBin;
+use lib "$FindBin::Bin/local/lib/perl5";
+
 use Mojolicious::Lite;
 use Mojo::UserAgent;
 use Data::Dumper;
@@ -155,11 +159,12 @@ group {
         my $plans       = $self->recurly_get_plans(
             $config->{'recurly_get_plans_filter'} );
         $self->stash(
-            {   plans       => $plans,
-                amount      => $amount,
-                onetime     => $onetime || $self->flash( 'onetime' ),
-                recurly_sig => $recurly_sig,
-                error       => $self->flash( 'error' ),
+            {   plans         => $plans,
+                plans_onetime => $config->{'plans_onetime'},
+                amount        => $amount,
+                onetime       => $onetime || $self->flash( 'onetime' ),
+                recurly_sig   => $recurly_sig,
+                error         => $self->flash( 'error' ),
             }
         );
         $self->flash( campaign => $campaign );
@@ -182,6 +187,10 @@ group {
         my $self = shift;
         $self->stash( body_id => 'evergreen' );
     } => 'evergreen';
+    any [qw(GET POST)] => '/election2015' => sub {
+        my $self = shift;
+        $self->stash( body_id => 'election2015' );
+    } => 'election2015';
 };
 
 post '/successful_transaction' => sub {

@@ -1,39 +1,40 @@
 
             <div id="people">
                 <div class="container">
-                    <h2>Some of the writers standing ready...</h2>
+                    <h2>Voices of The Tyee</h2>
+                    <p>Here’s what some of the Tyee’s regular contributors have to say about the upcoming election:</p>
                     <div class="row">
                         <div class="col-md-4">
-                            <img class="img-thumbnail" src="<%= $config->{'static_asset_path'} %>/ui/img/steviecameron.jpg">
-                            <h3 class="famous">Stevie Cameron</h3>
-                            <blockquote>Award-winning investigative journalist and bestselling author. Best known for her exposure of the Mulroney government's Airbus Affair and her extensive coverage of the Pickton murders and trials.</blockquote>
+                            <img class="img-thumbnail" src="<%= $config->{'static_asset_path'} %>/ui/img/jeremynuttall.jpg">
+                            <h3 class="famous">Jeremy Nuttall, Tyee National Reporter</h3>
+                            <blockquote>“There's no doubt it will be hard to get substance on government issues as the election goes on, unless you want a daily roundup of talking points from across the country. But if you aren't interested in soundbites and sycophants -- that's where The Tyee will come in.”</blockquote>
                         </div><!-- /.col-md-4 -->
                         <div class="col-md-4">
-                            <img class="img-thumbnail" src="<%= $config->{'static_asset_path'} %>/ui/img/lawrencemartin.jpg">
-                            <h3 class="famous">Lawrence Martin</h3>
-                            <blockquote>Columnist for, and former bureau chief in Washington & Moscow of, the Globe and Mail. Author of 10 books, including <em>Harperland: The Politics of Control</em> and <em>Iron Man: The Defiant Reign of Jean Chrétien</em>.</blockquote>
+                            <img class="img-thumbnail" src="<%= $config->{'static_asset_path'} %>/ui/img/katiehyslop.jpg">
+                            <h3 class="famous">Katie Hyslop, Education and Youth Reporter</h3>
+                            <blockquote>“In an effort to break news first, journalists often do the public a disservice by reporting campaign promises without the necessary context. Most voters don't have the resources or time to research whether a promise is possible, a good idea, or necessary. That's why great political coverage includes context and history -- a lot can happen in nine years, and the media should jog memories of the political successes and failures of all political parties.”</blockquote>
                         </div><!-- /.col-md-4 -->
                         <div class="col-md-4">
-                            <img class="img-thumbnail" src="<%= $config->{'static_asset_path'} %>/ui/img/heathermallick.jpg">
-                            <h3 class="famous">Heather Mallick</h3>
-                            <blockquote>Take-no-prisoners columnist for the Toronto Star. Also contributes to the CBC and the Guardian. Winner of two National Newspaper Awards for features and critical writing.</blockquote>
+                            <img class="img-thumbnail" src="<%= $config->{'static_asset_path'} %>/ui/img/jesshousty.jpg">
+                            <h3 class="famous">Jess Housty, Community Leader and Organizer, Heiltsuk Nation</h3>
+                            <blockquote>“Mainstream media may still speak on our behalf and think we're on the fringes, but truly progressive journalistic institutions like The Tyee have made a habit of bringing Indigenous storymakers to a waiting audience. Come election time, that will set The Tyee apart as a source of challenging and exciting political analysis right from the Indigenous people and communities who are shaping the political landscape in this country.”</blockquote>
                         </div><!-- /.col-md-4 -->
                         <br clear="all" />
                         <div class="col-md-4">
                             <img class="img-thumbnail" src="<%= $config->{'static_asset_path'} %>/ui/img/andrewnikiforuk.jpg">
-                            <h3 class="famous">Andrew Nikiforuk</h3>
-                            <blockquote>Winner of seven National Magazine Awards. Top honours from the Association of Canadian Journalists. Author of four books, including the bestselling <em>The Tar Sands: Dirty Oil and the Future of the Continent</em>.</blockquote>
+                            <h3 class="famous">Andrew Nikiforuk, Energy and Environment Reporter</h3>
+                            <blockquote>“The upcoming election will either accelerate Canada's slide into fascism, or reverse this trend. Given the collapse and co-option of the mainstream media, it will be up to independent organizations such as The Tyee to document the damage now done by Harper's regime and to identify opportunities for citizens to make a difference.”</blockquote>
 
                         </div><!-- /.col-md-4 -->
                         <div class="col-md-4">
-                            <img class="img-thumbnail" src="<%= $config->{'static_asset_path'} %>/ui/img/jonathansas.jpg">
-                            <h3 class="famous">Jonathan Sas</h3>
-                            <blockquote>Director of research at the Broadbent Institute. Former reporter and editor at The Mark. Outspoken critic of media concentration and commercialization in Canada. Sauvé Scholar (2012).</blockquote>
+                            <img class="img-thumbnail" src="<%= $config->{'static_asset_path'} %>/ui/img/geoffdembicki.jpg">
+                            <h3 class="famous">Geoff Dembicki, Energy and Climate Change Reporter</h3>
+                            <blockquote>"During this upcoming federal election, pay attention to messaging that pits Canada’s economy against its environment. Anyone with serious knowledge of these issues knows that framing is false. But it’s often used by politicians to divide progressive voters.”</blockquote>
                         </div><!-- /.col-md-4 -->
                         <div class="col-md-4">
-                            <img class="img-thumbnail" src="<%= $config->{'static_asset_path'} %>/ui/img/judithsayers.jpg">
-                            <h3 class="famous">Judith Sayers</h3>
-                            <blockquote>Former elected chief of the Hupacsath First Nation. Assistant professor of law and business at UVic. National Aboriginal Economic Development Chair. Thoughtful writer, insightful thinker.</blockquote>
+                            <img class="img-thumbnail" src="<%= $config->{'static_asset_path'} %>/ui/img/andrewmacleod.jpg">
+                            <h3 class="famous">Andrew MacLeod, Tyee Legislative Bureau Chief</h3>
+                            <blockquote>“Several parties are working hard to appeal to the middle class, but will any put forward a serious agenda to make our country more equal by supporting low earners and constraining incomes at the top? How big an issue will pipeline proposals be in B.C.? Was there a clear lesson from the 2013 provincial election for the federal parties? How are the parties' platforms shaping up on issues important to British Columbians, including health care, housing, crime, terrorism and climate change? That's what I'll be asking this election.”.</blockquote>
                         </div><!-- /.col-md-4 -->
                     </div><!-- /.row -->
                 </div><!-- /.container -->
