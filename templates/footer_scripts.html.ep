@@ -4,7 +4,7 @@
         <script src="<%= $config->{'static_asset_path'} %>/ui/js/respond.min.js"></script>
         <script src="<%= $config->{'static_asset_path'} %>/ui/js/recurly.min.js"></script>
         % my $abs = $self->req->url->to_abs->path;
-        % if ( $abs eq '/national' || $abs eq '/spring2015' ) { # widget js
+        % if ( $abs eq '/national' || $abs eq '/election2015' ) { # widget js
         <script src="<%= $config->{'static_asset_path'} %>/ui/js/widget.min.js"></script>
         % }
         <%= content_for 'javascript' %>
