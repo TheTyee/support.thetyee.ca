@@ -159,11 +159,12 @@ group {
         my $plans       = $self->recurly_get_plans(
             $config->{'recurly_get_plans_filter'} );
         $self->stash(
-            {   plans       => $plans,
-                amount      => $amount,
-                onetime     => $onetime || $self->flash( 'onetime' ),
-                recurly_sig => $recurly_sig,
-                error       => $self->flash( 'error' ),
+            {   plans         => $plans,
+                plans_onetime => $config->{'plans_onetime'},
+                amount        => $amount,
+                onetime       => $onetime || $self->flash( 'onetime' ),
+                recurly_sig   => $recurly_sig,
+                error         => $self->flash( 'error' ),
             }
         );
         $self->flash( campaign => $campaign );
@@ -186,10 +187,10 @@ group {
         my $self = shift;
         $self->stash( body_id => 'evergreen' );
     } => 'evergreen';
-    any [qw(GET POST)] => '/spring2015' => sub {
+    any [qw(GET POST)] => '/election2015' => sub {
         my $self = shift;
-        $self->stash( body_id => 'spring2015' );
-    } => 'spring2015';
+        $self->stash( body_id => 'election2015' );
+    } => 'election2015';
 };
 
 post '/successful_transaction' => sub {
