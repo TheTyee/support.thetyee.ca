@@ -6,7 +6,7 @@
     </ul>
     <div class="tab-content">
         <div class="tab-pane" id="form-monthly">
-            <p class="">Choose your <b>monthly</b> level:</p>
+            <p class="alert alert-info"><i class="glyphicon glyphicon-ok-circle">&nbsp;</i>Choose your <b>monthly</b> level:</p>
             <div class="btn-group" data-toggle="buttons">
                 % for my $p ( @$plans ) {
                 <label rel="popover" class="btn btn-primary btn-lg" data-trigger="hover" data-container="body" data-placement="top" data-content="<%= $p->description->text %>" data-original-title="<%= $p->name->text %>" title="">
@@ -24,17 +24,26 @@
                 <% if ( $error ) { %>
                 <p class="alert alert-danger"><i class="glyphicon glyphicon-exclamation-sign">&nbsp;</i>Please enter a whole number. No decimal places or other characters, please.</p>
                 <% } %>
-                <p class="alert alert-info"><i class="glyphicon glyphicon-ok-circle">&nbsp;</i> Enter your one-time amount.</p>
+                <p class="alert alert-info"><i class="glyphicon glyphicon-ok-circle">&nbsp;</i> Select your <b>one-time</b> amount</p>
                 <div class="form-group">
                     <input type="hidden" id="onetime" name="onetime" value="true" />
+                    <div class="btn-group" data-toggle="buttons">
+                        % for my $p ( @$plans_onetime ) {
+                        <label rel="popover" class="btn btn-primary btn-lg" data-trigger="hover" data-container="body" data-placement="top" data-content="<%= $p->{'text'} %>" data-original-title="$<%= $p->{'amount'} %> one-time gift" title="$<%= $p->{'amount'} %> one-time gift">
+                            <input type="radio" name="amount" id="<%= $p->{'amount'} %>" value="<%= $p->{'amount'} %>"> $<%= $p->{'amount'} %>
+                        </label>
+
+                        % }
+                    </div>
+                    <div id="other-amount-label"><label for="other-amount">Or, enter your own amount:</label></div>
                     <div class="input-group">
                         <span class="input-group-addon">$</span>
-                        <input type="text" class="form-control" id="amount" name="amount" placeholder="Enter a round number, e.g., 25">
+                        <input type="text" class="form-control" id="other-amount" name="amount" placeholder="Enter a round number, e.g., 25">
                         <span class="input-group-addon">.00</span>
                     </div>
                     <p class="help-block">Or, consider becoming a <a href="/" id="link-tab-monthly">sustaining monthly supporter</a> for less than the cost of a newspaper subscription.</p>
                 </div>
-                <button type="submit" class="btn btn-success btn-lg">Continue &raquo;</button>
+                <button type="submit" class="btn btn-success btn-lg">Continue to payment &raquo;</button>
             </form>
             % if ( $amount ) { 
             <div id="payment-onetime-confirmation">

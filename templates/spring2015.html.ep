@@ -2,12 +2,12 @@
 
        <div class="container" id="content">
             <div id="campaign-copy" class="row">
-                <h1>Canada needs more independent journalism. <span class="join-us">Join us</span></h1>
+                <h1>Canada needs more independent journalism. <span class="join-us">Join&nbsp;us</span></h1>
                 <p class="lead">Support The Tyee and invest in critical, in-depth reporting on the future of Canada’s leadership.</p>
             </div>
 
             <span id="campaign-end"></span>
-            %= include 'includes/form'
+            %= include 'includes/form-sping2015'
             <div id="atf" class="row">
                 <div class="col-md-8 video-container">
                     <iframe src="https://player.vimeo.com/video/77548585?title=0&amp;byline=0&amp;portrait=0&amp;color=309c54" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
@@ -154,7 +154,7 @@
                 $('#transaction-secure').fadeIn(1000);
             };
 
-            $( "label.btn" ).on( "click", function( event ) {
+            $( "#form-monthly label.btn" ).on( "click", function( event ) {
                 var amount = $(this).text();
                 var selectedInput = $('input', this)[0];
                 showSubscriptionForm( selectedInput.value );
