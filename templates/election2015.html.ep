@@ -7,7 +7,7 @@
             </div>
 
             <span id="campaign-end"></span>
-            %= include 'includes/form-sping2015'
+            %= include 'includes/form-election2015'
             <div id="atf" class="row">
                 <div class="col-md-8 video-container">
                     <iframe src="https://player.vimeo.com/video/77548585?title=0&amp;byline=0&amp;portrait=0&amp;color=309c54" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
