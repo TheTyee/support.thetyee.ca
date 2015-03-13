@@ -172,32 +172,56 @@ group {
 
     any [qw(GET POST)] => '/' => sub {
         my $self = shift;
+        $self->stash(
+            body_id     => 'evergreen',
+            #appeal_code => 'evergreen'
+        );
+        $self->flash(
+            appeal_code => 'evergreen'
+        );
     } => 'evergreen';
 
     any [qw(GET POST)] => '/builders' => sub {
         my $self = shift;
-        $self->stash( body_id => 'builders' );
+        $self->stash(
+            body_id     => 'builders',
+            appeal_code => 'builders'
+        );
     } => 'builders';
 
     any [qw(GET POST)] => '/national' => sub {
         my $self = shift;
-        $self->stash( body_id => 'national' );
+        $self->stash(
+            body_id     => 'national',
+            appeal_code => 'national'
+        );
     } => 'national';
     any [qw(GET POST)] => '/evergreen' => sub {
         my $self = shift;
-        $self->stash( body_id => 'evergreen' );
+        $self->stash(
+            body_id     => 'evergreen',
+            appeal_code => 'evergreen'
+        );
     } => 'evergreen';
     any [qw(GET POST)] => '/election2015' => sub {
         my $self = shift;
-        $self->stash( body_id => 'election2015' );
+        $self->stash(
+            body_id     => 'election2015',
+            appeal_code => 'election2015'
+        );
+        $self->flash(
+            appeal_code => 'election2015'
+        );
+        say Dumper( $self->flash( 'appeal_code' ));
     } => 'election2015';
 };
 
 post '/successful_transaction' => sub {
     my $self          = shift;
     my $campaign      = $self->flash( 'campaign' );
+    my $appeal_code   = $self->flash( 'appeal_code' );
     my $recurly_token = $self->param( 'recurly_token' );
-
+    say Dumper( $appeal_code );
     # Request object from Recurly based on token
     my $res
         = $ua->get( $API
@@ -229,6 +253,7 @@ post '/successful_transaction' => sub {
         ? $dom->at( 'plan plan_code' )->text
         : '',
         campaign   => $campaign,
+        appeal_code => $appeal_code,
         user_agent => $self->req->headers->user_agent,
     };
     my $result = $self->find_or_new( $transaction_details );
