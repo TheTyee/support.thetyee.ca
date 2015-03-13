@@ -145,6 +145,11 @@ __PACKAGE__->table("transactions");
   data_type: 'text'
   is_nullable: 1
 
+=head2 appeal_code
+
+  data_type: 'text'
+  is_nullable: 1
+
 =cut
 
 __PACKAGE__->add_columns(
@@ -199,6 +204,8 @@ __PACKAGE__->add_columns(
   { data_type => "text", is_nullable => 1 },
   "hosted_login_token",
   { data_type => "text", is_nullable => 1 },
+  "appeal_code",
+  { data_type => "text", is_nullable => 1 },
 );
 
 =head1 PRIMARY KEY
@@ -214,8 +221,8 @@ __PACKAGE__->add_columns(
 __PACKAGE__->set_primary_key("id");
 
 
-# Created by DBIx::Class::Schema::Loader v0.07042 @ 2014-10-20 13:00:17
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:ef+A9XOAPgeEZlX/iujrvg
+# Created by DBIx::Class::Schema::Loader v0.07042 @ 2015-03-13 16:11:59
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:EACN5RMcXpMWwP96fVxIZg
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

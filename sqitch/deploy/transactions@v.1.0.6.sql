@@ -5,6 +5,6 @@ BEGIN;
 
     SET client_min_messages = 'warning';
     
-    ALTER TABLE support.transactions ADD COLUMN appeal_code TEXT NULL;
+    ALTER TABLE support.transactions ADD COLUMN hosted_login_token TEXT NULL;
 
 COMMIT;
