@@ -173,13 +173,12 @@ group {
     any [qw(GET POST)] => '/' => sub {
         my $self = shift;
         $self->stash(
-            body_id     => 'evergreen',
-            #appeal_code => 'evergreen'
+            body_id     => 'election2015',
         );
         $self->flash(
-            appeal_code => 'evergreen'
+            appeal_code => 'election2015'
         );
-    } => 'evergreen';
+    } => 'election2015';
 
     any [qw(GET POST)] => '/builders' => sub {
         my $self = shift;
