@@ -20,9 +20,9 @@
             <meta property="og:title" content="Support your independent election reporting team – The Tyee" />
             <meta property="og:description" content="We're an independent, online news magazine from B.C. We're devoted to fact-driven reporting and analysis to inform and enliven our democratic conversation. We're assembling a team of experienced journalists to work on election-related investigations, and we need your help to make it happen." />
             <meta property="og:type" content="website" />
-            <meta property="og:image" content="<%= $config->{'static_asset_path'} %>/ui/img/facebook_share_img.png" />
+            <meta property="og:image" content="<%= $config->{'static_asset_path'} %>/ui/img/facebook_share_img_square.png" />
             <meta property="og:video" content="https://www.youtube.com/v/hbw8lvZJUTU" />
-	    <meta property="og:site_name" content="Support fact-based independent journalism -- The Tyee" />
+	    <meta property="og:site_name" content="Support your independent election reporting team – The Tyee" />
             <meta property="fb:admins" content="648146258, 512340590, 121503155, 13609677, 877285452, 584785109" />
  
 <!-- Dublin Core properties -->
