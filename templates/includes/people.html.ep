@@ -34,7 +34,7 @@
                         <div class="col-md-4">
                             <img class="img-thumbnail" src="<%= $config->{'static_asset_path'} %>/ui/img/andrewmacleod.jpg">
                             <h3 class="famous">Andrew MacLeod, Tyee Legislative Bureau Chief</h3>
-                            <blockquote>“Several parties are working hard to appeal to the middle class, but will any put forward a serious agenda to make our country more equal by supporting low earners and constraining incomes at the top? How big an issue will pipeline proposals be in B.C.? Was there a clear lesson from the 2013 provincial election for the federal parties? How are the parties' platforms shaping up on issues important to British Columbians, including health care, housing, crime, terrorism and climate change? That's what I'll be asking this election.”.</blockquote>
+                            <blockquote>“Several parties are working hard to appeal to the middle class, but will any put forward a serious agenda to make our country more equal by supporting low earners and constraining incomes at the top? How big an issue will pipeline proposals be in B.C.? Was there a clear lesson from the 2013 provincial election for the federal parties? That's what I'll be asking this election.”</blockquote>
                         </div><!-- /.col-md-4 -->
                     </div><!-- /.row -->
                 </div><!-- /.container -->

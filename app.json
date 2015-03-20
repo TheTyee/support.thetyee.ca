@@ -3,26 +3,26 @@
     "plans_onetime"          : [ 
         { 
             "amount": "10",
-            "text": "You get: Builder lapel pin (for new Builders). Editorial reports. Swag giveaways. Tyee event discounts. That warm fuzzy feeling that comes with doing something good." },
+            "text": "You get: Tyee Builder lapel pin. Editorial reports. Swag giveaways. Tyee event discounts. That warm fuzzy feeling that comes with holding power to account." },
         { 
             "amount": "20",
-            "text":"You get: Everything in the previous level, plus twice as many warm fuzzies." 
+            "text": "You get: the pin, reports, giveaways and discounts. Plus twice the warm fuzzies." 
         },
         { 
             "amount": "50",
-            "text":"You get: Everything in the previous level, plus big imaginary high fives from those who care about the state of our democracy." 
+            "text": "You get: the pin, report-backs, giveaways, discounts and a virtual high-five from everyone who values Canada's democracy." 
         },
         {
             "amount": "75",
-            "text":"You get: Everything in the previous level, plus the purr of a thousand kittens (theoretically)." 
+            "text": "You get: the pin, reports, giveaways, discounts, and the frosty glare of one government communications staffer." 
         },
         {
             "amount": "100",
-            "text":"You get: Everything in the previous level, plus FREE registration to a Tyee Master Class webinar on investigative research taught by Tim Groves (April 13 & 14, 2015). Limit 50." 
+            "text": "You get: everything in previous levels, plus FREE registration in a Tyee Master Class webinar on investigative research by Tim Groves. Limit 50." 
         },
         {
             "amount": "1000",
-            "text":"You get: Everything in the previous level, plus an invitation to an annual strategy session with Tyee editors" 
+            "text": "You get: everything in the previous levels, plus an invitation to an annual strategy meeting with Tyee editors."
         }
     ]
 }
