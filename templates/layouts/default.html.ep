@@ -22,6 +22,7 @@
             <meta property="og:type" content="website" />
             <meta property="og:url" content="https://support.thetyee.ca" />
             <meta property="og:image" content="<%= $config->{'static_asset_path'} %>/ui/img/help-thetyee-go-national.png" />
+            <meta property="og:video" content="https://www.youtube.com/v/hbw8lvZJUTU" />
 	    <meta property="og:site_name" content="Support fact-based independent journalism -- The Tyee" />
             <meta property="fb:admins" content="648146258, 512340590, 121503155, 13609677, 877285452, 584785109" />
  
