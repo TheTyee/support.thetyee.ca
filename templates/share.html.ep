@@ -5,7 +5,7 @@
 <div class="container" id="content-inner">
     <h1>Welcome to the team</h1>
     <p class="lead">
-        You just helped bring more voices to the national conversation. Tell your friends...
+        You just helped fund more independent election reporting. Tell your friends...
     </p>
     <p> 
     Thanks for your support. Keep an eye on your inbox for a receipt and welcome message within the next 24 hours. 
@@ -18,7 +18,7 @@
     </p>
     <br />
     <div style="float: left; with: 50%; margin-right: 20px;">
-        <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-count="none" data-size="large" data-text="Does media concentration in Canada worry you? It does me. That's why I support @TheTyee. You can too!" data-url="http://support.thetyee.ca/">Tweet</a>
+        <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-count="none" data-size="large" data-text="The federal election is coming. Join me and help fund more independent reporting from @TheTyee" data-url="http://support.thetyee.ca/">Tweet</a>
     <span style="margin-left: 10px;" class='st_email_large' displayText='Email'></span>
     </div>
     <div class="fb-like" data-href="http://support.thetyee.ca" data-width="300" data-action="recommend" data-show-faces="true" data-send="true"></div>

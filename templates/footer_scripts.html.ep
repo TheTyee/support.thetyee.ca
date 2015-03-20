@@ -3,9 +3,9 @@
         <script src="<%= $config->{'static_asset_path'} %>/ui/js/bootstrap.min.js"></script>
         <script src="<%= $config->{'static_asset_path'} %>/ui/js/respond.min.js"></script>
         <script src="<%= $config->{'static_asset_path'} %>/ui/js/recurly.min.js"></script>
-        <script src="<%= $config->{'static_asset_path'} %>/ui/js/recentstories.js"></script>
-        % if ( $self->req->url->to_abs->path eq '/national' ) { # widget js
-        <script src="<%= $config->{'static_asset_path'} %>/ui/js/widget.min.js"></script>
+        % my $abs = $self->req->url->to_abs->path;
+        % if ( $abs eq '/national' || $abs eq '/election2015' || $abs eq '/' ) { # widget js
+        <script src="<%= $config->{'static_asset_path'} %>/ui/js/widget.js"></script>
         % }
         <%= content_for 'javascript' %>
         % if ( $self->app->mode eq 'production' ) { # only run analytics on production

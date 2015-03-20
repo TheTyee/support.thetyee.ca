@@ -1,3 +1,28 @@
 {
-    "app_version"               : "1.3.0"
+    "app_version"               : "1.4.0",
+    "plans_onetime"          : [ 
+        { 
+            "amount": "10",
+            "text": "You get: Builder lapel pin (for new Builders). Editorial reports. Swag giveaways. Tyee event discounts. That warm fuzzy feeling that comes with doing something good." },
+        { 
+            "amount": "20",
+            "text":"You get: Everything in the previous level, plus twice as many warm fuzzies." 
+        },
+        { 
+            "amount": "50",
+            "text":"You get: Everything in the previous level, plus big imaginary high fives from those who care about the state of our democracy." 
+        },
+        {
+            "amount": "75",
+            "text":"You get: Everything in the previous level, plus the purr of a thousand kittens (theoretically)." 
+        },
+        {
+            "amount": "100",
+            "text":"You get: Everything in the previous level, plus FREE registration to a Tyee Master Class webinar on investigative research taught by Tim Groves (April 13 & 14, 2015). Limit 50." 
+        },
+        {
+            "amount": "1000",
+            "text":"You get: Everything in the previous level, plus an invitation to an annual strategy session with Tyee editors" 
+        }
+    ]
 }

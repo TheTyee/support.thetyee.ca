@@ -1,0 +1,178 @@
+% layout 'default', title => 'Support fact-based independent journalism -- The Tyee';
+
+       <div class="container" id="content">
+            <div id="campaign-copy" class="row">
+                <h1>Canada needs more independent journalism. <span class="join-us">Join&nbsp;us</span></h1>
+                <p class="lead">Support The Tyee and invest in critical, in-depth reporting on the future of Canada’s leadership.</p>
+            </div>
+
+            <span id="campaign-end"></span>
+            %= include 'includes/form-election2015'
+            <div id="atf" class="row">
+                <div class="col-md-8 video-container">
+                    <!--<iframe src="https://player.vimeo.com/video/77548585?title=0&amp;byline=0&amp;portrait=0&amp;color=309c54" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>-->
+                    <iframe width="500" height="281" src="https://www.youtube-nocookie.com/embed/hbw8lvZJUTU?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="col-md-4">
+                    %= include 'includes/widget'
+                </div>
+            </div> <!-- / #atf -->
+            <div class="row awards">
+                <div class="col-md-12 awards">
+                    <div class="col-md-3 col-sm-3 award">
+                        <img id="murrow" src="<%= $config->{'static_asset_path'} %>/ui/img/award-cjf.png" />
+                        <p>Excellence in Journalism Award (CDN), 2013, 2009</p>
+                    </div>
+                    <div class="col-md-3 col-sm-3 award">
+                        <img id="murrow" src="<%= $config->{'static_asset_path'} %>/ui/img/award-western.png" />
+                        <p>Western Magazine Award 2012</p>
+                    </div>
+                    <div class="col-md-3 col-sm-3 award">
+                        <img id="murrow" src="<%= $config->{'static_asset_path'} %>/ui/img/award-murrow.png" />
+                        <p>Edward R. Murrow Award (NA), 2011, 2009</p>
+                    </div>
+                    <div class="col-md-3 col-sm-3 award">
+                        <img id="murrow" src="<%= $config->{'static_asset_path'} %>/ui/img/award-webby.png" />
+                        <p>Webby Honourable Mention (Intl), 2010, 2009</p>
+                    </div>
+                </div>
+            </div>
+        </div><!-- / .container -->
+        <div id="featurettes1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h2>Our vision</h2>
+                        <p>Canada is headed towards an important federal election. At the same time, our national media is in collapse. Newsrooms continue to shrink and consolidate under the control of fewer and fewer corporations, and during the last election several of Canada’s major newspapers directly endorsed political candidates. The Tyee doesn’t endorse politicians, just good journalism. We believe we all deserve solid, in-depth reporting about our government’s track record, delivered by media who are answerable first and foremost to readers.</p>
+                    </div><!-- /.col-md-4 -->
+                    <div class="col-md-4">
+                        <h2>How you can help</h2>
+                        <p>In 2013 our readers pitched in to hire a Tyee reporter in Ottawa, to bring more diverse reporting to the national conversation. But one reporter can’t cover this election alone, so we’re aiming to build a strong, experienced team to do justice to this momentous national event. We want to put many more journalists to work right now on election-related investigations, and we need your help. Contribute today as a Tyee Builder and we’ll be able to give a team of tough-minded reporters the resources they need to get the job done.
+                        </p>
+                    </div><!-- /.col-md-4 -->
+                    <div class="col-md-4">
+                        <h2>Paywall-free since 2003</h2>
+                        <p>We don’t hide our articles behind paywalls because we believe that news is for everyone, not just those who can afford it. But good journalism costs money. That means that when you contribute as a Tyee Builder, you are helping to keep everyone informed. </a>
+
+                        </p>
+                    </div><!-- /.col-md-4 -->
+                </div><!-- /.row -->
+            </div><!-- / .container -->
+        </div><!-- / #featurettes1 -->
+        %= include 'includes/people'
+
+        <div id="featurettes2">
+            <div class="container">
+                <h2>Need more convincing? Here’s what Tyee Builders have to say about us:</h2>
+                <div class="row">
+                    <div class="col-md-4">
+                        <blockquote>
+                            <p>“If you want gain the perspective necessary to understand the events shaping the world around you; and view news from a vista point of view; The Tyee is a valuable stop that can meaningfully contribute to attaining that goal.”</p>
+                            <small>Andy B., Avonmore, ON</small>
+                        </blockquote>                   
+                    </div><!-- /.col-md-4 -->
+                    <div class="col-md-4">
+                        <blockquote>
+                            <p>“This is the most reliable and best researched source of news in Western Canada.”</p>
+                            <small>Christoph D., Smithers, BC</small>
+                        </blockquote>
+                    </div><!-- /.col-md-4 -->
+                    <div class="col-md-4">
+                        <blockquote>
+                            <p>“I'm grateful for the Tyee's independent, hard hitting journalism, which is vital to democracy in BC and Canada.”</p>
+                            <small>Rick C., Kimberley, BC</small>
+                        </blockquote>
+                    </div><!-- /.col-md-4 -->
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </div><!-- / #featurettes2 -->
+        %= include 'includes/builder_list'
+        %= include 'includes/partners'
+
+% content_for javascript => begin
+%= javascript begin
+            $('[rel="popover"]').popover();
+
+            var onetime = '<%= $onetime %>';
+            var amount = '<%= $amount %>';
+
+            Recurly.config({
+                subdomain: '<%= $config->{'subdomain'} %>',
+                currency: 'CAD'
+            });
+
+            if ( onetime ) {
+                $('#onetime a:last').tab('show');
+            };
+            if ( amount ) {
+                showTransactionForm();
+                $('form#form-onetime').hide();
+            };
+
+            function showSubscriptionForm ( planCode ) { 
+                Recurly.buildSubscriptionForm({
+                    target: '#recurly-subscribe',
+                    // Signature must be generated server-side with a utility method provided
+                    // in client libraries.
+                    signature: '<%== $recurly_sig %>',
+                    successURL: '/successful_transaction',
+                    planCode: planCode,
+                    distinguishContactFromBillingInfo: false,
+                    collectCompany: false,
+                    collectContact: true,
+                    // termsOfServiceURL: 'http://example.com/tos',
+                    acceptPaypal: false,
+                    enableCoupons: false,
+                    acceptedCards: ['mastercard',
+                    'visa'],
+                    billingInfo: {
+                        state: 'BC',
+                        country: 'CA'
+                    }
+                });
+                $('#recurly-subscribe').fadeIn(1000);
+                $('#transaction-secure').fadeIn(1000);
+            };
+
+            function showTransactionForm () { 
+                Recurly.buildTransactionForm({
+                    target: '#transactionForm',
+                    signature: '<%== $recurly_sig %>',
+                    successURL: '/successful_transaction',
+                    collectCompany: false,
+                    collectContactInfo: true,
+                    // distinguishContactFromBillingInfo: false,
+                    // termsOfServiceURL: 'http://example.com/tos',
+                    acceptPaypal: false,
+                    acceptedCards: ['mastercard',
+                    'visa'],
+                    billingInfo: {
+                        state: 'BC',
+                        country: 'CA'
+                    }
+                });
+                $('#transactionForm').fadeIn(1000);
+                $('#transaction-secure').fadeIn(1000);
+            };
+
+            $( "#form-monthly label.btn" ).on( "click", function( event ) {
+                var amount = $(this).text();
+                var selectedInput = $('input', this)[0];
+                showSubscriptionForm( selectedInput.value );
+            });
+            $( "a#amount-change" ).on( "click", function( event ) {
+                event.preventDefault();
+                $('form#form-onetime').show();
+                $('#transactionForm').hide();
+                $('#payment-onetime-confirmation').hide();
+            });
+            $('a#link-tab-monthly').on('click', function( event ) {
+                event.preventDefault();
+                $('#monthly a:last').tab('show');
+            });
+            $('a#link-tab-onetime').on('click', function( event ) {
+                event.preventDefault();
+                $('#onetime a:last').tab('show');
+            });
+%   end
+% end
