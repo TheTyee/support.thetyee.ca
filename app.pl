@@ -277,7 +277,7 @@ any [qw(GET POST)] => '/preferences' => sub {
         $self->app->log->info( Dumper $validation ) if $validation->has_error;
         $self->app->log->info( Dumper $self->req->params->to_hash )
             if $validation->has_error;
-        return $self->render( 'preferences' ) if $validation->has_error;
+        #return $self->render( 'preferences' ) if $validation->has_error;
 
         my $update = $self->find_or_new( $record );
         $update->update( $self->req->params->to_hash );
