@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<!-- General properties -->
+            <meta name="description" content="We're an independent, online news magazine from B.C. We're devoted to fact-driven reporting and analysis to inform and enliven our democratic conversation. We're assembling a team of experienced journalists to work on election-related investigations, and we need your help to make it happen." />
+	    <meta name="author" content="The Tyee">
+            <meta name="keywords" content="Canada, national, news, media concentration, fact-driven reporting">
+            <meta name="robots" content="index, follow" />
+	    <meta name="revisit-after" content="1 days" />
+	    <meta name="copyright" content="The Tyee 2013" />
+            <meta name="MSSmartTagsPreventParsing" content="TRUE" />
+ 
+<!-- OpenGraph properties -->
+            <meta property="og:title" content="I want better election coverage this year - do you? – The Tyee" />
+            <meta property="og:description" content="We're an independent, online news magazine from B.C. We're devoted to fact-driven reporting and analysis to inform and enliven our democratic conversation. We're assembling a team of experienced journalists to work on election-related investigations, and we need your help to make it happen." />
+            <meta property="og:type" content="website" />
+            <meta property="og:url" content="https://support.thetyee.ca" />
+            <meta property="og:image" content="<%= $config->{'static_asset_path'} %>/ui/img/facebook_share_img_square.png" />
+            <meta property="og:video" content="https://www.youtube.com/v/hbw8lvZJUTU" />
+	    <meta property="og:site_name" content="Support your independent election reporting team – The Tyee" />
+            <meta property="fb:admins" content="648146258, 512340590, 121503155, 13609677, 877285452, 584785109" />
+ 
+<!-- Dublin Core properties -->
+            <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+            <link rel="schema.DCTERMS" href="http://purl.org/dc/terms/" />
+            <meta name="DC.title" lang="English" content="" />
+            <meta name="DC.creator" content="The Tyee" />
+            <meta name="DC.description" lang="English" content="We're an independent, online news magazine from B.C. We're devoted to fact-driven reporting and analysis to inform and enliven our democratic conversation. We're assembling a team of experienced journalists to work on election-related investigations, and we need your help to make it happen." />
+            <meta name="DC.publisher" content="The Tyee" />
+            <meta name="DC.format" content="text/html" />
+            <meta name="DC.language" scheme="DCTERMS.URI" content="English" />
+
+    <title>Not Found: Whoops! We can't find that page.</title>
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link href="<%= $config->{'static_asset_path'} %>/ui/css/styles.css" rel="stylesheet" media="screen">
+    <script src="<%= $config->{'static_asset_path'} %>/ui/js/modernizr.js"></script>
+    <script type="text/javascript" src="//use.typekit.net/sjz2xsw.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+    <link rel="shortcut icon" href="<%= $config->{'static_asset_path'} %>/ui/img/favicon.ico">
+</head>
+<body id="not-found">
+    <!--[if lt IE 7]>
+    <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+    <![endif]-->
+    <noscript id="js-warning" style="background: black; display: block; color: white; padding:10px;">
+    This page requires Javascript. Your browser either doesn't support JavaScript or you have it turned off. Please enable JavaScript before you proceed.
+    </noscript>
+    %= include 'header'
+      <div class="container" id="content" style="padding-top:60px;">
+          <h1>Whoops! Page Not Found...</h1> 
+          <p class="alert alert-danger"><i class="glyphicon glyphicon-exclamation-sign"></i> That page does not exist. This is probably because of an incorrectly typed URL. <a href="/">Click here to visit The Tyee's main fundraising page</a></p>
+      </div>
+    %= include 'footer_scripts'
+    </body>
+</html>
+
