@@ -6,7 +6,7 @@
                                   <span class="sr-only"><span class="percentage">0</span>% Complete</span>
                               </div>
                         </div>
-                        <p class="raised-goal"><i>Pledged of <span class="goal"></span> annual goal.</i></p>
+                        <p class="raised-goal"><i>Pledged of <strike>$50,000</strike> <span class="goal"></span> goal.</i></p>
                         <div class="reader-priorities">
                             <strong>Top reader priorities:</strong>
                             <ul class="priorities">

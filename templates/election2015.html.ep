@@ -6,6 +6,7 @@
                 <p class="lead">Support The Tyee and invest in critical, in-depth reporting on the future of Canada’s leadership.</p>
             </div>
 
+            <p class="alert alert-warning"><i class="glyphicon glyphicon-fire"></i> Campaign update: $50,000 goal reached on April 9. There's still time -- help us get to $75,000 by midnight April 13!</p>
             <span id="campaign-end"></span>
             %= include 'includes/form-election2015'
             <div id="atf" class="row">
