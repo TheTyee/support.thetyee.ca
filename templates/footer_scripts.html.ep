@@ -8,31 +8,37 @@
         <script src="<%= $config->{'static_asset_path'} %>/ui/js/widget.min.js"></script>
         % }
         <%= content_for 'javascript' %>
-        % if ( $self->app->mode eq 'production' ) { # only run analytics on production
         <!--Google Analytics-->
         <script type="text/javascript">
-          var _gaq = _gaq || [];
-          _gaq.push(['_setAccount', 'UA-169022-1']);
-          _gaq.push(['_setDomainName', 'thetyee.ca']);
-          _gaq.push(['_trackPageview']);
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-169022-1', 'auto');
+        ga('send', 'pageview');
+
         % # Provide e-commerce data on successful transactions
         %   if ( $self->req->url->to_abs->path eq '/preferences' && defined $self->stash('record') ) { 
         %   my $record = $self->stash('record');
 
-         _gaq.push(['_addTrans',
-            '<%= $record->{'id'} %>',           // transaction ID - required
-            '<%= $record->{'campaign'} %>',  // affiliation or store name
-            '<%= $record->{'amount_in_cents'} / 100 %>',          // total - required
-            '<%= $record->{'city'} %>',       // city
-            '<%= $record->{'state'} %>',     // state or province
-            '<%= $record->{'country'} %>'             // country
-         ]);
-       %    }
+        ga('require', 'ecommerce');
+        ga('ecommerce:addTransaction', {
+          'id': '<%= $record->{'id'} %>',                     // Transaction ID. Required.
+          'affiliation': 'support.thetyee.ca',   // Affiliation or store name.
+          'revenue': '<%= $record->{'amount_in_cents'} / 100 %>', // Grand Total.
+          'shipping': '',                  // Shipping.
+          'tax': ''                     // Tax.
+        });
+    
+        ga('ecommerce:addItem', {
+          'id': '<%= $record->{'id'} %>',                     // Transaction ID. Required.
+          'name': '<%= $record->{'plan_name'} %>',    // Product name. Required.
+          'sku': '<%= $record->{'plan_code'} %>',                 // SKU/code.
+          'category': '',         // Category or variation.
+          'price': '<%= $record->{'amount_in_cents'} / 100 %>',                 // Unit price.
+          'quantity': '1'                   // Quantity.
+        });
 
-          (function() {
-            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-          })();
-        </script>
        % }
+        </script>
