@@ -33,8 +33,8 @@
     
         ga('ecommerce:addItem', {
           'id': '<%= $record->{'id'} %>',                     // Transaction ID. Required.
-          'name': '<%= $record->{'plan_name'} %>',    // Product name. Required.
-          'sku': '<%= $record->{'plan_code'} %>',                 // SKU/code.
+          'name': 'Donation',    // Product name. Required.
+          'sku': '',                 // SKU/code.
           'category': '',         // Category or variation.
           'price': '<%= $record->{'amount_in_cents'} / 100 %>',                 // Unit price.
           'quantity': '1'                   // Quantity.
