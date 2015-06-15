@@ -1,11 +1,11 @@
 <div id="form">
     <ul class="nav nav-tabs">
-        <li id="monthly"><a href="#form-monthly" data-toggle="tab">Monthly</a></li>
-        <li id="onetime" class="active"><a href="#form-onetime" data-toggle="tab">One-time</a></li>
+        <li id="monthly" class="active"><a href="#form-monthly" data-toggle="tab">Monthly</a></li>
+        <li id="onetime"><a href="#form-onetime" data-toggle="tab">One-time</a></li>
         <li id="offline" ><a href="#form-offline" data-toggle="tab">Offline</a></li>
     </ul>
     <div class="tab-content">
-        <div class="tab-pane" id="form-monthly">
+        <div class="tab-pane active" id="form-monthly">
             <p class="">Choose your <b>monthly</b> level:</p>
             <div class="btn-group" data-toggle="buttons">
                 % for my $p ( @$plans ) {
@@ -19,7 +19,7 @@
             </div>
 
         </div>
-        <div class="tab-pane active" id="form-onetime">
+        <div class="tab-pane" id="form-onetime">
             <form role="form" id="form-onetime" method="POST">
                 <% if ( $error ) { %>
                 <p class="alert alert-danger"><i class="glyphicon glyphicon-exclamation-sign">&nbsp;</i>Please enter a whole number. No decimal places or other characters, please.</p>
