@@ -378,12 +378,8 @@ DISTRIBUTIONS
   DBD-Pg-3.4.2
     pathname: T/TU/TURNSTEP/DBD-Pg-3.4.2.tar.gz
     provides:
-      Bundle::DBD::Pg 3.004002
-      DBD::Pg 3.004002
-      DBD::Pg::DefaultValue 3.004002
-      DBD::Pg::db 3.004002
-      DBD::Pg::dr 3.004002
-      DBD::Pg::st 3.004002
+      Bundle::DBD::Pg v3.4.2
+      DBD::Pg v3.4.2
     requirements:
       DBI 1.614
       ExtUtils::MakeMaker 6.11
@@ -650,7 +646,7 @@ DISTRIBUTIONS
       DBIx::Class::IntrospectableM2M 0.001001
     requirements:
       DBIx::Class 0
-      ExtUtils::MakeMaker 7.02
+      ExtUtils::MakeMaker 7.04
       Test::More 0
   DBIx-Class-Schema-Loader-0.07042
     pathname: I/IL/ILMARI/DBIx-Class-Schema-Loader-0.07042.tar.gz
@@ -1876,43 +1872,43 @@ DISTRIBUTIONS
       File::Spec 0
       strict 0
       warnings 0
-  ExtUtils-MakeMaker-7.02
-    pathname: B/BI/BINGOS/ExtUtils-MakeMaker-7.02.tar.gz
+  ExtUtils-MakeMaker-7.04
+    pathname: B/BI/BINGOS/ExtUtils-MakeMaker-7.04.tar.gz
     provides:
-      ExtUtils::Command::MM 7.02
-      ExtUtils::Liblist 7.02
-      ExtUtils::Liblist::Kid 7.02
-      ExtUtils::MM 7.02
-      ExtUtils::MM_AIX 7.02
-      ExtUtils::MM_Any 7.02
-      ExtUtils::MM_BeOS 7.02
-      ExtUtils::MM_Cygwin 7.02
-      ExtUtils::MM_DOS 7.02
-      ExtUtils::MM_Darwin 7.02
-      ExtUtils::MM_MacOS 7.02
-      ExtUtils::MM_NW5 7.02
-      ExtUtils::MM_OS2 7.02
-      ExtUtils::MM_QNX 7.02
-      ExtUtils::MM_UWIN 7.02
-      ExtUtils::MM_Unix 7.02
-      ExtUtils::MM_VMS 7.02
-      ExtUtils::MM_VOS 7.02
-      ExtUtils::MM_Win32 7.02
-      ExtUtils::MM_Win95 7.02
-      ExtUtils::MY 7.02
-      ExtUtils::MakeMaker 7.02
-      ExtUtils::MakeMaker::Config 7.02
-      ExtUtils::MakeMaker::Locale 7.02
-      ExtUtils::MakeMaker::_version 7.02
-      ExtUtils::MakeMaker::charstar 7.02
-      ExtUtils::MakeMaker::version 7.02
-      ExtUtils::MakeMaker::version::regex 7.02
-      ExtUtils::MakeMaker::version::vpp 7.02
-      ExtUtils::Mkbootstrap 7.02
-      ExtUtils::Mksymlists 7.02
-      ExtUtils::testlib 7.02
-      MM 7.02
-      MY 7.02
+      ExtUtils::Command::MM 7.04
+      ExtUtils::Liblist 7.04
+      ExtUtils::Liblist::Kid 7.04
+      ExtUtils::MM 7.04
+      ExtUtils::MM_AIX 7.04
+      ExtUtils::MM_Any 7.04
+      ExtUtils::MM_BeOS 7.04
+      ExtUtils::MM_Cygwin 7.04
+      ExtUtils::MM_DOS 7.04
+      ExtUtils::MM_Darwin 7.04
+      ExtUtils::MM_MacOS 7.04
+      ExtUtils::MM_NW5 7.04
+      ExtUtils::MM_OS2 7.04
+      ExtUtils::MM_QNX 7.04
+      ExtUtils::MM_UWIN 7.04
+      ExtUtils::MM_Unix 7.04
+      ExtUtils::MM_VMS 7.04
+      ExtUtils::MM_VOS 7.04
+      ExtUtils::MM_Win32 7.04
+      ExtUtils::MM_Win95 7.04
+      ExtUtils::MY 7.04
+      ExtUtils::MakeMaker 7.04
+      ExtUtils::MakeMaker::Config 7.04
+      ExtUtils::MakeMaker::Locale 7.04
+      ExtUtils::MakeMaker::_version 7.04
+      ExtUtils::MakeMaker::charstar 7.04
+      ExtUtils::MakeMaker::version 7.04
+      ExtUtils::MakeMaker::version::regex 7.04
+      ExtUtils::MakeMaker::version::vpp 7.04
+      ExtUtils::Mkbootstrap 7.04
+      ExtUtils::Mksymlists 7.04
+      ExtUtils::testlib 7.04
+      MM 7.04
+      MY 7.04
     requirements:
       Data::Dumper 0
       DirHandle 0
@@ -2600,10 +2596,11 @@ DISTRIBUTIONS
       ExtUtils::MakeMaker 0
       Test 0
       perl 5.006
-  Net-SSLeay-1.66
-    pathname: M/MI/MIKEM/Net-SSLeay-1.66.tar.gz
+  Net-SSLeay-1.68
+    pathname: M/MI/MIKEM/Net-SSLeay-1.68.tar.gz
     provides:
-      Net::SSLeay undef
+      Net::SSLeay 1.68
+      Net::SSLeay::Handle 0.61
     requirements:
       ExtUtils::MakeMaker 6.36
       MIME::Base64 0
@@ -3293,7 +3290,6 @@ DISTRIBUTIONS
       Type::Tiny::Intersection 1.000004
       Type::Tiny::Role 1.000004
       Type::Tiny::Union 1.000004
-      Type::Tiny::_HalfOp undef
       Type::Utils 1.000004
       Types::Common::Numeric 1.000004
       Types::Common::String 1.000004
@@ -3384,7 +3380,6 @@ DISTRIBUTIONS
   URI-db-0.15
     pathname: D/DW/DWHEELER/URI-db-0.15.tar.gz
     provides:
-      URI::_db undef
       URI::cassandra 0.15
       URI::couch 0.15
       URI::couchdb 0.15
