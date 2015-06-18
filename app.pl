@@ -178,7 +178,7 @@ group {
         $self->flash(
             appeal_code => 'election2015'
         );
-    } => 'election2015';
+    } => 'evergreen';
 
     any [qw(GET POST)] => '/builders' => sub {
         my $self = shift;
