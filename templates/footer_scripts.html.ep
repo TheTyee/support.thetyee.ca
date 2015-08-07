@@ -24,21 +24,22 @@
 
         ga('require', 'ecommerce');
         ga('ecommerce:addTransaction', {
-          'id': '<%= $record->{'id'} %>',                     // Transaction ID. Required.
-          'affiliation': 'support.thetyee.ca',   // Affiliation or store name.
-          'revenue': '<%= $record->{'amount_in_cents'} / 100 %>', // Grand Total.
-          'shipping': '',                  // Shipping.
-          'tax': ''                     // Tax.
+          'id': '<%= $record->{'id'} %>',                           // Transaction ID. Required.
+          'affiliation': 'support.thetyee.ca',                      // Affiliation or store name.
+          'revenue': '<%= $record->{'amount_in_cents'} / 100 %>',   // Grand Total.
+          'shipping': '',                                           // Shipping.
+          'tax': ''                                                 // Tax.
         });
     
         ga('ecommerce:addItem', {
-          'id': '<%= $record->{'id'} %>',                     // Transaction ID. Required.
-          'name': 'Donation',    // Product name. Required.
-          'sku': '',                 // SKU/code.
-          'category': '',         // Category or variation.
-          'price': '<%= $record->{'amount_in_cents'} / 100 %>',                 // Unit price.
-          'quantity': '1'                   // Quantity.
+          'id': '<%= $record->{'id'} %>',                           // Transaction ID. Required.
+          'name': 'Donation',                                       // Product name. Required.
+          'sku': '',                                                // SKU/code.
+          'category': '',                                           // Category or variation.
+          'price': '<%= $record->{'amount_in_cents'} / 100 %>',     // Unit price.
+          'quantity': '1'                                           // Quantity.
         });
+        ga('ecommerce:send');
 
        % }
         </script>
