@@ -7,7 +7,7 @@ requires 'DBD::Pg';
 requires 'DBIx::Class', '0';
 requires 'DBIx::Class::TimeStamp', '0';
 requires 'Mojolicious::Plugin::Util::RandomString', '0';
-requires 'IO::Socket::SSL', '1.75';
+requires 'IO::Socket::SSL', '2';
 requires 'App::Sqitch';
 requires 'Config::General';
 requires 'DBIx::Class::Schema::Loader';
