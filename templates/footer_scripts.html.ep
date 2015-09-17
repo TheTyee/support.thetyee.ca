@@ -21,6 +21,7 @@
         % # Provide e-commerce data on successful transactions
         %   if ( $self->req->url->to_abs->path eq '/preferences' && defined $self->stash('record') ) { 
         %   my $record = $self->stash('record');
+        %   my $category = $record->{'plan_name'} ? 'monthly' : 'onetime';
 
         ga('require', 'ecommerce');
         ga('ecommerce:addTransaction', {
@@ -35,7 +36,7 @@
           'id': '<%= $record->{'id'} %>',                           // Transaction ID. Required.
           'name': 'Donation',                                       // Product name. Required.
           'sku': '',                                                // SKU/code.
-          'category': '',                                           // Category or variation.
+          'category': '<%= $category %>',                                           // Category or variation.
           'price': '<%= $record->{'amount_in_cents'} / 100 %>',     // Unit price.
           'quantity': '1'                                           // Quantity.
         });
