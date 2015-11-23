@@ -177,7 +177,7 @@ group {
             body_id     => 'election2015',
         );
         $self->flash(
-            appeal_code => 'election2015'
+            appeal_code => 'fall2015'
         );
     } => 'post-election2015';
 
