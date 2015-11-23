@@ -63,6 +63,8 @@ DISTRIBUTIONS
       App::Sqitch::Types undef
       App::Sqitch::X 0.996
     requirements:
+      Capture::Tiny 0.12
+      Carp 0
       Clone 0
       Config::GitLike 1.11
       DBI 0
@@ -75,7 +77,10 @@ DISTRIBUTIONS
       File::Copy 0
       File::HomeDir 0
       File::Path 0
+      File::Spec 0
+      File::Spec::Functions 0
       File::Temp 0
+      FindBin 0
       Getopt::Long 0
       Hash::Merge 0
       IO::Pager 0
@@ -103,6 +108,14 @@ DISTRIBUTIONS
       Sys::Hostname 0
       Template::Tiny 0.11
       Term::ANSIColor 2.02
+      Test::Deep 0
+      Test::Dir 0
+      Test::Exception 0
+      Test::File 0
+      Test::File::Contents 0.20
+      Test::MockModule 0.05
+      Test::More 0.94
+      Test::NoWarnings 0.083
       Throwable 0.200009
       Time::HiRes 0
       Time::Local 0
@@ -115,6 +128,7 @@ DISTRIBUTIONS
       User::pwent 0
       constant 0
       if 0
+      lib 0
       namespace::autoclean 0.16
       overload 0
       parent 0
@@ -146,28 +160,6 @@ DISTRIBUTIONS
       Test::More 0
       parent 0
       perl 5.008001
-  CPAN-Meta-2.142060
-    pathname: D/DA/DAGOLDEN/CPAN-Meta-2.142060.tar.gz
-    provides:
-      CPAN::Meta 2.142060
-      CPAN::Meta::Converter 2.142060
-      CPAN::Meta::Feature 2.142060
-      CPAN::Meta::History 2.142060
-      CPAN::Meta::Merge 2.142060
-      CPAN::Meta::Prereqs 2.142060
-      CPAN::Meta::Spec 2.142060
-      CPAN::Meta::Validator 2.142060
-    requirements:
-      CPAN::Meta::Requirements 2.121
-      CPAN::Meta::YAML 0.008
-      Carp 0
-      ExtUtils::MakeMaker 6.17
-      JSON::PP 2.27200
-      Parse::CPAN::Meta 1.4414
-      Scalar::Util 0
-      strict 0
-      version 0.88
-      warnings 0
   Capture-Tiny-0.25
     pathname: D/DA/DAGOLDEN/Capture-Tiny-0.25.tar.gz
     provides:
@@ -395,7 +387,7 @@ DISTRIBUTIONS
       DBD::SQLite::dr 1.42
     requirements:
       DBI 1.57
-      ExtUtils::MakeMaker 0
+      ExtUtils::MakeMaker 6.48
       File::Spec 0.82
       Test::Builder 0.86
       Test::More 0.47
@@ -646,7 +638,7 @@ DISTRIBUTIONS
       DBIx::Class::IntrospectableM2M 0.001001
     requirements:
       DBIx::Class 0
-      ExtUtils::MakeMaker 7.04
+      ExtUtils::MakeMaker 6.66
       Test::More 0
   DBIx-Class-Schema-Loader-0.07042
     pathname: I/IL/ILMARI/DBIx-Class-Schema-Loader-0.07042.tar.gz
@@ -786,6 +778,7 @@ DISTRIBUTIONS
       Data::Page 2.02
     requirements:
       Class::Accessor::Chained::Fast 0
+      Module::Build 0.35
       Test::Exception 0
       Test::More 0
   DateTime-1.12
@@ -803,10 +796,16 @@ DISTRIBUTIONS
       DateTime::Locale 0.41
       DateTime::TimeZone 1.74
       ExtUtils::CBuilder 0
+      ExtUtils::MakeMaker 0
+      File::Spec 0
       Module::Build 0.28
       POSIX 0
       Params::Validate 0.76
       Scalar::Util 0
+      Storable 0
+      Test::Fatal 0
+      Test::More 0.88
+      Test::Warnings 0.005
       Try::Tiny 0
       XSLoader 0
       base 0
@@ -815,6 +814,7 @@ DISTRIBUTIONS
       overload 0
       perl 5.008001
       strict 0
+      utf8 0
       vars 0
       warnings 0
       warnings::register 0
@@ -871,7 +871,6 @@ DISTRIBUTIONS
       DateTime 0.1
       DateTime::Format::Builder 0.6
       ExtUtils::MakeMaker 0
-      perl 5.003
   DateTime-Format-Strptime-1.56
     pathname: D/DR/DROLSKY/DateTime-Format-Strptime-1.56.tar.gz
     provides:
@@ -1360,7 +1359,7 @@ DISTRIBUTIONS
       DateTime::Locale::zu_ZA undef
     requirements:
       List::MoreUtils 0
-      Module::Build 0
+      Module::Build 0.36
       Params::Validate 0.91
       perl 5.006
   DateTime-TimeZone-1.74
@@ -1872,51 +1871,6 @@ DISTRIBUTIONS
       File::Spec 0
       strict 0
       warnings 0
-  ExtUtils-MakeMaker-7.04
-    pathname: B/BI/BINGOS/ExtUtils-MakeMaker-7.04.tar.gz
-    provides:
-      ExtUtils::Command::MM 7.04
-      ExtUtils::Liblist 7.04
-      ExtUtils::Liblist::Kid 7.04
-      ExtUtils::MM 7.04
-      ExtUtils::MM_AIX 7.04
-      ExtUtils::MM_Any 7.04
-      ExtUtils::MM_BeOS 7.04
-      ExtUtils::MM_Cygwin 7.04
-      ExtUtils::MM_DOS 7.04
-      ExtUtils::MM_Darwin 7.04
-      ExtUtils::MM_MacOS 7.04
-      ExtUtils::MM_NW5 7.04
-      ExtUtils::MM_OS2 7.04
-      ExtUtils::MM_QNX 7.04
-      ExtUtils::MM_UWIN 7.04
-      ExtUtils::MM_Unix 7.04
-      ExtUtils::MM_VMS 7.04
-      ExtUtils::MM_VOS 7.04
-      ExtUtils::MM_Win32 7.04
-      ExtUtils::MM_Win95 7.04
-      ExtUtils::MY 7.04
-      ExtUtils::MakeMaker 7.04
-      ExtUtils::MakeMaker::Config 7.04
-      ExtUtils::MakeMaker::Locale 7.04
-      ExtUtils::MakeMaker::_version 7.04
-      ExtUtils::MakeMaker::charstar 7.04
-      ExtUtils::MakeMaker::version 7.04
-      ExtUtils::MakeMaker::version::regex 7.04
-      ExtUtils::MakeMaker::version::vpp 7.04
-      ExtUtils::Mkbootstrap 7.04
-      ExtUtils::Mksymlists 7.04
-      ExtUtils::testlib 7.04
-      MM 7.04
-      MY 7.04
-    requirements:
-      Data::Dumper 0
-      DirHandle 0
-      Encode 0
-      File::Basename 0
-      File::Spec 0.8
-      Pod::Man 0
-      perl 5.006
   File-Find-Rule-0.33
     pathname: R/RC/RCLAMP/File-Find-Rule-0.33.tar.gz
     provides:
@@ -2121,6 +2075,7 @@ DISTRIBUTIONS
     provides:
       Lingua::EN::Inflect 1.895
     requirements:
+      ExtUtils::MakeMaker 0
       Test::More 0
       version 0
   Lingua-EN-Inflect-Number-1.11
@@ -2294,64 +2249,13 @@ DISTRIBUTIONS
       IO::File 0
       IO::Handle 0
       Module::Build 0.3601
+      Test::More 0.98
       autodie 2.22
       feature 0
       mro 0
       perl 5.010
       strict 0
       warnings 0
-  Module-Build-0.4210
-    pathname: L/LE/LEONT/Module-Build-0.4210.tar.gz
-    provides:
-      Module::Build 0.4210
-      Module::Build::Base 0.4210
-      Module::Build::Compat 0.4210
-      Module::Build::Config 0.4210
-      Module::Build::Cookbook 0.4210
-      Module::Build::Dumper 0.4210
-      Module::Build::Notes 0.4210
-      Module::Build::PPMMaker 0.4210
-      Module::Build::Platform::Default 0.4210
-      Module::Build::Platform::MacOS 0.4210
-      Module::Build::Platform::Unix 0.4210
-      Module::Build::Platform::VMS 0.4210
-      Module::Build::Platform::VOS 0.4210
-      Module::Build::Platform::Windows 0.4210
-      Module::Build::Platform::aix 0.4210
-      Module::Build::Platform::cygwin 0.4210
-      Module::Build::Platform::darwin 0.4210
-      Module::Build::Platform::os2 0.4210
-      Module::Build::PodParser 0.4210
-      inc::latest 0.4210
-      inc::latest::private 0.4210
-    requirements:
-      CPAN::Meta 2.142060
-      CPAN::Meta::YAML 0.003
-      Cwd 0
-      Data::Dumper 0
-      ExtUtils::CBuilder 0.27
-      ExtUtils::Install 0
-      ExtUtils::Manifest 0
-      ExtUtils::Mkbootstrap 0
-      ExtUtils::ParseXS 2.21
-      File::Basename 0
-      File::Compare 0
-      File::Copy 0
-      File::Find 0
-      File::Path 0
-      File::Spec 0.82
-      File::Temp 0.15
-      Getopt::Long 0
-      Module::Metadata 1.000002
-      Parse::CPAN::Meta 1.4401
-      Perl::OSType 1
-      Pod::Man 2.17
-      Test::Harness 3.16
-      Test::More 0.49
-      Text::Abbrev 0
-      Text::ParseWords 0
-      perl 5.008000
-      version 0.87
   Module-Build-Tiny-0.038
     pathname: L/LE/LEONT/Module-Build-Tiny-0.038.tar.gz
     provides:
@@ -2535,7 +2439,6 @@ DISTRIBUTIONS
       ojo undef
     requirements:
       ExtUtils::MakeMaker 0
-      perl 5.010001
   Mojolicious-Plugin-Util-RandomString-0.05
     pathname: A/AK/AKRON/Mojolicious-Plugin-Util-RandomString-0.05.tar.gz
     provides:
@@ -2682,13 +2585,24 @@ DISTRIBUTIONS
     requirements:
       Attribute::Handlers 0.79
       Carp 0
+      Devel::Peek 0
       Exporter 0
       ExtUtils::CBuilder 0
+      File::Spec 0
+      File::Temp 0
       Module::Build 0.3601
       Module::Implementation 0
       Scalar::Util 1.10
+      Test::Fatal 0
+      Test::More 0.88
+      Test::Requires 0
+      Tie::Array 0
+      Tie::Hash 0
       XSLoader 0
       attributes 0
+      base 0
+      lib 0
+      overload 0
       perl 5.008001
       strict 0
       vars 0
@@ -2715,6 +2629,7 @@ DISTRIBUTIONS
       Parse::RecDescent::Token 1.967009
       Parse::RecDescent::UncondReject 1.967009
     requirements:
+      ExtUtils::MakeMaker 6.5702
       Test::More 0
       Text::Balanced 1.95
   Path-Class-0.35
@@ -2739,9 +2654,12 @@ DISTRIBUTIONS
       Module::Build 0.3601
       Perl::OSType 0
       Scalar::Util 0
+      Test 0
+      Test::More 0
       overload 0
       parent 0
       strict 0
+      warnings 0
   PerlIO-utf8_strict-0.004
     pathname: L/LE/LEONT/PerlIO-utf8_strict-0.004.tar.gz
     provides:
@@ -2901,6 +2819,26 @@ DISTRIBUTIONS
       XML::Writer 0.500
       YAML 0.66
       perl 5.008001
+  SUPER-1.20141117
+    pathname: C/CH/CHROMATIC/SUPER-1.20141117.tar.gz
+    provides:
+      SUPER 1.20141117
+    requirements:
+      ExtUtils::MakeMaker 0
+      Scalar::Util 1.20
+      Sub::Identify 0.03
+      Test::Simple 0.61
+      perl v5.6.2
+  Scalar-List-Utils-1.42
+    pathname: P/PE/PEVANS/Scalar-List-Utils-1.42.tar.gz
+    provides:
+      List::Util 1.42
+      List::Util::XS 1.42
+      Scalar::Util 1.42
+      Sub::Util 1.42
+    requirements:
+      ExtUtils::MakeMaker 0
+      Test::More 0
   Scope-Guard-0.20
     pathname: C/CH/CHOCOLATE/Scope-Guard-0.20.tar.gz
     provides:
@@ -3103,13 +3041,27 @@ DISTRIBUTIONS
     requirements:
       Capture::Tiny 0.24
       Data::Dumper 2.126
+      ExtUtils::MakeMaker 0
       Test::More 0
       Text::Diff 0.35
+  Test-Dir-1.014
+    pathname: M/MT/MTHURN/Test-Dir-1.014.tar.gz
+    provides:
+      Test::Dir 1.014
+      Test::Dir::Base 1.005
+      Test::Folder 1.007
+    requirements:
+      ExtUtils::MakeMaker 6.42
+      File::Path 2.07
+      Test::Builder 0
+      Test::Builder::Tester 0
+      Test::More 0
   Test-Exception-0.32
     pathname: A/AD/ADIE/Test-Exception-0.32.tar.gz
     provides:
       Test::Exception 0.32
     requirements:
+      Module::Build 0.38
       Sub::Uplevel 0.18
       Test::Builder 0.7
       Test::Builder::Tester 1.07
@@ -3128,6 +3080,91 @@ DISTRIBUTIONS
       Try::Tiny 0.07
       strict 0
       warnings 0
+  Test-File-1.44
+    pathname: B/BD/BDFOY/Test-File-1.44.tar.gz
+    provides:
+      Test::File 1.44
+    requirements:
+      ExtUtils::MakeMaker 6.64
+      File::Spec::Functions 0
+      perl 5.008
+  Test-File-Contents-0.21
+    pathname: D/DW/DWHEELER/Test-File-Contents-0.21.tar.gz
+    provides:
+      Test::File::Contents 0.21
+    requirements:
+      Digest::MD5 0
+      File::Spec 0
+      Module::Build 0.30
+      Test::Builder 0.70
+      Test::More 0.70
+      Text::Diff 0.35
+      perl 5.008003
+  Test-Harness-3.35
+    pathname: L/LE/LEONT/Test-Harness-3.35.tar.gz
+    provides:
+      App::Prove 3.35
+      App::Prove::State 3.35
+      App::Prove::State::Result 3.35
+      App::Prove::State::Result::Test 3.35
+      Harness::Hook undef
+      TAP::Base 3.35
+      TAP::Formatter::Base 3.35
+      TAP::Formatter::Color 3.35
+      TAP::Formatter::Console 3.35
+      TAP::Formatter::Console::ParallelSession 3.35
+      TAP::Formatter::Console::Session 3.35
+      TAP::Formatter::File 3.35
+      TAP::Formatter::File::Session 3.35
+      TAP::Formatter::Session 3.35
+      TAP::Harness 3.35
+      TAP::Harness::Env 3.35
+      TAP::Object 3.35
+      TAP::Parser 3.35
+      TAP::Parser::Aggregator 3.35
+      TAP::Parser::Grammar 3.35
+      TAP::Parser::Iterator 3.35
+      TAP::Parser::Iterator::Array 3.35
+      TAP::Parser::Iterator::Process 3.35
+      TAP::Parser::Iterator::Stream 3.35
+      TAP::Parser::IteratorFactory 3.35
+      TAP::Parser::Multiplexer 3.35
+      TAP::Parser::Result 3.35
+      TAP::Parser::Result::Bailout 3.35
+      TAP::Parser::Result::Comment 3.35
+      TAP::Parser::Result::Plan 3.35
+      TAP::Parser::Result::Pragma 3.35
+      TAP::Parser::Result::Test 3.35
+      TAP::Parser::Result::Unknown 3.35
+      TAP::Parser::Result::Version 3.35
+      TAP::Parser::Result::YAML 3.35
+      TAP::Parser::ResultFactory 3.35
+      TAP::Parser::Scheduler 3.35
+      TAP::Parser::Scheduler::Job 3.35
+      TAP::Parser::Scheduler::Spinner 3.35
+      TAP::Parser::Source 3.35
+      TAP::Parser::SourceHandler 3.35
+      TAP::Parser::SourceHandler::Executable 3.35
+      TAP::Parser::SourceHandler::File 3.35
+      TAP::Parser::SourceHandler::Handle 3.35
+      TAP::Parser::SourceHandler::Perl 3.35
+      TAP::Parser::SourceHandler::RawTAP 3.35
+      TAP::Parser::YAMLish::Reader 3.35
+      TAP::Parser::YAMLish::Writer 3.35
+      Test::Harness 3.35
+    requirements:
+      ExtUtils::MakeMaker 0
+  Test-MockModule-0.11
+    pathname: G/GF/GFRANKS/Test-MockModule-0.11.tar.gz
+    provides:
+      Test::MockModule 0.11
+    requirements:
+      Carp 0
+      Module::Build 0.38
+      SUPER 0
+      Scalar::Util 0
+      Test::More 0.45
+      perl 5.006
   Test-NoWarnings-1.04
     pathname: A/AD/ADAMK/Test-NoWarnings-1.04.tar.gz
     provides:
@@ -3185,6 +3222,19 @@ DISTRIBUTIONS
       Test::Builder::Tester 1.02
       Test::More 0
       perl 5.006
+  Test-Warnings-0.021
+    pathname: E/ET/ETHER/Test-Warnings-0.021.tar.gz
+    provides:
+      Test::Warnings 0.021
+    requirements:
+      Carp 0
+      Exporter 0
+      ExtUtils::MakeMaker 0
+      Test::Builder 0
+      parent 0
+      perl 5.006
+      strict 0
+      warnings 0
   Test-use-ok-0.11
     pathname: A/AU/AUDREYT/Test-use-ok-0.11.tar.gz
     provides:
@@ -3223,6 +3273,7 @@ DISTRIBUTIONS
     provides:
       Text::Glob 0.09
     requirements:
+      Module::Build 0.36
       Test::More 0
   Text-Unidecode-1.22
     pathname: S/SB/SBURKE/Text-Unidecode-1.22.tar.gz
@@ -3472,6 +3523,33 @@ DISTRIBUTIONS
       yaml_sequence undef
     requirements:
       ExtUtils::MakeMaker 6.30
+  autodie-2.29
+    pathname: P/PJ/PJF/autodie-2.29.tar.gz
+    provides:
+      Fatal 2.29
+      autodie 2.29
+      autodie::Scope::Guard 2.29
+      autodie::Scope::GuardStack 2.29
+      autodie::Util 2.29
+      autodie::exception 2.29
+      autodie::exception::system 2.29
+      autodie::hints 2.29
+      autodie::skip 2.29
+    requirements:
+      B 0
+      Carp 0
+      Exporter 5.57
+      ExtUtils::MakeMaker 0
+      Fcntl 0
+      POSIX 0
+      Scalar::Util 0
+      Tie::RefHash 0
+      constant 0
+      overload 0
+      parent 0
+      perl 5.008004
+      strict 0
+      warnings 0
   bareword-filehandles-0.003
     pathname: I/IL/ILMARI/bareword-filehandles-0.003.tar.gz
     provides:
@@ -3706,14 +3784,24 @@ DISTRIBUTIONS
       Cwd 0
       Encode 0
       File::Find 0
+      File::Spec 0
+      IO::Handle 0
+      IPC::Open3 0
       Import::Into 0
       Module::Build 0.28
+      PerlIO 0
       Symbol 0
+      Test::Fatal 0
+      Test::More 0.96
+      Test::Warn 0
+      autodie 0
       charnames 0
+      constant 0
       feature 0
       open 0
       parent 0
       perl 5.010
       strict 0
       utf8 0
+      version 0.77
       warnings 0
