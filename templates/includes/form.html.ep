@@ -15,7 +15,7 @@
 
                 % }
                 </div>
-    <br style="clear:both;" /> 
+                <div>
     <br style="clear:both;" /> 
     <p class="help-block">Make a  <a target="_blank" href="<%= $config->{'static_asset_path'} %>/ui/img/TyeeBuildersBankWithdrawalForm.pdf"> monthly contribution</a> from your bank account.</p>
      <p class="help-block">If you already contribute monthly to The Tyee and would like to increase your contribution, give us a shout at 604-689-7489 or <a  href="mailto:builders@thetyee.ca" target="_blank">builders@thetyee.ca</a>.</p>           
