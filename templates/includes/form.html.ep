@@ -14,6 +14,7 @@
                 </label>
 
                 % }
+                </div>
     <br style="clear:both;" /> 
     <br style="clear:both;" /> 
     <p class="help-block">Make a  <a target="_blank" href="<%= $config->{'static_asset_path'} %>/ui/img/TyeeBuildersBankWithdrawalForm.pdf"> monthly contribution</a> from your bank account.</p>
