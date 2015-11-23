@@ -3,7 +3,7 @@
        <div class="container" id="content">
             <div id="campaign-copy" class="row">
                 <h1>Canada needs more independent journalism. <span class="join-us">Join&nbsp;us</span></h1>
-                <p class="lead"> Support The Tyee and bring more diverse, fact-driven reporting to the national conversation.</p>
+                <p class="lead"> Support The Tyee and bring more diverse, fact-driven reporting to the public conversation.</p>
             </div>
 
             
@@ -52,7 +52,7 @@
                     </div><!-- /.col-md-4 -->
                     <div class="col-md-4">
                         <h2>Join Our Community</h2>
-                        <p>We want to know which issues matter most to you. Energy and environment? Inequality? Electoral reform? When you sign up, you’ll complete a news priority survey that will help inform our reporting. As a special thanks for joining, you’ll receive editorial reports, discounts from partners, random swag giveaways, and discounts on special events and Tyee Master Classes. Give at the $15/month or higher levels, and get our political paper dolls set, updated for 2015!</p>
+                        <p>We want to know which issues matter most to you. Energy and environment? Inequality? Electoral reform? When you sign up, you’ll complete a news priority survey that will help inform our reporting. As a special thanks for joining, you’ll receive editorial reports, discounts from partners, random swag giveaways, and discounts on special events and Tyee Master Classes. Give at the $15/month or higher levels, and get our <a target="_blank" href="http://thetyee.ca/About/2015/11/23/Trudeau-Harper-2015Dolls.jpg">political paper dolls set</a>, updated for 2015!</p>
                     </div><!-- /.col-md-4 -->
                 </div><!-- /.row -->
             </div><!-- / .container -->
