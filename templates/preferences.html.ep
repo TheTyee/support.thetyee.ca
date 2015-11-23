@@ -85,61 +85,37 @@
               <span class="help-block">(I trust your news judgment, Tyee.)</span>
             </div>
         </div>
-        <div class="form-group">
             <label for="pref_frequency">Would you like our stories emailed straight to your inbox?</label>
-            <div class="btn-group" data-toggle="buttons">
-                <label class="btn btn-primary active" for="daily">
+            <br />
                     <input checked="1" id="daily" name="pref_frequency" type="radio" value="Daily headlines" />
                     Daily
-                </label>                
-                <label class="btn btn-primary" for="daily">
                     <input id="weekly" name="pref_frequency" type="radio" value="Weekly headlines" />
                     Weekly
-                </label>   
-                <label class="btn btn-primary" for="national">
                     <input id="national" name="pref_frequency" type="radio" value="National headlines" />
                    National (sent weekly)
-                </label>                
-                <label class="btn btn-primary" for="daily">
                     <input id="noThanks" name="pref_frequency" type="radio" value="No thanks" />
                     No thanks
-                </label>                
-                <label class="btn btn-primary" for="daily">
                     <input id="alreadySubscribe" name="pref_frequency" type="radio" value="I already subscribe" />
                     I already subscribe
-                </label>
-            </div>
-        </div>       
         <br clear="all" />
-        <div class="form-group">
-            <label for="pref_anonymous">We like to sometimes acknowledge our supporters publicly. May we acknowledge your contribution?</label>
-            <div class="btn-group" data-toggle="buttons">
-                <label class="btn btn-primary bt-lg active" for="anon-no">
+         <br clear="all" />
+        <label for="pref_anonymous">We like to sometimes acknowledge our supporters publicly. May we acknowledge your contribution?</label>
+        <br />
                     <input checked="1" id="anon-no" name="pref_anonymous" type="radio" value="Yes" />
                     Yes
-                </label>            
-                <label class="btn btn-primary bt-lg" for="anon-yes">
                     <input id="anon-yes" name="pref_anonymous" type="radio" value="No" />
                     No thanks
-                </label>
                 
-            </div>        
-        </div>
          <br clear="all" />
-        <div class="form-group">
+         <br clear="all" />
             <label for="pref_lapel">One last thing. We have a super cool custom Tyee lapel pin to send to you in the mail. But we understand if you don’t want it. We get it.</label>
-            <div class="btn-group" data-toggle="buttons">
-                <label class="btn btn-primary bt-lg active" for="lapel-no">
-                    <input  id="lapel_no" name="pref_lapel" type="radio" value="No" />
-                   Don’t send me anything in the mail
-                </label>            
-                <label class="btn btn-primary bt-lg" for="anon-yes">
+            <br />
                     <input checked="1" id="lapel-yes" name="pref_lapel" type="radio" value="Yes" />
                    I can’t wait! Send me the pin.
-                </label>
-                
-            </div>        
-        </div>
+                    <input  id="lapel_no" name="pref_lapel" type="radio" value="No" />
+                   Don’t send me anything in the mail
+         <br clear="all" />
+         <br clear="all" />
 
             <div class="submit-button">
                 <input class="btn btn-success btn-lg" id="submit" type="submit" value="Finish »" />
