@@ -16,3 +16,5 @@ transactions [transactions@v1.0.4 schema] 2013-10-30T23:06:22Z Phillip Smith <ps
 transactions [transactions@v1.0.5] 2014-10-20T16:17:27Z Phillip Smith <ps@phillipadsmith.com># Adding column for recurly hosted login token
 @v.1.0.6 2015-03-13T23:05:27Z Phillip Smith <ps@phillipadsmith.com> # Rework transactions
 transactions [transactions@v.1.0.6] 2015-03-13T23:05:55Z Phillip Smith <ps@phillipadsmith.com># Add column for appeal code
+@v1.0.7 2015-11-22T17:57:45Z Bryan Carney <mrbryan@Bryans-MBP-2># phllip added appeal code column if bc understood correctly
+transactions [transactions@v1.0.7] 2015-11-22T17:58:57Z Bryan Carney <mrbryan@Bryans-MBP-2># adding new column for lapel_pref \n\n   transactions [transactions@v1.0.7]

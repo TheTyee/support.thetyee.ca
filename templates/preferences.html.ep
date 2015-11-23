@@ -35,35 +35,34 @@
                 <input type="radio" name="pref_newspriority" id="energyandenvironment" value="2">
                 Energy &amp; Environment 
               </label>
-              <span class="help-block">(Oil sands, fracking, pipelines, tankers, GMOs, honey bee extinction, climate change, peak oil, resource depletion, science muzzling. You know, the end of the world. Or the beginning of something new?)</span>
+              <span class="help-block">(Oil sands, LNG, fracking, pipelines, tankers, GMOs, honey bee extinction, climate change, peak oil, resource depletion. You know, the end of the world. Or the beginning of something new?) </span>
             </div>
             <div class="radio">
               <label>
                 <input type="radio" name="pref_newspriority" id="tradeandforeignpolity" value="3">
                 Trade &amp; Foreign Policy  
               </label>
-              <span class="help-block">(UN, Canada's international reputation, defence, international law, CIDA/foreign aid, peacekeeping, World Bank, globalization, sweat shops, mining, G8, FIPPA, CETA, NAFTA, IMF, UN, and other acronyms.)</span>
+              <span class="help-block">(UN, Canada's international reputation, defence, international law, CIDA/foreign aid, peacekeeping, World Bank, globalization, sweat shops, mining, G8, TPP, FIPPA, CETA, NAFTA, IMF, UN, and other acronyms.) </span>
             </div>
             <div class="radio">
               <label>
                 <input type="radio" name="pref_newspriority" id="laboureconomy" value="4">
                Labour &amp; Economy
               </label>
-              <span class="help-block">(Union bargaining rights, collective agreements, outsourcing, temporary foreign workers, living wage, worker safety, privatization, jobs, progressive taxation and economics, corporate taxes, small business, wheat board, you know, the 99% and the 1%.)</span>
+              <span class="help-block">(Union bargaining rights, collective agreements, outsourcing, temporary foreign workers, living wage, worker safety, privatization, jobs, progressive taxation and economics, corporate taxes, small business, you know, the 99% and the 1%.)</span>
             </div>
             <div class="radio">
               <label>
                 <input type="radio" name="pref_newspriority" id="governmentaccountability" value="5">
                 Gov't Accountability  
-              </label>
-              <span class="help-block">(Transparency, federal-provincial relations, Senate reform, proportional representation, proroguing, omnibus bills, fighter jets, FOI, robocalls, voter fraud, attack ads, etc.)</span>
+              </label>(Transparency, federal-provincial relations, Senate reform, proportional representation, electoral fraud, etc.) </span>
             </div>
             <div class="radio">
               <label>
                 <input type="radio" name="pref_newspriority" id="inequality" value="6">
                 Inequality &amp; Social Policy  
               </label>
-              <span class="help-block">(Welfare reform, economic inequality, public pensions, social security, universal childcare, universal education, universal health care, social housing, etc.)</span>
+              <span class="help-block">(Welfare reform, economic inequality, public pensions, social security, universal childcare, universal education, universal health care, social housing, etc.) </span>
             </div>
             <div class="radio">
               <label>
@@ -76,8 +75,7 @@
               <label>
                 <input type="radio" name="pref_newspriority" id="openmedia" value="8">
                 Media &amp; Digital Policy 
-              </label>
-              <span class="help-block">(Media concentration, CRTC, journalism futures, CBC funding, copyright law, Internet freedom, FOI, censorship, online spying.)</span>
+              </label>(Media concentration, CRTC, journalism futures, CBC funding, copyright law, Internet freedom, FOI, censorship, online spying.)</span>
             </div>
             <div class="radio">
               <label>
@@ -97,6 +95,10 @@
                 <label class="btn btn-primary" for="daily">
                     <input id="weekly" name="pref_frequency" type="radio" value="Weekly headlines" />
                     Weekly
+                </label>   
+                <label class="btn btn-primary" for="national">
+                    <input id="national" name="pref_frequency" type="radio" value="National headlines" />
+                   National (sent weekly)
                 </label>                
                 <label class="btn btn-primary" for="daily">
                     <input id="noThanks" name="pref_frequency" type="radio" value="No thanks" />
@@ -120,6 +122,22 @@
                     <input id="anon-yes" name="pref_anonymous" type="radio" value="No" />
                     No thanks
                 </label>
+                
+            </div>        
+        </div>
+         <br clear="all" />
+        <div class="form-group">
+            <label for="pref_lapel">One last thing. We have a super cool custom Tyee lapel pin to send to you in the mail. But we understand if you don’t want it. We get it.</label>
+            <div class="btn-group" data-toggle="buttons">
+                <label class="btn btn-primary bt-lg active" for="lapel-no">
+                    <input  id="lapel_no" name="pref_lapel" type="radio" value="No" />
+                   Don’t send me anything in the mail
+                </label>            
+                <label class="btn btn-primary bt-lg" for="anon-yes">
+                    <input checked="1" id="lapel-yes" name="pref_lapel" type="radio" value="Yes" />
+                   I can’t wait! Send me the pin.
+                </label>
+                
             </div>        
         </div>
 

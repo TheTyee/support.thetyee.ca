@@ -1,0 +1,35 @@
+<div id="withthehelp">
+                <div class="container">
+                    <h2>With the help of Tyee Builders, we've been able to:</h2>
+                    
+                    <div class="row withthehelp_item">
+                        <div class="col-md-4">
+                            <img src="<%= $config->{'static_asset_path'} %>/ui/img/harper1.credit-bob-preston610px.jpg">
+                        </div><!-- /.col-md-6 -->
+                        <div class="col-md-8">
+                            <h3>1. Provide independent, reader-funded election coverage</h3>
+                            <p>In spring 2015, Tyee Builders contributed generously to a special federal election reporting fund. We produced original news and analysis from across the country, including the Harper Abuse of Power list, a 70-item omnibus article detailing the affronts to democracy perpetrated by the Harper Government. The piece was read by hundreds of thousands of people across the country, and is the most read Tyee article ever.</p>
+                        </div><!-- /.col-md-6 -->
+                    </div><!-- /.row -->
+                    
+                    <div class="row withthehelp_item">
+                        <div class="col-md-4">
+                            <img src="<%= $config->{'static_asset_path'} %>/ui/img/Jeremy-with-National.jpg">
+                        </div><!-- /.col-md-6 -->
+                        <div class="col-md-8">
+                            <h3>2. Hire a reporter in Ottawa</h3>
+                            <p>In 2013, The Tyee went National with the help of Tyee Builders. Jeremy Nuttall is The Tyee’s man on Parliament Hill, and reports full time from our nation’s capital, completely funded by readers.</p>
+                        </div><!-- /.col-md-6 -->
+                    </div><!-- /.row -->
+                    
+                    <div class="row withthehelp_item">
+                        <div class="col-md-4">
+                            <img src="<%= $config->{'static_asset_path'} %>/ui/img/business-model-graph.png" class="graph">
+                        </div><!-- /.col-md-6 -->
+                        <div class="col-md-8">
+                            <h3>3. Move towards a sustainable business model for independent media</h3>
+                            <p>The Tyee has a unique business model, made up of advertising and event revenue, reader contributions, and (very) patient investment. Every dollar from our readers goes straight into producing high-quality, professional journalism. Together, we’re building a resilient model that makes the needs of readers our top priority.</p>
+                        </div><!-- /.col-md-6 -->
+                    </div><!-- /.row -->
+                </div><!-- /.container -->
+            </div>

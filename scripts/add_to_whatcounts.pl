@@ -103,6 +103,9 @@ sub _determine_frequency
     }
     elsif ( defined $subscription && $subscription =~ /daily/i ) {
         $frequency = 'custom_pref_enews_daily';
+    }   
+	 elsif ( defined $subscription && $subscription =~ /national/i ) {
+        $frequency = 'custom_pref_enews_national';
     }
     else {    # This is used to ensure the record gets added to WhatCounts
         $frequency = 'custom_pref_enews_nochoice';
