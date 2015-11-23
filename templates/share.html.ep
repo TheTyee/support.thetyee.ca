@@ -1,4 +1,6 @@
 % layout 'default', title => 'Welcome to the team. Share the news -- The Tyee', body_id => 'share';
+% use Mojo::Util qw(b64_encode url_escape url_unescape);
+
 
 
 
@@ -19,8 +21,18 @@
     
     <br />
     <div style="float: left; with: 50%; margin-right: 20px;">
-        <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-count="none" data-size="large" data-text="The federal election is coming. Join me and help fund more independent reporting from @TheTyee" data-url="http://support.thetyee.ca/">Tweet</a>
+        <a target="_blank" href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-count="none" data-size="large" data-text="The federal election is coming. Join me and help fund more independent reporting from @TheTyee" data-url="http://support.thetyee.ca/">Tweet</a>
+		
+	
+		
     <span style="margin-left: 10px;" class='st_email_large' displayText='Email'></span>
+	<span id="fblink"></span>
+	
+	<a href="http://www.facebook.com/sharer.php?s=100&p[title]=<%= url_escape 'Canada needs more independent journalism. Join us.' %> &p[summary]= <%= url_escape 'New Tyee Video' %>&p[url]=<%= url_escape 'https://youtu.be/IlzTtYCr3-0' %>&p[images][0]=<%= url_escape 'http://thetyee.ca/ui/img/logo.png' %>"> Share on Facebook</a>
+
+
+
+
     </div>
     <div class="fb-like" data-href="https://www.facebook.com/video.php?v=10153284295809474" data-width="300" data-action="recommend" data-show-faces="true" data-send="true"></div>
     <br clear="all" />

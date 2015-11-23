@@ -127,6 +127,7 @@ helper recurly_get_billing_details => sub {
     return $dom;
 };
 
+
 group {
     under [qw(GET POST)] => '/' => sub {
         my $self    = shift;
