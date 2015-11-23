@@ -1,4 +1,4 @@
-% layout 'default', title => 'Welcome to the team. Share the news -- The Tyee', body_id => 'share';
+% layout 'default', title => 'You just helped fund more independent journalism. Tell your friends...', body_id => 'share';
 % use Mojo::Util qw(b64_encode url_escape url_unescape);
 
 
