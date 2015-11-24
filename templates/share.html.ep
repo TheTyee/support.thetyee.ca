@@ -28,7 +28,7 @@
     <span style="margin-left: 10px;" class='st_email_large' displayText='Email'></span>
 	<span id="fblink"></span>
 	
-	<a href="http://www.facebook.com/sharer.php?s=100&p[title]=<%= url_escape 'Canada needs more independent journalism. Join us.' %> &p[summary]= <%= url_escape 'New Tyee Video' %>&p[url]=<%= url_escape 'https://youtu.be/IlzTtYCr3-0' %>&p[images][0]=<%= url_escape 'http://thetyee.ca/ui/img/logo.png' %>"> Share on Facebook</a>
+	<a href="http://www.facebook.com/sharer.php?s=100&p[title]=<%= url_escape 'Canada needs more independent journalism. Join us.' %> &p[summary]= <%= url_escape 'New Tyee Video' %>&p[url]=<%= url_escape 'https://youtu.be/IlzTtYCr3-0' %>&p[images][0]=<%= url_escape 'http://thetyee.ca/ui/img/logo.png' %>"> <img = src="<%= $config->{'static_asset_path'} %>/ui/img/fb-logo.jpg" />k</a>
 
 
 
