@@ -20,7 +20,9 @@
                               <span class="minutes"></span>
                         </div>
                         <hr class="soften" />
-                        <div class="from"><strong>From <span class="count">0</span> supporters like:</strong>
+                        <div class="from">
+                            <!--<strong>From <span class="count">0</span> supporters like:</strong>-->
+                            <strong>From cool people like:</strong>
                         </div>
                         <ul class="contributor-list">
                         </ul>
