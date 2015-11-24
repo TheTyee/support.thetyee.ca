@@ -74,7 +74,7 @@
             <div class="radio">
               <label>
                 <input type="radio" name="pref_newspriority" id="openmedia" value="8">
-                <span class="help-block">Media &amp; Digital Policy 
+                Media &amp; Digital Policy 
               </label><span class="help-block">(Media concentration, CRTC, journalism futures, CBC funding, copyright law, Internet freedom, FOI, censorship, online spying.)</span>
             </div>
             <div class="radio">
