@@ -85,35 +85,37 @@
               <span class="help-block">(I trust your news judgment, Tyee.)</span>
             </div>
         </div>
+        <div class="form-group" id="naked">
             <label for="pref_frequency">Would you like our stories emailed straight to your inbox?</label>
             <br />
                     <input checked="1" id="daily" name="pref_frequency" type="radio" value="Daily headlines" />
-                    Daily
+                    <span>&nbsp;Daily</span>
                     <input id="weekly" name="pref_frequency" type="radio" value="Weekly headlines" />
-                    Weekly
+                   <span>&nbsp;Weekly</span>
                     <input id="national" name="pref_frequency" type="radio" value="National headlines" />
-                   National (sent weekly)
+                   <span>&nbsp;National (sent weekly)</span>
                     <input id="noThanks" name="pref_frequency" type="radio" value="No thanks" />
-                    No thanks
+                    <span>&nbsp;No thanks</span>
                     <input id="alreadySubscribe" name="pref_frequency" type="radio" value="I already subscribe" />
-                    I already subscribe
+                    <span>&nbsp;I already subscribe</span>
         <br clear="all" />
          <br clear="all" />
         <label for="pref_anonymous">We like to sometimes acknowledge our supporters publicly. May we acknowledge your contribution?</label>
         <br />
                     <input checked="1" id="anon-no" name="pref_anonymous" type="radio" value="Yes" />
-                    Yes
+                   <span> Yes</span>
                     <input id="anon-yes" name="pref_anonymous" type="radio" value="No" />
-                    No thanks
+                   <span> No thanks</span>
                 
          <br clear="all" />
          <br clear="all" />
             <label for="pref_lapel">One last thing. We have a super cool custom Tyee lapel pin to send to you in the mail. But we understand if you don’t want it. We get it.</label>
             <br />
                     <input checked="1" id="lapel-yes" name="pref_lapel" type="radio" value="Yes" />
-                   I can’t wait! Send me the pin.
+                   <span>I can’t wait! Send me the pin.</span>
                     <input  id="lapel_no" name="pref_lapel" type="radio" value="No" />
-                   Don’t send me anything in the mail
+                  <span> Don’t send me anything in the mail</span>
+                   </div>
          <br clear="all" />
          <br clear="all" />
 
