@@ -73,7 +73,8 @@
                 </div><!-- /.row -->
             </div><!-- /.container -->
         </div>
-        
+
+		%= include 'includes/builder_list'        
         %= include 'includes/partners'
 
 % content_for javascript => begin
