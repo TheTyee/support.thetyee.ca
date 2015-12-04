@@ -73,13 +73,18 @@
                 </div><!-- /.row -->
             </div><!-- /.container -->
         </div>
-        
+
+		%= include 'includes/builder_list'        
         %= include 'includes/partners'
 
 % content_for javascript => begin
 %= javascript begin
-            $('[rel="popover"]').popover();
-
+            function isTouchDevice(){
+                return true == ("ontouchstart" in window || window.DocumentTouch && document instanceof DocumentTouch);
+            }
+            if(isTouchDevice()===false) {
+                $('[rel="popover"]').popover();
+            }
             var onetime = '<%= $onetime %>';
             var amount = '<%= $amount %>';
 
@@ -144,6 +149,7 @@
             };
 
             $( "#form-monthly label.btn" ).on( "click", function( event ) {
+                $(this).popover('show');
                 var amount = $(this).text();
                 var selectedInput = $('input', this)[0];
                 showSubscriptionForm( selectedInput.value );
