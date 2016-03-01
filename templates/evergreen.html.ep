@@ -80,7 +80,7 @@ critical time to hold government accountable to its promises”</p>
             </div><!-- /.container -->
         </div><!-- featurettes2 -->
 
- %= include 'includes/builder_list'      
+% # %=  include 'includes/builder_list'      
     
 % content_for javascript => begin
 %= javascript begin
