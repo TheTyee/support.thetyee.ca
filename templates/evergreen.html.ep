@@ -6,43 +6,71 @@
                 <p class="lead">Support The Tyee and bring more diverse, fact-driven reporting to the national conversation.</p>
             </div>
 
-            <span id="campaign-end"></span>
+            <span id="campaign-end" style="display:none;"></span>
             %= include 'includes/form'
             <div id="atf" class="row">
-            <h2>Who are we?</h2>
-                <div class="col-md-8 video-container">
-                    <iframe width="560" height="315" src="//www.youtube.com/embed/KlTRrRyBs98" frameborder="0" allowfullscreen></iframe>
+                <div class="col-md-7 video-container">
+                    <iframe width="560" height="315" src="//www.youtube.com/embed/IlzTtYCr3-0" frameborder="0" allowfullscreen></iframe>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-5">
+		<h2 style="margin-top:0;">Who are we?</h2>
                     %= include 'includes/about'
                 </div>
             </div> <!-- / #atf -->
+
+           <div class="row awards">
+                <div class="col-md-12 awards">
+                    <div class="col-md-3 col-sm-3 award">
+                        <img id="murrow" src="<%= $config->{'static_asset_path'} %>/ui/img/award-cjf.png" />
+                        <p>Excellence in Journalism Award (CDN), 2013, 2009</p>
+                    </div>
+                    <div class="col-md-3 col-sm-3 award">
+                        <img id="murrow" src="<%= $config->{'static_asset_path'} %>/ui/img/award-western.png" />
+                        <p>Western Magazine Award 2012</p>
+                    </div>
+                    <div class="col-md-3 col-sm-3 award">
+                        <img id="murrow" src="<%= $config->{'static_asset_path'} %>/ui/img/award-murrow.png" />
+                        <p>Edward R. Murrow Award (NA), 2011, 2009</p>
+                    </div>
+                    <div class="col-md-3 col-sm-3 award">
+                        <img id="murrow" src="<%= $config->{'static_asset_path'} %>/ui/img/award-webby.png" />
+                        <p>Webby Honourable Mention (Intl), 2010, 2009</p>
+                    </div>
+                </div>
+            </div> 
+
+
         </div><!-- / .container -->
+
         <div id="featurettes1">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <h2>Our vision</h2>
                         <p>Canada is facing major challenges ahead, with a new government that needs to be kept in check. At the same time, our national media is in collapse. Newsrooms continue to shrink and consolidate under the control of fewer and fewer corporations, and there are fewer journalists asking tough questions of those in power. We believe that our democratic conversation is made possible by strong, independent media, who exist first and foremost to serve the needs of its readers.</p>
-                    </div><!-- /.col-md-6 -->
-                    <div class="col-md-6">
+                    </div><!-- /.col-md-4 -->
+                    <div class="col-md-4">
                         <h2>How you can help</h2>
-                        <p>Sign up as a Tyee Builder for less than the cost of a newspaper subscription and support The Tyee’s award-winning independent journalism.</p>
-                        <p>Your money will pay proven journalists to cover the national stories other media miss. What stories exactly? You tell us. When you sign up, you'll complete a news-priority survey that will help inform this reporting. Plus, your money keeps The Tyee paywall free, which means you're giving the gift of excellent independent reporting to all Canadians, regardless of income level. Because news is for the people. But good reporting costs money.</p>
-                        <p>As a special thanks for signing up, you’ll receive editorial reports, random swag giveaways, and discounts on Tyee Master Classes. 
-
-                        </p>
-                    </div><!-- /.col-md-6 -->
-                   
+                        <p>By contributing to The Tyee on a monthly basis, you are helping to strengthen and grow our team of fierce, tough-minded journalists and editors. Tyee Builders who give every month allow our small and nimble team to plan ahead, and produce original stories that you will not see anywhere else. We don’t put our articles behind paywalls, so your contribution helps to keep our stories open and available to everyone.</p>
+                    </div><!-- /.col-md-4 -->
+                    <div class="col-md-4">
+                        <h2>Join our community</h2>
+                        <p>We want to know which issues matter most to you. Energy and environment? Inequality? Electoral reform? When you sign up, you’ll 
+complete a news priority survey that will help inform our reporting. As a special thanks for joining, you’ll receive editorial reports, discounts from partners, 
+random swag giveaways, and discounts on special events and Tyee Master Classes.</p>
+                    </div><!-- /.col-md-4 -->
                 </div><!-- /.row -->
             </div><!-- / .container -->
         </div><!-- / #featurettes1 -->
+  %= include 'includes/withyourhelp'
+
 
         <div id="people" class="testimonial">
             <div class="container">
                 <div class="row">
                     <div class="col-md-8">
-                        <p class="quotation">“I support The Tyee because its reporters are brave, independent and smart as hell — and because Canadians need to learn the truth behind government spin more than ever before.”</p>
+                        <p class="quotation">“I support The Tyee because its reporters are brave, independent and smart as hell — and because now is a 
+critical time to hold government accountable to its promises”</p>
                         <p class="cite">Naomi Klein</p>
                     </div>
                     <div class="col-md-4">
@@ -52,7 +80,7 @@
             </div><!-- /.container -->
         </div><!-- featurettes2 -->
 
-      
+% # %=  include 'includes/builder_list'      
     
 % content_for javascript => begin
 %= javascript begin
