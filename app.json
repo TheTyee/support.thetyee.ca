@@ -1,5 +1,5 @@
 {
-    "app_version"               : "1.5.3",
+    "app_version"               : "1.6.0",
     "plans_onetime"          : [ 
         { 
             "amount": "10",
