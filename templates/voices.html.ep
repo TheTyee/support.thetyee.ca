@@ -20,7 +20,7 @@
         </div><!-- / .container -->
         <div id="campaign-copy" class="container">
                 <div class="row">
-                    <div class="col-md-7">
+                    <div class="col-md-7 col-sm-7">
                         <h2>What kind of future are we creating for our kids?</h2>
 
                         <p>The next generation of British Columbians faces incredible challenges &ndash; and we’re not making it much easier for them.</p>
@@ -43,7 +43,7 @@
                                     </p>
 
                     </div>
-                    <div class="col-md-4 col-md-offset-1">
+                    <div class="col-md-4 col-md-offset-1 col-sm-4">
                         <div clss="awards" style="padding-top: 100px;text-align:center;">
                             <img id="murrow" src="<%= $config->{'static_asset_path'} %>/ui/img/award-cjf.png" />
                             <p>Excellence in Journalism Award (CDN), 2013, 2009</p>
