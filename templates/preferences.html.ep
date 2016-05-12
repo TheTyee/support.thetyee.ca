@@ -19,7 +19,7 @@
     % }
 
     <h1>Thanks a bunch! Stay in touch, won’t you?</h1>
-    <p class="lead">Inform our reporting. Tell us what matters most to you...</p>
+    <p class="lead">Tell us how you'd like to hear from us.</p>
     <form action="preferences" method="POST" role="form">
         <input type="hidden" name="pref_newspriority" id="tyeechoice" value="1">
         <div class="form-group" id="naked">
