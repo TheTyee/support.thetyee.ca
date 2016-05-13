@@ -22,7 +22,7 @@
             <meta property="og:type" content="website" />
             <meta property="og:url" content="https://support.thetyee.ca" />
             <meta property="og:image" content="<%= $config->{'static_asset_path'} %>/ui/img/voices-share-graphic.jpg" />
-            <meta property="og:video" content="https://youtu.be/IlzTtYCr3-0" />
+            <meta property="og:video" content="https://youtu.be/EU4ukJhl8lg" />
 	    <meta property="og:site_name" content="Canada needs more independent journalism. Join us. – The Tyee" />
             <meta property="fb:admins" content="648146258, 512340590, 121503155, 13609677, 877285452, 584785109" />
  
