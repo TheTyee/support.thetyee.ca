@@ -1,0 +1,163 @@
+% layout 'default', title => 'Support original reporting on what lies ahead for the youth of British Columbia – The Tyee';
+
+       <div class="container" id="content">
+            <div id="campaign-copy" class="row">
+                <h1>What lies ahead for the youth of BC?</h1>
+                <p class="lead">Support Voices from the Future, a new original series from The Tyee</p>
+            </div>
+
+            <span id="campaign-end"></span>
+            %= include 'includes/form-voices'
+            <div id="atf" class="row">
+                <div class="col-md-8 video-container">
+                    <iframe width="500" height="281" src="https://www.youtube-nocookie.com/embed/EU4ukJhl8lg?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="col-md-4">
+                    %= include 'includes/widget'
+                </div>
+            </div> <!-- / #atf -->
+        </div><!-- / .container -->
+        <div id="campaign-copy" class="container">
+                <div class="row">
+                    <div class="col-md-7 col-sm-7">
+                        <h2>What will the future hold for our kids?</h2>
+
+                        <p>The next generation of British Columbians faces incredible challenges &ndash; and we’re not making it much easier for them.</p>
+                        <p>Those in grade school are currently feeling the squeeze of over a decade of successive education budget cuts, leaving their time-strapped teachers to do more with less.</p>
+                        <p>Those leaving grade school face increasing postsecondary education costs, risking potentially tens of thousands of dollars of student debt.</p>
+                        <p>Then there’s the affordability crisis, which will hammer the next generation hardest. The cost of food, housing, recreation… all of it is skyrocketing, with little relief in sight.</p>
+                        <p>Meanwhile, few diverse employment opportunities exist in rural areas. Not to mention that the world of work itself is rapidly evolving in this hyper-teched out, climate-conscious new age.</p>
+                        <p>What options does this leave for young people? We’d like to find out.<p>
+                                <p>In a brand new Tyee series, education and youth reporter Katie Hyslop will strike out to investigate how B.C.’s next generation is grappling with the legacy we’re leaving for them, and what this says about the future of our province.</p>
+                                <h3>But she needs your help.</h3>
+                                <p>Original reporting like this takes resources and most of all, time. Reader contributions of $25,000 will cover a year of reporting and expenses for Katie to hit the road and bring you stories from voices we rarely get to hear from.</p> 
+                                <p>Why are we doing this? Because we want to find out what life is like for the young people who have to live with the consequences of our government’s actions. To go beyond the press conferences and spokespeople, and hear directly from kids about how they see their future.</p>
+                                <h3>Meet your Tyee reporter, Katie Hyslop</h3>
+                                <img src="<%= $config->{'static_asset_path'} %>/ui/img/katie_hyslop_2015_cropped.jpg" style="float: left; padding: 0 20px 20px 0;" />
+                                <p>As one of two part-time education reporters in all of British Columbia, Katie has been covering education and youth since 2010. During the teachers’ strike in 2014, Katie’s reporting became a go-to source for readers who were looking for deep analysis and context on the issues at hand.</p>
+                                <blockquote><p>"Living in Vancouver, I often hear adults asking what my generation is going to do about housing here. It's one thing to talk about how prices are going up year-to-year, but it's terrifying to think I'm going to have to afford that. What if we all move out&mdash;who will live here then?"</p> <small>Kendra Wong, 16</small></blockquote>
+                                <blockquote><p>“The Tyee has developed an informed, courageous voice in reporting on B.C. education. Stories that are suppressed in other media are researched and reported by The Tyee. Such investigative journalism reveals this government's weakness in funding and leadership of our public schools. The Tyee has been a force against financial subversion and lack of faith in public education.”</p> <small>Paul Shaker, PhD, former Dean of Education, Simon Fraser University.</small></blockquote>
+                                <blockquote><p>“When I’m looking for news and in-depth articles that inform and educate about provincial and federal policy affecting children, youth and families, The Tyee is one of the first places I look. Katie Hyslop’s reporting in The Tyee on child and youth issues such as poverty levels, public education, post-secondary institutions, youth homelessness, and children and youth in foster care has been consistent and educational. Reporters who have the skills and permission from their editors to dig deep and develop a full grasp of their subject matter is becoming rarer, and The Tyee’s track record in giving prominence to social justice issues is an important contribution to building public awareness and an informed electorate."</p> <small>Adrienne Montani, former Vancouver school trustee and long-time child and youth advocate.</small></blockquote>
+
+                    </div>
+                    <div class="col-md-4 col-md-offset-1 col-sm-4">
+                        <div clss="awards" style="padding-top: 100px;text-align:center;">
+                            <img id="murrow" src="<%= $config->{'static_asset_path'} %>/ui/img/award-cjf.png" />
+                            <p>Excellence in Journalism Award (CDN), 2013, 2009</p>
+                            <img id="murrow" src="<%= $config->{'static_asset_path'} %>/ui/img/award-western.png" />
+                            <p>Western Magazine Award 2012</p>
+                            <img id="murrow" src="<%= $config->{'static_asset_path'} %>/ui/img/award-murrow.png" />
+                            <p>Edward R. Murrow Award (NA), 2011, 2009</p>
+                            <img id="murrow" src="<%= $config->{'static_asset_path'} %>/ui/img/award-webby.png" />
+                            <p>Webby Honourable Mention (Intl), 2010, 2009</p>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+        <div id="featurettes1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2>About The Tyee</h2>
+                        <p>We're an independent, online news magazine from British Columbia. We're devoted to fact-driven reporting and analysis that informs and enlivens our democratic conversation. Our reporting has garnered numerous awards and the respect of our peers and readers. While some journalism gives the last word to power, we try to give the last word to ordinary folks.</p>
+                    </div><!-- /.col-md-4 -->
+                    <div class="col-md-6">
+                        <h2>About Tyee Builders</h2>
+                        <p>Tyee Builders pitch in one-time or monthly contributions to make The Tyee’s independent reporting possible. Unlike much of Canada’s media, The Tyee isn’t owned by large U.S. hedge funds. Contributions from Builders now exceed advertising revenue, and allow our reporters to produce original, hard-hitting reporting that pulls no punches.
+                        </p>
+                    </div><!-- /.col-md-4 -->
+                </div><!-- /.row -->
+            </div><!-- / .container -->
+        </div><!-- / #featurettes1 -->
+        
+        %= include 'includes/builder_list'
+        %= include 'includes/partners'
+
+% content_for javascript => begin
+%= javascript begin
+            $('[rel="popover"]').popover();
+
+            var onetime = '<%= $onetime %>';
+            var amount = '<%= $amount %>';
+
+            Recurly.config({
+                subdomain: '<%= $config->{'subdomain'} %>',
+                currency: 'CAD'
+            });
+
+            if ( onetime ) {
+                $('#onetime a:last').tab('show');
+            };
+            if ( amount ) {
+                showTransactionForm();
+                $('form#form-onetime').hide();
+            };
+
+            function showSubscriptionForm ( planCode ) { 
+                Recurly.buildSubscriptionForm({
+                    target: '#recurly-subscribe',
+                    // Signature must be generated server-side with a utility method provided
+                    // in client libraries.
+                    signature: '<%== $recurly_sig %>',
+                    successURL: '/successful_transaction',
+                    planCode: planCode,
+                    distinguishContactFromBillingInfo: false,
+                    collectCompany: false,
+                    collectContact: true,
+                    // termsOfServiceURL: 'http://example.com/tos',
+                    acceptPaypal: false,
+                    enableCoupons: false,
+                    acceptedCards: ['mastercard',
+                    'visa'],
+                    billingInfo: {
+                        state: 'BC',
+                        country: 'CA'
+                    }
+                });
+                $('#recurly-subscribe').fadeIn(1000);
+                $('#transaction-secure').fadeIn(1000);
+            };
+
+            function showTransactionForm () { 
+                Recurly.buildTransactionForm({
+                    target: '#transactionForm',
+                    signature: '<%== $recurly_sig %>',
+                    successURL: '/successful_transaction',
+                    collectCompany: false,
+                    collectContactInfo: true,
+                    // distinguishContactFromBillingInfo: false,
+                    // termsOfServiceURL: 'http://example.com/tos',
+                    acceptPaypal: false,
+                    acceptedCards: ['mastercard',
+                    'visa'],
+                    billingInfo: {
+                        state: 'BC',
+                        country: 'CA'
+                    }
+                });
+                $('#transactionForm').fadeIn(1000);
+                $('#transaction-secure').fadeIn(1000);
+            };
+
+            $( "#form-monthly label.btn" ).on( "click", function( event ) {
+                var amount = $(this).text();
+                var selectedInput = $('input', this)[0];
+                showSubscriptionForm( selectedInput.value );
+            });
+            $( "a#amount-change" ).on( "click", function( event ) {
+                event.preventDefault();
+                $('form#form-onetime').show();
+                $('#transactionForm').hide();
+                $('#payment-onetime-confirmation').hide();
+            });
+            $('a#link-tab-monthly').on('click', function( event ) {
+                event.preventDefault();
+                $('#monthly a:last').tab('show');
+            });
+            $('a#link-tab-onetime').on('click', function( event ) {
+                event.preventDefault();
+                $('#onetime a:last').tab('show');
+            });
+%   end
+% end

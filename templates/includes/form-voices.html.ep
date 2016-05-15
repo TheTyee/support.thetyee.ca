@@ -1,0 +1,88 @@
+<div id="form">
+    <ul class="nav nav-tabs">
+        <li id="monthly"><a href="#form-monthly" data-toggle="tab">Monthly</a></li>
+        <li id="onetime" class="active"><a href="#form-onetime" data-toggle="tab">One-time</a></li>
+        <li id="offline" ><a href="#form-offline" data-toggle="tab">Offline</a></li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane" id="form-monthly">
+            <p class="alert alert-info"><i class="glyphicon glyphicon-ok-circle">&nbsp;</i>Choose your <b>monthly</b> level:</p>
+            <div class="btn-group" data-toggle="buttons">
+                % for my $p ( @$plans ) {
+                <label rel="popover" class="btn btn-primary btn-lg" data-trigger="hover" data-container="body" data-placement="top" data-content="<%= $p->description->text %>" data-original-title="<%= $p->name->text %>" title="">
+                    <input type="radio" name="options" id="<%= $p->plan_code->text %>" value="<%= $p->plan_code->text %>"> $<%= $p->unit_amount_in_cents->CAD->text / 100 %>
+                </label>
+
+                % }
+            </div>
+    <br style="clear:both;" /> 
+    <br style="clear:both;" /> 
+    <p class="help-block">Make a  <a target="_blank" href="<%= $config->{'static_asset_path'} %>/ui/img/TyeeBuildersBankWithdrawalForm.pdf"> monthly contribution</a> (pdf) from your bank account.</p>
+     <p class="help-block">If you already contribute monthly to The Tyee and would like to increase your contribution, give us a shout at 604-689-7489 or <a  href="mailto:builders@thetyee.ca" target="_blank">builders@thetyee.ca</a>.</p>           
+
+
+            <div id="recurly-subscribe" style="display:none;">
+            </div>
+
+        </div>
+        <div class="tab-pane active" id="form-onetime">
+            <form role="form" id="form-onetime" method="POST">
+                <% if ( $error ) { %>
+                <p class="alert alert-danger"><i class="glyphicon glyphicon-exclamation-sign">&nbsp;</i>Please enter a whole number. No decimal places or other characters, please.</p>
+                <% } %>
+                <p class="alert alert-info"><i class="glyphicon glyphicon-ok-circle">&nbsp;</i> Select your <b>one-time</b> amount</p>
+                <div class="form-group">
+                    <input type="hidden" id="onetime" name="onetime" value="true" />
+                    <div class="btn-group" data-toggle="buttons">
+                        % for my $p ( @$plans_onetime ) {
+                        <label rel="popover" class="btn btn-primary btn-lg" data-trigger="hover" data-container="body" data-placement="top" data-content="<%= $p->{'text'} %>" data-original-title="$<%= $p->{'amount'} %> one-time gift" title="$<%= $p->{'amount'} %> one-time gift">
+                            <input type="radio" name="amount" id="<%= $p->{'amount'} %>" value="<%= $p->{'amount'} %>"> $<%= $p->{'amount'} %>
+                        </label>
+
+                        % }
+                    </div>
+                    <div id="other-amount-label"><label for="other-amount">Or, enter your own amount:</label></div>
+                    <div class="input-group">
+                        <span class="input-group-addon">$</span>
+                        <input type="text" class="form-control" id="other-amount" name="amount" placeholder="Enter a round number, e.g., 25">
+                        <span class="input-group-addon">.00</span>
+                    </div>
+                    <p class="help-block">Or, consider becoming a <a href="/" id="link-tab-monthly">sustaining monthly supporter</a> for less than the cost of a newspaper subscription.</p>
+                </div>
+                <button type="submit" class="btn btn-success btn-lg">Continue to payment &raquo;</button>
+            </form>
+            % if ( $amount ) { 
+            <div id="payment-onetime-confirmation">
+                <p class="alert alert-success"><i class="glyphicon glyphicon-ok-circle">&nbsp;</i>You are about to make a one-time contribution of $<%= $amount %>.00  <span class="smaller">(<a id="amount-change" href="#">Change</a>)</span></p>
+
+            </div>
+            % } 
+            <div id="transactionForm"></div>
+        </div>
+        <div class="tab-pane" id="form-offline">
+            <p>Don't trust the Internet? Can't stand credit cards? Does your organization (or you?) want to make a large contribution or one that matches reader contributions?</p> 
+            <p><strong>How to support The Tyee without ever touching your keyboard.</strong></p>
+            <div style="margin-left:20px;">
+                <p><b>Option 1: Register with your credit card by phone:</b></p>
+                <p>Call 604-689-7489 in Vancouver or toll-free at 1-844-301-6677, Monday - Friday, 10 am - 5 pm PST.</p>
+                <p><strong>Option 2: Send us a cheque: </strong></p>
+                <p>Cheques can be made out to Countercurrent Media Ltd. and mailed to:</p>
+                <p>
+                The Tyee<br />
+                PO Box 28187 <br />
+                West Pender St<br />
+                Vancouver, BC V6C 3T7
+                <br />
+                </p>
+                <p>Please include with your cheque your full name, return address, phone number and email, plus indicate whether you would like your contribution to remain anonymous. If 
+you'd like to contribute monthly from your bank account, print off <a href="http://static.thetyee.ca/support/v1.5.3/ui/img/TyeeBuildersBankWithdrawalForm.pdf">this form</a> and follow 
+the instructions.</p>
+            </div>
+        </div>
+        <div id="transaction-secure" style="display:none;">
+            <hr class="soften" />
+            <p><i class="glyphicon glyphicon-lock">&nbsp;</i><strong>Your transaction is secure.</strong> The Tyee uses industry-standard SSL encryption to secure your connection. Your transaction is then processed securely by our payment processors, Recurly and Beanstream.</p>
+            <p>Because we publish hard-hitting political journalism, we can't be a charity and therefore can't offer charitble tax receipts. Learn <a href="http://thetyee.ca/About/Us/#faq-funding">more</a></p>
+        </div>
+   </div>
+</div>

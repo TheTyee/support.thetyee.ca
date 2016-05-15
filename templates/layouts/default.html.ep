@@ -13,16 +13,16 @@
             <meta name="keywords" content="Canada, national, news, media concentration, fact-driven reporting">
             <meta name="robots" content="index, follow" />
 	    <meta name="revisit-after" content="1 days" />
-	    <meta name="copyright" content="The Tyee 2013" />
+	    <meta name="copyright" content="The Tyee 2016" />
             <meta name="MSSmartTagsPreventParsing" content="TRUE" />
  
 <!-- OpenGraph properties -->
-            <meta property="og:title" content="Canada needs more independent journalism. Join us. – The Tyee" />
-            <meta property="og:description" content="Support The Tyee and bring more diverse, fact-driven reporting to the public conversation." />
+            <meta property="og:title" content="I just supported a new reporting project from The Tyee. Join me. – The Tyee" />
+            <meta property="og:description" content="Support original reporting on what lies ahead for the youth of British Columbia." />
             <meta property="og:type" content="website" />
             <meta property="og:url" content="https://support.thetyee.ca" />
-            <meta property="og:image" content="<%= $config->{'static_asset_path'} %>/ui/img/facebook_share_img_square_democracy.png" />
-            <meta property="og:video" content="https://youtu.be/IlzTtYCr3-0" />
+            <meta property="og:image" content="<%= $config->{'static_asset_path'} %>/ui/img/voices-share-graphic.jpg" />
+            <meta property="og:video" content="https://youtu.be/EU4ukJhl8lg" />
 	    <meta property="og:site_name" content="Canada needs more independent journalism. Join us. – The Tyee" />
             <meta property="fb:admins" content="648146258, 512340590, 121503155, 13609677, 877285452, 584785109" />
  

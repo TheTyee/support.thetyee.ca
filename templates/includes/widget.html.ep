@@ -6,13 +6,13 @@
                                   <span class="sr-only"><span class="percentage">0</span>% Complete</span>
                               </div>
                         </div>
-                        <p class="raised-goal"><i>Pledged of <!--<strike>$50,000</strike>--> <span class="goal"></span> monthly builder goal</i><br /></p>
-                        <p>$<span class="onetimetotal"></span> raised in one-time donations</p>
-                        <div class="reader-priorities">
-                            <strong>Top reader priorities:</strong>
-                            <ul class="priorities">
-                            </ul>
-                        </div>
+                        <p class="raised-goal"><i>Pledged of <!--<strike>$50,000</strike>--> <span class="goal"></span> goal</i><br /></p>
+                        <!--<p>$<span class="onetimetotal"></span> raised in one-time donations</p>-->
+                        <!--<div class="reader-priorities">-->
+                            <!--<strong>Top reader priorities:</strong>-->
+                            <!--<ul class="priorities">-->
+                            <!--</ul>-->
+                        <!--</div>-->
                         <div class="time-left">
                               <!--<span class="days"></span> <i>days left</i>.-->
                               <div><span class="days"></span><i class="days-left"></i></div>
