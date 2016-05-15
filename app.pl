@@ -214,6 +214,17 @@ group {
         );
         say Dumper( $self->flash( 'appeal_code' ));
     } => 'election2015';
+    any [qw(GET POST)] => '/voices' => sub {
+        my $self = shift;
+        $self->stash(
+            body_id     => 'voices',
+            appeal_code => 'voices'
+        );
+        $self->flash(
+            appeal_code => 'voices'
+        );
+        say Dumper( $self->flash( 'appeal_code' ));
+    } => 'voices';
 };
 
 post '/successful_transaction' => sub {

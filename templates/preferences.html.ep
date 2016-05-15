@@ -1,4 +1,4 @@
-% layout 'default', title => 'Time to vote -- The Tyee', body_id => 'preferences';
+% layout 'default', title => 'Thanks a bunch! Stay in touch, won’t you? -- The Tyee', body_id => 'preferences';
 
 %  my $err_anon = validation->error('pref_anonymous');
 %  my $err_freq = validation->error('pref_frequency');
@@ -18,73 +18,10 @@
     </p>
     % }
 
-    <h1>Almost there! Time to vote...</h1>
-    <p class="lead">Inform our reporting. Tell us what matters most to you...</p>
+    <h1>Thanks a bunch! Stay in touch, won’t you?</h1>
+    <p class="lead">Tell us how you'd like to hear from us.</p>
     <form action="preferences" method="POST" role="form">
-        <div class="form-group" id="newspriorities">
-            <label for="pref_frequency">Choose one:</label>
-            <div class="radio">
-              <label>
-                <input type="radio" name="pref_newspriority" id="artsandculture" value="1">
-                Arts &amp; Culture 
-              </label>
-              <span class="help-block">(Bilingualism, Canadian identity and heritage, CBC funding cuts, arts funding cuts, grants cuts, cuts, cuts, and more cuts.)</span>
-            </div>
-            <div class="radio">
-              <label>
-                <input type="radio" name="pref_newspriority" id="energyandenvironment" value="2">
-                Energy &amp; Environment 
-              </label>
-              <span class="help-block">(Oil sands, LNG, fracking, pipelines, tankers, GMOs, honey bee extinction, climate change, peak oil, resource depletion. You know, the end of the world. Or the beginning of something new?) </span>
-            </div>
-            <div class="radio">
-              <label>
-                <input type="radio" name="pref_newspriority" id="tradeandforeignpolity" value="3">
-                Trade &amp; Foreign Policy  
-              </label>
-              <span class="help-block">(UN, Canada's international reputation, defence, international law, CIDA/foreign aid, peacekeeping, World Bank, globalization, sweat shops, mining, G8, TPP, FIPPA, CETA, NAFTA, IMF, UN, and other acronyms.) </span>
-            </div>
-            <div class="radio">
-              <label>
-                <input type="radio" name="pref_newspriority" id="laboureconomy" value="4">
-               Labour &amp; Economy
-              </label>
-              <span class="help-block">(Union bargaining rights, collective agreements, outsourcing, temporary foreign workers, living wage, worker safety, privatization, jobs, progressive taxation and economics, corporate taxes, small business, you know, the 99% and the 1%.)</span>
-            </div>
-            <div class="radio">
-              <label>
-                <input type="radio" name="pref_newspriority" id="governmentaccountability" value="5">
-                Gov't Accountability  
-              </label><span class="help-block">(Transparency, federal-provincial relations, Senate reform, proportional representation, electoral fraud, etc.) </span>
-            </div>
-            <div class="radio">
-              <label>
-                <input type="radio" name="pref_newspriority" id="inequality" value="6">
-                Inequality &amp; Social Policy  
-              </label>
-              <span class="help-block">(Welfare reform, economic inequality, public pensions, social security, universal childcare, universal education, universal health care, social housing, etc.) </span>
-            </div>
-            <div class="radio">
-              <label>
-                <input type="radio" name="pref_newspriority" id="rightsandjustice" value="7">
-                Rights &amp; Justice
-              </label>
-              <span class="help-block">(LGBTQ, #IdleNoMore, sexism, racism, immigrant and refugee rights, mental healthcare, disability rights, Treaty rights, Charter rights, protest rights, reproductive rights, right?) </span>
-            </div>
-            <div class="radio">
-              <label>
-                <input type="radio" name="pref_newspriority" id="openmedia" value="8">
-                Media &amp; Digital Policy 
-              </label><span class="help-block">(Media concentration, CRTC, journalism futures, CBC funding, copyright law, Internet freedom, FOI, censorship, online spying.)</span>
-            </div>
-            <div class="radio">
-              <label>
-                <input type="radio" name="pref_newspriority" id="tyeechoice" value="0" checked>
-                Tyee's choice
-              </label>
-              <span class="help-block">(I trust your news judgment, Tyee.)</span>
-            </div>
-        </div>
+        <input type="hidden" name="pref_newspriority" id="tyeechoice" value="1">
         <div class="form-group" id="naked">
             <label for="pref_frequency">Would you like our stories emailed straight to your inbox?</label>
             <br />
@@ -109,7 +46,7 @@
                 
          <br clear="all" />
          <br clear="all" />
-            <label for="pref_lapel">One last thing. We have a super cool custom Tyee lapel pin to send to you in the mail. But we understand if you don’t want it. We get it.</label>
+            <label for="pref_lapel">One last thing. If this is your first time giving to The Tyee, we have a super cool custom Tyee lapel pin to send to you in the mail. But we understand if you don’t want it. We get it.</label>
             <br />
                     <input checked="1" id="lapel-yes" name="pref_lapel" type="radio" value="Yes" />
                    <span>I can’t wait! Send me the pin.</span>
