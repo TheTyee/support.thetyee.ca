@@ -28,13 +28,13 @@
     <span style="margin-left: 10px;" class='st_email_large' displayText='Email'></span>
 	<span id="fblink"></span>
 	
-	<a target="_blank" style="border:none; position:relative; top: -12px; left:5px;" href="http://www.facebook.com/sharer.php?s=100&p[title]=<%= url_escape 'Canada needs more independent journalism. Join us.' %> &p[summary]= <%= url_escape 'New Tyee Video' %>&p[url]=<%= url_escape 'https://www.facebook.com/TheTyee/videos/vb.6029624473/10153885861794474/?type=2&theater' %>&p[images][0]=<%= url_escape 'http://thetyee.ca/ui/img/logo.png' %>"> <img = src="<%= $config->{'static_asset_path'} %>/ui/img/fb-logo.jpg" /></a>
+	<a target="_blank" style="border:none; position:relative; top: -12px; left:5px;" href="http://www.facebook.com/sharer.php?u=<%= url_escape 'https://support.thetyee.ca/' %>"> <img = src="<%= $config->{'static_asset_path'} %>/ui/img/fb-logo.jpg" /></a>
 
 
 
 
     </div>
-    <div class="fb-like" data-href="https://www.facebook.com/video.php?v=10153284295809474" data-width="300" data-action="recommend" data-show-faces="true" data-send="true"></div>
+    <div class="fb-like" data-href="https://support.thetyee.ca/" data-width="300" data-action="recommend" data-show-faces="true" data-send="true"></div>
     <br clear="all" />
     <hr class="soften" />
     <div class="well" id="transactiondetails">
