@@ -103,8 +103,8 @@ sub _determine_frequency
     }
     elsif ( defined $subscription && $subscription =~ /daily/i ) {
         $frequency = 'custom_pref_enews_daily';
-    }   
-	 elsif ( defined $subscription && $subscription =~ /national/i ) {
+    }
+    elsif ( defined $subscription && $subscription =~ /national/i ) {
         $frequency = 'custom_pref_enews_national';
     }
     else {    # This is used to ensure the record gets added to WhatCounts
@@ -151,8 +151,9 @@ sub _check_subscriber_details {
     my $dom = Mojo::DOM->new( $subscriber_xml );
 
     # check for builder_amount, builder_onetime, etc.
-    my $builder_level         = $dom->at( 'builder_level' );
-    my $hosted_login_token    = $dom->at( 'builder_hosted_login_token' );
+    my $builder_level      = $dom->at( 'builder_level' );
+    my $hosted_login_token = $dom->at( 'builder_hosted_login_token' );
+
     #my $builder_national_2013 = $dom->at( 'builder_national_2013' );
     if ( $builder_level && $hosted_login_token ) {
 
@@ -165,19 +166,20 @@ sub _check_subscriber_details {
 }
 
 sub _create_or_update {   # Post the vitals to WhatCounts, return the resposne
-    my $record       = shift;
-    my $frequency    = shift;
-    my $email        = $record->email;
-    my $first        = $record->first_name;
-    my $last         = $record->last_name;
-    my $date         = $record->trans_date;
-    my $national     = 1;
-    my $newspriority = $record->pref_newspriority // '';
-    my $level        = $record->amount_in_cents / 100;
-    my $plan         = $record->plan_code // '';
+    my $record    = shift;
+    my $frequency = shift;
+    my $email     = $record->email;
+    my $first     = $record->first_name;
+    my $last      = $record->last_name;
+    my $date      = $record->trans_date->set_time_zone( 'America/Vancouver' );
+    my $national  = 1;
+    my $newspriority       = $record->pref_newspriority // '';
+    my $level              = $record->amount_in_cents / 100;
+    my $plan               = $record->plan_code // '';
     my $hosted_login_token = $record->hosted_login_token;
-    my $appeal_code  = $record->appeal_code;
-    my $onetime      = '';
+    my $appeal_code        = $record->appeal_code;
+    my $onetime            = '';
+
     if ( !$record->plan_name ) {
         $onetime = 1;
     }
@@ -251,11 +253,11 @@ sub _create_or_update {   # Post the vitals to WhatCounts, return the resposne
 sub _send_message {
     my $record = shift;
     my $result;
-    my $amount_in_cents = $record->amount_in_cents;
-    my $amount = $amount_in_cents / 100;
-    my $plan_code = $record->plan_code;
+    my $amount_in_cents    = $record->amount_in_cents;
+    my $amount             = $amount_in_cents / 100;
+    my $plan_code          = $record->plan_code;
     my $hosted_login_token = $record->hosted_login_token;
-    my %wc_args = (
+    my %wc_args            = (
         r         => $wc_realm,
         p         => $wc_pw,
         c         => 'send',
@@ -269,7 +271,8 @@ sub _send_message {
         from        => '"The Tyee" <builders@thetyee.ca>',
         charset     => 'ISO-8859-1',
         template_id => '1190',
-        data        => "amount,plan_code,hosted_login_token^$amount,$plan_code,$hosted_login_token"
+        data =>
+            "amount,plan_code,hosted_login_token^$amount,$plan_code,$hosted_login_token"
     };
 
     # Get the subscriber record, if there is one already
