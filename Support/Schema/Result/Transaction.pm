@@ -63,7 +63,7 @@ __PACKAGE__->table("transactions");
 
   data_type: 'timestamp'
   is_nullable: 0
-  timezone: 'America/Vancouver'
+  timezone: 'UTC'
 
 =head2 amount_in_cents
 
@@ -172,11 +172,7 @@ __PACKAGE__->add_columns(
   "last_name",
   { data_type => "text", is_nullable => 0 },
   "trans_date",
-  {
-    data_type   => "timestamp",
-    is_nullable => 0,
-    timezone    => "America/Vancouver",
-  },
+  { data_type => "timestamp", is_nullable => 0, timezone => "UTC" },
   "amount_in_cents",
   { data_type => "integer", is_nullable => 0 },
   "plan_name",
@@ -228,8 +224,8 @@ __PACKAGE__->add_columns(
 __PACKAGE__->set_primary_key("id");
 
 
-# Created by DBIx::Class::Schema::Loader v0.07042 @ 2015-11-22 15:40:19
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:N3QuxRslFZKjKY9EA19ilA
+# Created by DBIx::Class::Schema::Loader v0.07042 @ 2016-05-16 16:44:09
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:EfcZi364Xq2uy37bZaaJ6g
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
