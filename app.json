@@ -1,5 +1,6 @@
 {
-    "app_version"               : "1.6.2",
+    "app_version"               : "1.6.3",
+    "recurly_get_plans_filter" : "builders",
     "plans_onetime"          : [ 
         { 
             "amount": "10",
