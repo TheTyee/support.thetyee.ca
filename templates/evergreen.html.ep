@@ -162,11 +162,13 @@ critical time to hold government accountable to its promises”</p>
                 $('#transaction-secure').fadeIn(1000);
             };
 
-            $( "label.btn" ).on( "click", function( event ) {
+            $( "label.btn" ).on( "click touchstart", function( event ) {
                 var amount = $(this).text();
                 var selectedInput = $('input', this)[0];
                 showSubscriptionForm( selectedInput.value );
             });
+
+
             $( "a#amount-change" ).on( "click", function( event ) {
                 event.preventDefault();
                 $('form#form-onetime').show();
