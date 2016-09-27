@@ -78,7 +78,21 @@ critical time to hold government accountable to its promises”</p>
                     </div>
                 </div><!-- /.row -->
             </div><!-- /.container -->
-        </div><!-- featurettes2 -->
+        </div><!-- people -->
+
+        <div id="organizations" class="">
+            <div class="container">
+                    <h2>The Tyee is grateful for the support of:</h2>
+                <div class="row">
+                    <div class="col-md-2">
+                        <img src="<%= $config->{'static_asset_path'} %>/ui/img/BCGEU_Logo_NoUnionName-Horizontal_2Spot.png">
+                    </div>
+                    <div class="col-md-2">
+                        <img src="<%= $config->{'static_asset_path'} %>/ui/img/MoveUp_Primary-withname_Pantone_large.png">
+                    </div>
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </div><!-- people -->
 
 % # %=  include 'includes/builder_list'      
     
@@ -148,11 +162,13 @@ critical time to hold government accountable to its promises”</p>
                 $('#transaction-secure').fadeIn(1000);
             };
 
-            $( "label.btn" ).on( "click", function( event ) {
+            $( "label.btn" ).on( "click touchstart", function( event ) {
                 var amount = $(this).text();
                 var selectedInput = $('input', this)[0];
                 showSubscriptionForm( selectedInput.value );
             });
+
+
             $( "a#amount-change" ).on( "click", function( event ) {
                 event.preventDefault();
                 $('form#form-onetime').show();
