@@ -206,7 +206,7 @@ function setupPaymentForm(paymentType) {
     if ( paymentType !== 'bank' ) { // It's something Recurly can work with
         // Hook Recurly.js up to the form
         recurly.configure({
-            publicKey: '<%= $config->{'pkey_dev'} %>',
+            publicKey: '<%= $config->{'pkey'} %>',
             style: {
                 all: {
                 },
