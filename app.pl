@@ -59,27 +59,12 @@ helper find_or_new => sub {
     return $result;
 };
 
-helper recurly_get_signature => sub {
-    my $self    = shift;
-    my $options = shift;
-    $url->query( %$options );
-    my $query     = $url->query->to_string;
-    my $nonce     = $self->random_string;
-    my $timestamp = time();
-    my $protected_str
-        = $query . '&timestamp=' . $timestamp . '&nonce=' . $nonce;
-    my $escaped     = $protected_str;
-    my $checksum    = hmac_sha1_sum $escaped, $privatekey;
-    my $recurly_sig = "$checksum|$escaped";
-    return $recurly_sig;
-};
-
 helper recurly_get_plans => sub {
     my $self   = shift;
     my $filter = shift;
     my $res = $ua->get( $API . '/plans/' => { Accept => 'application/xml' } )
         ->res;
-    my $xml      = $res->body;
+    my $xml = $res->body;
     my $dom      = Mojo::DOM->new( $xml );
     my $plans    = $dom->find( 'plan' );
     my $filtered = [];
