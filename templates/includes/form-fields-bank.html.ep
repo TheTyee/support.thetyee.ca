@@ -1,0 +1,20 @@
+<div class="form-group">
+    <label for="name-on-account">Name on account</label>
+    <input class="form-control required" data-recurly="name_on_account" id="name_on_account" name="name-on-account" placeholder="Name on Account" type="text" />
+</div>
+<div class="form-inline">
+    <div class="form-group">
+        <label for="routing-number">Routing number</label>
+        <input class="form-control required" data-recurly="routing_number" id="routing_number" name="routing-number" placeholder="Routing Number" type="text" />
+    </div>
+    <div class="form-group">
+        <label for="account-number">Account number</label>
+        <input class="form-control required" data-recurly="account_number" id="account_number" name="account-number" placeholder="Account Number" type="text" />
+    </div>
+</div>
+<div class="form-group">
+    <br />
+    <label>Bank Account Type</label>
+    <input data-recurly="account_type" id="account_type_checking" name="account-type" type="radio" value="checking" /><label for="account_type_checking">Checking</label>
+    <input data-recurly="account_type" id="account_type_savings" name="account-type" type="radio" value="savings" /><label for="account_type_savings">Savings</label>
+</div>
