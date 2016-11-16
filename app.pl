@@ -6,10 +6,12 @@ use lib "$FindBin::Bin/local/lib/perl5";
 use Mojolicious::Lite;
 use Mojo::UserAgent;
 use Data::Dumper;
+use DateTime;
 use Mojo::Util qw(b64_encode url_escape url_unescape hmac_sha1_sum);
 use Mojo::URL;
 use Try::Tiny;
 use Support::Schema;
+use XML::Mini::Document;
 
 my $config = plugin 'JSONConfig';
 
@@ -21,13 +23,12 @@ plugin 'Util::RandomString' => {
     }
 };
 
-my $ua         = Mojo::UserAgent->new;
-my $url        = Mojo::URL->new;
-my $subdomain  = $config->{'subdomain'};
-my $domain     = $subdomain . '.recurly.com/v2/';
-my $apikey     = $config->{'apikey'};
-my $privatekey = $config->{'privatekey'};
-my $API        = 'https://' . $apikey . ':@' . $domain;
+my $ua        = Mojo::UserAgent->new;
+my $url       = Mojo::URL->new;
+my $subdomain = $config->{'subdomain'};
+my $domain    = $subdomain . '.recurly.com/v2/';
+my $apikey    = $config->{'privatekey'};
+my $API       = 'https://' . $apikey . ':@' . $domain;
 
 helper schema => sub {
     my $schema = Support::Schema->connect( $config->{'pg_dsn'},
