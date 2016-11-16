@@ -11,3 +11,4 @@ requires 'IO::Socket::SSL', '2';
 requires 'App::Sqitch';
 requires 'Config::General';
 requires 'DBIx::Class::Schema::Loader';
+requires 'XML::Mini', '';
