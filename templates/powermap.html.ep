@@ -2,19 +2,18 @@
 
        <div class="container" id="content">
             <div id="campaign-copy" class="row">
-                <h1>Canada needs more independent journalism. Join us <span>&nbsp;</span></h1>
-                <p class="lead">Support The Tyee and bring more diverse, fact-driven reporting to the public conversation.</p>
+                <h1>Our democracy needs independent journalism. Join us.<span>&nbsp;</span></h1>
+                <p class="lead">Support The Tyee and invest in critical, in-depth reporting on the 2017 B.C. election.</p>
             </div>
 
-            <span id="campaign-end" style="display:none;"></span>
+            <span id="campaign-end"></span>
             %= include 'includes/form'
             <div id="atf" class="row">
-                <div class="col-md-7 video-container">
-                    <iframe width="560" height="315" src="//www.youtube.com/embed/IlzTtYCr3-0" frameborder="0" allowfullscreen></iframe>
+                <div class="col-md-8 video-container">
+                    <iframe src="https://player.vimeo.com/video/77548585?title=0&amp;byline=0&amp;portrait=0&amp;color=309c54" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
                 </div>
-                <div class="col-md-5">
-		<h2 style="margin-top:0;">Who are we?</h2>
-                    %= include 'includes/about'
+                <div class="col-md-4">
+                    %= include 'includes/widget'
                 </div>
             </div> <!-- / #atf -->
 
@@ -47,26 +46,43 @@
                 <div class="row">
                     <div class="col-md-4">
                         <h2>Our vision</h2>
-                        <p>Canada is facing major challenges ahead, with a new government that needs to be kept in check. At the same time, our national media is in collapse. Newsrooms continue to shrink and consolidate under the control of fewer and fewer corporations, and there are fewer journalists asking tough questions of those in power. We believe that our democratic conversation is made possible by strong, independent media, who exist first and foremost to serve the needs of its readers.</p>
+                        <p>British Columbia is headed towards an important provincial election. At the same time, our media is in collapse. Newsrooms continue to shrink and consolidate under the control of fewer and fewer corporations, and some communities are left without any local reporting at all. We believe we all deserve solid, in-depth reporting about our government’s track record, delivered by media who are answerable first and foremost to readers.</p>
                     </div><!-- /.col-md-4 -->
                     <div class="col-md-4">
                         <h2>How you can help</h2>
-                        <p>By contributing to The Tyee on a monthly basis, you are helping to strengthen and grow our team of fierce, tough-minded journalists and editors. Tyee Builders who give every month allow our small and nimble team to plan ahead, and produce original stories that you will not see anywhere else. We don’t put our articles behind paywalls, so your contribution helps to keep our stories open and available to everyone.</p>
+                        <p>When you join Tyee Builders, your money goes directly to paying experienced, tough-minded journalists to work on election-related investigations. With your help, The Tyee will get started right away on deep research that will map out powerful players in British Columbia, and in-depth investigations on topics voted on by the Tyee Builder community.</p>
                     </div><!-- /.col-md-4 -->
                     <div class="col-md-4">
-                        <h2>Join our community</h2>
-                        <p>We want to know which issues matter most to you. Energy and environment? Inequality? Electoral reform? When you sign up, you’ll 
-complete a news priority survey that will help inform our reporting. As a special thanks for joining, you’ll receive editorial reports, discounts from partners, 
-random swag giveaways, and discounts on special events and Tyee Master Classes.</p>
+                        <h2>About The Tyee</h2>
+                        <p>WWe're an independent, online news magazine from British Columbia. We're devoted to fact-driven reporting and analysis that informs and enlivens our democratic conversation. Our reporting has garnered numerous awards and the respect of our peers and readers. While some journalism gives the last word to power, we try to give the last word to ordinary folks.</p>
                     </div><!-- /.col-md-4 -->
                 </div><!-- /.row -->
             </div><!-- / .container -->
         </div><!-- / #featurettes1 -->
-  %= include 'includes/withyourhelp'
+
+  %= include 'includes/powermap-pitch'
 
 
         <div id="people" class="testimonial">
             <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <p class="quotation">“Free expression and independent media are essential to a fair and open society. Now more than ever, we need publications like The Tyee to amplify critical voices and keep people informed.”</p>
+                        <p class="cite">Tom Henheffer, Executive Director of Canadian Journalists for Free Expression</p>
+                    </div>
+                    <div class="col-md-4">
+                        <img src="<%= $config->{'static_asset_path'} %>/ui/img/headshot-tom-henheffer.jpg">
+                    </div>
+                </div><!-- /.row -->
+                <div class="row">
+                    <div class="col-md-4">
+                        <img src="<%= $config->{'static_asset_path'} %>/ui/img/headshot-stuart-poyntz.jpg">
+                    </div>
+                    <div class="col-md-8">
+                        <p class="quotation">“It’s never been more important to have a source of fact-based, rigorous reporting upon which to base our decisions as citizens. The Tyee provides a vital service to its readers and deserves our support.”</p>
+                        <p class="cite">Stuart Poyntz, Associate Dean and Associate Professor, Faculty of Communication Art and Technology, Simon Fraser University</p>
+                    </div>
+                </div><!-- /.row -->
                 <div class="row">
                     <div class="col-md-8">
                         <p class="quotation">“I support The Tyee because its reporters are brave, independent and smart as hell — and because now is a 
@@ -90,11 +106,13 @@ critical time to hold government accountable to its promises”</p>
                     <div class="col-md-2">
                         <img src="<%= $config->{'static_asset_path'} %>/ui/img/MoveUp_Primary-withname_Pantone_large.png">
                     </div>
+                    <div class="col-md-2">
+                        <img src="<%= $config->{'static_asset_path'} %>/ui/img/UNIFOR-logo.jpg">
+                    </div>
                 </div><!-- /.row -->
             </div><!-- /.container -->
         </div><!-- people -->
-
-% # %=  include 'includes/builder_list'      
+        %=  include 'includes/builder_list'      
     
 % content_for javascript => begin
 %= javascript begin
