@@ -116,10 +116,18 @@ helper recurly_get_billing_details => sub {
 group {
     under [qw(GET POST)] => '/' => sub {
         my $self    = shift;
-        my $onetime = $self->param( 'onetime' );
-        my $amount  = $self->param( 'amount' );
+        # Store the referrer once in the flash
+        my $referrer = $self->req->headers->referrer;
+        if ( !$self->flash('original_referrer') ) {
+            $self->flash( original_referrer => $referrer );
+        }
+        # Store the campaign-tracking value
         my $campaign
             = $self->param( 'campaign' ) || $self->flash( 'campaign' );
+        $self->flash( campaign => $campaign );
+        my $onetime = $self->param( 'onetime' );
+        my $amount  = $self->param( 'amount' );
+        # TODO remove this statement
         if ( $self->req->method eq 'POST' && $amount =~ /\D/ ) {
             $self->flash(
                 {   error    => 'Amount needs to be a whole number',
@@ -135,6 +143,7 @@ group {
         if ( $amount ) {
             $amount_in_cents = $amount * 100;
         }
+        # TODO remove this hash
         my $options = {    # RecurlyJS signature options
             'transaction[currency]'        => 'CAD',
             'transaction[amount_in_cents]' => $amount_in_cents,
@@ -142,7 +151,6 @@ group {
                 'Support for fact-based independent journalism at The Tyee',
         };
 
-        #my $recurly_sig = $self->recurly_get_signature( $options );
         my $plans = $self->recurly_get_plans(
             $config->{'recurly_get_plans_filter'} );
         $self->stash(
@@ -153,7 +161,6 @@ group {
                 error => $self->flash( 'error' ),
             }
         );
-        $self->flash( campaign => $campaign );
     };
 
     any [qw(GET POST)] => '/' => sub {
@@ -251,8 +258,10 @@ any [qw(GET POST)] => '/process_bank' => sub {
 # post '/process_transaction
 post '/process_transaction' => sub {
     my $self         = shift;
+    # Capture values from flash
     my $campaign     = $self->flash( 'campaign' );
     my $appeal_code  = $self->flash( 'appeal_code' );
+    my $referrer     = $self->flash( 'original_referrer' );
     my $payment_type = $self->param( 'payment-type' );
     my $token        = $self->param( 'recurly-token' );
     my $plan         = $self->param( 'plan' );
@@ -271,7 +280,8 @@ post '/process_transaction' => sub {
         $self->flash(
             {   params      => $params,
                 campaign    => $campaign,
-                appeal_code => $appeal_code
+                appeal_code => $appeal_code,
+                original_referrer => $referrer
             }
         );
         $self->redirect_to( 'process_bank' );
@@ -381,6 +391,7 @@ post '/process_transaction' => sub {
             : '',
             campaign    => $campaign,
             appeal_code => $appeal_code,
+            referrer    => $referrer,
             user_agent  => $self->req->headers->user_agent,
         };
         my $result = $self->find_or_new( $transaction_details );
