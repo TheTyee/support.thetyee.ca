@@ -24,7 +24,7 @@
                 <div class="options-payment" style="display:none;">
                     <br style="clear:both;" /> 
                     <p>Choose your <b>payment method:</b></p>
-                    <a class="btn btn-primary" role="button" data-payment="credit" href="" aria-expanded="false" aria-controls="form-credit">Credit Card</a> <a class="btn btn-primary" role="button" data-payment="paypal" href="#form-paypal" aria-expanded="false" aria-controls="form-paypal">Paypal</a> <a class="btn btn-primary" role="button" data-payment="bank" href="#form-bank" aria-expanded="false" aria-controls="form-bank">Bank</a>
+                    <a class="btn btn-primary" role="button" data-payment="credit" href="">Credit Card</a> <a class="btn btn-primary" role="button" data-payment="paypal" href="#form-paypal">Paypal</a> <a class="btn btn-primary" role="button" data-payment="bank" href="#form-bank">Bank</a>
                 </div>
 
                 <div>
