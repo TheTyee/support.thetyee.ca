@@ -1,5 +1,5 @@
 <div>
-    <img src="/ui/img/example-cheque.jpg" />
+    <img src="<%= $config->{'static_asset_path'} %>/ui/img/example-cheque.jpg" />
 </div>
 <div class="form-inline fields-bank">
     <div class="form-group">
