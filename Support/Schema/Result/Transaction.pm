@@ -160,6 +160,11 @@ __PACKAGE__->table("transactions");
   data_type: 'text'
   is_nullable: 1
 
+=head2 phone
+
+  data_type: 'text'
+  is_nullable: 1
+
 =head2 transit_number
 
   data_type: 'text'
@@ -251,6 +256,8 @@ __PACKAGE__->add_columns(
   { data_type => "text", is_nullable => 1 },
   "payment_type",
   { data_type => "text", is_nullable => 1 },
+  "phone",
+  { data_type => "text", is_nullable => 1 },
   "transit_number",
   { data_type => "text", is_nullable => 1 },
   "bank_number",
@@ -280,8 +287,8 @@ __PACKAGE__->add_columns(
 __PACKAGE__->set_primary_key("id");
 
 
-# Created by DBIx::Class::Schema::Loader v0.07042 @ 2016-11-18 13:10:51
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:pyu00j8Qri6n7Celbu5jcA
+# Created by DBIx::Class::Schema::Loader v0.07042 @ 2016-11-18 14:03:59
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:CVyPVQPHlvVSXCjE/wCx9A
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
