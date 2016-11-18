@@ -149,15 +149,18 @@ $('ul.nav-tabs').on('click', function( event ) {
 });
 
 // Kludge to udpate a confirmation panel
+var paymentString = '';
 function updateConfirmPayment() {
     var amount = $('input#amount-in-cents').val();
     amount = amount / 100; // To dollars
     amount = '$' + amount  // $ sign
     var plan   = $('input#plan-name').val();
     if ( plan ) {
-        amount = amount + ' / month';
+        paymentString = amount + ' / month';
+        } else {
+        paymentString = amount + ' one time';
     }
-    $('#confirm-payment span').text(amount);
+    $('#confirm-payment span').text(paymentString);
 }
 
 // Show the payment type option buttons
@@ -285,7 +288,7 @@ function setupPaymentForm(paymentType) {
                 // This will open a new window, beginning the PayPal billing agreement flow. 
                 // to tokenize the credit card information, then injects the token into the
                 // data-recurly="token" field above
-                recurly.paypal({ description: 'Better description here' }, function (err, token) {
+                recurly.paypal({ description: paymentString }, function (err, token) {
                     if (err) {
                         // Let's handle any errors using the function below
                         errorPaypal(err);
