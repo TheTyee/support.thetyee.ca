@@ -210,7 +210,7 @@ group {
     } => 'voices';
 };
 
-# New route for processing EFT/ATF subscriptions
+# New route for processing EFT/ACH subscriptions
 any [qw(GET POST)] => '/process_bank' => sub {
     my $self   = shift;
     my $params = $self->flash( 'params' );
@@ -267,7 +267,7 @@ post '/process_transaction' => sub {
     my $postal       = $self->param( 'postal-code' );
     my $email        = $self->param( 'email' );
     my $params       = $self->req->body_params->to_hash;
-    if ( $payment_type eq 'bank' ) { # If it's a EFT/ATF, redirect to /process_bank
+    if ( $payment_type eq 'bank' ) { # If it's a EFT/ACH, redirect to /process_bank
         $self->flash(
             {   params      => $params,
                 campaign    => $campaign,
