@@ -116,10 +116,18 @@ helper recurly_get_billing_details => sub {
 group {
     under [qw(GET POST)] => '/' => sub {
         my $self    = shift;
-        my $onetime = $self->param( 'onetime' );
-        my $amount  = $self->param( 'amount' );
+        # Store the referrer once in the flash
+        my $referrer = $self->req->headers->referrer;
+        if ( !$self->flash('original_referrer') ) {
+            $self->flash( original_referrer => $referrer );
+        }
+        # Store the campaign-tracking value
         my $campaign
             = $self->param( 'campaign' ) || $self->flash( 'campaign' );
+        $self->flash( campaign => $campaign );
+        my $onetime = $self->param( 'onetime' );
+        my $amount  = $self->param( 'amount' );
+        # TODO remove this statement
         if ( $self->req->method eq 'POST' && $amount =~ /\D/ ) {
             $self->flash(
                 {   error    => 'Amount needs to be a whole number',
@@ -135,6 +143,7 @@ group {
         if ( $amount ) {
             $amount_in_cents = $amount * 100;
         }
+        # TODO remove this hash
         my $options = {    # RecurlyJS signature options
             'transaction[currency]'        => 'CAD',
             'transaction[amount_in_cents]' => $amount_in_cents,
@@ -142,7 +151,6 @@ group {
                 'Support for fact-based independent journalism at The Tyee',
         };
 
-        #my $recurly_sig = $self->recurly_get_signature( $options );
         my $plans = $self->recurly_get_plans(
             $config->{'recurly_get_plans_filter'} );
         $self->stash(
@@ -153,7 +161,6 @@ group {
                 error => $self->flash( 'error' ),
             }
         );
-        $self->flash( campaign => $campaign );
     };
 
     any [qw(GET POST)] => '/' => sub {
@@ -217,6 +224,7 @@ any [qw(GET POST)] => '/process_bank' => sub {
     my $amount_in_cents = $params->{'amount'} * 100;
     my $campaign        = $self->flash( 'campaign' );
     my $appeal_code     = $self->flash( 'appeal_code' );
+    my $referrer     = $self->flash( 'original_referrer' );
     my $dt              = DateTime->now;
     $dt->set_time_zone( 'Europe/London' );
     my $trans_date = $dt->ymd . ' ' . $dt->hms;
@@ -225,6 +233,7 @@ any [qw(GET POST)] => '/process_bank' => sub {
     my $state = @$states[0] ? @$states[0] : @$states[1];
     my $transaction_details = {
         email              => $params->{'email'},
+        phone              => $params->{'phone'},
         first_name         => $params->{'first-name'},
         last_name          => $params->{'last-name'},
         hosted_login_token => 'Bank transaction. Not applicable',
@@ -236,8 +245,13 @@ any [qw(GET POST)] => '/process_bank' => sub {
         amount_in_cents    => $params->{'amount-in-cents'},
         plan_name          => $params->{'plan-name'},
         plan_code          => $params->{'plan'},
+        payment_type       => $params->{'payment-type'},
+        transit_number     => $params->{'transit-number'},
+        bank_number        => $params->{'bank-number'},
+        account_number     => $params->{'account-number'},
         campaign           => $campaign,
         appeal_code        => $appeal_code,
+        referrer           => $referrer,
         user_agent         => $self->req->headers->user_agent,
     };
     my $result = $self->find_or_new( $transaction_details );
@@ -251,8 +265,10 @@ any [qw(GET POST)] => '/process_bank' => sub {
 # post '/process_transaction
 post '/process_transaction' => sub {
     my $self         = shift;
+    # Capture values from flash
     my $campaign     = $self->flash( 'campaign' );
     my $appeal_code  = $self->flash( 'appeal_code' );
+    my $referrer     = $self->flash( 'original_referrer' );
     my $payment_type = $self->param( 'payment-type' );
     my $token        = $self->param( 'recurly-token' );
     my $plan         = $self->param( 'plan' );
@@ -266,12 +282,14 @@ post '/process_transaction' => sub {
     my $country      = $self->param( 'country' );
     my $postal       = $self->param( 'postal-code' );
     my $email        = $self->param( 'email' );
+    my $phone        = $self->param( 'phone' );
     my $params       = $self->req->body_params->to_hash;
     if ( $payment_type eq 'bank' ) { # If it's a EFT/ACH, redirect to /process_bank
         $self->flash(
             {   params      => $params,
                 campaign    => $campaign,
-                appeal_code => $appeal_code
+                appeal_code => $appeal_code,
+                original_referrer => $referrer
             }
         );
         $self->redirect_to( 'process_bank' );
@@ -330,6 +348,7 @@ post '/process_transaction' => sub {
                 $transxml )->res;
     }
     my $xml = $res->body;
+    say Dumper($xml);
     my $dom = Mojo::DOM->new( $xml );
     if ( $dom->at( 'error' ) ) {    # We got an error message back
         my $error = $dom->at( 'error' )->text;
@@ -370,7 +389,7 @@ post '/process_transaction' => sub {
             zip => $billing_info->at( 'zip' )
             ? $billing_info->at( 'zip' )->text
             : '',
-            amount_in_cents => $dom->at( 'unit_amount_in_cents' )->text,
+            amount_in_cents => $dom->at( 'unit_amount_in_cents' ) ? $dom->at( 'unit_amount_in_cents' )->text : $dom->at( 'amount_in_cents' ) ? $dom->at( 'amount_in_cents' )->text : '',
 
             # TODO put back in the created date
             plan_name => $dom->at( 'plan name' )
@@ -381,6 +400,9 @@ post '/process_transaction' => sub {
             : '',
             campaign    => $campaign,
             appeal_code => $appeal_code,
+            referrer    => $referrer,
+            payment_type => $payment_type,
+            phone => $phone,
             user_agent  => $self->req->headers->user_agent,
         };
         my $result = $self->find_or_new( $transaction_details );

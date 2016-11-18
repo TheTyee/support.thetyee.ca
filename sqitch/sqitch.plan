@@ -1,4 +1,4 @@
-%syntax-version=1.0.0-b2
+%syntax-version=1.0.0
 %project=support
 %uri=https://github.com/phillipadsmith/support.thetyee.ca.git
 
@@ -18,3 +18,5 @@ transactions [transactions@v1.0.5] 2014-10-20T16:17:27Z Phillip Smith <ps@philli
 transactions [transactions@v.1.0.6] 2015-03-13T23:05:55Z Phillip Smith <ps@phillipadsmith.com># Add column for appeal code
 @v1.0.7 2015-11-22T17:57:45Z Bryan Carney <mrbryan@Bryans-MBP-2># phllip added appeal code column if bc understood correctly
 transactions [transactions@v1.0.7] 2015-11-22T17:58:57Z Bryan Carney <mrbryan@Bryans-MBP-2># adding new column for lapel_pref \n\n   transactions [transactions@v1.0.7]
+@v1.7.0 2016-11-18T20:34:27Z Phillip Smith <phillipadsmith@Anonymous-III.local> # Columns for powermap: ACH, honour/memory, etc.
+transactions [transactions@v1.7.0] 2016-11-18T20:34:35Z Phillip Smith <phillipadsmith@Anonymous-III.local> # Colums for powermap: ACH, honour/memory, etc.

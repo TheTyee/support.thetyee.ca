@@ -115,7 +115,9 @@
                     <input type="hidden" id="payment-type" name="payment-type" value="">
                     <input type="hidden" id="plan-name" name="plan-name" value="">
                     <input type="hidden" id="amount-in-cents" name="amount-in-cents" value="">
-                    <button type="submit" id="subscribe" class="btn btn-success btn-lg">Complete transaction &raquo;</button>
+
+                    <div class="alert alert-info" id="confirm-payment"><strong>You are about to make a payment for <span></span></strong></div>
+                    <button type="submit" id="subscribe" class="btn btn-success btn-lg">Process payment &raquo;</button>
                     <p><i class="glyphicon glyphicon-lock">&nbsp;</i><strong>Your transaction is secure.</strong> The Tyee uses industry-standard SSL encryption to secure your connection. Your transaction is then processed securely by our payment processors, Recurly and Beanstream.</p>
                     <p>Because we publish hard-hitting political journalism, we can't be a charity and therefore can't offer charitble tax receipts. Learn <a href="http://thetyee.ca/About/Us/#faq-funding">more</a></p>
                     <hr class="soften" />
@@ -146,11 +148,24 @@ $('ul.nav-tabs').on('click', function( event ) {
     $('#errors').hide();
 });
 
+// Kludge to udpate a confirmation panel
+function updateConfirmPayment() {
+    var amount = $('input#amount-in-cents').val();
+    amount = amount / 100; // To dollars
+    amount = '$' + amount  // $ sign
+    var plan   = $('input#plan-name').val();
+    if ( plan ) {
+        amount = amount + ' / month';
+    }
+    $('#confirm-payment span').text(amount);
+}
+
 // Show the payment type option buttons
 function showMonthlyPaymentOptions () {
     $('.options-payment').show();
     $('#errors span.message').text('');
     $('#errors').hide();
+    updateConfirmPayment();
 }
 
 
@@ -168,16 +183,20 @@ $( "#form-onetime label.btn" ).on( "click touchstart", function( event ) {
     var selectedinput = $('input', this)[0];
     var amountInCents = $(selectedinput).val() * 100;
     $('input#amount-in-cents').val(amountInCents);
+    $('input#plan-name').val('');
     showMonthlyPaymentOptions();
 });
 
-$('input#other-amount').on( "keydown blur", function( event ) {
+$('input#other-amount').on( "blur", function( event ) {
     var selectedinput = $(event.currentTarget);
     var amount = selectedinput.val();
-    var amountInCents = amount * 100;
-    $('input#amount-in-cents').val(amountInCents);
-    showMonthlyPaymentOptions();
+    if (amount >= 1) {
+        var amountInCents = amount * 100;
+        $('input#amount-in-cents').val(amountInCents);
+        showMonthlyPaymentOptions();
+    }
 });
+
 
 function showPaymentFields(type) {
     $('.fields').hide();
@@ -190,6 +209,7 @@ function showPaymentFields(type) {
         } else {
             $('.fields-bank input').prop('required',false);
     }
+    updateConfirmPayment();
 };
 
 // Switch from drop down to input on other countries

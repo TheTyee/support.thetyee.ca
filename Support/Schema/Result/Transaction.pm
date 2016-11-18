@@ -63,7 +63,7 @@ __PACKAGE__->table("transactions");
 
   data_type: 'timestamp'
   is_nullable: 0
-  timezone: 'America/Vancouver'
+  timezone: 'UTC'
 
 =head2 amount_in_cents
 
@@ -155,6 +155,51 @@ __PACKAGE__->table("transactions");
   data_type: 'text'
   is_nullable: 1
 
+=head2 payment_type
+
+  data_type: 'text'
+  is_nullable: 1
+
+=head2 phone
+
+  data_type: 'text'
+  is_nullable: 1
+
+=head2 transit_number
+
+  data_type: 'text'
+  is_nullable: 1
+
+=head2 bank_number
+
+  data_type: 'text'
+  is_nullable: 1
+
+=head2 account_number
+
+  data_type: 'text'
+  is_nullable: 1
+
+=head2 person
+
+  data_type: 'text'
+  is_nullable: 1
+
+=head2 referrer
+
+  data_type: 'text'
+  is_nullable: 1
+
+=head2 on_behalf_of
+
+  data_type: 'text'
+  is_nullable: 1
+
+=head2 on_behalf_of_name
+
+  data_type: 'text'
+  is_nullable: 1
+
 =cut
 
 __PACKAGE__->add_columns(
@@ -172,11 +217,7 @@ __PACKAGE__->add_columns(
   "last_name",
   { data_type => "text", is_nullable => 0 },
   "trans_date",
-  {
-    data_type   => "timestamp",
-    is_nullable => 0,
-    timezone    => "America/Vancouver",
-  },
+  { data_type => "timestamp", is_nullable => 0, timezone => "UTC" },
   "amount_in_cents",
   { data_type => "integer", is_nullable => 0 },
   "plan_name",
@@ -213,6 +254,24 @@ __PACKAGE__->add_columns(
   { data_type => "text", is_nullable => 1 },
   "pref_lapel",
   { data_type => "text", is_nullable => 1 },
+  "payment_type",
+  { data_type => "text", is_nullable => 1 },
+  "phone",
+  { data_type => "text", is_nullable => 1 },
+  "transit_number",
+  { data_type => "text", is_nullable => 1 },
+  "bank_number",
+  { data_type => "text", is_nullable => 1 },
+  "account_number",
+  { data_type => "text", is_nullable => 1 },
+  "person",
+  { data_type => "text", is_nullable => 1 },
+  "referrer",
+  { data_type => "text", is_nullable => 1 },
+  "on_behalf_of",
+  { data_type => "text", is_nullable => 1 },
+  "on_behalf_of_name",
+  { data_type => "text", is_nullable => 1 },
 );
 
 =head1 PRIMARY KEY
@@ -228,8 +287,8 @@ __PACKAGE__->add_columns(
 __PACKAGE__->set_primary_key("id");
 
 
-# Created by DBIx::Class::Schema::Loader v0.07042 @ 2015-11-22 15:40:19
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:N3QuxRslFZKjKY9EA19ilA
+# Created by DBIx::Class::Schema::Loader v0.07042 @ 2016-11-18 14:03:59
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:CVyPVQPHlvVSXCjE/wCx9A
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
