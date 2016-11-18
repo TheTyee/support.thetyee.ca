@@ -1,15 +1,13 @@
-% layout 'default', title => 'Time to vote -- The Tyee', body_id => 'preferences';
+% layout 'default', title => 'Thank you! Stay in touch, won’t you?', body_id => 'preferences';
 
 %  my $err_anon = validation->error('pref_anonymous');
 %  my $err_freq = validation->error('pref_frequency');
 
 <div class="container" id="content-inner">
-    % if ( defined $self->stash('record') ) {
     <div class="alert alert-success fade in" style="margin-top: 20px;"><i class="glyphicon glyphicon-check"></i>
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-    Your transaction was successfully processed. If you need to adjust your transaction, or you've experienced a problem, <a href="mailto:builders@thetyee.ca">please send us a quick email</a>.
+    Your payment was successfully processed. To complete your contribution please answer the questions below. If you need to adjust your transaction, or you've experienced a problem, <a href="mailto:builders@thetyee.ca">please send us a quick email</a>.
     </div>
-    % }
     % if ( $err_anon || $err_freq ) {
     <p class="alert alert-danger">
     Please correct the following problems with your selections:<br />
@@ -18,73 +16,11 @@
     </p>
     % }
 
-    <h1>Almost there! Time to vote...</h1>
-    <p class="lead">Inform our reporting. Tell us what matters most to you...</p>
+    <h1>Thanks a bunch! Here’s what will happen next.</h1>
+    <p class="lead">Thank you so much for pitching in to The Tyee’s B.C. election reporting project. You just provided resources we need to pay experienced to dig deep on election-related issues.</p>
+    <p>Here’s what’s going to happen: Until December 12, we are asking for readers’ ideas on what we should focus our attention on in the months leading up to the election. Anyone can pitch us an idea, but only Tyee Builders (people who financially support this campaign) will vote on which topics we’ll set our sights on. After the fundraising campaign ends, you’ll receive an email directing you to a poll where you can vote on what you’d like to see covered in long-form explainers. The number of pieces we can produce will depend on how much we raise. Sound good? Good.</p>
+    <b>Also, if you chose to make your contribution in honour of someone else, you’ll be taken to a page right after this one where you can send your gift recipient an e-card.</b>
     <form action="preferences" method="POST" role="form">
-        <div class="form-group" id="newspriorities">
-            <label for="pref_frequency">Choose one:</label>
-            <div class="radio">
-              <label>
-                <input type="radio" name="pref_newspriority" id="artsandculture" value="1">
-                Arts &amp; Culture 
-              </label>
-              <span class="help-block">(Bilingualism, Canadian identity and heritage, CBC funding cuts, arts funding cuts, grants cuts, cuts, cuts, and more cuts.)</span>
-            </div>
-            <div class="radio">
-              <label>
-                <input type="radio" name="pref_newspriority" id="energyandenvironment" value="2">
-                Energy &amp; Environment 
-              </label>
-              <span class="help-block">(Oil sands, LNG, fracking, pipelines, tankers, GMOs, honey bee extinction, climate change, peak oil, resource depletion. You know, the end of the world. Or the beginning of something new?) </span>
-            </div>
-            <div class="radio">
-              <label>
-                <input type="radio" name="pref_newspriority" id="tradeandforeignpolity" value="3">
-                Trade &amp; Foreign Policy  
-              </label>
-              <span class="help-block">(UN, Canada's international reputation, defence, international law, CIDA/foreign aid, peacekeeping, World Bank, globalization, sweat shops, mining, G8, TPP, FIPPA, CETA, NAFTA, IMF, UN, and other acronyms.) </span>
-            </div>
-            <div class="radio">
-              <label>
-                <input type="radio" name="pref_newspriority" id="laboureconomy" value="4">
-               Labour &amp; Economy
-              </label>
-              <span class="help-block">(Union bargaining rights, collective agreements, outsourcing, temporary foreign workers, living wage, worker safety, privatization, jobs, progressive taxation and economics, corporate taxes, small business, you know, the 99% and the 1%.)</span>
-            </div>
-            <div class="radio">
-              <label>
-                <input type="radio" name="pref_newspriority" id="governmentaccountability" value="5">
-                Gov't Accountability  
-              </label><span class="help-block">(Transparency, federal-provincial relations, Senate reform, proportional representation, electoral fraud, etc.) </span>
-            </div>
-            <div class="radio">
-              <label>
-                <input type="radio" name="pref_newspriority" id="inequality" value="6">
-                Inequality &amp; Social Policy  
-              </label>
-              <span class="help-block">(Welfare reform, economic inequality, public pensions, social security, universal childcare, universal education, universal health care, social housing, etc.) </span>
-            </div>
-            <div class="radio">
-              <label>
-                <input type="radio" name="pref_newspriority" id="rightsandjustice" value="7">
-                Rights &amp; Justice
-              </label>
-              <span class="help-block">(LGBTQ, #IdleNoMore, sexism, racism, immigrant and refugee rights, mental healthcare, disability rights, Treaty rights, Charter rights, protest rights, reproductive rights, right?) </span>
-            </div>
-            <div class="radio">
-              <label>
-                <input type="radio" name="pref_newspriority" id="openmedia" value="8">
-                Media &amp; Digital Policy 
-              </label><span class="help-block">(Media concentration, CRTC, journalism futures, CBC funding, copyright law, Internet freedom, FOI, censorship, online spying.)</span>
-            </div>
-            <div class="radio">
-              <label>
-                <input type="radio" name="pref_newspriority" id="tyeechoice" value="0" checked>
-                Tyee's choice
-              </label>
-              <span class="help-block">(I trust your news judgment, Tyee.)</span>
-            </div>
-        </div>
         <div class="form-group" id="naked">
             <label for="pref_frequency">Would you like our stories emailed straight to your inbox?</label>
             <br />
@@ -109,10 +45,10 @@
                 
          <br clear="all" />
          <br clear="all" />
-            <label for="pref_lapel">One last thing. If this is your first time giving to The Tyee, we have a super cool custom Tyee lapel pin to send to you in the mail. But we understand if you don’t want it. We get it.</label>
+            <label for="pref_lapel">If this is your first time giving to The Tyee, we have a super cool custom Tyee lapel pin to send to you in the mail, and if you gave over $50 or signed up to give $15 per month or more, you’ve got some Tyee greeting cards coming your way. But not everybody is into getting swag in the mail. How about you?</label>
             <br />
                     <input checked="1" id="lapel-yes" name="pref_lapel" type="radio" value="Yes" />
-                   <span>I can’t wait! Send me the pin.</span>
+                   <span>Yes, please send me Tyee swag</span>
                     <input  id="lapel_no" name="pref_lapel" type="radio" value="No" />
                   <span> Don’t send me anything in the mail</span>
                    </div>
@@ -120,7 +56,7 @@
          <br clear="all" />
 
             <div class="submit-button">
-                <input class="btn btn-success btn-lg" id="submit" type="submit" value="Finish »" />
+                <input class="btn btn-success btn-lg" id="submit" type="submit" value="Complete contribution »" />
             </div>
     </form>
 </div>
