@@ -224,6 +224,7 @@ any [qw(GET POST)] => '/process_bank' => sub {
     my $amount_in_cents = $params->{'amount'} * 100;
     my $campaign        = $self->flash( 'campaign' );
     my $appeal_code     = $self->flash( 'appeal_code' );
+    my $referrer     = $self->flash( 'original_referrer' );
     my $dt              = DateTime->now;
     $dt->set_time_zone( 'Europe/London' );
     my $trans_date = $dt->ymd . ' ' . $dt->hms;
@@ -232,6 +233,7 @@ any [qw(GET POST)] => '/process_bank' => sub {
     my $state = @$states[0] ? @$states[0] : @$states[1];
     my $transaction_details = {
         email              => $params->{'email'},
+        phone              => $params->{'phone'},
         first_name         => $params->{'first-name'},
         last_name          => $params->{'last-name'},
         hosted_login_token => 'Bank transaction. Not applicable',
@@ -243,8 +245,13 @@ any [qw(GET POST)] => '/process_bank' => sub {
         amount_in_cents    => $params->{'amount-in-cents'},
         plan_name          => $params->{'plan-name'},
         plan_code          => $params->{'plan'},
+        payment_type       => $params->{'payment-type'},
+        transit_number     => $params->{'transit-number'},
+        bank_number        => $params->{'bank-number'},
+        account_number     => $params->{'account-number'},
         campaign           => $campaign,
         appeal_code        => $appeal_code,
+        referrer           => $referrer,
         user_agent         => $self->req->headers->user_agent,
     };
     my $result = $self->find_or_new( $transaction_details );
@@ -341,6 +348,7 @@ post '/process_transaction' => sub {
                 $transxml )->res;
     }
     my $xml = $res->body;
+    say Dumper($xml);
     my $dom = Mojo::DOM->new( $xml );
     if ( $dom->at( 'error' ) ) {    # We got an error message back
         my $error = $dom->at( 'error' )->text;
@@ -381,7 +389,7 @@ post '/process_transaction' => sub {
             zip => $billing_info->at( 'zip' )
             ? $billing_info->at( 'zip' )->text
             : '',
-            amount_in_cents => $dom->at( 'unit_amount_in_cents' )->text,
+            amount_in_cents => $dom->at( 'unit_amount_in_cents' ) ? $dom->at( 'unit_amount_in_cents' )->text : $dom->at( 'amount_in_cents' ) ? $dom->at( 'amount_in_cents' )->text : '',
 
             # TODO put back in the created date
             plan_name => $dom->at( 'plan name' )
