@@ -183,6 +183,7 @@ $( "#form-onetime label.btn" ).on( "click touchstart", function( event ) {
     var selectedinput = $('input', this)[0];
     var amountInCents = $(selectedinput).val() * 100;
     $('input#amount-in-cents').val(amountInCents);
+    $('input#plan-name').val('');
     showMonthlyPaymentOptions();
 });
 
