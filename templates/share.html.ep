@@ -2,7 +2,7 @@
 % use Mojo::Util qw(b64_encode url_escape url_unescape);
 
 
-	
+
 
 <div class="container" id="content-inner">
     <h1>Welcome to the team</h1>
@@ -10,25 +10,20 @@
         You just helped fund more independent reporting. Tell your friends...
     </p>
     <p> 
-    Thanks for your support. Keep an eye on your inbox for a receipt and welcome message within the next 24 hours. 
+        Thanks for your support. Keep an eye on your inbox for a receipt and welcome message within the next 24 hours. 
     </p>
     <p>
-    In the meantime, amplify your impact by using the Facebook, Twitter and email buttons below to encourage your friends to join in.
+        In the meantime, amplify your impact by using the Facebook, Twitter and email buttons below to encourage your friends to join in.
     </p>
     <p>
-    We all win when there's more independent, fact-driven reporting in Canada.
+        We all win when there's more independent, fact-driven reporting in Canada.
     </p>
-    
+
     <br />
     <div style="float: left; with: 50%; margin-right: 20px;">
-        <a target="_blank" href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-count="none" data-size="large" data-text="I just supported independent journalism @TheTyee. Join me:" data-url="http://support.thetyee.ca/">Tweet</a>
-		
-	
-		
-    <span style="margin-left: 10px;" class='st_email_large' displayText='Email'></span>
-	<span id="fblink"></span>
-	
-	<a target="_blank" style="border:none; position:relative; top: -12px; left:5px;" href="http://www.facebook.com/sharer.php?u=<%= url_escape 'https://support.thetyee.ca/' %>"> <img = src="<%= $config->{'static_asset_path'} %>/ui/img/fb-logo.jpg" /></a>
+        <a target="_blank" href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-count="none" data-size="large" data-text="I just supported @TheTyee’s 2017 B.C. election guide project. Join me:" data-url="http://support.thetyee.ca/">Tweet</a>
+
+        <a target="_blank" style="border:none; position:relative; top: -12px; left:5px;" href="http://www.facebook.com/sharer.php?u=<%= url_escape 'https://support.thetyee.ca/' %>"> <img = src="<%= $config->{'static_asset_path'} %>/ui/img/fb-logo.jpg" /></a>
 
 
 
@@ -39,35 +34,35 @@
     <div class="well" id="transactiondetails">
         <h4>Transaction Confirmation Details</h4>
         <dl class="dl-horizontal">
-          <dt>Your name</dt>
-          <dd><%= $transaction_details->{'first_name'} . ' ' . $transaction_details->{'last_name'} %></dd>
-          <dt>Your email</dt>
-          <dd><%= $transaction_details->{'email'} %></dd>
-          <dt>Amount</dt>
-          <dd>$<%= $transaction_details->{'amount_in_cents'} / 100 %>
-          <% if ( $transaction_details->{'plan_code'} ) { %>
-          / every month
-          <% } else { %>
-          / one time
-          <% } %>
-          </dd>
+            <dt>Your name</dt>
+            <dd><%= $transaction_details->{'first_name'} . ' ' . $transaction_details->{'last_name'} %></dd>
+            <dt>Your email</dt>
+            <dd><%= $transaction_details->{'email'} %></dd>
+            <dt>Amount</dt>
+            <dd>$<%= $transaction_details->{'amount_in_cents'} / 100 %>
+                <% if ( $transaction_details->{'plan_code'} ) { %>
+                / every month
+                <% } else { %>
+                / one time
+                <% } %>
+            </dd>
         </dl>
         <p>Please give your transaction details a quick review. If there's anything wrong, just let us know by <a href="http://www.google.com/recaptcha/mailhide/d?k=01Lpo-7rwiM1MAnRgeZ5aaqA==&c=yGPyHyFeLT7FyKm1p8ePC5O5yYHihWV1fDsc7V5i1ME=">email</a> or by calling us at 604-689-7489.
+        </div>
+        <div>
+            <p>Done telling the world? <a href="http://thetyee.ca">Head back to TheTyee.ca</a></p>
+        </div>
     </div>
-    <div>
-        <p>Done telling the world? <a href="http://thetyee.ca">Head back to TheTyee.ca</a></p>
-    </div>
-</div>
 
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=115808375175879";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=115808375175879";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
 <script type="text/javascript">var switchTo5x=true;</script>
 <script type="text/javascript" src="https://ws.sharethis.com/button/buttons.js"></script>
 <script type="text/javascript">stLight.options({publisher: "40ef0d0c-5826-4d11-a6ac-266317187462", doNotHash: true, doNotCopy: true, hashAddressBar: false});</script>
