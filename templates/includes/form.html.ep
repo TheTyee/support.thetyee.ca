@@ -57,7 +57,7 @@
                     <div class="options-payment" style="display:none;">
                         <br style="clear:both;" /> 
                         <p>Choose your <b>payment method:</b></p>
-                        <a class="btn btn-primary" role="button" data-payment="credit" href="" aria-expanded="false" aria-controls="form-credit">Credit Card</a> <a class="btn btn-primary" role="button" data-payment="paypal" href="#form-paypal" aria-expanded="false" aria-controls="form-paypal">Paypal</a> 
+                        <a class="btn btn-primary" role="button" data-payment="credit" href="">Credit Card</a> <a class="btn btn-primary" role="button" data-payment="paypal" href="">Paypal</a> 
                     </div>
 
 
@@ -185,16 +185,12 @@ function showPaymentFields(type) {
     $('.fields-personal').show();
     $('.fields-address').show();
     $('.fields-submit').show();
-    // Set the 
-    // - Also set the payment-type field so that we capture the payment type in the DB (need a column)
+    if (type === 'bank') { // make these fields required too
+            $('.fields-bank input').prop('required',true);
+        } else {
+            $('.fields-bank input').prop('required',false);
+    }
 };
-
-
-// TODO
-// Capture
-// - Plan name if plan
-// - If no plan, create a descirption for Paypal that is descriptive of the payment
-// - Pass this to the recurly.paypal function
 
 // Switch from drop down to input on other countries
 $('#country').on('change', function(event) { 
@@ -206,37 +202,37 @@ $('#country').on('change', function(event) {
     }
 });
 
-function setupPaymentForm(paymentType) { 
-    if ( paymentType !== 'bank' ) { // It's something Recurly can work with
-        // Hook Recurly.js up to the form
-        recurly.configure({
-            publicKey: '<%= $config->{'pkey'} %>',
-            style: {
-                all: {
-                },
-                number: {
-                    placeholder: '4111 1111 1111 1111'
-                },
-                month: {
-                    placeholder: 'Month (mm)'
-                },
-                year: {
-                    placeholder: 'Year (yy)'
-                },
-                cvv: {
-                    fontSize: '12px',
-                    placeholder: {
-                        content: 'Security Code',
-                        color: 'red !important'
-                    }
+function setupPaymentForm(paymentType) {
+    recurly.configure({
+        publicKey: '<%= $config->{'pkey'} %>',
+        style: {
+            all: {
+            },
+            number: {
+                placeholder: '4111 1111 1111 1111'
+            },
+            month: {
+                placeholder: 'Month (mm)'
+            },
+            year: {
+                placeholder: 'Year (yy)'
+            },
+            cvv: {
+                fontSize: '12px',
+                placeholder: {
+                    content: 'Security Code'
                 }
             }
-        });
+        }
+    });
+
+    if ( paymentType !== 'bank' ) { // It's something Recurly can work with
+        // Hook Recurly.js up to the form
 
         // When a customer hits their 'enter' key while in a field
         recurly.on('field:submit', function (event) {
             $('form').submit();
-        });
+    j    });
 
         // On form submit, we stop submission to go get the token
         // and figure out what type of payment needs to be processed
@@ -288,6 +284,8 @@ function setupPaymentForm(paymentType) {
 // Capture the payment type
 $('.options-payment a').on( "click touchstart", function( event ) {
     event.preventDefault();
+    $('#errors span.message').text('');
+    $('#errors').hide();
     var el = event.currentTarget;
     var paymentType = el.dataset.payment;
     $('#payment-type').val(paymentType);
