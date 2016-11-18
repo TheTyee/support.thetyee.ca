@@ -1,10 +1,10 @@
 <div class="form-group">
     <label for="address1">Street address</label>
-    <input class="form-control required" data-recurly="address1" id="address1" name="address1" placeholder="Address" type="text" />
+    <input class="form-control required" data-recurly="address1" id="address1" name="address1" placeholder="Address" type="text" required />
 </div>
 <div class="form-group">
     <label for="city">City</label>
-    <input class="form-control required" data-recurly="city" id="city" name="city" placeholder="City" type="text" />
+    <input class="form-control required" data-recurly="city" id="city" name="city" placeholder="City" type="text" required />
 </div>
 <div class="form-group">
     <label for="state">Province/State</label>
@@ -282,5 +282,5 @@
 </div>
 <div class="form-group">
       <label for="postal-code">Postal code</label>
-<input class="form-control required" data-recurly="postal_code" id="postal_code" name="postal-code" placeholder="Postal/Zip" type="text" />
+<input class="form-control required" data-recurly="postal_code" id="postal_code" name="postal-code" placeholder="Postal/Zip" type="text" required />
 </div>
