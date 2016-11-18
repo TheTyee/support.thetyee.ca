@@ -275,6 +275,7 @@ post '/process_transaction' => sub {
     my $country      = $self->param( 'country' );
     my $postal       = $self->param( 'postal-code' );
     my $email        = $self->param( 'email' );
+    my $phone        = $self->param( 'phone' );
     my $params       = $self->req->body_params->to_hash;
     if ( $payment_type eq 'bank' ) { # If it's a EFT/ACH, redirect to /process_bank
         $self->flash(
@@ -392,6 +393,8 @@ post '/process_transaction' => sub {
             campaign    => $campaign,
             appeal_code => $appeal_code,
             referrer    => $referrer,
+            payment_type => $payment_type,
+            phone => $phone,
             user_agent  => $self->req->headers->user_agent,
         };
         my $result = $self->find_or_new( $transaction_details );
