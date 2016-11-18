@@ -142,11 +142,15 @@ $('a#link-tab-onetime').on('click', function( event ) {
 $('ul.nav-tabs').on('click', function( event ) {
     $('.options-payment').hide();
     $('.fields').hide();
+    $('#errors span.message').text('');
+    $('#errors').hide();
 });
 
 // Show the payment type option buttons
-function showMonthlyPaymentOptions ( ) {
+function showMonthlyPaymentOptions () {
     $('.options-payment').show();
+    $('#errors span.message').text('');
+    $('#errors').hide();
 }
 
 
