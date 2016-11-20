@@ -10,7 +10,7 @@
             %= include 'includes/form'
             <div id="atf" class="row">
                 <div class="col-md-8 video-container">
-                    <iframe src="https://player.vimeo.com/video/77548585?title=0&amp;byline=0&amp;portrait=0&amp;color=309c54" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/KUu5Bxro21Q?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
                 </div>
                 <div class="col-md-4">
                     %= include 'includes/widget'
