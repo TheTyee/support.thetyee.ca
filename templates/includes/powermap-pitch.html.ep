@@ -24,13 +24,12 @@
                         </p>
                         <h3>Give the gift of independent media</h3>
                         <p>Exclusively for Tyee Builders who support this project, we’ve got a brand new set of custom greeting cards designed by illustrator Indiana Joel. Spread holiday cheer with Christy the Red Light Runner, Hopeful John Horgan, and Andrew ‘Where Did Winter Go’ Weaver. Give at the $50, $75, and $100 level to get these cards sent to you (see details above).</p>
-
-                        <p>Don’t know what to get that hard-to-shop-for person on your list? Why not a gift to support made-in-B.C. independent media? Choose ‘in honour’ in the donation option and you can send a special email greeting to your indie-media loving friend or family member alerting them to your gift.</p>
+                        <p>Don’t know what to get that hard-to-shop-for person on your list? Why not a gift to support made-in-B.C. independent media? After your payment goes through, you can choose to make your contribution in honour of someone else, and have their name displayed on this page.</p>
 
                     </div><!-- /.col-md-6 -->
                     <div class="col-md-6">
                         <center>
-                            <img src="<%= $config->{'static_asset_path'} %>/ui/img/holiday-card-clark.jpg" />
+                            <img src="<%= $config->{'static_asset_path'} %>/ui/img/holiday-card-rennie.jpg" />
                             <img src="<%= $config->{'static_asset_path'} %>/ui/img/holiday-card-machines.jpg" />
                             <p class="small">Collect all six original Tyee greeting cards</p>
                         </center>

@@ -54,7 +54,7 @@
                     </div><!-- /.col-md-4 -->
                     <div class="col-md-4">
                         <h2>About The Tyee</h2>
-                        <p>WWe're an independent, online news magazine from British Columbia. We're devoted to fact-driven reporting and analysis that informs and enlivens our democratic conversation. Our reporting has garnered numerous awards and the respect of our peers and readers. While some journalism gives the last word to power, we try to give the last word to ordinary folks.</p>
+                        <p>We're an independent, online news magazine from British Columbia. We're devoted to fact-driven reporting and analysis that informs and enlivens our democratic conversation. Our reporting has garnered numerous awards and the respect of our peers and readers. While some journalism gives the last word to power, we try to give the last word to ordinary folks.</p>
                     </div><!-- /.col-md-4 -->
                 </div><!-- /.row -->
             </div><!-- / .container -->
@@ -95,10 +95,10 @@ critical time to hold government accountable to its promises”</p>
                 </div><!-- /.row -->
             </div><!-- /.container -->
         </div><!-- people -->
-
+        %=  include 'includes/builder_list'
         <div id="organizations" class="">
             <div class="container">
-                    <h2>The Tyee is grateful for the support of:</h2>
+                    <h3>The Tyee is also grateful for the support of:</h3>
                 <div class="row">
                     <div class="col-md-2">
                         <img src="<%= $config->{'static_asset_path'} %>/ui/img/BCGEU_Logo_NoUnionName-Horizontal_2Spot.png">
@@ -112,7 +112,6 @@ critical time to hold government accountable to its promises”</p>
                 </div><!-- /.row -->
             </div><!-- /.container -->
         </div><!-- people -->
-        %=  include 'includes/builder_list'      
     
 % content_for javascript => begin
 %= javascript begin
