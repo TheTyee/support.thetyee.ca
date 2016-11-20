@@ -29,8 +29,11 @@
 
                     </div><!-- /.col-md-6 -->
                     <div class="col-md-6">
-                        CARDS
+                        <img src="<%= $config->{'static_asset_path'} %>/ui/img/holiday-card-clark.jpg" />
+                        <img src="<%= $config->{'static_asset_path'} %>/ui/img/holiday-card-machines.jpg" />
+                        <p class="small"><center>Collect all six original Tyee greeting cards</center></p>
                     </div><!-- /.col-md-6 -->
                 </div><!-- /.row -->
+                <hr class="soften" />
             </div><!-- / .container -->
         </div><!-- / #featurettes1 -->
