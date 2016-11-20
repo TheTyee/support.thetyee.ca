@@ -127,6 +127,16 @@
 
 % content_for javascript => begin
 %= javascript begin
+
+// jQuery function for scrolling to elements
+$.fn.scrollView = function () {
+    return this.each(function () {
+        $('html, body').animate({
+            scrollTop: $(this).offset().top
+        }, 1000);
+    });
+}
+
 // Eanble the description popovers
 $('[rel="popover"]').popover();
 
@@ -314,6 +324,7 @@ $('.options-payment a').on( "click touchstart", function( event ) {
     setupPaymentForm(paymentType);
 });
 
+
 // A simple Recurly credit card error handling function to expose errors to the customer
 function error (err) {
     console.log(err);
@@ -325,12 +336,14 @@ function error (err) {
         $('[data-recurly=' + field + ']').parent().addClass('has-error');
         $('[data-label=' + field + ']').addClass('has-error');
     });
+    $('#errors').scrollView();
 }
 // A simple Paypal error handling function to expose errors to the customer
 function errorPaypal (err) {
     console && console.error(err);
     $("#errors").show();
     $('#errors span.message').text('There was a problem intializing the PayPal transaction. Please try again in a few moments.');
+    $('#errors').scrollView();
     $('button').prop('disabled', false);
 }
 
