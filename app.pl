@@ -125,6 +125,7 @@ group {
         my $campaign
             = $self->param( 'campaign' ) || $self->flash( 'campaign' );
         $self->flash( campaign => $campaign );
+        # TODO remove these two
         my $onetime = $self->param( 'onetime' );
         my $amount  = $self->param( 'amount' );
         # TODO remove this statement
@@ -139,6 +140,7 @@ group {
             $amount = '';
             $self->redirect_to( '' );
         }
+        # TODO remove
         my $amount_in_cents;
         if ( $amount ) {
             $amount_in_cents = $amount * 100;
@@ -221,7 +223,6 @@ group {
 any [qw(GET POST)] => '/process_bank' => sub {
     my $self   = shift;
     my $params = $self->flash( 'params' );
-    my $amount_in_cents = $params->{'amount'} * 100;
     my $campaign        = $self->flash( 'campaign' );
     my $appeal_code     = $self->flash( 'appeal_code' );
     my $referrer     = $self->flash( 'original_referrer' );
@@ -272,6 +273,7 @@ post '/process_transaction' => sub {
     my $payment_type = $self->param( 'payment-type' );
     my $token        = $self->param( 'recurly-token' );
     my $plan         = $self->param( 'plan' );
+    # TODO remove $amount
     my $amount       = $self->param( 'amount' );
     my $amount_in_cents  = $self->param( 'amount-in-cents' );
     my $first_name   = $self->param( 'first-name' );
@@ -419,16 +421,16 @@ any [qw(GET POST)] => '/preferences' => sub {
     $self->flash( { transaction_details => $record } );
 
     if ( $self->req->method eq 'POST' && $record ) {    # Submitted form
-            # Validate parameters with custom check
+        # TODO *actually* validate parameters with custom check
         my $validation = $self->validation;
         $validation->required( 'pref_frequency' );
         $validation->required( 'pref_anonymous' );
 
         # Render form again if validation failed
+        # TODO actually render form again vs. just writing to log
         $self->app->log->info( Dumper $validation ) if $validation->has_error;
         $self->app->log->info( Dumper $self->req->params->to_hash )
             if $validation->has_error;
-
         #return $self->render( 'preferences' ) if $validation->has_error;
 
         my $update = $self->find_or_new( $record );

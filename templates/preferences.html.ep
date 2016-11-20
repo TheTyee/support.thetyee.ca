@@ -4,59 +4,94 @@
 %  my $err_freq = validation->error('pref_frequency');
 
 <div class="container" id="content-inner">
+    <div class="row">
+        <div class="col-md-8">
+
     <div class="alert alert-success fade in" style="margin-top: 20px;"><i class="glyphicon glyphicon-check"></i>
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-    Your payment was successfully processed. To complete your contribution please answer the questions below. If you need to adjust your transaction, or you've experienced a problem, <a href="mailto:builders@thetyee.ca">please send us a quick email</a>.
+        Your payment was successfully processed. To complete your contribution please answer the questions below. If you need to adjust your transaction, or you've experienced a problem, <a href="mailto:builders@thetyee.ca">please send us a quick email</a>.
     </div>
+
     % if ( $err_anon || $err_freq ) {
     <p class="alert alert-danger">
-    Please correct the following problems with your selections:<br />
-    <%== $err_freq ? 'Subscription preference is required<br />' : '' %>
-    <%== $err_anon ? 'Acknoledgement choice is required<br />' : '' %>
+        Please correct the following problems with your selections:<br />
+        <%== $err_freq ? 'Subscription preference is required<br />' : '' %>
+        <%== $err_anon ? 'Acknoledgement choice is required<br />' : '' %>
     </p>
     % }
 
     <h1>Thanks a bunch! Here’s what will happen next.</h1>
     <p class="lead">Thank you so much for pitching in to The Tyee’s B.C. election reporting project. You just provided resources we need to pay experienced to dig deep on election-related issues.</p>
     <p>Here’s what’s going to happen: Until December 12, we are asking for readers’ ideas on what we should focus our attention on in the months leading up to the election. Anyone can pitch us an idea, but only Tyee Builders (people who financially support this campaign) will vote on which topics we’ll set our sights on. After the fundraising campaign ends, you’ll receive an email directing you to a poll where you can vote on what you’d like to see covered in long-form explainers. The number of pieces we can produce will depend on how much we raise. Sound good? Good.</p>
-    <b>Also, if you chose to make your contribution in honour of someone else, you’ll be taken to a page right after this one where you can send your gift recipient an e-card.</b>
+    <p>
+    </p>
     <form action="preferences" method="POST" role="form">
-        <div class="form-group" id="naked">
+        <div class="form-group">
+            <label for="pref_anonymous">We like to acknowledge our supporters publicly. May we acknowledge your contribution?</label>
+            <br />
+            <label class="radio-inline">
+                <input checked="1" id="anon-no" name="pref_anonymous" type="radio" value="Yes" />
+                Yes</label>
+            <label class="radio-inline">
+                <input id="anon-yes" name="pref_anonymous" type="radio" value="No" />
+                No thanks, I'd prefer to be anonymous</label>
+        </div>
+
+        <div class="form-group">
+            <label for="on_behalf_of">Is this gift being made in honour, or in memory, of someone?</label>
+            <br />
+            <label class="radio-inline">
+              <input type="radio" name="on_behalf_of" id="on_behalf_of_honour" value="honour"> Yes, in honour.
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="on_behalf_of" id="on_behalf_of_memory" value="memory"> Yes, in memory.
+            </label>
+            <!--<p class="help-block">If you've chose to make your contribution in honour of someone else, you’ll be taken to a page right after this one where you can send your gift recipient an e-card.</p>-->
+        </div>
+        <div class="form-group">
+            <label for="on_behalf_of_name">What is the name of the person?</label>
+            <input type="text" class="form-control" name="on_behalf_of_name" id="on_behalf_of_name" placeholder="Leonard Cohen">
+            <p class="help-block">This name will be acknowledged publicly. Please enter only the person's first and last name.</p>
+        </div>
+        <div class="form-group">
             <label for="pref_frequency">Would you like our stories emailed straight to your inbox?</label>
             <br />
-                    <input checked="1" id="daily" name="pref_frequency" type="radio" value="Daily headlines" />
-                    <span>&nbsp;Daily</span>
-                    <input id="weekly" name="pref_frequency" type="radio" value="Weekly headlines" />
-                   <span>&nbsp;Weekly</span>
-                    <input id="national" name="pref_frequency" type="radio" value="National headlines" />
-                   <span>&nbsp;National (sent weekly)</span>
-                    <input id="noThanks" name="pref_frequency" type="radio" value="No thanks" />
-                    <span>&nbsp;No thanks</span>
-                    <input id="alreadySubscribe" name="pref_frequency" type="radio" value="I already subscribe" />
-                    <span>&nbsp;I already subscribe</span>
-        <br clear="all" />
-         <br clear="all" />
-        <label for="pref_anonymous">We like to sometimes acknowledge our supporters publicly. May we acknowledge your contribution?</label>
+            <label class="radio-inline">
+                <input checked="1" id="daily" name="pref_frequency" type="radio" value="Daily headlines" />
+                Daily
+            </label>
+            <label class="radio-inline">
+                <input id="weekly" name="pref_frequency" type="radio" value="Weekly headlines" />
+                Weekly
+            </label>
+            <label class="radio-inline">
+                <input id="national" name="pref_frequency" type="radio" value="National headlines" />
+                National (sent weekly)</label>
+            <label class="radio-inline">
+                <input id="noThanks" name="pref_frequency" type="radio" value="No thanks" />
+                No thanks</label>
+            <label class="radio-inline">
+                <input id="alreadySubscribe" name="pref_frequency" type="radio" value="I already subscribe" />
+                I already subscribe</label>
+        </div>
+        <div class="form-group">
+            <label>Mailing preference?</label>
+            <p>If this is your first time giving to The Tyee, we have a super cool custom Tyee lapel pin to send to you in the mail, and if you gave over $50 or signed up to give $15 per month or more, you’ve got some Tyee greeting cards coming your way. But not everybody is into getting swag in the mail. How about you?</p>
+            <label class="radio-inline">
+                <input checked="1" id="lapel-yes" name="pref_lapel" type="radio" value="Yes" />
+                Yes, please send me Tyee swag</label>
+            <label class="radio-inline">
+                <input  id="lapel_no" name="pref_lapel" type="radio" value="No" />
+                Don’t send me anything in the mail</label>
+        </div>
         <br />
-                    <input checked="1" id="anon-no" name="pref_anonymous" type="radio" value="Yes" />
-                   <span> Yes</span>
-                    <input id="anon-yes" name="pref_anonymous" type="radio" value="No" />
-                   <span> No thanks</span>
-                
-         <br clear="all" />
-         <br clear="all" />
-            <label for="pref_lapel">If this is your first time giving to The Tyee, we have a super cool custom Tyee lapel pin to send to you in the mail, and if you gave over $50 or signed up to give $15 per month or more, you’ve got some Tyee greeting cards coming your way. But not everybody is into getting swag in the mail. How about you?</label>
-            <br />
-                    <input checked="1" id="lapel-yes" name="pref_lapel" type="radio" value="Yes" />
-                   <span>Yes, please send me Tyee swag</span>
-                    <input  id="lapel_no" name="pref_lapel" type="radio" value="No" />
-                  <span> Don’t send me anything in the mail</span>
-                   </div>
-         <br clear="all" />
-         <br clear="all" />
 
-            <div class="submit-button">
-                <input class="btn btn-success btn-lg" id="submit" type="submit" value="Complete contribution »" />
-            </div>
-    </form>
+    <div class="submit-button">
+        <input class="btn btn-success btn-lg" id="submit" type="submit" value="Complete contribution »" />
+    </div>
+</form>
+        </div>
+    </div>
 </div>
+
+

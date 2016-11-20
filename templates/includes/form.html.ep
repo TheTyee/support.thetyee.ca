@@ -200,7 +200,6 @@ $('input#other-amount').on( "blur", function( event ) {
     }
 });
 
-
 function showPaymentFields(type) {
     $('.fields').hide();
     $('.fields-' + type).show();
@@ -226,36 +225,34 @@ $('#country').on('change', function(event) {
 });
 
 function setupPaymentForm(paymentType) {
-    recurly.configure({
-        publicKey: '<%= $config->{'pkey'} %>',
-        style: {
-            all: {
-            },
-            number: {
-                placeholder: '4111 1111 1111 1111'
-            },
-            month: {
-                placeholder: 'Month (mm)'
-            },
-            year: {
-                placeholder: 'Year (yy)'
-            },
-            cvv: {
-                fontSize: '12px',
-                placeholder: {
-                    content: 'Security Code'
-                }
-            }
-        }
-    });
-
     if ( paymentType !== 'bank' ) { // It's something Recurly can work with
         // Hook Recurly.js up to the form
-
+        recurly.configure({
+            publicKey: '<%= $config->{'pkey'} %>',
+            style: {
+                all: {
+                },
+                number: {
+                    placeholder: '4111 1111 1111 1111'
+                },
+                month: {
+                    placeholder: 'Month (mm)'
+                },
+                year: {
+                    placeholder: 'Year (yy)'
+                },
+                cvv: {
+                    fontSize: '12px',
+                    placeholder: {
+                        content: 'Security Code'
+                    }
+                }
+            }
+        });
         // When a customer hits their 'enter' key while in a field
         recurly.on('field:submit', function (event) {
             $('form').submit();
-    j    });
+        });
 
         // On form submit, we stop submission to go get the token
         // and figure out what type of payment needs to be processed
