@@ -48,9 +48,15 @@
             </label>
             <!--<p class="help-block">If you've chose to make your contribution in honour of someone else, you’ll be taken to a page right after this one where you can send your gift recipient an e-card.</p>-->
         </div>
-        <div class="form-group">
+        <div class="form-inline">
             <label for="on_behalf_of_name">What is the name of the person?</label>
-            <input type="text" class="form-control" name="on_behalf_of_name" id="on_behalf_of_name" placeholder="Leonard Cohen">
+            <br />
+            <div class="form-group">
+                <input type="text" class="form-control" name="on_behalf_of_name_first" id="on_behalf_of_name_first" placeholder="Leonard">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="on_behalf_of_name_last" id="on_behalf_of_name_last" placeholder="Cohen">
+            </div>
             <p class="help-block">This name will be acknowledged publicly. Please enter only the person's first and last name.</p>
         </div>
         <div class="form-group">
