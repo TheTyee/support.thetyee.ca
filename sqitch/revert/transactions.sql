@@ -14,6 +14,6 @@ BEGIN;
     ALTER TABLE support.transactions DROP COLUMN referrer;
     ALTER TABLE support.transactions DROP COLUMN on_behalf_of;
     ALTER TABLE support.transactions DROP COLUMN on_behalf_of_name_first;
-    ALTER TABLE support.transactions DROP COLUMN on_behalf_of_name_first;
+    ALTER TABLE support.transactions DROP COLUMN on_behalf_of_name_last;
 
 COMMIT;
