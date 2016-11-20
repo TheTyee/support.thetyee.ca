@@ -262,7 +262,8 @@ function setupPaymentForm(paymentType) {
 
             // Reset the errors display
             $('#errors span.message').text('');
-            $('input').removeClass('error');
+            $('label.control-label').removeClass('has-error');
+            $('input').removeClass('has-error');
 
             // Disable the submit button
             $('button').prop('disabled', true);
@@ -320,7 +321,9 @@ function error (err) {
     $("#errors").show();
     $('button').prop('disabled', false);
     $.each(err.fields, function (i, field) {
-        $('[data-recurly=' + field + ']').addClass('error');
+        $('[data-recurly=' + field + ']').addClass('has-error');
+        $('[data-recurly=' + field + ']').parent().addClass('has-error');
+        $('[data-label=' + field + ']').addClass('has-error');
     });
 }
 // A simple Paypal error handling function to expose errors to the customer
