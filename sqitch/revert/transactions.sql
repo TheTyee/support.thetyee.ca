@@ -10,9 +10,10 @@ BEGIN;
     ALTER TABLE support.transactions DROP COLUMN transit_number;
     ALTER TABLE support.transactions DROP COLUMN bank_number;
     ALTER TABLE support.transactions DROP COLUMN account_number;
-    ALTER TABLE support.transactions DROP COLUMN person;
+    ALTER TABLE support.transactions DROP COLUMN raiser;
     ALTER TABLE support.transactions DROP COLUMN referrer;
     ALTER TABLE support.transactions DROP COLUMN on_behalf_of;
-    ALTER TABLE support.transactions DROP COLUMN on_behalf_of_name;
+    ALTER TABLE support.transactions DROP COLUMN on_behalf_of_name_first;
+    ALTER TABLE support.transactions DROP COLUMN on_behalf_of_name_first;
 
 COMMIT;

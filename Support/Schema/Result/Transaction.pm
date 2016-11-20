@@ -180,7 +180,7 @@ __PACKAGE__->table("transactions");
   data_type: 'text'
   is_nullable: 1
 
-=head2 person
+=head2 raiser
 
   data_type: 'text'
   is_nullable: 1
@@ -195,7 +195,12 @@ __PACKAGE__->table("transactions");
   data_type: 'text'
   is_nullable: 1
 
-=head2 on_behalf_of_name
+=head2 on_behalf_of_name_first
+
+  data_type: 'text'
+  is_nullable: 1
+
+=head2 on_behalf_of_name_last
 
   data_type: 'text'
   is_nullable: 1
@@ -264,13 +269,15 @@ __PACKAGE__->add_columns(
   { data_type => "text", is_nullable => 1 },
   "account_number",
   { data_type => "text", is_nullable => 1 },
-  "person",
+  "raiser",
   { data_type => "text", is_nullable => 1 },
   "referrer",
   { data_type => "text", is_nullable => 1 },
   "on_behalf_of",
   { data_type => "text", is_nullable => 1 },
-  "on_behalf_of_name",
+  "on_behalf_of_name_first",
+  { data_type => "text", is_nullable => 1 },
+  "on_behalf_of_name_last",
   { data_type => "text", is_nullable => 1 },
 );
 
@@ -287,8 +294,8 @@ __PACKAGE__->add_columns(
 __PACKAGE__->set_primary_key("id");
 
 
-# Created by DBIx::Class::Schema::Loader v0.07042 @ 2016-11-18 14:03:59
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:CVyPVQPHlvVSXCjE/wCx9A
+# Created by DBIx::Class::Schema::Loader v0.07042 @ 2016-11-19 20:27:01
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:TOT72SgAMvYd0GAthbdV+A
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
