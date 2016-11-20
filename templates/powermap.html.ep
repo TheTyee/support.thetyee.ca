@@ -68,7 +68,7 @@
                 <div class="row">
                     <div class="col-md-8">
                         <p class="quotation">“Free expression and independent media are essential to a fair and open society. Now more than ever, we need publications like The Tyee to amplify critical voices and keep people informed.”</p>
-                        <p class="cite">Tom Henheffer, Executive Director of Canadian Journalists for Free Expression</p>
+                        <p class="cite">&mdash;Tom Henheffer, Executive Director of Canadian Journalists for Free Expression</p>
                     </div>
                     <div class="col-md-4">
                         <img src="<%= $config->{'static_asset_path'} %>/ui/img/headshot-tom-henheffer.jpg">
@@ -80,14 +80,14 @@
                     </div>
                     <div class="col-md-8">
                         <p class="quotation">“It’s never been more important to have a source of fact-based, rigorous reporting upon which to base our decisions as citizens. The Tyee provides a vital service to its readers and deserves our support.”</p>
-                        <p class="cite">Stuart Poyntz, Associate Dean and Associate Professor, Faculty of Communication Art and Technology, Simon Fraser University</p>
+                        <p class="cite">&mdash;Stuart Poyntz, Associate Dean and Associate Professor, Faculty of Communication Art and Technology, Simon Fraser University</p>
                     </div>
                 </div><!-- /.row -->
                 <div class="row">
                     <div class="col-md-8">
                         <p class="quotation">“I support The Tyee because its reporters are brave, independent and smart as hell — and because now is a 
 critical time to hold government accountable to its promises”</p>
-                        <p class="cite">Naomi Klein</p>
+                        <p class="cite">&mdash;Naomi Klein</p>
                     </div>
                     <div class="col-md-4">
                         <img src="<%= $config->{'static_asset_path'} %>/ui/img/naomi-klein.jpg">
