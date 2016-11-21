@@ -274,9 +274,9 @@ recurly.configure({
 });
 
 // When a customer hits their 'enter' key while in a field
-recurly.on('form.recurly field:submit', function (event) {
-    $('form.recurly').submit();
-});
+//recurly.on('form.recurly field:submit', function (event) {
+ //   $('form.recurly').submit();
+//});
 
 // On form submit, we stop submission to go get the token
 // and figure out what type of payment needs to be processed
@@ -316,18 +316,18 @@ $('#form-paypal form').on('submit', function () {
     // Disable the submit button
     $('button').prop('disabled', true);
     var form = this;
-  var opts = { description: paypalDescription };
-  recurly.paypal(opts, function (err, token) {
-    if (err) {
-        // let's handle any errors using the function below
-        errorPaypal(err);
-    } else {
-        // set the hidden field above to the token we get back from Recurly
-        $('#recurly-token').val(token.id);
-        // Now we submit the form!
-        form.submit();
-    }
-  });
+    var opts = { description: paypalDescription };
+      recurly.paypal(opts, function (err, token) {
+        if (err) {
+            // let's handle any errors using the function below
+            errorPaypal(err);
+        } else {
+            // set the hidden field above to the token we get back from Recurly
+            $('.recurly-token').val(token.id);
+            // Now we submit the form!
+            form.submit();
+        }
+      });
 });
 
 
