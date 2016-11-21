@@ -239,6 +239,7 @@ any [qw(GET POST)] => '/process_bank' => sub {
         last_name          => $params->{'last-name'},
         hosted_login_token => 'Bank transaction. Not applicable',
         trans_date         => $trans_date,                        # Add a date
+        address1               => $params->{'address1'},
         city               => $params->{'city'},
         state              => $state,
         country            => $params->{'country'},
@@ -278,7 +279,7 @@ post '/process_transaction' => sub {
     my $amount_in_cents  = $self->param( 'amount-in-cents' );
     my $first_name   = $self->param( 'first-name' );
     my $last_name    = $self->param( 'last-name' );
-    my $address      = $self->param( 'address' );
+    my $address      = $self->param( 'address1' );
     my $city         = $self->param( 'city' );
     my $state        = $self->param( 'state' );
     my $country      = $self->param( 'country' );
