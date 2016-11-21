@@ -15,4 +15,5 @@
 <div class="form-group">
     <label for="email">Phone</label>
     <input class="form-control" data-recurly="phone" id="phone" name="phone" placeholder="(555) 555 5555" type="tel" />
+      <span id="helpBlock" class="help-block">Optional</span>
 </div>
