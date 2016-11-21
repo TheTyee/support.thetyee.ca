@@ -102,4 +102,15 @@
     </div>
 </div>
 
+% content_for javascript => begin
+%= javascript begin
 
+// Simple HTML5 validation for the on behalf of name fields
+// if the on behlf of is set
+$('input[name=on_behalf_of]').on('click', function (event) {
+    $('#on_behalf_of_name_first').prop('required', true);
+    $('#on_behalf_of_name_last').prop('required', true);
+});
+
+%   end
+% end
