@@ -1,0 +1,23 @@
+<div>
+    <img src="<%= $config->{'static_asset_path'} %>/ui/img/example-cheque.jpg" />
+</div>
+<div class="form-inline fields-bank">
+    <div class="form-group">
+        <label for="transit-number">Transit number</label>
+        <input  maxlength="5" class="form-control required" id="transit_number" name="transit-number" placeholder="Transit Number" type="text" pattern="\d{5}" />
+        <span id="helpBlock" class="help-block">Five digits</span>
+    </div>
+    <div class="form-group">
+        <label for="bank-number">Bank number</label>
+        <input  maxlength="3" class="form-control required" id="bank_number" name="bank-number" placeholder="Institution Number" type="text" pattern="\d{3}" />
+        <span id="helpBlock" class="help-block">Three digits</span>
+    </div>
+</div>
+<div class="form-group">
+    <label for="account-number">Account number</label>
+    <input class="form-control required" data-recurly="account_number" id="account_number" name="account-number" placeholder="Account Number" type="text" pattern="\d+" />
+        <span id="helpBlock" class="help-block">Numbers only</span>
+</div>
+<span id="helpBlock" class="help-block">Agreement: I may revoke my authorization at any time, subject to providing notice of 30 days. To obtain a sample cancellation form, or for more information on my right to cancel a PAD Agreement, I may contact my financial institution or visit www.cdnpay.ca. I have certain recourse rights if any debit does not comply with this agreement. For example, I have the right to receive reimbursement for any debit that is not authorized or is not consistent with this PAD Agreement. To obtain more information on my recourse rights, I may contact my financial institution or visit www.cdnpay.ca.</span>
+<script>
+</script>

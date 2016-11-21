@@ -17,12 +17,12 @@
             <meta name="MSSmartTagsPreventParsing" content="TRUE" />
  
 <!-- OpenGraph properties -->
-            <meta property="og:title" content="I just supported independent journalism at The Tyee. Join me. – The Tyee" />
-            <meta property="og:description" content="Canada needs more independent journalism. Sign up and become a Tyee Builder." />
+            <meta property="og:title" content="I just supported a new independent journalism project at The Tyee." />
+            <meta property="og:description" content="Join me and pitch in so experienced journalists can dig in and do deep research before the 2017 B.C. election." />
             <meta property="og:type" content="website" />
             <meta property="og:url" content="https://support.thetyee.ca" />
             <meta property="og:image" content="<%= $config->{'static_asset_path'} %>/ui/img/facebook_share_img_square_democracy.png" />
-	    <meta property="og:site_name" content="Canada needs more independent journalism. Join us. – The Tyee" />
+	    <meta property="og:site_name" content="The Tyee" />
             <meta property="fb:admins" content="648146258, 512340590, 121503155, 13609677, 877285452, 584785109" />
  
 <!-- Dublin Core properties -->
@@ -39,8 +39,10 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <link href="<%= $config->{'static_asset_path'} %>/ui/css/styles.css" rel="stylesheet" media="screen">
     <script src="<%= $config->{'static_asset_path'} %>/ui/js/modernizr.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script type="text/javascript" src="//use.typekit.net/sjz2xsw.js"></script>
     <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+    <script src="https://js.recurly.com/v4/recurly.js"></script>
     <link rel="shortcut icon" href="<%= $config->{'static_asset_path'} %>/ui/img/favicon.ico">
 </head>
 <body id="<%= $body_id %>">

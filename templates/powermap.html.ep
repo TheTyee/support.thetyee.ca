@@ -1,0 +1,120 @@
+% layout 'default', title => 'Support fact-based independent journalism -- The Tyee'; 
+
+       <div class="container" id="content">
+            <div id="campaign-copy" class="row">
+                <h1>Our democracy needs independent journalism. Join&nbsp;us.<span>&nbsp;</span></h1>
+                <p class="lead">Support The Tyee and invest in critical, in-depth reporting on the 2017&nbsp;B.C.&nbsp;election.</p>
+            </div>
+
+            <span id="campaign-end"></span>
+            %= include 'includes/form'
+            <div id="atf" class="row">
+                <div class="col-md-8 video-container">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/KUu5Bxro21Q?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="col-md-4">
+                    %= include 'includes/widget'
+                </div>
+            </div> <!-- / #atf -->
+
+           <div class="row awards">
+                <div class="col-md-12 awards">
+                    <div class="col-md-3 col-sm-3 award">
+                        <img id="murrow" src="<%= $config->{'static_asset_path'} %>/ui/img/award-cjf.png" />
+                        <p>Excellence in Journalism Award (CDN), 2013, 2009</p>
+                    </div>
+                    <div class="col-md-3 col-sm-3 award">
+                        <img id="murrow" src="<%= $config->{'static_asset_path'} %>/ui/img/award-western.png" />
+                        <p>Western Magazine Award 2012</p>
+                    </div>
+                    <div class="col-md-3 col-sm-3 award">
+                        <img id="murrow" src="<%= $config->{'static_asset_path'} %>/ui/img/award-murrow.png" />
+                        <p>Edward R. Murrow Award (NA), 2011, 2009</p>
+                    </div>
+                    <div class="col-md-3 col-sm-3 award">
+                        <img id="murrow" src="<%= $config->{'static_asset_path'} %>/ui/img/award-webby.png" />
+                        <p>Webby Honourable Mention (Intl), 2010, 2009</p>
+                    </div>
+                </div>
+            </div> 
+
+
+        </div><!-- / .container -->
+
+        <div id="featurettes1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h2>Our vision</h2>
+                        <p>British Columbia is headed towards an important provincial election. At the same time, our media is in collapse. Newsrooms continue to shrink and consolidate under the control of fewer and fewer corporations, and some communities are left without any local reporting at all. We believe we all deserve solid, in-depth reporting about our government’s track record, delivered by media who are answerable first and foremost to readers.</p>
+                    </div><!-- /.col-md-4 -->
+                    <div class="col-md-4">
+                        <h2>How you can help</h2>
+                        <p>When you join Tyee Builders, your money goes directly to paying experienced, tough-minded journalists to work on election-related investigations. With your help, The Tyee will get started right away on deep research that will map out powerful players in British Columbia, and in-depth investigations on topics voted on by the Tyee Builder community.</p>
+                    </div><!-- /.col-md-4 -->
+                    <div class="col-md-4">
+                        <h2>About The Tyee</h2>
+                        <p>We're an independent, online news magazine from British Columbia. We're devoted to fact-driven reporting and analysis that informs and enlivens our democratic conversation. Our reporting has garnered numerous awards and the respect of our peers and readers. While some journalism gives the last word to power, we try to give the last word to ordinary folks.</p>
+                    </div><!-- /.col-md-4 -->
+                </div><!-- /.row -->
+            </div><!-- / .container -->
+        </div><!-- / #featurettes1 -->
+
+  %= include 'includes/powermap-pitch'
+
+
+        <div id="people" class="testimonial">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <p class="quotation">“Free expression and independent media are essential to a fair and open society. Now more than ever, we need publications like The Tyee to amplify critical voices and keep people informed.”</p>
+                        <p class="cite">&mdash;Tom Henheffer, Executive Director of Canadian Journalists for Free Expression</p>
+                    </div>
+                    <div class="col-md-4">
+                        <img src="<%= $config->{'static_asset_path'} %>/ui/img/headshot-tom-henheffer.jpg">
+                    </div>
+                </div><!-- /.row -->
+                <div class="row">
+                    <div class="col-md-4">
+                        <img src="<%= $config->{'static_asset_path'} %>/ui/img/headshot-stuart-poyntz.jpg">
+                    </div>
+                    <div class="col-md-8">
+                        <p class="quotation">“It’s never been more important to have a source of fact-based, rigorous reporting upon which to base our decisions as citizens. The Tyee provides a vital service to its readers and deserves our support.”</p>
+                        <p class="cite">&mdash;Stuart Poyntz, Associate Dean and Associate Professor, Faculty of Communication Art and Technology, Simon Fraser University</p>
+                    </div>
+                </div><!-- /.row -->
+                <div class="row">
+                    <div class="col-md-8">
+                        <p class="quotation">“I support The Tyee because its reporters are brave, independent and smart as hell — and because now is a 
+critical time to hold government accountable to its promises”</p>
+                        <p class="cite">&mdash;Naomi Klein</p>
+                    </div>
+                    <div class="col-md-4">
+                        <img src="<%= $config->{'static_asset_path'} %>/ui/img/naomi-klein.jpg">
+                    </div>
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </div><!-- people -->
+        %=  include 'includes/builder_list'
+        <div id="organizations" class="">
+            <div class="container">
+                    <h3>The Tyee is also grateful for the support of:</h3>
+                <div class="row">
+                    <div class="col-md-2">
+                        <img src="<%= $config->{'static_asset_path'} %>/ui/img/BCGEU_Logo_NoUnionName-Horizontal_2Spot.png">
+                    </div>
+                    <div class="col-md-2">
+                        <img src="<%= $config->{'static_asset_path'} %>/ui/img/MoveUp_Primary-withname_Pantone_large.png">
+                    </div>
+                    <div class="col-md-2">
+                        <img src="<%= $config->{'static_asset_path'} %>/ui/img/UNIFOR-logo.jpg">
+                    </div>
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </div><!-- people -->
+    
+% content_for javascript => begin
+%= javascript begin
+
+%   end
+% end
