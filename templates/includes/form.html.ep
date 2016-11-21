@@ -213,9 +213,16 @@ $('#country').on('change', function(event) {
     var el = event.currentTarget;
     var country = el.value;
     if ( country !== 'CA' ) {
-        $('#state').hide();
-        $('#state-alt').show();
-    }
+            $('#state').hide();
+            $('#state').prop('name', '');
+            $('#state-alt').show();
+            $('#state-alt').prop('name', 'state');
+        } else if ( country === 'CA' ) {
+            $('#state-alt').hide();
+            $('#state-alt').prop('name', '');
+            $('#state').show();
+            $('#state').prop('name', 'state');
+    };
 });
 
 // Capture the payment type
