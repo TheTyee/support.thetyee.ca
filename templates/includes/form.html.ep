@@ -15,7 +15,7 @@
                 <div class="btn-group" data-toggle="buttons">
                     % for my $p ( @$plans ) {
                     <label rel="popover" class="<%= $p->plan_code->text %> btn btn-primary btn-lg" data-trigger="hover" data-container="body" data-placement="top" data-content="<%= $p->description->text %>" data-original-title="<%= $p->name->text %>" title="">
-                        <input type="radio" name="plan" id="<%= $p->plan_code->text %>" value="<%= $p->plan_code->text %>" data-amount="<%= $p->unit_amount_in_cents->CAD->text %>" data-plan="<%= $p->name->text %>"> $<%= $p->unit_amount_in_cents->CAD->text / 100 %>
+                        <input type="radio" name="plan" id="<%= $p->plan_code->text %>" value="<%= $p->plan_code->text %>" data-amount="<%= $p->unit_amount_in_cents->CAD->text %>" data-code="<%= $p->plan_code->text %>" data-plan="<%= $p->name->text %>"> $<%= $p->unit_amount_in_cents->CAD->text / 100 %>
                     </label>
 
                     % }
@@ -168,8 +168,10 @@ $( "#form-monthly label.btn" ).on( "click touchstart", function( event ) {
     var selectedinput = $('input', this)[0];
     var amountInCents = selectedinput.dataset.amount;
     var planName = selectedinput.dataset.plan;
+    var planCode = selectedinput.dataset.code;
     $('input.amount-in-cents').val(amountInCents);
     $('input.plan-name').val(planName);
+    $('input.plan-code').val(planCode);
     showMonthlyPaymentOptions();
 });
 

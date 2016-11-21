@@ -12,6 +12,7 @@
                     <input type="hidden" class="recurly-token" data-recurly="token" name="recurly-token" value="">
                     <input type="hidden" class="payment-type" name="payment-type" value="">
                     <input type="hidden" class="plan-name" name="plan-name" value="">
+                    <input type="hidden" class="plan-code" name="plan-code" value="">
                     <input type="hidden" class="amount-in-cents" name="amount-in-cents" value="">
 
                     <div class="alert alert-info confirm-payment"><strong>You are about to make a payment for <span></span></strong></div>

@@ -273,7 +273,8 @@ post '/process_transaction' => sub {
     my $referrer     = $self->flash( 'original_referrer' );
     my $payment_type = $self->param( 'payment-type' );
     my $token        = $self->param( 'recurly-token' );
-    my $plan         = $self->param( 'plan' );
+    my $plan_name        = $self->param( 'plan-name' );
+    my $plan_code        = $self->param( 'plan-code' );
     # TODO remove $amount
     my $amount       = $self->param( 'amount' );
     my $amount_in_cents  = $self->param( 'amount-in-cents' );
@@ -304,7 +305,7 @@ post '/process_transaction' => sub {
     # This can be done using a hash:
     my $transaction;
     my $res;
-    if ( !$plan && $amount_in_cents ) {    # It's a transaction, not a subscription
+    if ( !$plan_code && $amount_in_cents ) {    # It's a transaction, not a subscription
         $transaction = {
             'transaction' => {
                 'amount_in_cents' => $amount_in_cents,
@@ -330,7 +331,7 @@ post '/process_transaction' => sub {
     else {
         $transaction = {    # It's a subscription
             'subscription' => {
-                'plan_code' => $plan,
+                'plan_code' => $plan_code,
                 'currency'  => 'CAD',
                 'account'   => {
                     'account_code' => lc $email,
