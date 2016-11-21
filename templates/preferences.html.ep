@@ -6,11 +6,13 @@
 <div class="container" id="content-inner">
     <div class="row">
         <div class="col-md-8">
-
+    % if ( defined $self->stash('record') ) {
     <div class="alert alert-success fade in" style="margin-top: 20px;"><i class="glyphicon glyphicon-check"></i>
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
         Your payment was successfully processed. To complete your contribution please answer the questions below. If you need to adjust your transaction, or you've experienced a problem, <a href="mailto:builders@thetyee.ca">please send us a quick email</a>.
     </div>
+    % }
+    
 
     % if ( $err_anon || $err_freq ) {
     <p class="alert alert-danger">
