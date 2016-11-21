@@ -380,6 +380,7 @@ post '/process_transaction' => sub {
             ? $dom->at( 'created_at' )->text
             : $dom->at( 'activated_at' ) ? $dom->at( 'activated_at' )->text
             : '',
+            address1 => $billing_info->at( 'address1' ) ? $billing_info->at( 'address1' )->text : '',
             city => $billing_info->at( 'city' )
             ? $billing_info->at( 'city' )->text
             : '',
