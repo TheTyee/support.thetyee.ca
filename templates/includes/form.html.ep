@@ -280,7 +280,7 @@ recurly.on('form.recurly field:submit', function (event) {
 
 // On form submit, we stop submission to go get the token
 // and figure out what type of payment needs to be processed
-$('form.recurly').on('submit', function (event) {
+$('#form-credit form').on('submit', function (event) {
     // Prevent the form from submitting while we retrieve the token from Recurly
     event.preventDefault();
 
