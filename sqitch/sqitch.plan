@@ -20,3 +20,5 @@ transactions [transactions@v.1.0.6] 2015-03-13T23:05:55Z Phillip Smith <ps@phill
 transactions [transactions@v1.0.7] 2015-11-22T17:58:57Z Bryan Carney <mrbryan@Bryans-MBP-2># adding new column for lapel_pref \n\n   transactions [transactions@v1.0.7]
 @v1.7.0 2016-11-18T20:34:27Z Phillip Smith <phillipadsmith@Anonymous-III.local> # Columns for powermap: ACH, honour/memory, etc.
 transactions [transactions@v1.7.0] 2016-11-18T20:34:35Z Phillip Smith <phillipadsmith@Anonymous-III.local> # Colums for powermap: ACH, honour/memory, etc.
+@v1.7.2 2016-11-21T18:50:56Z Phillip Smith <phillipadsmith@Anonymous-III.local> # Columns for powermap: street address
+transactions [transactions@v1.7.2] 2016-11-21T18:51:23Z Phillip Smith <phillipadsmith@Anonymous-III.local> # Colums for powermap: street address
