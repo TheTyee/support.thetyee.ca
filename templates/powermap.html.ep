@@ -70,12 +70,12 @@
                         <p class="quotation">“Free expression and independent media are essential to a fair and open society. Now more than ever, we need publications like The Tyee to amplify critical voices and keep people informed.”</p>
                         <p class="cite">&mdash;Tom Henheffer, Executive Director of Canadian Journalists for Free Expression</p>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <img src="<%= $config->{'static_asset_path'} %>/ui/img/headshot-tom-henheffer.jpg">
                     </div>
                 </div><!-- /.row -->
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <img src="<%= $config->{'static_asset_path'} %>/ui/img/headshot-stuart-poyntz.jpg">
                     </div>
                     <div class="col-md-8">
@@ -89,7 +89,7 @@
 critical time to hold government accountable to its promises”</p>
                         <p class="cite">&mdash;Naomi Klein</p>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <img src="<%= $config->{'static_asset_path'} %>/ui/img/naomi-klein.jpg">
                     </div>
                 </div><!-- /.row -->
