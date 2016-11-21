@@ -365,43 +365,26 @@ post '/process_transaction' => sub {
         my $billing_info
             = $self->recurly_get_billing_details( $account_code );
         my $transaction_details = {
-            email => $account->at( 'email' ) ? $account->at( 'email' )->text
-            : '',
-            first_name => $account->at( 'first_name' )
-            ? $account->at( 'first_name' )->text
-            : '',
-            last_name => $account->at( 'last_name' )
-            ? $account->at( 'last_name' )->text
-            : '',
+            email => $email,
+            first_name => $first_name,
+            last_name => $last_name,
+            # Recurly data
             hosted_login_token => $account->at( 'hosted_login_token' )
             ? $account->at( 'hosted_login_token' )->text
             : '',
+            # Recurly data
             trans_date => $dom->at( 'created_at' )
             ? $dom->at( 'created_at' )->text
             : $dom->at( 'activated_at' ) ? $dom->at( 'activated_at' )->text
             : '',
-            address1 => $billing_info->at( 'address1' ) ? $billing_info->at( 'address1' )->text : '',
-            city => $billing_info->at( 'city' )
-            ? $billing_info->at( 'city' )->text
-            : '',
-            state => $billing_info->at( 'state' )
-            ? $billing_info->at( 'state' )->text
-            : '',
-            country => $billing_info->at( 'country' )
-            ? $billing_info->at( 'country' )->text
-            : '',
-            zip => $billing_info->at( 'zip' )
-            ? $billing_info->at( 'zip' )->text
-            : '',
-            amount_in_cents => $dom->at( 'unit_amount_in_cents' ) ? $dom->at( 'unit_amount_in_cents' )->text : $dom->at( 'amount_in_cents' ) ? $dom->at( 'amount_in_cents' )->text : '',
-
-            # TODO put back in the created date
-            plan_name => $dom->at( 'plan name' )
-            ? $dom->at( 'plan name' )->text
-            : '',
-            plan_code => $dom->at( 'plan plan_code' )
-            ? $dom->at( 'plan plan_code' )->text
-            : '',
+            address1 => $address,
+            city => $city,
+            state => $state,
+            country => $country,
+            zip => $postal,
+            amount_in_cents => $amount_in_cents,
+            plan_name => $plan_name,
+            plan_code => $plan_code,
             campaign    => $campaign,
             appeal_code => $appeal_code,
             referrer    => $referrer,
