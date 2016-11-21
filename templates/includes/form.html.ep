@@ -315,6 +315,7 @@ $('#form-paypal form').on('submit', function () {
     var paypalDescription = 'A ' + paymentString + ' contribution to The Tyee\'s independent election reporting.'
     // Disable the submit button
     $('button').prop('disabled', true);
+    var form = this;
   var opts = { description: paypalDescription };
   recurly.paypal(opts, function (err, token) {
     if (err) {
