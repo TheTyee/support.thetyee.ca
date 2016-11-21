@@ -351,7 +351,6 @@ post '/process_transaction' => sub {
                 $transxml )->res;
     }
     my $xml = $res->body;
-    say Dumper($xml);
     my $dom = Mojo::DOM->new( $xml );
     if ( $dom->at( 'error' ) ) {    # We got an error message back
         my $error = $dom->at( 'error' )->text;
