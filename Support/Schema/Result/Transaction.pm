@@ -205,6 +205,11 @@ __PACKAGE__->table("transactions");
   data_type: 'text'
   is_nullable: 1
 
+=head2 address1
+
+  data_type: 'text'
+  is_nullable: 1
+
 =cut
 
 __PACKAGE__->add_columns(
@@ -279,6 +284,8 @@ __PACKAGE__->add_columns(
   { data_type => "text", is_nullable => 1 },
   "on_behalf_of_name_last",
   { data_type => "text", is_nullable => 1 },
+  "address1",
+  { data_type => "text", is_nullable => 1 },
 );
 
 =head1 PRIMARY KEY
@@ -294,8 +301,8 @@ __PACKAGE__->add_columns(
 __PACKAGE__->set_primary_key("id");
 
 
-# Created by DBIx::Class::Schema::Loader v0.07042 @ 2016-11-19 20:27:01
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:TOT72SgAMvYd0GAthbdV+A
+# Created by DBIx::Class::Schema::Loader v0.07042 @ 2016-11-21 10:53:52
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:ef+zB3vq40fcUzy5HM+rSA
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
