@@ -312,10 +312,10 @@ $('#form-paypal form').on('submit', function () {
     $('#errors span.message').text('');
     $('label.control-label').removeClass('has-error');
     $('input').removeClass('has-error');
-
+    var paypalDescription = 'A ' + paymentString + ' contribution to The Tyee's independent election reporting'
     // Disable the submit button
     $('button').prop('disabled', true);
-  var opts = { description: paymentString };
+  var opts = { description: paypalDescription };
   recurly.paypal(opts, function (err, token) {
     if (err) {
         // let's handle any errors using the function below
