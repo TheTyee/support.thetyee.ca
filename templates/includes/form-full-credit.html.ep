@@ -1,0 +1,23 @@
+            <form id="form-full-credit" class="recurly" method="post" action="/process_transaction">
+                <div class="fields fields-personal">
+                    %= include 'includes/form-fields-personal'
+                </div>
+                <div class="fields fields-credit">
+                    %= include 'includes/form-fields-credit'
+                </div>
+                <div class="fields fields-address">
+                    %= include 'includes/form-fields-address'
+                </div>
+                <div class="fields fields-submit">
+                    <input type="hidden" class="recurly-token" data-recurly="token" name="recurly-token" value="">
+                    <input type="hidden" class="payment-type" name="payment-type" value="">
+                    <input type="hidden" class="plan-name" name="plan-name" value="">
+                    <input type="hidden" class="amount-in-cents" name="amount-in-cents" value="">
+
+                    <div class="alert alert-info confirm-payment"><strong>You are about to make a payment for <span></span></strong></div>
+                    <button type="submit" id="credit" class="subscribe btn btn-success btn-lg">Process payment &raquo;</button>
+                    <p><i class="glyphicon glyphicon-lock">&nbsp;</i><strong>Your transaction is secure.</strong> The Tyee uses industry-standard SSL encryption to secure your connection. Your transaction is then processed securely by our payment processors, Recurly and Beanstream.</p>
+                    <p>Because we publish hard-hitting political journalism, we can't be a charity and therefore can't offer charitble tax receipts. Learn <a href="http://thetyee.ca/About/Us/#faq-funding">more</a></p>
+                    <hr class="soften" />
+                </div>
+            </form>

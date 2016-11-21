@@ -1,7 +1,6 @@
 <% if ( $error ) { %>
 <p class="alert alert-danger"><i class="glyphicon glyphicon-exclamation-sign">&nbsp;</i><%= $error %></p>
 <% } %>
-<form class="recurly" method="post" action="/process_transaction">
     <div id="form">
         <ul class="nav nav-tabs">
             <li id="onetime" class="active"><a href="#form-onetime" data-toggle="tab">One-time</a></li>
@@ -24,7 +23,7 @@
                 <div class="options-payment" style="display:none;">
                     <br style="clear:both;" /> 
                     <p>Choose your <b>payment method:</b></p>
-                    <a class="btn btn-primary" role="button" data-payment="credit" href="">Credit Card</a> <a class="btn btn-primary" role="button" data-payment="paypal" href="#form-paypal">Paypal</a> <a class="btn btn-primary" role="button" data-payment="bank" href="#form-bank">Bank</a>
+                    <a class="btn btn-primary" role="button" data-payment="credit" href="">Credit Card</a> <a class="btn btn-primary" role="button" data-payment="paypal" href="">Paypal</a> <a class="btn btn-primary" role="button" data-payment="bank" href="">Bank</a>
                 </div>
 
                 <div>
@@ -95,35 +94,16 @@
             </div>
 
             <div class="payment-fields">
-                <div class="fields fields-paypal" style="display:none;">
-                    %= include 'includes/form-fields-paypal'
+                <div id="form-credit" class="form" style="display:none;">
+                    %= include 'includes/form-full-credit'
                 </div>
-                <div class="fields fields-personal" style="display:none;">
-                    %= include 'includes/form-fields-personal'
+                <div id="form-paypal" class="form" style="display:none;">
+                    %= include 'includes/form-full-paypal'
                 </div>
-                <div class="fields fields-credit" style="display:none;">
-                    %= include 'includes/form-fields-credit'
-                </div>
-                <div class="fields fields-bank" style="display:none;">
-                    %= include 'includes/form-fields-bank'
-                </div>
-                <div class="fields fields-address" style="display:none;">
-                    %= include 'includes/form-fields-address'
-                </div>
-                <div class="fields fields-submit" style="display:none;">
-                    <input type="hidden" id="recurly-token" data-recurly="token" name="recurly-token" value="">
-                    <input type="hidden" id="payment-type" name="payment-type" value="">
-                    <input type="hidden" id="plan-name" name="plan-name" value="">
-                    <input type="hidden" id="amount-in-cents" name="amount-in-cents" value="">
-
-                    <div class="alert alert-info" id="confirm-payment"><strong>You are about to make a payment for <span></span></strong></div>
-                    <button type="submit" id="subscribe" class="btn btn-success btn-lg">Process payment &raquo;</button>
-                    <p><i class="glyphicon glyphicon-lock">&nbsp;</i><strong>Your transaction is secure.</strong> The Tyee uses industry-standard SSL encryption to secure your connection. Your transaction is then processed securely by our payment processors, Recurly and Beanstream.</p>
-                    <p>Because we publish hard-hitting political journalism, we can't be a charity and therefore can't offer charitble tax receipts. Learn <a href="http://thetyee.ca/About/Us/#faq-funding">more</a></p>
-                    <hr class="soften" />
+                <div id="form-bank" class="form" style="display:none;">
+                    %= include 'includes/form-full-bank'
                 </div>
             </div>
-</form>
 
 % content_for javascript => begin
 %= javascript begin
@@ -145,32 +125,34 @@ $('a#link-tab-monthly').on('click', function( event ) {
     event.preventDefault();
     $('#monthly a:last').tab('show');
 });
+
 // Switch to one-time tab from monthly
 $('a#link-tab-onetime').on('click', function( event ) {
     event.preventDefault();
     $('#onetime a:last').tab('show');
 });
 
+// User switched tabs, hide forms & errors
 $('ul.nav-tabs').on('click', function( event ) {
     $('.options-payment').hide();
-    $('.fields').hide();
+    $('.payment-fields div.form').hide();
     $('#errors span.message').text('');
     $('#errors').hide();
 });
 
-// Kludge to udpate a confirmation panel
+// Kludge to udpate a payment confirmation panel
 var paymentString = '';
 function updateConfirmPayment() {
-    var amount = $('input#amount-in-cents').val();
+    var amount = $('input.amount-in-cents').val();
     amount = amount / 100; // To dollars
     amount = '$' + amount  // $ sign
-    var plan   = $('input#plan-name').val();
+    var plan   = $('input.plan-name').val();
     if ( plan ) {
         paymentString = amount + ' / month';
         } else {
         paymentString = amount + ' one time';
     }
-    $('#confirm-payment span').text(paymentString);
+    $('.confirm-payment span').text(paymentString);
 }
 
 // Show the payment type option buttons
@@ -181,41 +163,41 @@ function showMonthlyPaymentOptions () {
     updateConfirmPayment();
 }
 
-
 // Capture the amount, set input values, show the payment types
 $( "#form-monthly label.btn" ).on( "click touchstart", function( event ) {
     var selectedinput = $('input', this)[0];
     var amountInCents = selectedinput.dataset.amount;
     var planName = selectedinput.dataset.plan;
-    $('input#amount-in-cents').val(amountInCents);
-    $('input#plan-name').val(planName);
+    $('input.amount-in-cents').val(amountInCents);
+    $('input.plan-name').val(planName);
     showMonthlyPaymentOptions();
 });
+
 // Capture the amount, set input values, show the payment types
 $( "#form-onetime label.btn" ).on( "click touchstart", function( event ) {
     var selectedinput = $('input', this)[0];
     var amountInCents = $(selectedinput).val() * 100;
-    $('input#amount-in-cents').val(amountInCents);
-    $('input#plan-name').val('');
+    $('input.amount-in-cents').val(amountInCents);
+    $('input.plan-name').val('');
     showMonthlyPaymentOptions();
 });
 
+// User enters their own amount for a one-time payment
 $('input#other-amount').on( "blur", function( event ) {
     var selectedinput = $(event.currentTarget);
     var amount = selectedinput.val();
     if (amount >= 1) {
         var amountInCents = amount * 100;
-        $('input#amount-in-cents').val(amountInCents);
+        $('input.amount-in-cents').val(amountInCents);
         showMonthlyPaymentOptions();
     }
 });
 
-function showPaymentFields(type) {
-    $('.fields').hide();
-    $('.fields-' + type).show();
-    $('.fields-personal').show();
-    $('.fields-address').show();
-    $('.fields-submit').show();
+// Show the correct fields depending on the payment type
+function showPaymentForm(type) {
+    $('.payment-fields div.form').hide();
+    var el = $('#form-' + type);
+    el.show();
     if (type === 'bank') { // make these fields required too
             $('.fields-bank input').prop('required',true);
         } else {
@@ -234,84 +216,6 @@ $('#country').on('change', function(event) {
     }
 });
 
-function setupPaymentForm(paymentType) {
-    if ( paymentType !== 'bank' ) { // It's something Recurly can work with
-        // Hook Recurly.js up to the form
-        recurly.configure({
-            publicKey: '<%= $config->{'pkey'} %>',
-            style: {
-                all: {
-                },
-                number: {
-                    placeholder: '4111 1111 1111 1111'
-                },
-                month: {
-                    placeholder: 'Month (mm)'
-                },
-                year: {
-                    placeholder: 'Year (yy)'
-                },
-                cvv: {
-                    fontSize: '12px',
-                    placeholder: {
-                        content: 'Security Code'
-                    }
-                }
-            }
-        });
-        // When a customer hits their 'enter' key while in a field
-        recurly.on('field:submit', function (event) {
-            $('form').submit();
-        });
-
-        // On form submit, we stop submission to go get the token
-        // and figure out what type of payment needs to be processed
-        $('form').on('submit', function (event) {
-            // Prevent the form from submitting while we retrieve the token from Recurly
-            event.preventDefault();
-
-            // Reset the errors display
-            $('#errors span.message').text('');
-            $('label.control-label').removeClass('has-error');
-            $('input').removeClass('has-error');
-
-            // Disable the submit button
-            $('button').prop('disabled', true);
-
-            var form = this;
-            if ( paymentType === 'credit' ) {
-                // Now we call recurly.token with the form. It goes to Recurly servers
-                // to tokenize the credit card information, then injects the token into the
-                // data-recurly="token" field above
-                recurly.token(form, function (err, token) {
-
-                    // send any errors to the error function below
-                    if (err) error(err);
-
-                    // Otherwise we continue with the form submission
-                    else form.submit();
-                });
-            } else if ( paymentType === 'paypal' ) {
-                // Now we call recurly.paypal with an object containing a 'description' property. 
-                // This will open a new window, beginning the PayPal billing agreement flow. 
-                // to tokenize the credit card information, then injects the token into the
-                // data-recurly="token" field above
-                recurly.paypal({ description: paymentString }, function (err, token) {
-                    if (err) {
-                        // Let's handle any errors using the function below
-                        errorPaypal(err);
-                    } else {
-                        // set the hidden field above to the token we get back from Recurly
-                        $('#recurly-token').val(token.id);
-                        // Now we submit the form!
-                        form.submit();
-                    }
-                });
-            };
-        });
-    } // End if
-}; // End setupPaymentForm()
-
 // Capture the payment type
 $('.options-payment a').on( "click touchstart", function( event ) {
     event.preventDefault();
@@ -319,9 +223,8 @@ $('.options-payment a').on( "click touchstart", function( event ) {
     $('#errors').hide();
     var el = event.currentTarget;
     var paymentType = el.dataset.payment;
-    $('#payment-type').val(paymentType);
-    showPaymentFields(paymentType);
-    setupPaymentForm(paymentType);
+    $('.payment-type').val(paymentType);
+    showPaymentForm(paymentType);
 });
 
 
@@ -346,6 +249,86 @@ function errorPaypal (err) {
     $('#errors').scrollView();
     $('button').prop('disabled', false);
 }
+
+recurly.configure({
+    publicKey: '<%= $config->{'pkey'} %>',
+    style: {
+        all: {
+        },
+        number: {
+            placeholder: '4111 1111 1111 1111'
+        },
+        month: {
+            placeholder: 'Month (mm)'
+        },
+        year: {
+            placeholder: 'Year (yy)'
+        },
+        cvv: {
+            fontSize: '12px',
+            placeholder: {
+                content: 'Security Code'
+            }
+        }
+    }
+});
+
+// When a customer hits their 'enter' key while in a field
+recurly.on('form.recurly field:submit', function (event) {
+    $('form.recurly').submit();
+});
+
+// On form submit, we stop submission to go get the token
+// and figure out what type of payment needs to be processed
+$('form.recurly').on('submit', function (event) {
+    // Prevent the form from submitting while we retrieve the token from Recurly
+    event.preventDefault();
+
+    // Reset the errors display
+    $('#errors span.message').text('');
+    $('label.control-label').removeClass('has-error');
+    $('input').removeClass('has-error');
+
+    // Disable the submit button
+    $('button').prop('disabled', true);
+
+    var form = this;
+    // Now we call recurly.token with the form. It goes to Recurly servers
+    // to tokenize the credit card information, then injects the token into the
+    // data-recurly="token" field above
+    recurly.token(form, function (err, token) {
+
+        // send any errors to the error function below
+        if (err) error(err);
+
+        // Otherwise we continue with the form submission
+        else form.submit();
+    });
+});
+
+$('#form-paypal form').on('submit', function () {
+    event.preventDefault();
+    // Reset the errors display
+    $('#errors span.message').text('');
+    $('label.control-label').removeClass('has-error');
+    $('input').removeClass('has-error');
+    var paypalDescription = 'A ' + paymentString + ' contribution to The Tyee\'s independent election reporting.'
+    // Disable the submit button
+    $('button').prop('disabled', true);
+  var opts = { description: paypalDescription };
+  recurly.paypal(opts, function (err, token) {
+    if (err) {
+        // let's handle any errors using the function below
+        errorPaypal(err);
+    } else {
+        // set the hidden field above to the token we get back from Recurly
+        $('#recurly-token').val(token.id);
+        // Now we submit the form!
+        form.submit();
+    }
+  });
+});
+
 
 %   end
 % end
