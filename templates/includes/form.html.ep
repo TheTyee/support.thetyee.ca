@@ -315,7 +315,7 @@ $('#form-credit form').on('submit', function (event) {
     });
 });
 
-$('#form-paypal form').on('submit', function () {
+$('#form-paypal form').on('submit', function (event) {
     event.preventDefault();
     // Reset the errors display
     $('#errors span.message').text('');
