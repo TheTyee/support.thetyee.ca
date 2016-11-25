@@ -12,3 +12,6 @@ requires 'App::Sqitch';
 requires 'Config::General';
 requires 'DBIx::Class::Schema::Loader';
 requires 'XML::Mini', '';
+requires 'Crypt::CBC', '';
+requires 'MIME::Base64::URLSafe', '';
+requires 'Crypt::Blowfish', '';
