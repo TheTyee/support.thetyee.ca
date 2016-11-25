@@ -12,6 +12,8 @@ use Mojo::URL;
 use Try::Tiny;
 use Support::Schema;
 use XML::Mini::Document;
+use Crypt::CBC;
+use MIME::Base64::URLSafe;
 
 my $config = plugin 'JSONConfig';
 
@@ -113,6 +115,26 @@ helper recurly_get_billing_details => sub {
     return $dom;
 };
 
+# Set the salt and initialize the cipher
+my $salt = $config->{'app_secret'};
+my $cipher = Crypt::CBC->new($salt, 'Blowfish');
+
+helper raiser_encode => sub {
+    my $self = shift;
+    my $email = shift;
+    my $encrypted_data = $cipher->encrypt($email);
+    my $safe_data = urlsafe_b64encode($encrypted_data);
+    return $safe_data;
+};
+
+helper raiser_decode => sub {
+    my $self = shift;
+    my $safe_data = shift;
+    my $encrypted_data = urlsafe_b64decode($safe_data);
+    my $decrypted_data = $cipher->decrypt($encrypted_data);
+    return $decrypted_data;
+};
+
 group {
     under [qw(GET POST)] => '/' => sub {
         my $self    = shift;
@@ -125,6 +147,9 @@ group {
         my $campaign
             = $self->param( 'campaign' ) || $self->flash( 'campaign' );
         $self->flash( campaign => $campaign );
+        my $raiser
+            = $self->param( 'raiser' ) || $self->flash( 'raiser' );
+        $self->flash( raiser => $raiser );
         # TODO remove these two
         my $onetime = $self->param( 'onetime' );
         my $amount  = $self->param( 'amount' );
@@ -225,7 +250,8 @@ any [qw(GET POST)] => '/process_bank' => sub {
     my $params = $self->flash( 'params' );
     my $campaign        = $self->flash( 'campaign' );
     my $appeal_code     = $self->flash( 'appeal_code' );
-    my $referrer     = $self->flash( 'original_referrer' );
+    my $referrer        = $self->flash( 'original_referrer' );
+    my $raiser          = $self->flash( 'raiser' );
     my $dt              = DateTime->now;
     $dt->set_time_zone( 'Europe/London' );
     my $trans_date = $dt->ymd . ' ' . $dt->hms;
@@ -252,6 +278,10 @@ any [qw(GET POST)] => '/process_bank' => sub {
         bank_number        => $params->{'bank-number'},
         account_number     => $params->{'account-number'},
         campaign           => $campaign,
+        (   defined $raiser
+            ? ( 'raiser' => $self->raiser_decode( $raiser ) )
+            : ()
+        ),
         appeal_code        => $appeal_code,
         referrer           => $referrer,
         user_agent         => $self->req->headers->user_agent,
@@ -271,6 +301,7 @@ post '/process_transaction' => sub {
     my $campaign     = $self->flash( 'campaign' );
     my $appeal_code  = $self->flash( 'appeal_code' );
     my $referrer     = $self->flash( 'original_referrer' );
+    my $raiser       = $self->flash( 'raiser' );
     my $payment_type = $self->param( 'payment-type' );
     my $token        = $self->param( 'recurly-token' );
     my $plan_name        = $self->param( 'plan-name' );
@@ -292,6 +323,7 @@ post '/process_transaction' => sub {
         $self->flash(
             {   params      => $params,
                 campaign    => $campaign,
+                raiser      => $raiser,
                 appeal_code => $appeal_code,
                 original_referrer => $referrer
             }
@@ -386,6 +418,10 @@ post '/process_transaction' => sub {
             plan_name => $plan_name,
             plan_code => $plan_code,
             campaign    => $campaign,
+            (   defined $raiser
+                ? ( 'raiser' => $self->raiser_decode( $raiser ) )
+                : ()
+            ),
             appeal_code => $appeal_code,
             referrer    => $referrer,
             payment_type => $payment_type,
@@ -428,7 +464,12 @@ any [qw(GET POST)] => '/preferences' => sub {
 get '/share' => sub {
     my $self                = shift;
     my $transaction_details = $self->flash( 'transaction_details' );
-    $self->stash( { transaction_details => $transaction_details } );
+    my $email               = $transaction_details->{'email'};
+    $self->stash( { 
+            transaction_details => $transaction_details,
+            raiser_id           => $self->raiser_encode( $email ),
+
+    });
     $self->render( 'share' );
 } => 'share';
 

@@ -375,6 +375,19 @@ DISTRIBUTIONS
       Test::Exception 0
       Test::More 0
       ok 0
+  Crypt-Blowfish-2.14
+    pathname: D/DP/DPARIS/Crypt-Blowfish-2.14.tar.gz
+    provides:
+      Crypt::Blowfish 2.14
+    requirements:
+      ExtUtils::MakeMaker 0
+  Crypt-CBC-2.33
+    pathname: L/LD/LDS/Crypt-CBC-2.33.tar.gz
+    provides:
+      Crypt::CBC 2.33
+    requirements:
+      Digest::MD5 2.00
+      ExtUtils::MakeMaker 0
   DBD-Pg-3.4.2
     pathname: T/TU/TURNSTEP/DBD-Pg-3.4.2.tar.gz
     provides:
@@ -2216,6 +2229,13 @@ DISTRIBUTIONS
       ExtUtils::MakeMaker 6.52
       Test::More 0.82
       perl 5.00503
+  MIME-Base64-URLSafe-0.01
+    pathname: K/KA/KAZUHO/MIME-Base64-URLSafe-0.01.tar.gz
+    provides:
+      MIME::Base64::URLSafe 0.01
+    requirements:
+      ExtUtils::MakeMaker 0
+      MIME::Base64 0
   MRO-Compat-0.12
     pathname: B/BO/BOBTFISH/MRO-Compat-0.12.tar.gz
     provides:
