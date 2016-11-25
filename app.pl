@@ -12,6 +12,8 @@ use Mojo::URL;
 use Try::Tiny;
 use Support::Schema;
 use XML::Mini::Document;
+use Crypt::CBC;
+use MIME::Base64::URLSafe;
 
 my $config = plugin 'JSONConfig';
 
