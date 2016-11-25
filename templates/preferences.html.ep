@@ -112,5 +112,19 @@ $('input[name=on_behalf_of]').on('click', function (event) {
     $('#on_behalf_of_name_last').prop('required', true);
 });
 
+$('input[name=on_behalf_of_name_first]').on('blur', function (event) { 
+var el = event.currentTarget;
+    if (el.value !== '') {
+        $('input[name=on_behalf_of]').prop('required', true);
+    }
+})
+
+$('input[name=on_behalf_of_name_last]').on('blur', function (event) { 
+var el = event.currentTarget;
+    if (el.value !== '') {
+        $('input[name=on_behalf_of]').prop('required', true);
+    }
+})
+
 %   end
 % end
