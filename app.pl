@@ -490,6 +490,20 @@ get '/share' => sub {
     $self->render( 'share' );
 } => 'share';
 
+any [qw(GET POST)] => '/help-us-grow' => sub {
+    my $self  = shift;
+    my $email = $self->param( 'email' );
+    $self->stash(
+        {   (   defined $email
+                ? ( 'raiser_id' => $self->raiser_encode( $email ) )
+                : ( 'raiser_id' => '' )
+            ),
+
+        }
+    );
+    $self->render( 'raiser' );
+} => 'raiser';
+
 get '/plans' => sub {    # List plans; Not used
     my $self = shift;
     $self->render_not_found;    # Doesn't exist for now
