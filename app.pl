@@ -66,7 +66,7 @@ helper recurly_get_plans => sub {
     my $filter = shift;
     my $res = $ua->get( $API . '/plans/' => { Accept => 'application/xml' } )
         ->res;
-    my $xml = $res->body;
+    my $xml      = $res->body;
     my $dom      = Mojo::DOM->new( $xml );
     my $plans    = $dom->find( 'plan' );
     my $filtered = [];
@@ -117,42 +117,45 @@ helper recurly_get_billing_details => sub {
 
 # Set the salt and initialize the cipher
 my $salt = $config->{'app_secret'};
-my $cipher = Crypt::CBC->new($salt, 'Blowfish');
+my $cipher = Crypt::CBC->new( $salt, 'Blowfish' );
 
 helper raiser_encode => sub {
-    my $self = shift;
-    my $email = shift;
-    my $encrypted_data = $cipher->encrypt($email);
-    my $safe_data = urlsafe_b64encode($encrypted_data);
+    my $self           = shift;
+    my $email          = shift;
+    my $encrypted_data = $cipher->encrypt( $email );
+    my $safe_data      = urlsafe_b64encode( $encrypted_data );
     return $safe_data;
 };
 
 helper raiser_decode => sub {
-    my $self = shift;
-    my $safe_data = shift;
-    my $encrypted_data = urlsafe_b64decode($safe_data);
-    my $decrypted_data = $cipher->decrypt($encrypted_data);
+    my $self           = shift;
+    my $safe_data      = shift;
+    my $encrypted_data = urlsafe_b64decode( $safe_data );
+    my $decrypted_data = $cipher->decrypt( $encrypted_data );
     return $decrypted_data;
 };
 
 group {
     under [qw(GET POST)] => '/' => sub {
-        my $self    = shift;
+        my $self = shift;
+
         # Store the referrer once in the flash
         my $referrer = $self->req->headers->referrer;
-        if ( !$self->flash('original_referrer') ) {
+        if ( !$self->flash( 'original_referrer' ) ) {
             $self->flash( original_referrer => $referrer );
         }
+
         # Store the campaign-tracking value
         my $campaign
             = $self->param( 'campaign' ) || $self->flash( 'campaign' );
         $self->flash( campaign => $campaign );
-        my $raiser
-            = $self->param( 'raiser' ) || $self->flash( 'raiser' );
+        my $raiser = $self->param( 'raiser' ) || $self->flash( 'raiser' );
         $self->flash( raiser => $raiser );
+
         # TODO remove these two
         my $onetime = $self->param( 'onetime' );
         my $amount  = $self->param( 'amount' );
+
         # TODO remove this statement
         if ( $self->req->method eq 'POST' && $amount =~ /\D/ ) {
             $self->flash(
@@ -165,11 +168,13 @@ group {
             $amount = '';
             $self->redirect_to( '' );
         }
+
         # TODO remove
         my $amount_in_cents;
         if ( $amount ) {
             $amount_in_cents = $amount * 100;
         }
+
         # TODO remove this hash
         my $options = {    # RecurlyJS signature options
             'transaction[currency]'        => 'CAD',
@@ -185,7 +190,7 @@ group {
                 plans_onetime => $config->{'plans_onetime'},
                 amount        => $amount,
                 onetime       => $onetime || $self->flash( 'onetime' ),
-                error => $self->flash( 'error' ),
+                error         => $self->flash( 'error' ),
             }
         );
     };
@@ -246,16 +251,17 @@ group {
 
 # New route for processing EFT/ACH subscriptions
 any [qw(GET POST)] => '/process_bank' => sub {
-    my $self   = shift;
-    my $params = $self->flash( 'params' );
-    my $campaign        = $self->flash( 'campaign' );
-    my $appeal_code     = $self->flash( 'appeal_code' );
-    my $referrer        = $self->flash( 'original_referrer' );
-    my $raiser          = $self->flash( 'raiser' );
-    my $dt              = DateTime->now;
+    my $self        = shift;
+    my $params      = $self->flash( 'params' );
+    my $campaign    = $self->flash( 'campaign' );
+    my $appeal_code = $self->flash( 'appeal_code' );
+    my $referrer    = $self->flash( 'original_referrer' );
+    my $raiser      = $self->flash( 'raiser' );
+    my $dt          = DateTime->now;
     $dt->set_time_zone( 'Europe/London' );
     my $trans_date = $dt->ymd . ' ' . $dt->hms;
     my $states     = $params->{'state'};
+
     # There are two possible state values, but only one should be used
     my $state = @$states[0] ? @$states[0] : @$states[1];
     my $transaction_details = {
@@ -265,7 +271,7 @@ any [qw(GET POST)] => '/process_bank' => sub {
         last_name          => $params->{'last-name'},
         hosted_login_token => 'Bank transaction. Not applicable',
         trans_date         => $trans_date,                        # Add a date
-        address1               => $params->{'address1'},
+        address1           => $params->{'address1'},
         city               => $params->{'city'},
         state              => $state,
         country            => $params->{'country'},
@@ -282,9 +288,9 @@ any [qw(GET POST)] => '/process_bank' => sub {
             ? ( 'raiser' => $self->raiser_decode( $raiser ) )
             : ()
         ),
-        appeal_code        => $appeal_code,
-        referrer           => $referrer,
-        user_agent         => $self->req->headers->user_agent,
+        appeal_code => $appeal_code,
+        referrer    => $referrer,
+        user_agent  => $self->req->headers->user_agent,
     };
     my $result = $self->find_or_new( $transaction_details );
     $transaction_details->{'id'} = $result->id;
@@ -296,7 +302,8 @@ any [qw(GET POST)] => '/process_bank' => sub {
 # Take the token, plus the plan, and send a post to the Recurly Subscrptions API
 # post '/process_transaction
 post '/process_transaction' => sub {
-    my $self         = shift;
+    my $self = shift;
+
     # Capture values from flash
     my $campaign     = $self->flash( 'campaign' );
     my $appeal_code  = $self->flash( 'appeal_code' );
@@ -304,27 +311,29 @@ post '/process_transaction' => sub {
     my $raiser       = $self->flash( 'raiser' );
     my $payment_type = $self->param( 'payment-type' );
     my $token        = $self->param( 'recurly-token' );
-    my $plan_name        = $self->param( 'plan-name' );
-    my $plan_code        = $self->param( 'plan-code' );
+    my $plan_name    = $self->param( 'plan-name' );
+    my $plan_code    = $self->param( 'plan-code' );
+
     # TODO remove $amount
-    my $amount       = $self->param( 'amount' );
-    my $amount_in_cents  = $self->param( 'amount-in-cents' );
-    my $first_name   = $self->param( 'first-name' );
-    my $last_name    = $self->param( 'last-name' );
-    my $address      = $self->param( 'address1' );
-    my $city         = $self->param( 'city' );
-    my $state        = $self->param( 'state' );
-    my $country      = $self->param( 'country' );
-    my $postal       = $self->param( 'postal-code' );
-    my $email        = $self->param( 'email' );
-    my $phone        = $self->param( 'phone' );
-    my $params       = $self->req->body_params->to_hash;
-    if ( $payment_type eq 'bank' ) { # If it's a EFT/ACH, redirect to /process_bank
+    my $amount          = $self->param( 'amount' );
+    my $amount_in_cents = $self->param( 'amount-in-cents' );
+    my $first_name      = $self->param( 'first-name' );
+    my $last_name       = $self->param( 'last-name' );
+    my $address         = $self->param( 'address1' );
+    my $city            = $self->param( 'city' );
+    my $state           = $self->param( 'state' );
+    my $country         = $self->param( 'country' );
+    my $postal          = $self->param( 'postal-code' );
+    my $email           = $self->param( 'email' );
+    my $phone           = $self->param( 'phone' );
+    my $params          = $self->req->body_params->to_hash;
+    if ( $payment_type eq 'bank' )
+    {    # If it's a EFT/ACH, redirect to /process_bank
         $self->flash(
-            {   params      => $params,
-                campaign    => $campaign,
-                raiser      => $raiser,
-                appeal_code => $appeal_code,
+            {   params            => $params,
+                campaign          => $campaign,
+                raiser            => $raiser,
+                appeal_code       => $appeal_code,
                 original_referrer => $referrer
             }
         );
@@ -334,10 +343,12 @@ post '/process_transaction' => sub {
 
     # Create a new XML document to work with Recurly's APIs
     my $xmldoc = XML::Mini::Document->new();
+
     # This can be done using a hash:
     my $transaction;
     my $res;
-    if ( !$plan_code && $amount_in_cents ) {    # It's a transaction, not a subscription
+    if ( !$plan_code && $amount_in_cents )
+    {    # It's a transaction, not a subscription
         $transaction = {
             'transaction' => {
                 'amount_in_cents' => $amount_in_cents,
@@ -353,6 +364,7 @@ post '/process_transaction' => sub {
         };
         $xmldoc->fromHash( $transaction );
         my $transxml = $xmldoc->toString;
+
         # Post the XML to the /transacdtions endpoint
         $res
             = $ua->post( $API
@@ -376,6 +388,7 @@ post '/process_transaction' => sub {
         };
         $xmldoc->fromHash( $transaction );
         my $transxml = $xmldoc->toString;
+
         # Post the XML to the /subscriptions endpoint
         $res
             = $ua->post( $API
@@ -397,36 +410,38 @@ post '/process_transaction' => sub {
         my $billing_info
             = $self->recurly_get_billing_details( $account_code );
         my $transaction_details = {
-            email => $email,
+            email      => $email,
             first_name => $first_name,
-            last_name => $last_name,
+            last_name  => $last_name,
+
             # Recurly data
             hosted_login_token => $account->at( 'hosted_login_token' )
             ? $account->at( 'hosted_login_token' )->text
             : '',
+
             # Recurly data
             trans_date => $dom->at( 'created_at' )
             ? $dom->at( 'created_at' )->text
             : $dom->at( 'activated_at' ) ? $dom->at( 'activated_at' )->text
             : '',
-            address1 => $address,
-            city => $city,
-            state => $state,
-            country => $country,
-            zip => $postal,
+            address1        => $address,
+            city            => $city,
+            state           => $state,
+            country         => $country,
+            zip             => $postal,
             amount_in_cents => $amount_in_cents,
-            plan_name => $plan_name,
-            plan_code => $plan_code,
-            campaign    => $campaign,
+            plan_name       => $plan_name,
+            plan_code       => $plan_code,
+            campaign        => $campaign,
             (   defined $raiser
                 ? ( 'raiser' => $self->raiser_decode( $raiser ) )
                 : ()
             ),
-            appeal_code => $appeal_code,
-            referrer    => $referrer,
+            appeal_code  => $appeal_code,
+            referrer     => $referrer,
             payment_type => $payment_type,
-            phone => $phone,
-            user_agent  => $self->req->headers->user_agent,
+            phone        => $phone,
+            user_agent   => $self->req->headers->user_agent,
         };
         my $result = $self->find_or_new( $transaction_details );
         $transaction_details->{'id'} = $result->id;
@@ -442,7 +457,7 @@ any [qw(GET POST)] => '/preferences' => sub {
     $self->flash( { transaction_details => $record } );
 
     if ( $self->req->method eq 'POST' && $record ) {    # Submitted form
-        # TODO *actually* validate parameters with custom check
+            # TODO *actually* validate parameters with custom check
         my $validation = $self->validation;
         $validation->required( 'pref_frequency' );
         $validation->required( 'pref_anonymous' );
@@ -452,6 +467,7 @@ any [qw(GET POST)] => '/preferences' => sub {
         $self->app->log->info( Dumper $validation ) if $validation->has_error;
         $self->app->log->info( Dumper $self->req->params->to_hash )
             if $validation->has_error;
+
         #return $self->render( 'preferences' ) if $validation->has_error;
 
         my $update = $self->find_or_new( $record );
@@ -465,11 +481,12 @@ get '/share' => sub {
     my $self                = shift;
     my $transaction_details = $self->flash( 'transaction_details' );
     my $email               = $transaction_details->{'email'};
-    $self->stash( { 
-            transaction_details => $transaction_details,
+    $self->stash(
+        {   transaction_details => $transaction_details,
             raiser_id           => $self->raiser_encode( $email ),
 
-    });
+        }
+    );
     $self->render( 'share' );
 } => 'share';
 
