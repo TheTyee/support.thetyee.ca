@@ -115,6 +115,26 @@ helper recurly_get_billing_details => sub {
     return $dom;
 };
 
+# Set the salt and initialize the cipher
+my $salt = $config->{'app_secret'};
+my $cipher = Crypt::CBC->new($salt, 'Blowfish');
+
+helper raiser_encode => sub {
+    my $self = shift;
+    my $email = shift;
+    my $encrypted_data = $cipher->encrypt($email);
+    my $safe_data = urlsafe_b64encode($encrypted_data);
+    return $safe_data;
+};
+
+helper raiser_decode => sub {
+    my $self = shift;
+    my $safe_data = shift;
+    my $encrypted_data = urlsafe_b64decode($safe_data);
+    my $decrypted_data = $cipher->decrypt($encrypted_data);
+    return $decrypted_data;
+};
+
 group {
     under [qw(GET POST)] => '/' => sub {
         my $self    = shift;
@@ -127,6 +147,9 @@ group {
         my $campaign
             = $self->param( 'campaign' ) || $self->flash( 'campaign' );
         $self->flash( campaign => $campaign );
+        my $raiser
+            = $self->param( 'raiser' ) || $self->flash( 'raiser' );
+        $self->flash( raiser => $raiser );
         # TODO remove these two
         my $onetime = $self->param( 'onetime' );
         my $amount  = $self->param( 'amount' );
