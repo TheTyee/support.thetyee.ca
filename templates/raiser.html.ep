@@ -1,14 +1,14 @@
-% layout 'default', title => '', body_id => 'raiser';
+% layout 'default', title => 'Help this campaign succeed', body_id => 'raiser';
 % use Mojo::Util qw(b64_encode url_escape url_unescape);
 
 <div class="container" id="content-inner">
     <div class="row">
         <div class="col-md-8">
-            <h1>Help us grow</h1>
+            <h1>Help this campaign succeed</h1>
             <p class="lead">
                 Spread the word about B.C. in the Balance: The Voter’s Deep Guide to the 2017 Election and get recognized as one of The Tyee's top supporters.
             </p>
-            <p>All you have to do is enter your e-mail address below&mdash;ideally, the same one you used when you contributed to The Tyee&mdash;and you'll receive your personal sharing link. When you share the link, you'll be recognized for any subsequent people who become builders using your link.</p>
+            <p>All you have to do is enter your e-mail address below—ideally, the same one you used if/when you contributed to The Tyee—and you'll receive your personal sharing link. When you share the link, you'll be recognized for any subsequent people who become builders using your link.</p>
             <p>We'll publicly recognize top supporters in the final days of the campaign.</p>
 
             <% if ( $raiser_id ) { %>
