@@ -5,6 +5,8 @@
 
 
 <div class="container" id="content-inner">
+    <div class="row">
+        <div class="col-md-8">
     <h1>Welcome to the team</h1>
     <p class="lead">
         You just helped fund more independent reporting. Tell your friends...
@@ -24,15 +26,16 @@
         <a target="_blank" href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-count="none" data-size="large" data-text="I just supported @TheTyee’s 2017 B.C. election guide project. Join me:" data-url="http://support.thetyee.ca/?raiser=<%= $raiser_id %>">Tweet</a>
 
         <a target="_blank" style="border:none; position:relative; top: -12px; left:5px;" href="http://www.facebook.com/sharer.php?u=<%= url_escape 'https://support.thetyee.ca/?raiser=' . $raiser_id %>"> <img = src="<%= $config->{'static_asset_path'} %>/ui/img/fb-logo.jpg" /></a>
+    </div>
 
+    <br clear="all" />
+    <br clear="all" />
 
         <p>
-            <b>Pssst... </b>If you'd like to encourage your family, friends, and colleagues to support The Tyee's reporting, please use this <a href="http://support.thetyee.ca/?raiser=<%= $raiser_id %>">personal link</a> so we can recognize you for those contributions: <a href="http://support.thetyee.ca/?raiser=<%= $raiser_id %>">http://support.thetyee.ca/?raiser=<%= $raiser_id %></a></p>
+            <b>Pssst... </b>If you'd like to encourage your family, friends, and colleagues to support The Tyee's reporting, please use this <a href="http://support.thetyee.ca/?raiser=<%= $raiser_id %>">personal link</a> so we can recognize you for those contributions: <a href="http://support.thetyee.ca/?raiser=<%= $raiser_id %>">http://support.thetyee.ca/?raiser=<%= $raiser_id %></a>
         </p>
 
-    </div>
     <br clear="all" />
-    <hr class="soften" />
     <div class="well" id="transactiondetails">
         <h4>Transaction Confirmation Details</h4>
         <dl class="dl-horizontal">
@@ -51,10 +54,107 @@
         </dl>
         <p>Please give your transaction details a quick review. If there's anything wrong, just let us know by <a href="http://www.google.com/recaptcha/mailhide/d?k=01Lpo-7rwiM1MAnRgeZ5aaqA==&c=yGPyHyFeLT7FyKm1p8ePC5O5yYHihWV1fDsc7V5i1ME=">email</a> or by calling us at 604-689-7489.
         </div>
+<%# if ( $transaction_details->{'on_behalf_of'} eq 'honour' ) { %>
+    <hr class="soften" />
+    <div id="cards">
+        <h3>You made a contribution in honour of someone, let them know by sending them an e-card</h3>
+        <p>Simply click on one of the custom greeting cards below, fill in the details and a personalized message, and we'll deliver it right to their inbox from you.</p>
+            <form role="form" id="share">
+            <div class="row">
+                <div class="col-md-6">
+
+                    <div class="radio">
+                      <label>
+                        <input type="radio" name="optionsCards" id="optionsCards1" value="<%= $config->{'static_asset_path'} %>/ui/img/holiday-card-rennie-large.jpg" checked />
+                        <img src="<%= $config->{'static_asset_path'} %>/ui/img/holiday-card-rennie.jpg" />
+                      </label>
+                    </div>
+
+                </div>
+                 <div class="col-md-6">
+
+                    <div class="radio">
+                      <label>
+                        <input type="radio" name="optionsCards" id="optionsCards2" value="<%= $config->{'static_asset_path'} %>/ui/img/holiday-card-clark-large.jpg" />
+                        <img src="<%= $config->{'static_asset_path'} %>/ui/img/holiday-card-clark.jpg" />
+                      </label>
+                    </div>
+
+            </div>
+        </div>
+            <div class="row">
+                <div class="col-md-6">
+
+                    <div class="radio">
+                      <label>
+                        <input type="radio" name="optionsCards" id="optionsCards3" value="<%= $config->{'static_asset_path'} %>/ui/img/holiday-card-clark-machines-large.jpg" />
+                        <img src="<%= $config->{'static_asset_path'} %>/ui/img/holiday-card-machines.jpg" />
+                      </label>
+                    </div>
+
+                </div>
+                 <div class="col-md-6">
+
+                    <div class="radio">
+                      <label>
+                        <input type="radio" name="optionsCards" id="optionsCards4" value="<%= $config->{'static_asset_path'} %>/ui/img/holiday-card-clark-weaver-large.jpg" />
+                        <img src="<%= $config->{'static_asset_path'} %>/ui/img/holiday-card-weaver.jpg" />
+                      </label>
+                    </div>
+
+            </div>
+        </div>
+            <div class="row">
+                <div class="col-md-6">
+
+                    <div class="radio">
+                      <label>
+                        <input type="radio" name="optionsCards" id="optionsCards5" value="<%= $config->{'static_asset_path'} %>/ui/img/holiday-card-clark-horgan-large.jpg" />
+                        <img src="<%= $config->{'static_asset_path'} %>/ui/img/holiday-card-horgan.jpg" />
+                      </label>
+                    </div>
+
+                </div>
+                 <div class="col-md-6">
+
+                    <div class="radio">
+                      <label>
+                        <input type="radio" name="optionsCards" id="optionsCards5" value="<%= $config->{'static_asset_path'} %>/ui/img/holiday-card-clark-teachers-large.jpg" />
+                        <img src="<%= $config->{'static_asset_path'} %>/ui/img/holiday-card-teachers.jpg" />
+                      </label>
+                    </div>
+
+            </div>
+        </div>
+
+
+                <div class="form-group">
+                    <label for="email_to">Send this e-card to:</label>
+                    <input type="email" class="form-control" name="email_to" id="email_to" placeholder="Enter the email address of the recipient" />
+                </div>
+                <div class="form-group">
+                    <label for="email_from">Your email address:</label>
+                    <input type="email" class="form-control" name="email_from" id="email_from" placeholder="" />
+                </div>
+                <div class="form-group">
+                    <label for="message">Your message:</label>
+                    <textarea class="form-control" name="message" id="message" rows="3" placeholder="Please write a short note for the person you are honouring." ></textarea>
+                </div>
+
+                <input type="hidden" name="subscription" id="sub-notapplicable" value="Not applicable" />
+                <button type="submit" class="btn btn-success btn-lg">Send card &raquo;</button>
+            </form>
+            <div id="errors"></div>
+            <div id="messages"></div>
+       </div>
+<%# } %>
+        <hr class="soften" />
         <div>
             <p>Done telling the world? <a href="http://thetyee.ca">Head back to TheTyee.ca</a></p>
         </div>
     </div>
+    </div>
+</div>
 
     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
     <div id="fb-root"></div>
@@ -68,3 +168,122 @@
 <script type="text/javascript">var switchTo5x=true;</script>
 <script type="text/javascript" src="https://ws.sharethis.com/button/buttons.js"></script>
 <script type="text/javascript">stLight.options({publisher: "40ef0d0c-5826-4d11-a6ac-266317187462", doNotHash: true, doNotCopy: true, hashAddressBar: false});</script>
+
+
+% content_for javascript => begin
+%= javascript begin
+
+// Validation and submission of email to a friend form
+var validator = $('form#share').validate({
+    errorPlacement: function(error, element) {
+        if (element.attr("name") == "subscription" ) {
+            error.insertAfter("#radio-error");
+        } else {
+            error.insertAfter(element);
+        }
+    },
+    rules: {
+        email_to: { 
+            required: true,
+            minlength: 5
+        },
+        email_from: {
+            required: true,
+            email: true
+        },
+        message: {
+            required: true,
+        }
+    },
+    messages: {
+        email_from: {
+            required: "We need your email address to send the article on your behalf.",
+        },
+        email_to: {
+            required: "We can't send the article unless you tell us who to send it to!"
+        },
+        message: {
+            required: "Please provide a bit of context so the person receiving understands why you sent it.",
+        }
+    },
+    highlight: function(element) {
+        $(element).closest('.form-group').removeClass('has-success').addClass('has-error');
+    },
+    success: function(element) {
+        element
+        .text('Looking good.').addClass('valid')
+        .closest('.form-group').removeClass('has-error').addClass('has-success');
+    }
+});                  
+var email_to;
+var email_from;
+var message;
+var wc_sub_pref;
+$("form#share").submit(function(event) {
+    event.preventDefault();
+    $('#messages').html('');
+    $('#errors').html('');
+    var valid = validator.form(); 
+    if ( valid === true ) {
+        $("form#share").attr('disabled');
+        getCurrentValues();
+        var title = 'Title';
+        var summary = 'Summary' 
+        var image =  $("form#share input[name=optionsCards]:checked").attr('value');
+        console.log(image);
+        var url = 'http://support.thetyee.ca';
+        var shareAPI;
+        var current_url = document.URL;
+        if (  current_url.match(/preview/) ) {
+            shareAPI = "http://preview.share.thetyee.ca/send.json?cb=?";
+        } else if ( current_url.match(/127.0.0.1/) ) {
+            shareAPI = "http://127.0.0.1:3200/send.json?cb=?";
+        } else {
+            shareAPI = "http://share.thetyee.ca/send.json?cb=?";
+        }
+        $.getJSON( shareAPI, {
+            format: "jsonp",
+            url: url,
+            title: title,
+            summary: summary,
+            img:   image,
+            message: message,
+            email_to: email_to,
+            email_from: email_from,
+            wc_sub_pref: wc_sub_pref,
+            wc_template_id: '1536'
+        }, function( data ) { 
+            var result = data.result;
+            $.each(result, function( index, value ) {
+                $('#messages').append('<p class="alert alert-info">' + value + '</p>');
+            });
+            var errors = data.errors;
+            $.each(errors, function( index, value ) {
+                $('#errors').append('<p class="alert alert-danger">' + value + '</p>');
+            });
+            if ( errors ) {
+
+            } 
+            if ( result ) {
+                $("form#share").hide();
+            };
+
+        });
+    }
+});
+function getCurrentValues () {
+    email_to = $('input[name="email_to"]').prop("value");
+    email_from = $('input[name="email_from"]').prop("value");
+    message = $('textarea[name="message"]').prop("value");
+    wc_sub_pref = $('input[name="subscription"]').prop("value");
+}
+$('#showForm').click(
+    function(event) {
+        event.preventDefault();
+        $("form#share").toggle();
+        $('#showForm').toggle();
+    }
+);
+
+%   end
+% end
