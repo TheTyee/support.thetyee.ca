@@ -75,7 +75,7 @@
 
                     <div class="radio">
                       <label>
-                        <input type="radio" name="optionsCards" id="optionsCards2" value="<%= $config->{'static_asset_path'} %>/ui/img/holiday-clark-large.jpg" />
+                        <input type="radio" name="optionsCards" id="optionsCards2" value="<%= $config->{'static_asset_path'} %>/ui/img/holiday-card-clark-large.jpg" />
                         <img src="<%= $config->{'static_asset_path'} %>/ui/img/holiday-card-clark.jpg" />
                       </label>
                     </div>
