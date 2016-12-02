@@ -87,7 +87,7 @@
 
                     <div class="radio">
                       <label>
-                        <input type="radio" name="optionsCards" id="optionsCards3" value="<%= $config->{'static_asset_path'} %>/ui/img/holiday-card-clark-machines-large.jpg" />
+                        <input type="radio" name="optionsCards" id="optionsCards3" value="<%= $config->{'static_asset_path'} %>/ui/img/holiday-card-machines-large.jpg" />
                         <img src="<%= $config->{'static_asset_path'} %>/ui/img/holiday-card-machines.jpg" />
                       </label>
                     </div>
@@ -97,7 +97,7 @@
 
                     <div class="radio">
                       <label>
-                        <input type="radio" name="optionsCards" id="optionsCards4" value="<%= $config->{'static_asset_path'} %>/ui/img/holiday-card-clark-weaver-large.jpg" />
+                        <input type="radio" name="optionsCards" id="optionsCards4" value="<%= $config->{'static_asset_path'} %>/ui/img/holiday-card-weaver-large.jpg" />
                         <img src="<%= $config->{'static_asset_path'} %>/ui/img/holiday-card-weaver.jpg" />
                       </label>
                     </div>
@@ -109,7 +109,7 @@
 
                     <div class="radio">
                       <label>
-                        <input type="radio" name="optionsCards" id="optionsCards5" value="<%= $config->{'static_asset_path'} %>/ui/img/holiday-card-clark-horgan-large.jpg" />
+                        <input type="radio" name="optionsCards" id="optionsCards5" value="<%= $config->{'static_asset_path'} %>/ui/img/holiday-card-horgan-large.jpg" />
                         <img src="<%= $config->{'static_asset_path'} %>/ui/img/holiday-card-horgan.jpg" />
                       </label>
                     </div>
@@ -119,7 +119,7 @@
 
                     <div class="radio">
                       <label>
-                        <input type="radio" name="optionsCards" id="optionsCards5" value="<%= $config->{'static_asset_path'} %>/ui/img/holiday-card-clark-teachers-large.jpg" />
+                        <input type="radio" name="optionsCards" id="optionsCards5" value="<%= $config->{'static_asset_path'} %>/ui/img/holiday-card-teachers-large.jpg" />
                         <img src="<%= $config->{'static_asset_path'} %>/ui/img/holiday-card-teachers.jpg" />
                       </label>
                     </div>
@@ -230,7 +230,6 @@ $("form#share").submit(function(event) {
         var title = 'Title';
         var summary = 'Summary' 
         var image =  $("form#share input[name=optionsCards]:checked").attr('value');
-        console.log(image);
         var url = 'http://support.thetyee.ca';
         var shareAPI;
         var current_url = document.URL;
