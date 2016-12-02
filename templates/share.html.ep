@@ -227,10 +227,10 @@ $("form#share").submit(function(event) {
     if ( valid === true ) {
         $("form#share").attr('disabled');
         getCurrentValues();
-        var title = 'Title';
-        var summary = 'Summary' 
+        var title = "Someone just made a contribution in your honour to The Tyee!";
+        var summary = "";
         var image =  $("form#share input[name=optionsCards]:checked").attr('value');
-        var url = 'http://support.thetyee.ca';
+        var url = "http://support.thetyee.ca";
         var shareAPI;
         var current_url = document.URL;
         if (  current_url.match(/preview/) ) {
