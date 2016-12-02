@@ -75,7 +75,7 @@
 
                     <div class="radio">
                       <label>
-                        <input type="radio" name="optionsCards" id="optionsCards2" value="<%= $config->{'static_asset_path'} %>/ui/img/holiday-card-clark-large.jpg" />
+                        <input type="radio" name="optionsCards" id="optionsCards2" value="<%= $config->{'static_asset_path'} %>/ui/img/holiday-clark-large.jpg" />
                         <img src="<%= $config->{'static_asset_path'} %>/ui/img/holiday-card-clark.jpg" />
                       </label>
                     </div>
@@ -144,6 +144,7 @@
                 <input type="hidden" name="subscription" id="sub-notapplicable" value="Not applicable" />
                 <button type="submit" class="btn btn-success btn-lg">Send card &raquo;</button>
             </form>
+            <br clear="all" />
             <div id="errors"></div>
             <div id="messages"></div>
        </div>
@@ -190,9 +191,6 @@ var validator = $('form#share').validate({
         email_from: {
             required: true,
             email: true
-        },
-        message: {
-            required: true,
         }
     },
     messages: {
@@ -260,11 +258,12 @@ $("form#share").submit(function(event) {
             $.each(errors, function( index, value ) {
                 $('#errors').append('<p class="alert alert-danger">' + value + '</p>');
             });
-            if ( errors ) {
-
-            } 
-            if ( result ) {
+            if ( result.length > 0 ) {
+                // Hide the form so it can't be used again
                 $("form#share").hide();
+            } 
+            if ( errors.length > 0 ) {
+                // Errors are already handled
             };
 
         });
