@@ -6,6 +6,7 @@
                 <p class="lead">Support The Tyee and invest in critical, in-depth reporting on the 2017&nbsp;B.C.&nbsp;election.</p>
             </div>
 
+            <p class="alert alert-warning"><i class="glyphicon glyphicon-fire"></i> Campaign update: $50,000 goal reached on December 5th. Help us reach our stretch goal of $75,000 by December 12!</p>
             <span id="campaign-end"></span>
             %= include 'includes/form'
             <div id="atf" class="row">
