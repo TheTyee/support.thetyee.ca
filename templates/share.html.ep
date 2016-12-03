@@ -236,7 +236,7 @@ $("form#share").submit(function(event) {
         } else if ( current_url.match(/127.0.0.1/) ) {
             shareAPI = "http://127.0.0.1:3200/send.json?cb=?";
         } else {
-            shareAPI = "http://share.thetyee.ca/send.json?cb=?";
+            shareAPI = "https://share.thetyee.ca/send.json?cb=?";
         }
         $.getJSON( shareAPI, {
             format: "jsonp",
