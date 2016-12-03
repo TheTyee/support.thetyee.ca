@@ -472,6 +472,7 @@ any [qw(GET POST)] => '/preferences' => sub {
 
         my $update = $self->find_or_new( $record );
         $update->update( $self->req->params->to_hash );
+        $record->{'on_behalf_of'} = $update->on_behalf_of;
         $self->flash( { transaction_details => $record } );
         $self->redirect_to( 'share' );
     }
