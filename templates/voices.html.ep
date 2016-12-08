@@ -30,7 +30,8 @@
                         <p>What options does this leave for young people? We’d like to find out.<p>
                                 <p>In a brand new Tyee series, education and youth reporter Katie Hyslop will strike out to investigate how B.C.’s next generation is grappling with the legacy we’re leaving for them, and what this says about the future of our province.</p>
                                 <h3>But she needs your help.</h3>
-                                <p>Original reporting like this takes resources and most of all, time. Reader contributions of $25,000 will cover a year of reporting and expenses for Katie to hit the road and bring you stories from voices we rarely get to hear from.</p> 
+                                <p>Original reporting like this takes resources and most of all, time. Reader contributions of $15,000 will cover a 
+year of reporting and expenses for Katie to hit the road and bring you stories from voices we rarely get to hear from.</p> 
                                 <p>Why are we doing this? Because we want to find out what life is like for the young people who have to live with the consequences of our government’s actions. To go beyond the press conferences and spokespeople, and hear directly from kids about how they see their future.</p>
                                 <h3>Meet your Tyee reporter, Katie Hyslop</h3>
                                 <img src="<%= $config->{'static_asset_path'} %>/ui/img/katie_hyslop_2015_cropped.jpg" style="float: left; padding: 0 20px 20px 0;" />
