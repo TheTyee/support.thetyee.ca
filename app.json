@@ -1,5 +1,5 @@
 {
-    "app_version"               : "1.7.4",
+    "app_version"               : "1.7.5",
     "recurly_get_plans_filter" : "election2017",
     "plans_onetime"          : [ 
         { 
