@@ -67,6 +67,15 @@ helper find_or_new => sub {
     return $result;
 };
 
+helper search_records => sub {
+    my $self      = shift;
+    my $resultset = shift;
+    my $search    = shift;
+    my $schema    = $self->schema;
+    my $rs        = $schema->resultset( $resultset )->search( $search );
+    return $rs;
+};
+
 helper recurly_get_plans => sub {
     my $self   = shift;
     my $filter = shift;
