@@ -1,6 +1,6 @@
 {
     "app_version"               : "1.7.5",
-    "recurly_get_plans_filter" : "election2017",
+    "recurly_get_plans_filter" : "builder",
     "plans_onetime"          : [ 
         { 
             "amount": "10",
@@ -12,19 +12,22 @@
             },
             { 
                 "amount": "50",
-                "text" : "You get: Everything in the previous level, plus a pack of three Tyee greeting cards featuring the leaders of B.C.’s major political parties"
+                "text" : "You get: Everything in the previous level, and a virtual high-five with Tyee editors."
+
             },
             {
                 "amount": "75",
-                "text" : "You get: Everything in the previous level, plus a pack of six Tyee greeting cards"
+                "text" : "You get: Everything in the previous level, and an imaginary group hug with The Tyee's newsroom."
+
             },
             {
                 "amount": "100",
-                "text" : "You get: Everything in the previous level, plus two packs of Tyee greeting cards, and free entry to a Tyee ‘Beyond the Headlines’ event for you and a guest"
+                "text" : "You get: Everything in the previous level, plus even more support for our reporters."
+
             },
             {
                 "amount": "1000",
-                "text" : "You get: Everything in the previous level, plus an invitation to an annual dinner with Tyee reporters and editors, and a beautiful book of photographs by Wade Davis."
+                "text" : "You get: Everything in the previous level, plus an invitation to an annual dinner with Tyee reporters and editors."
             }
     ]
 }

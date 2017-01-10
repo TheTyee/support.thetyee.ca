@@ -197,9 +197,9 @@ group {
 
     any [qw(GET POST)] => '/' => sub {
         my $self = shift;
-        $self->stash( body_id => 'powermap', );
-        $self->flash( appeal_code => 'powermap' );
-    } => 'powermap';
+        $self->stash( body_id => 'evergreen', );
+        $self->flash( appeal_code => 'regular' );
+    } => 'evergreen';
 
     any [qw(GET POST)] => '/powermap' => sub {
         my $self = shift;

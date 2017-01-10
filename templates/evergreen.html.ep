@@ -90,6 +90,9 @@ critical time to hold government accountable to its promises”</p>
                     <div class="col-md-2">
                         <img src="<%= $config->{'static_asset_path'} %>/ui/img/MoveUp_Primary-withname_Pantone_large.png">
                     </div>
+                    <div class="col-md-2">
+                        <img src="<%= $config->{'static_asset_path'} %>/ui/img/UNIFOR-logo.jpg">
+                    </div>
                 </div><!-- /.row -->
             </div><!-- /.container -->
         </div><!-- people -->
@@ -98,90 +101,5 @@ critical time to hold government accountable to its promises”</p>
     
 % content_for javascript => begin
 %= javascript begin
-            $('[rel="popover"]').popover();
-
-            var onetime = '<%= $onetime %>';
-            var amount = '<%= $amount %>';
-
-            Recurly.config({
-                subdomain: '<%= $config->{'subdomain'} %>',
-                currency: 'CAD'
-            });
-
-            if ( onetime ) {
-                $('#onetime a:last').tab('show');
-            };
-            if ( amount ) {
-                showTransactionForm();
-                $('form#form-onetime').hide();
-            };
-
-            function showSubscriptionForm ( planCode ) { 
-                Recurly.buildSubscriptionForm({
-                    target: '#recurly-subscribe',
-                    // Signature must be generated server-side with a utility method provided
-                    // in client libraries.
-                    signature: '<%== $recurly_sig %>',
-                    successURL: '/successful_transaction',
-                    planCode: planCode,
-                    distinguishContactFromBillingInfo: false,
-                    collectCompany: false,
-                    collectContact: true,
-                    // termsOfServiceURL: 'http://example.com/tos',
-                    acceptPaypal: false,
-                    enableCoupons: false,
-                    acceptedCards: ['mastercard',
-                    'visa'],
-                    billingInfo: {
-                        state: 'BC',
-                        country: 'CA'
-                    }
-                });
-                $('#recurly-subscribe').fadeIn(1000);
-                $('#transaction-secure').fadeIn(1000);
-            };
-
-            function showTransactionForm () { 
-                Recurly.buildTransactionForm({
-                    target: '#transactionForm',
-                    signature: '<%== $recurly_sig %>',
-                    successURL: '/successful_transaction',
-                    collectCompany: false,
-                    collectContactInfo: true,
-                    // distinguishContactFromBillingInfo: false,
-                    // termsOfServiceURL: 'http://example.com/tos',
-                    acceptPaypal: false,
-                    acceptedCards: ['mastercard',
-                    'visa'],
-                    billingInfo: {
-                        state: 'BC',
-                        country: 'CA'
-                    }
-                });
-                $('#transactionForm').fadeIn(1000);
-                $('#transaction-secure').fadeIn(1000);
-            };
-
-            $( "label.btn" ).on( "click touchstart", function( event ) {
-                var amount = $(this).text();
-                var selectedInput = $('input', this)[0];
-                showSubscriptionForm( selectedInput.value );
-            });
-
-
-            $( "a#amount-change" ).on( "click", function( event ) {
-                event.preventDefault();
-                $('form#form-onetime').show();
-                $('#transactionForm').hide();
-                $('#payment-onetime-confirmation').hide();
-            });
-            $('a#link-tab-monthly').on('click', function( event ) {
-                event.preventDefault();
-                $('#monthly a:last').tab('show');
-            });
-            $('a#link-tab-onetime').on('click', function( event ) {
-                event.preventDefault();
-                $('#onetime a:last').tab('show');
-            });
 %   end
 % end

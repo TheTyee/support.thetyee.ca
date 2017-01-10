@@ -7,15 +7,12 @@
             </div>
 
             
-            <span id="campaign-end"></span>
+            <span style="display:none;" id="campaign-end"></span>
             %= include 'includes/form'
             <div id="atf" class="row">
                 <div class="col-md-8 video-container">
                     <!--<iframe src="https://player.vimeo.com/video/77548585?title=0&amp;byline=0&amp;portrait=0&amp;color=309c54" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>-->
                     <iframe width="500" height="261" src="https://www.youtube-nocookie.com/embed/IlzTtYCr3-0?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
-                </div>
-                <div class="col-md-4">
-                    %= include 'includes/widget'
                 </div>
             </div> <!-- / #atf -->
             <div class="row awards">
@@ -78,94 +75,5 @@
 
 % content_for javascript => begin
 %= javascript begin
-            function isTouchDevice(){
-                return true == ("ontouchstart" in window || window.DocumentTouch && document instanceof DocumentTouch);
-            }
-            if(isTouchDevice()===false) {
-                $('[rel="popover"]').popover();
-            }
-            var onetime = '<%= $onetime %>';
-            var amount = '<%= $amount %>';
-
-            Recurly.config({
-                subdomain: '<%= $config->{'subdomain'} %>',
-                currency: 'CAD'
-            });
-
-            if ( onetime ) {
-                $('#onetime a:last').tab('show');
-            };
-            if ( amount ) {
-                showTransactionForm();
-                $('form#form-onetime').hide();
-            };
-
-            function showSubscriptionForm ( planCode ) { 
-                Recurly.buildSubscriptionForm({
-                    target: '#recurly-subscribe',
-                    collectPhone: true,
-                    // Signature must be generated server-side with a utility method provided
-                    // in client libraries.
-                    signature: '<%== $recurly_sig %>',
-                    successURL: '/successful_transaction',
-                    planCode: planCode,
-                    distinguishContactFromBillingInfo: false,
-                    collectCompany: false,
-                    collectContact: true,
-                    // termsOfServiceURL: 'http://example.com/tos',
-                    acceptPaypal: false,
-                    enableCoupons: false,
-                    acceptedCards: ['mastercard',
-                    'visa'],
-                    billingInfo: {
-                        state: 'BC',
-                        country: 'CA'
-                    }
-                });
-                $('#recurly-subscribe').fadeIn(1000);
-                $('#transaction-secure').fadeIn(1000);
-            };
-
-            function showTransactionForm () { 
-                Recurly.buildTransactionForm({
-                    target: '#transactionForm',
-                    signature: '<%== $recurly_sig %>',
-                    successURL: '/successful_transaction',
-                    collectCompany: false,
-                    collectContactInfo: true,
-                    // distinguishContactFromBillingInfo: false,
-                    // termsOfServiceURL: 'http://example.com/tos',
-                    acceptPaypal: false,
-                    acceptedCards: ['mastercard',
-                    'visa'],
-                    billingInfo: {
-                        state: 'BC',
-                        country: 'CA'
-                    }
-                });
-                $('#transactionForm').fadeIn(1000);
-                $('#transaction-secure').fadeIn(1000);
-            };
-
-            $( "#form-monthly label.btn" ).on( "click", function( event ) {
-                $(this).popover('show');
-                var amount = $(this).text();
-                var selectedInput = $('input', this)[0];
-                showSubscriptionForm( selectedInput.value );
-            });
-            $( "a#amount-change" ).on( "click", function( event ) {
-                event.preventDefault();
-                $('form#form-onetime').show();
-                $('#transactionForm').hide();
-                $('#payment-onetime-confirmation').hide();
-            });
-            $('a#link-tab-monthly').on('click', function( event ) {
-                event.preventDefault();
-                $('#monthly a:last').tab('show');
-            });
-            $('a#link-tab-onetime').on('click', function( event ) {
-                event.preventDefault();
-                $('#onetime a:last').tab('show');
-            });
 %   end
 % end
