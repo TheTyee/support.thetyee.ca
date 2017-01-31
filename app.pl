@@ -263,7 +263,20 @@ any [qw(GET POST)] => '/process_bank' => sub {
     my $states     = $params->{'state'};
 
     # There are two possible state values, but only one should be used
-    my $state = @$states[0] ? @$states[0] : @$states[1];
+#    my $state = @$states[0] ? @$states[0] : @$states[1];
+
+my $state;
+
+if ( ref($states) && @$states) {
+
+ if (@$states[0] ) {$state = @$states[0]
+} elsif (@$states[1]) {$state = @$states[1]
+} elsif ($params->{'state'}) { $state = $params->{'state'} }
+
+} else {
+$state = $params->{'state'} ;
+}
+
     my $transaction_details = {
         email              => $params->{'email'},
         phone              => $params->{'phone'},
