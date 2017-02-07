@@ -23,9 +23,8 @@
 
     <br />
     <div style="float: left; with: 50%; margin-right: 20px;">
-        <a target="_blank" href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-count="none" data-size="large" data-text="I just supported @TheTyee’s 2017 B.C. election guide project. Join me:" data-url="http://support.thetyee.ca/?raiser=<%= $raiser_id %>">Tweet</a>
-
-        <a target="_blank" style="border:none; position:relative; top: -12px; left:5px;" href="http://www.facebook.com/sharer.php?u=<%= url_escape 'https://support.thetyee.ca/?raiser=' . $raiser_id %>"> <img = src="<%= $config->{'static_asset_path'} %>/ui/img/fb-logo.jpg" /></a>
+        <a target="_blank" href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-count="none" data-size="large" data-text="Canada needs more independent journalism. Join me in supporting @TheTyee by becoming a Tyee Builder:" data-url="https://support.thetyee.ca/?utm_source=twitter&utm_medium=social&utm_campaign=buildershare&raiser=<%= $raiser_id %>">Tweet</a>
+        <a target="_blank" style="border:none; position:relative; top: -12px; left:5px;" href="http://www.facebook.com/sharer.php?u=<%= url_escape 'https://support.thetyee.ca/?utm_source=facebook&utm_medium=social&utm_campaign=buildershare&raiser=' . $raiser_id %>"> <img = src="<%= $config->{'static_asset_path'} %>/ui/img/fb-logo.jpg" /></a>
     </div>
 
     <br clear="all" />

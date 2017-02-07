@@ -18,7 +18,7 @@
  
 <!-- OpenGraph properties -->
             <meta property="og:title" content="I just supported a new independent journalism project at The Tyee." />
-            <meta property="og:description" content="Join me and pitch in so experienced journalists can dig in and do deep research before the 2017 B.C. election." />
+            <meta property="og:description" content="Our democracy needs good journalism. Join me in supporting fact-based, independent journalism." />
             <meta property="og:type" content="website" />
             <meta property="og:url" content="https://support.thetyee.ca" />
             <meta property="og:image" content="<%= $config->{'static_asset_path'} %>/ui/img/Tyee-Builders-facebook-1200x1200.jpg" />
