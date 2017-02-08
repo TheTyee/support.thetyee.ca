@@ -142,11 +142,11 @@ $('ul.nav-tabs').on('click', function( event ) {
 
 // Kludge to udpate a payment confirmation panel
 var paymentString = '';
-function updateConfirmPayment() {
+function updateConfirmPayment(type) {
     var amount = $('input.amount-in-cents').val();
     amount = amount / 100; // To dollars
     amount = '$' + amount  // $ sign
-    var plan   = $('input.plan-name').val();
+    var plan   = $('#form-full-' + type + ' input.plan-name').val();
     if ( plan ) {
         paymentString = amount + ' / month';
         } else {
@@ -160,7 +160,8 @@ function showMonthlyPaymentOptions () {
     $('.options-payment').show();
     $('#errors span.message').text('');
     $('#errors').hide();
-    updateConfirmPayment();
+//    updateConfirmPayment();
+// disable for now because can't be known until payment type chosen -- called later
 }
 
 // Capture the amount, set input values, show the payment types
@@ -169,9 +170,19 @@ $( "#form-monthly label.btn" ).on( "click touchstart", function( event ) {
     var amountInCents = selectedinput.dataset.amount;
     var planName = selectedinput.dataset.plan;
     var planCode = selectedinput.dataset.code;
-    $('input.amount-in-cents').val(amountInCents);
-    $('input.plan-name').val(planName);
-    $('input.plan-code').val(planCode);
+    $('input.amount-in-cents').each(function(){
+        $(this).val(amountInCents);
+    })
+    
+    
+    $('input.plan-name').each(function(){
+       $(this).val(planName); 
+
+    });
+    $('input.plan-code').each(function(){
+    $(this).val(planCode);
+    });
+    
     showMonthlyPaymentOptions();
 });
 
@@ -205,7 +216,7 @@ function showPaymentForm(type) {
         } else {
             $('.fields-bank input').prop('required',false);
     }
-    updateConfirmPayment();
+    updateConfirmPayment(type);
 };
 
 // Switch from drop down to input on other countries
@@ -228,6 +239,7 @@ $('#country').on('change', function(event) {
 // Capture the payment type
 $('.options-payment a').on( "click touchstart", function( event ) {
     event.preventDefault();
+     updateConfirmPayment();
     $('#errors span.message').text('');
     $('#errors').hide();
     var el = event.currentTarget;
