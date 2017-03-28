@@ -198,8 +198,8 @@ group {
     any [qw(GET POST)] => '/' => sub {
         my $self = shift;
         $self->stash( body_id => 'evergreen', );
-        $self->flash( appeal_code => 'regular' );
-    } => 'evergreen';
+        $self->flash( appeal_code => 'election2017-2' );
+    } => 'election2017-2';
 
     any [qw(GET POST)] => '/powermap' => sub {
         my $self = shift;

@@ -23,7 +23,7 @@
 
     <br />
     <div style="float: left; with: 50%; margin-right: 20px;">
-        <a target="_blank" href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-count="none" data-size="large" data-text="Canada needs more independent journalism. Join me in supporting @TheTyee by becoming a Tyee Builder:" data-url="https://support.thetyee.ca/?utm_source=twitter&utm_medium=social&utm_campaign=buildershare&raiser=<%= $raiser_id %>">Tweet</a>
+        <a target="_blank" href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-count="none" data-size="large" data-text="I just supported @TheTyee's independent election reporting. Join me:" data-url="https://support.thetyee.ca/?utm_source=twitter&utm_medium=social&utm_campaign=buildershare&raiser=<%= $raiser_id %>">Tweet</a>
         <a target="_blank" style="border:none; position:relative; top: -12px; left:5px;" href="http://www.facebook.com/sharer.php?u=<%= url_escape 'https://support.thetyee.ca/?utm_source=facebook&utm_medium=social&utm_campaign=buildershare&raiser=' . $raiser_id %>"> <img = src="<%= $config->{'static_asset_path'} %>/ui/img/fb-logo.jpg" /></a>
     </div>
 
@@ -54,99 +54,6 @@
         <p>Please give your transaction details a quick review. If there's anything wrong, just let us know by <a href="http://www.google.com/recaptcha/mailhide/d?k=01Lpo-7rwiM1MAnRgeZ5aaqA==&c=yGPyHyFeLT7FyKm1p8ePC5O5yYHihWV1fDsc7V5i1ME=">email</a> or by calling us at 604-689-7489.
         </div>
 <% if ( $transaction_details->{'on_behalf_of'} eq 'honour' ) { %>
-    <hr class="soften" />
-    <div id="cards">
-        <h3>You made a contribution in honour of someone, let them know by sending them an e-card</h3>
-        <p>Simply click on one of the custom greeting cards below, fill in the details and a personalized message, and we'll deliver it right to their inbox from you.</p>
-            <form role="form" id="share">
-            <div class="row">
-                <div class="col-md-6">
-
-                    <div class="radio">
-                      <label>
-                        <input type="radio" name="optionsCards" id="optionsCards1" value="<%= $config->{'static_asset_path'} %>/ui/img/holiday-card-rennie-large.jpg" checked />
-                        <img src="<%= $config->{'static_asset_path'} %>/ui/img/holiday-card-rennie.jpg" />
-                      </label>
-                    </div>
-
-                </div>
-                 <div class="col-md-6">
-
-                    <div class="radio">
-                      <label>
-                        <input type="radio" name="optionsCards" id="optionsCards2" value="<%= $config->{'static_asset_path'} %>/ui/img/holiday-card-clark-large.jpg" />
-                        <img src="<%= $config->{'static_asset_path'} %>/ui/img/holiday-card-clark.jpg" />
-                      </label>
-                    </div>
-
-            </div>
-        </div>
-            <div class="row">
-                <div class="col-md-6">
-
-                    <div class="radio">
-                      <label>
-                        <input type="radio" name="optionsCards" id="optionsCards3" value="<%= $config->{'static_asset_path'} %>/ui/img/holiday-card-machines-large.jpg" />
-                        <img src="<%= $config->{'static_asset_path'} %>/ui/img/holiday-card-machines.jpg" />
-                      </label>
-                    </div>
-
-                </div>
-                 <div class="col-md-6">
-
-                    <div class="radio">
-                      <label>
-                        <input type="radio" name="optionsCards" id="optionsCards4" value="<%= $config->{'static_asset_path'} %>/ui/img/holiday-card-weaver-large.jpg" />
-                        <img src="<%= $config->{'static_asset_path'} %>/ui/img/holiday-card-weaver.jpg" />
-                      </label>
-                    </div>
-
-            </div>
-        </div>
-            <div class="row">
-                <div class="col-md-6">
-
-                    <div class="radio">
-                      <label>
-                        <input type="radio" name="optionsCards" id="optionsCards5" value="<%= $config->{'static_asset_path'} %>/ui/img/holiday-card-horgan-large.jpg" />
-                        <img src="<%= $config->{'static_asset_path'} %>/ui/img/holiday-card-horgan.jpg" />
-                      </label>
-                    </div>
-
-                </div>
-                 <div class="col-md-6">
-
-                    <div class="radio">
-                      <label>
-                        <input type="radio" name="optionsCards" id="optionsCards5" value="<%= $config->{'static_asset_path'} %>/ui/img/holiday-card-teachers-large.jpg" />
-                        <img src="<%= $config->{'static_asset_path'} %>/ui/img/holiday-card-teachers.jpg" />
-                      </label>
-                    </div>
-
-            </div>
-        </div>
-
-
-                <div class="form-group">
-                    <label for="email_to">Send this e-card to:</label>
-                    <input type="email" class="form-control" name="email_to" id="email_to" placeholder="Enter the email address of the recipient" />
-                </div>
-                <div class="form-group">
-                    <label for="email_from">Your email address:</label>
-                    <input type="email" class="form-control" name="email_from" id="email_from" placeholder="" />
-                </div>
-                <div class="form-group">
-                    <label for="message">Your message:</label>
-                    <textarea class="form-control" name="message" id="message" rows="3" placeholder="Please write a short note for the person you are honouring." ></textarea>
-                </div>
-
-                <input type="hidden" name="subscription" id="sub-notapplicable" value="Not applicable" />
-                <button type="submit" class="btn btn-success btn-lg">Send card &raquo;</button>
-            </form>
-            <br clear="all" />
-            <div id="errors"></div>
-            <div id="messages"></div>
-       </div>
 <% } %>
         <hr class="soften" />
         <div>
