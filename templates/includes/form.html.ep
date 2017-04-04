@@ -3,14 +3,14 @@
 <% } %>
     <div id="form">
         <ul class="nav nav-tabs">
-            <li id="onetime"><a href="#form-onetime" data-toggle="tab">One-time</a></li>
-            <li id="monthly" class="active"><a href="#form-monthly" data-toggle="tab">Monthly</a></li>
+            <li id="onetime" class="active"><a href="#form-onetime" data-toggle="tab">One-time</a></li>
+            <li id="monthly" ><a href="#form-monthly" data-toggle="tab">Monthly</a></li>
             <li id="offline" ><a href="#form-offline" data-toggle="tab">Offline</a></li>
         </ul>
 
         <div class="tab-content">
             <!-- Monthly -->
-            <div class="tab-pane active" id="form-monthly">
+            <div class="tab-pane" id="form-monthly">
                 <p>Choose your <b>monthly</b> level:</p>
                 <div class="btn-group" data-toggle="buttons">
                     % for my $p ( @$plans ) {
@@ -33,7 +33,7 @@
                 </div>
             </div>
             <!--/Monthly-->
-            <div class="tab-pane" id="form-onetime">
+            <div class="tab-pane  active" id="form-onetime">
                 <div class="form-group">
                     <p>Select your <b>one-time</b> amount:</p>
                     <div class="btn-group" data-toggle="buttons">
@@ -191,8 +191,8 @@ $( "#form-onetime label.btn" ).on( "click touchstart", function( event ) {
     var selectedinput = $('input', this)[0];
     var amountInCents = $(selectedinput).val() * 100;
     $('input.amount-in-cents').val(amountInCents);
-    $('input.plan-name').val('');.
-    $('input.plan-code').val('');.
+    $('input.plan-name').val('');
+    $('input.plan-code').val('');
     showMonthlyPaymentOptions();
 });
 
