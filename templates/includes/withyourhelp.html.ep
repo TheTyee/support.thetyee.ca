@@ -14,11 +14,11 @@
                     
                     <div class="row withthehelp_item">
                         <div class="col-md-4">
-                            <img style="width: 30% !important; position: relative; left: 35% !important; bottom: 15px !important;" src="<%= $config->{'static_asset_path'} %>/ui/img/checkmark.svg">
+                            <img src="<%= $config->{'static_asset_path'} %>/ui/img/eagleeyes.jpg">
                         </div><!-- /.col-md-6 -->
                         <div class="col-md-8">
                             <h3>Establish an election fact-checking desk</h3>
-                              <p>We'll dedicate an eagle-eye fact-checker to scrutinize spin and call out 'alternative facts'</p>
+                              <p>We'll dedicate an eagle-eye fact-checker to scrutinize spin and call out 'alternative facts'.</p>
                         </div><!-- /.col-md-6 -->
                     </div><!-- /.row -->
                     

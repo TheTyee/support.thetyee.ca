@@ -6,7 +6,7 @@
                 <p class="lead">Support The Tyee and bring more diverse, fact-driven reporting to the 2017 BC Election</p>
             </div>
 
-            <span id="campaign-end" style="display:none;"></span>
+            <span id="campaign-end"></span>
             %= include 'includes/form'
            <div id="atf" class="row">
                 <!-- <div class="col-md-7 video-container">
@@ -51,15 +51,15 @@
                 <div class="row">
                     <div class="col-md-4">
                         <h2>Our vision</h2>
-                        <p>B.C. has a provincial election looming, while at the same time our media is in collapse. </p><p>At the same time, our national media is in collapse. Newsrooms continue to shrink and consolidate under the control of fewer and fewer corporations, and there are fewer journalists asking tough questions of those in power.</p><p>We believe that our democratic conversation is made possible by strong, independent media, who exist first and foremost to serve the needs of its readers.</p>
+                        <p>B.C. has a provincial election looming, while at the same time our media is in collapse. At the same time, our national media is in collapse. Newsrooms continue to shrink and consolidate under the control of fewer and fewer corporations, and there are fewer journalists asking tough questions of those in power. We believe that our democratic conversation is made possible by strong, independent media, who exist first and foremost to serve the needs of its readers.</p>
                     </div><!-- /.col-md-4 -->
                     <div class="col-md-4">
                         <h2>How you can help</h2>
-					<p>By supporting The Tyee with your dollars, you are helping to strengthen and grow our team of tough-minded journalists and editors. </p><p>Tyee Builders pay for a large part of our editorial budget, allowing us to pay professional journalists, while keeping our site paywall-free. </p><p>Learn more about how The Tyee is funded <a href="https://thetyee.ca/About/Funding/">here</a>.</p>
+					<p>By supporting The Tyee with your dollars, you are helping to strengthen and grow our team of tough-minded journalists and editors. Tyee Builders pay for a large part of our editorial budget, allowing us to pay professional journalists, while keeping our site paywall-free. Learn more about how The Tyee is funded <a href="https://thetyee.ca/About/Funding/">here</a>.</p>
                     </div><!-- /.col-md-4 -->
                     <div class="col-md-4">
                         <h2>About The Tyee</h2>
-                        <p>We're an independent, online news magazine from BC. </p><p>We're devoted to fact-driven reporting and analysis that informs and enlivens our democratic conversation. </p><p>Our reporting has garnered numerous awards and the respect of our peers and readers. </p><p>While some journalism gives the last word to power, we try to give the last word to ordinary folks.</p>
+                        <p>We're an independent, online news magazine from BC. We're devoted to fact-driven reporting and analysis that informs and enlivens our democratic conversation. Our reporting has garnered numerous awards and the respect of our peers and readers. While some journalism gives the last word to power, we try to give the last word to ordinary folks.</p>
                     </div><!-- /.col-md-4 -->
                 </div><!-- /.row -->
             </div><!-- / .container -->

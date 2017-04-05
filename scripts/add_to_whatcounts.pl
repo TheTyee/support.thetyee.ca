@@ -263,15 +263,29 @@ sub _send_message {
         format    => 99,
         force_sub => 1,
     );
+    
+    
     my $message_args = {
         %wc_args,
         to          => $record->email,
         from        => '"The Tyee" <builders@thetyee.ca>',
         charset     => 'ISO-8859-1',
         template_id => '1190',
+#        template_id => '1684',
         data        => "amount,plan_code,hosted_login_token^$amount,$plan_code,$hosted_login_token"
     };
 
+    
+    if (  (!$plan_code && $amount >= 75)  || ($plan_code && $amount >=15 )  ){
+        $message_args->{'template_id'} = '1684';
+        say "amount is larger than 75 one-time or 15 monthly for " . $record->email;
+    } else {
+        say "amount is smaller than 75 one timeor 15 monthly, normal message " . $record->email;
+    }
+ 
+ 
+ 
+    
     # Get the subscriber record, if there is one already
     my $s = $ua->post( $API => form => $message_args );
     if ( my $res = $s->success ) {
