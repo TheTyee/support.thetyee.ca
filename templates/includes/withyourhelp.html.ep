@@ -27,6 +27,7 @@
                             <img style="width: 25% !important;" src="<%= $config->{'static_asset_path'} %>/ui/img/bcndp.png" class="graph">
                             <img style="width: 25% !important;" src="<%= $config->{'static_asset_path'} %>/ui/img/bcliberals.png" class="graph">
                             <img style="width: 25% !important;" src="<%= $config->{'static_asset_path'} %>/ui/img/bcconservatives.png" class="graph">
+                            <img style="width: 25% !important;" src="<%= $config->{'static_asset_path'} %>/ui/img/greens.png" class="graph">
                             
                         </div><!-- /.col-md-6 -->
                         <div class="col-md-8">
