@@ -2,10 +2,15 @@
 
        <div class="container" id="content">
             <div id="campaign-copy" class="row">
+			
+
+
                 <h1>Canada needs more independent journalism. Join us <span>&nbsp;</span></h1>
                 <p class="lead">Support The Tyee and bring more diverse, fact-driven reporting to the 2017 BC Election</p>
             </div>
-
+<p class="alert alert-warning"><i class="glyphicon glyphicon-fire"></i>UPDATE: We reached our target of $20,000 on April 17! Thanks to all who made it happen.
+<br><br>
+We often hear from Tyee Builders that they are happy to support our reporting, but what they really want is more people to read The Tyee. As much as we hate giving money to Facebook, the digital overlord that is undermining the business model for journalism, it’s a pretty sophisticated tool to get the message out. So, with any extra money we raise by our campaign deadline, we’ll spend some money on promoting the stories to a wider audience, increasing the impact of our stories. </p>
             <span id="campaign-end"></span>
             %= include 'includes/form'
            <div id="atf" class="row">
