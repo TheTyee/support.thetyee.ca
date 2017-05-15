@@ -227,13 +227,18 @@ $('#country').on('change', function(event) {
     if ( country !== 'CA' ) {
             $('#state').hide();
             $('#state').attr('name', '');
+            $('#state').attr('data-recurly', '');
             $('#state-alt').show();
             $('#state-alt').attr('name', 'state');
+            $('#state-alt').attr('data-recurly', 'state');
+
         } else if ( country === 'CA' ) {
             $('#state-alt').hide();
             $('#state-alt').attr('name', '');
+            $('#state-alt').attr('data-recurly, '');
             $('#state').show();
             $('#state').attr('name', 'state');
+            $('#state').attr('data-recurly', 'state');
     };
 });
 
@@ -317,6 +322,8 @@ $('#form-credit form').on('submit', function (event) {
     $('button').prop('disabled', true);
 
     var form = this;
+    
+    $(this).input
     // Now we call recurly.token with the form. It goes to Recurly servers
     // to tokenize the credit card information, then injects the token into the
     // data-recurly="token" field above
