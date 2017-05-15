@@ -226,16 +226,18 @@ $('#country').on('change', function(event) {
     var country = el.value;
     if ( country !== 'CA' ) {
             $('#state').hide();
-            $('#state').prop('name', '');
+            $('#state').attr('name', '');
             $('#state-alt').show();
-            $('#state-alt').prop('name', 'state');
+            $('#state-alt').attr('name', 'state');
         } else if ( country === 'CA' ) {
             $('#state-alt').hide();
-            $('#state-alt').prop('name', '');
+            $('#state-alt').attr('name', '');
             $('#state').show();
-            $('#state').prop('name', 'state');
+            $('#state').attr('name', 'state');
     };
 });
+
+
 
 // Capture the payment type
 $('.options-payment a').on( "click touchstart", function( event ) {
