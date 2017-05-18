@@ -47,7 +47,7 @@
                 <div class="row">
                     <div class="col-md-4">
                         <h2>Our vision</h2>
-                        <p>Canada is facing major challenges ahead, with a new government that needs to be kept in check. At the same time, our national media is in collapse. Newsrooms continue to shrink and consolidate under the control of fewer and fewer corporations, and there are fewer journalists asking tough questions of those in power. We believe that our democratic conversation is made possible by strong, independent media, who exist first and foremost to serve the needs of its readers.</p>
+                        <p>Canada is facing major challenges ahead. At the same time, our national media is in collapse. Newsrooms continue to shrink and consolidate under the control of fewer and fewer corporations, and there are fewer journalists asking tough questions of those in power. We believe that our democratic conversation is made possible by strong, independent media, who exist first and foremost to serve the needs of its readers.</p>
                     </div><!-- /.col-md-4 -->
                     <div class="col-md-4">
                         <h2>How you can help</h2>
@@ -62,7 +62,7 @@ random swag giveaways, and discounts on special events and Tyee Master Classes.<
                 </div><!-- /.row -->
             </div><!-- / .container -->
         </div><!-- / #featurettes1 -->
-  %= include 'includes/withyourhelp'
+  %# %=  include 'includes/withyourhelp'
 
 
         <div id="people" class="testimonial">
@@ -82,7 +82,7 @@ critical time to hold government accountable to its promises”</p>
 
         <div id="organizations" class="">
             <div class="container">
-                    <h2>The Tyee is grateful for the support of:</h2>
+                    <h2>The Tyee is grateful to the following Institutional Builders:</h2>
                 <div class="row">
                     <div class="col-md-2">
                         <img src="<%= $config->{'static_asset_path'} %>/ui/img/BCGEU_Logo_NoUnionName-Horizontal_2Spot.png">
@@ -94,6 +94,13 @@ critical time to hold government accountable to its promises”</p>
                         <img src="<%= $config->{'static_asset_path'} %>/ui/img/UNIFOR-logo.jpg">
                     </div>
                 </div><!-- /.row -->
+			 <div class="row">
+				<p>Institutional Builders support The Tyee with annual voluntary subscriptions that range from $500/yr to $2500/yr, depending on the size and resources of the organization.  If you have paid subscriptions to other Canadian or international media, think of this as similar.  With the key difference being that your organization’s financial support helps keep The Tyee free for all. <br><br>
+ </p><p>
+To discuss becoming an Institutional Builder, please contact <a href="mailto:jageson@thetyee.ca">Jeanette Ageson</a>.
+</p>
+				
+			 </div>
             </div><!-- /.container -->
         </div><!-- people -->
 
