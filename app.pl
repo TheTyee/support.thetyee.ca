@@ -14,6 +14,12 @@ use Support::Schema;
 use XML::Mini::Document;
 use Crypt::CBC;
 use MIME::Base64::URLSafe;
+use Email::Valid;
+  use Data::Dumper::HTML qw(dumper_html);
+
+plugin('DefaultHelpers');
+ plugin 'mail';
+
 
 my $config = plugin 'JSONConfig';
 
@@ -231,6 +237,15 @@ group {
             appeal_code => 'evergreen'
         );
     } => 'evergreen';
+    any [qw(GET POST)] => '/election2017-2' => sub {
+        my $self = shift;
+        $self->stash(
+            body_id     => 'election2017-2',
+            appeal_code => 'election2017-2'
+        );
+        $self->flash( appeal_code => 'election2017-2' );
+    } => 'election2017-2';
+    
     any [qw(GET POST)] => '/election2015' => sub {
         my $self = shift;
         $self->stash(
@@ -310,6 +325,72 @@ $state = $params->{'state'} ;
     $self->flash( { transaction_details => $transaction_details, } );
     $self->redirect_to( 'preferences' );
 };
+
+
+post '/get_update_link' => sub {
+        my $self = shift;
+    my $email;
+    my $res;
+    my $text;
+    
+
+
+                $email = {    
+            'account' => {
+                'account_code' => $self->param( 'email' )
+                }
+            };
+                    
+
+   
+
+        # Post the XML to the /transacdtions endpoint
+        $res = $ua->get( $API. 'accounts/' .$self->param( 'email' ) =>  { 'Content-Type' => 'application/xml', Accept => '*/*' });
+        
+             
+ 
+      
+      
+     #   app->log->debug( "email is " . $self->param( 'email' ) . Dumper $res);
+     my $xml = $res->res->content->asset->{content};
+# $text .= dumper_html($res);
+      
+      
+   my $dom = Mojo::DOM->new( $xml );
+   if ( $dom->at( 'error' ) ) {    # We got an error message back
+        my $error = $dom->at( 'error' )->text;
+        $self->flash( { error => $error } );
+        $text .=  "Your email address was not found in our system. Please send an email to builders AT thetyee DOT ca or give us a call to update your account." ;
+    }
+   else {    # Otherwise, store the transaction and send to /preferences
+        
+    if ($dom->at( 'hosted_login_token' )->text && $dom->at( 'hosted_login_token' )->text ne '') {
+    #$text .= "hosted_login_token" .  'https://thetyee.recurly.com/account/' . $dom->at( 'hosted_login_token' )->text;
+     $text .= "You have been sent an email with a link to update your account with us.";
+   
+    
+  
+   $self->mail(
+    from => 'builders@thetyee.ca',
+    type => 'text/html',
+    to      => $self->param( 'email' ),
+    subject => 'The Tyee - Modify Your Builder Account',
+    data    => 'You appear to have requested your sign-in for your builder account with The Tyee at https://support.thetyee.ca.  You can sign in to your account by visiting the following link: https://' . $subdomain .'.recurly.com/account/' .  $dom->at( 'hosted_login_token' )->text . "\n \n <br><br>"  . 'Note that for security reasons, if you are updating a card you have to re-input the entire card, expiry and security code (even if only the expiry has changed). If this was sent by mistake you can delete or ignore it - we only send this information to the email registered on the account.',
+  );
+   
+    } else {
+        
+    }
+   
+   
+    }
+    
+    $self->render(template => 'default',  content => $text, title => "The Tyee | Get account management link",  body_id => '');
+    # $self->render(text => $text);
+    
+    
+};
+    
 
 # New route for processing the form post with the upgraded Recurly.js
 # Take the token, plus the plan, and send a post to the Recurly Subscrptions API
@@ -532,3 +613,13 @@ get '/plans' => sub {    # List plans; Not used
 
 app->secret( $config->{'app_secret'} );
 app->start;
+
+__DATA__
+
+@@ default.html.ep
+% layout 'default';
+<div style="width: 100%; height: 500px; text-align:center;">
+<p>
+<%=$content%>
+</p>
+</div>
