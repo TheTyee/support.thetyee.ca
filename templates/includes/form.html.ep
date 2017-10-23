@@ -254,7 +254,8 @@ $('.options-payment a').on( "click touchstart", function( event ) {
     var paymentType = el.dataset.payment;
     $('.payment-type').val(paymentType);
     showPaymentForm(paymentType);
-});
+    
+    });
 
 
 // A simple Recurly credit card error handling function to expose errors to the customer
@@ -343,7 +344,7 @@ $('#form-paypal form').on('submit', function (event) {
     $('#errors span.message').text('');
     $('label.control-label').removeClass('has-error');
     $('input').removeClass('has-error');
-    var paypalDescription = 'A ' + paymentString + ' contribution to The Tyee\'s independent election reporting.'
+    var paypalDescription = 'A ' + paymentString + ' contribution to The Tyee.'
     // Disable the submit button
     $('button').prop('disabled', true);
     var form = this;
