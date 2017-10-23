@@ -1,10 +1,10 @@
 {
-    "app_version"               : "1.8.0",
+    "app_version"               : "1.8.1",
     "recurly_get_plans_filter" : "builder",
     "plans_onetime"          : [ 
         { 
             "amount": "10",
-            "text": "You get: Builder lapel pin. Editorial reports. Swag giveaways. Tyee event discounts. That warm fuzzy feeling that comes with doing something good." },
+            "text": "You get: Builder lapel pin. Invitation to Tyee Builder annual meetup. Editorial reports. Priority Tyee event bookings and discounts, swag giveaways, and a whole lot of love from the Tyee newsroom." },
             { 
                 "amount": "20",
                 "text" : "You get: Everything in the previous level, plus the knowledge that your contribution could cover the entry fee for four access-to-information requests."

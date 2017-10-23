@@ -7,8 +7,8 @@
                             <img src="https://thetyee.ca/Bios/2004/07/13/Andrew.png">
                         </div><!-- /.col-md-6 -->
                         <div class="col-md-8">
-                            <h3>Help The Tyee hit the road</h3>
-                                <p>If we reach our target, we can pay for The Tyee's legislative reporter, Andrew MacLeod, to hit the campaign trail and bring you updates on how candidates are vying for your votes.</p>
+                            <h3>Pay experienced reporters to dig deep.</h3>
+                                <p>The Tyee publishes original reporting from experienced journalists every day. We don't produce clickbait fluff that seeks a high volume of viewers to drive advertising revenue. When you support The Tyee directly, you're ensuring that we can focus on delivering quality stories that focus on substance.</p>
                         </div><!-- /.col-md-6 -->
                     </div><!-- /.row -->
                     
@@ -17,8 +17,8 @@
                             <img src="<%= $config->{'static_asset_path'} %>/ui/img/eagleeyes.jpg">
                         </div><!-- /.col-md-6 -->
                         <div class="col-md-8">
-                            <h3>Establish an election fact-checking desk</h3>
-                              <p>We'll dedicate an eagle-eye fact-checker to scrutinize spin and call out 'alternative facts'.</p>
+                            <h3>Contribute to media diversity in Canada.</h3>
+                              <p>Did you know that Canada has one of the most concentrated media markets in the world? This means that the nation's media is owned by just a handful of corporations. The Tyee is an independent voice, not associated with any chains. We believe that a good media ecosystem is filled with a variety of publications, showcasing many different voices. </p>
                         </div><!-- /.col-md-6 -->
                     </div><!-- /.row -->
                     
@@ -31,8 +31,8 @@
                             
                         </div><!-- /.col-md-6 -->
                         <div class="col-md-8">
-                            <h3>Create a handy platform comparison chart</h3>
-                            <p>We'll work to create an online political platform comparison, a quick reference tool to show you where the parties stand on important issues.</p>
+                            <h3>Keep a direct news line to Ottawa.</h3>
+                            <p>We asked and you did it.  Our crowdfunded national reporter Jeremy Nuttall covers federal politics in Ottawa with a needed B.C. flavour and perspective. Help him keep a West Coast microphone and questions in the scrum in discussions of pipelines, energy, Canada-China relations and more.</p>
                         </div><!-- /.col-md-6 -->
                     </div><!-- /.row -->
                 </div><!-- /.container -->

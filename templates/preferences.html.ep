@@ -22,82 +22,14 @@
     </p>
     % }
 
-    <h1>Almost there! Time to vote...</h1>
+<h1>Thank you so much! Keep in touch, won't you?</h1>
+		<br>
 
     <form action="preferences" method="POST" role="form">
-<p class="lead">Inform our reporting. Tell us what matters most to you...</p>
-    <form action="preferences" method="POST" role="form">
-        <div class="form-group" id="newspriorities">
-            <label for="pref_frequency">Choose one:</label>
-            <div class="radio">
-              <label>
-                <input type="radio" name="pref_newspriority" id="artsandculture" value="1">
-                Arts &amp; Culture 
-              </label>
-              <span class="help-block">(Bilingualism, Canadian identity and heritage, CBC funding cuts, arts funding cuts, grants cuts, cuts, cuts, and more 
-cuts.)</span>
-            </div>
-            <div class="radio">
-              <label>
-                <input type="radio" name="pref_newspriority" id="energyandenvironment" value="2">
-                Energy &amp; Environment 
-              </label>
-              <span class="help-block">(Oil sands, LNG, fracking, pipelines, tankers, GMOs, honey bee extinction, climate change, peak oil, resource depletion. You 
-know, the end of the world. Or the beginning of something new?) </span>
-            </div>
-            <div class="radio">
-              <label>
-                <input type="radio" name="pref_newspriority" id="tradeandforeignpolity" value="3">
-                Trade &amp; Foreign Policy  
-              </label>
-              <span class="help-block">(UN, Canada's international reputation, defence, international law, CIDA/foreign aid, peacekeeping, World Bank, globalization, 
-sweat shops, mining, G8, TPP, FIPPA, CETA, NAFTA, IMF, UN, and other acronyms.) </span>
-            </div>
-            <div class="radio">
-              <label>
-                <input type="radio" name="pref_newspriority" id="laboureconomy" value="4">
-               Labour &amp; Economy
-              </label>
-              <span class="help-block">(Union bargaining rights, collective agreements, outsourcing, temporary foreign workers, living wage, worker safety, 
-privatization, jobs, progressive taxation and economics, corporate taxes, small business, you know, the 99% and the 1%.)</span>
-            </div>
-            <div class="radio">
-              <label>
-                <input type="radio" name="pref_newspriority" id="governmentaccountability" value="5">
-                Gov't Accountability  
-              </label><span class="help-block">(Transparency, federal-provincial relations, Senate reform, proportional representation, electoral fraud, etc.) </span>
-            </div>
-            <div class="radio">
-              <label>
-                <input type="radio" name="pref_newspriority" id="inequality" value="6">
-                Inequality &amp; Social Policy  
-              </label>
-              <span class="help-block">(Welfare reform, economic inequality, public pensions, social security, universal childcare, universal education, universal 
-health care, social housing, etc.) </span>
-            </div>
-            <div class="radio">
-              <label>
-                <input type="radio" name="pref_newspriority" id="rightsandjustice" value="7">
-                Rights &amp; Justice
-              </label>
-              <span class="help-block">(LGBTQ, #IdleNoMore, sexism, racism, immigrant and refugee rights, mental healthcare, disability rights, Treaty rights, Charter 
-rights, protest rights, reproductive rights, right?) </span>
-            </div>
-            <div class="radio">
-              <label>
-                <input type="radio" name="pref_newspriority" id="openmedia" value="8">
-                Media &amp; Digital Policy 
-              </label><span class="help-block">(Media concentration, CRTC, journalism futures, CBC funding, copyright law, Internet freedom, FOI, censorship, online 
-spying.)</span>
-            </div>
-            <div class="radio">
-              <label>
-                <input type="radio" name="pref_newspriority" id="tyeechoice" value="0" checked>
-                Tyee's choice
-              </label>
-              <span class="help-block">(I trust your news judgment, Tyee.)</span>
-            </div>
-        </div>
+		
+
+		<br>
+
 
 	       <div class="form-group">
             <label for="pref_anonymous">We like to acknowledge our supporters publicly. May we acknowledge your contribution?</label>
@@ -111,28 +43,6 @@ spying.)</span>
         </div>
 
 
-        <div class="form-group">
-            <label for="on_behalf_of">Is this gift being made in honour, or in memory, of someone?</label>
-            <br />
-            <label class="radio-inline">
-              <input type="radio" name="on_behalf_of" id="on_behalf_of_honour" value="honour"> Yes, in honour.
-            </label>
-            <label class="radio-inline">
-              <input type="radio" name="on_behalf_of" id="on_behalf_of_memory" value="memory"> Yes, in memory.
-            </label>
-            <!--<p class="help-block">If you've chose to make your contribution in honour of someone else, you’ll be taken to a page right after this one where you can send your gift recipient an e-card.</p>-->
-        </div>
-        <div class="form-inline">
-            <label for="on_behalf_of_name">What is the name of the person?</label>
-            <br />
-            <div class="form-group">
-                <input type="text" class="form-control" name="on_behalf_of_name_first" id="on_behalf_of_name_first" placeholder="Leonard">
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" name="on_behalf_of_name_last" id="on_behalf_of_name_last" placeholder="Cohen">
-            </div>
-            <p class="help-block">This name will be acknowledged publicly. Please enter only the person's first and last name.</p>
-        </div>
         <div class="form-group">
             <label for="pref_frequency">Would you like our stories emailed straight to your inbox?</label>
             <br />

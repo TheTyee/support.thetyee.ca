@@ -1,0 +1,108 @@
+% layout 'default', title => 'Support fact-based independent journalism -- The Tyee'; 
+
+       <div class="container" id="content">
+				<div class="row manage">
+			
+			<button type="button" class="btn btn-info btn-xs manage"  data-toggle="modal" data-target="#myModal">Manage builder account</button>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Account Management Link</h4>
+      </div>
+      <div class="modal-body">
+        <p>Enter your email below to get a link to your account management page</p>
+	   <div class="emailform">
+				<form class="update" method="post" action="/get_update_link">
+					<input type="text" name="email" placeholder="Email" type="email" required>
+					
+					</input>
+					<button type="submit" id="getlink" class="btn btn-success btn-sm">Get account management link »</button>
+				</form>
+			</div>
+	   
+	   
+	   
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+			
+				</div>			
+			
+			
+			
+            <div id="campaign-copy" class="row">
+			
+
+
+                <h1>Rafe Mair Memorial Fund<span>&nbsp;</span></h1>
+                <p class="lead">SUPPORT FIERCELY INDEPENDENT REPORTING ON BRITISH COLUMBIA'S WILD PLACES</p>
+            </div>
+<!--<p class="alert alert-warning"><i class="glyphicon glyphicon-fire"></i>UPDATE: We reached our target of $20,000 on April 18! Thanks to all who made it happen.
+<br><br>-->
+            <span id="campaign-end"></span>
+            %= include 'includes/form'
+           <div id="atf" class="row">
+                <!-- <div class="col-md-7 video-container">
+                    <iframe width="560" height="315" src="//www.youtube.com/embed/IlzTtYCr3-0" frameborder="0" allowfullscreen></iframe>
+                </div>--><div class="col-lg-8">
+			 				<h1>Help build a journalism fund to defend BC's environment</h1>
+</div>
+                <div class="col-md-8">
+<img src="https://thetyee.ca/News/2017/03/24/Rafe-Mair-Large.jpg">
+<br style="clear:both;">
+<br style="clear:both;">
+% #		<h1 style="margin-top:0;font-weight:900;">Contribute to The Tyee’s next 15 years</h1>
+% #                   %= include 'includes/about-15thyear'
+                </div>
+			     <div class="col-md-4">
+                    %= include 'includes/widget-rafemair'
+                </div>
+			 <br style="clear:both;">
+<br style="clear:both;">
+
+            </div>  <!-- / #atf -->
+
+        </div><!-- / .container -->
+	   
+
+        <div id="featurettes1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h2>Rafe’s legacy</h2>
+                        <p>Politician, broadcaster, advocate, author, and contrarian, Rafe Mair has made an indelible mark on both the media world and those who fight on behalf of British Columbia’s environment. For over ten years, Rafe Mair was a columnist on The Tyee, where he was free to write about the things he cared about deeply. His loss is felt by many, and his contribution to the public conversation immense. The Rafe Mair Memorial Fund will continue his legacy and support the kind of hard-hitting reporting on British Columbian issues that Rafe cared deeply about.</p>
+                    </div><!-- /.col-md-4 -->
+                    <div class="col-md-4">
+                        <h2>How you can help</h2>
+                        <p>By contributing to The Rafe Mair Memorial Fund, you will be supporting original, in-depth reporting on environmental issues facing British Columbia. If you make a monthly contribution, we’ll be able to continue the fund and an annual fellowship for an emerging environmental reporter. And, you’re helping to keep others informed. We don’t put our articles behind paywalls, so your contribution helps to keep our stories open and available to everyone.</p>
+                    </div><!-- /.col-md-4 -->
+                    <div class="col-md-4">
+                        <h2>What the fund will do</h2>
+                        <p>All funds raised through the Rafe Mair Memorial Fund will go to paying for original reporting on environmental stories on The Tyee. Think Site C, wild salmon, oil pipelines, fracking. Every article supported by this fund will include a note about the fund, with a link to a page listing donors (unless you choose to remain anonymous). In addition, we’ll establish a reporting fellowship to pay an emerging environmental reporter to pursue a story, with mentorship and training from senior journalists and editors. The recipient of the fellowship will be chosen in consultation with the family of Rafe Mair.</p>
+                    </div><!-- /.col-md-4 -->
+                </div><!-- /.row -->
+            </div><!-- / .container -->
+        </div><!-- / #featurettes1 -->
+%# = include 'includes/withyourhelp'
+
+
+
+ %=  include 'includes/builder_list-rafemair'      
+
+
+    
+% content_for javascript => begin
+%= javascript begin
+%   end
+% end

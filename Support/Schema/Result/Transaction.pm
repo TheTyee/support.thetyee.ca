@@ -210,6 +210,10 @@ __PACKAGE__->table("transactions");
   data_type: 'text'
   is_nullable: 1
 
+=head2 fifteenth_year_mailme
+data_type: 'text'
+is_nullable: 1
+
 =cut
 
 __PACKAGE__->add_columns(
@@ -285,6 +289,8 @@ __PACKAGE__->add_columns(
   "on_behalf_of_name_last",
   { data_type => "text", is_nullable => 1 },
   "address1",
+  { data_type => "text", is_nullable => 1 },
+  "fifteenth_year_mailme",
   { data_type => "text", is_nullable => 1 },
 );
 

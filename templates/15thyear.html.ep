@@ -1,0 +1,124 @@
+% layout 'default', title => 'Support fact-based independent journalism -- The Tyee'; 
+
+       <div class="container" id="content">
+            <div id="campaign-copy" class="row">
+			
+
+
+                <h1>Canada needs more independent journalism. Join us <span>&nbsp;</span></h1>
+                <p class="lead">Support The Tyee and bring more diverse, fact-driven reporting to the public conversation</p>
+            </div>
+<!--<p class="alert alert-warning"><i class="glyphicon glyphicon-fire"></i>UPDATE: We reached our target of $20,000 on April 18! Thanks to all who made it happen.
+<br><br>-->
+            <span id="campaign-end"></span>
+            %= include 'includes/form'
+           <div id="atf" class="row">
+                <!-- <div class="col-md-7 video-container">
+                    <iframe width="560" height="315" src="//www.youtube.com/embed/IlzTtYCr3-0" frameborder="0" allowfullscreen></iframe>
+                </div>-->
+                <div class="col-lg-8">
+		<h1 style="margin-top:0;font-weight:900;">Contribute to The Tyee’s next 15 years</h1>
+                    %= include 'includes/about-15thyear'
+                </div>
+			     <div class="col-md-4">
+                    %= include 'includes/widget'
+                </div>
+			 
+            </div>  <!-- / #atf -->
+
+           <div class="row awards">
+                <div class="col-md-12 awards">
+                    <div class="col-md-3 col-sm-3 award">
+                        <img id="murrow" src="<%= $config->{'static_asset_path'} %>/ui/img/award-cjf.png" />
+                        <p>Excellence in Journalism Award (CDN), 2013, 2009</p>
+                    </div>
+                    <div class="col-md-3 col-sm-3 award">
+                        <img id="murrow" src="<%= $config->{'static_asset_path'} %>/ui/img/award-western.png" />
+                        <p>Western Magazine Award 2012</p>
+                    </div>
+                    <div class="col-md-3 col-sm-3 award">
+                        <img id="murrow" src="<%= $config->{'static_asset_path'} %>/ui/img/award-murrow.png" />
+                        <p>Edward R. Murrow Award (NA), 2011, 2009</p>
+                    </div>
+                    <div class="col-md-3 col-sm-3 award">
+                        <img id="murrow" src="<%= $config->{'static_asset_path'} %>/ui/img/award-webby.png" />
+                        <p>Webby Honourable Mention (Intl), 2010, 2009</p>
+                    </div>
+                </div>
+            </div> 
+
+
+        </div><!-- / .container -->
+
+        <div id="featurettes1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h2>Our vision</h2>
+                        <p>Canada is facing major challenges ahead. At the same time, our national media is in collapse. Newsrooms continue to shrink and consolidate under the control of fewer and fewer corporations, and there are fewer journalists asking tough questions of those in power. We believe that our democratic conversation is made possible by strong, independent media, who exist first and foremost to serve the needs of its readers.</p>
+                    </div><!-- /.col-md-4 -->
+                    <div class="col-md-4">
+                        <h2>How you can help</h2>
+                        <p>By contributing to The Tyee on a monthly basis, you are helping to strengthen and grow our team of fierce, tough-minded journalists and editors. Tyee Builders who give every month allow our small and nimble team to plan ahead, and produce original stories that you will not see anywhere else. We don’t put our articles behind paywalls, so your contribution helps to keep our stories open and available to everyone.</p>
+                    </div><!-- /.col-md-4 -->
+                    <div class="col-md-4">
+                        <h2>Join our community</h2>
+                        <p>We want to know which issues matter most to you. Energy and environment? Inequality? Electoral reform? When you sign up, you’ll complete a news priority survey that will help inform our reporting. In addition, if we hit our target, we’ll get to work organizing our first annual Tyee Builder Summit, where Tyee readers can meet and have a say on exciting project ideas at The Tyee.</p>
+                    </div><!-- /.col-md-4 -->
+                </div><!-- /.row -->
+            </div><!-- / .container -->
+        </div><!-- / #featurettes1 -->
+%= include 'includes/withyourhelp'
+
+  <div id="people" class="testimonial">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <p class="quotation">“I support The Tyee because its reporters are brave, independent and smart as hell — and because now is a 
+critical time to hold government accountable to its promises”</p>
+                        <p class="cite">Naomi Klein</p>
+                    </div>
+                    <div class="col-md-4">
+                        <img src="<%= $config->{'static_asset_path'} %>/ui/img/naomi-klein.jpg">
+                    </div>
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </div><!-- people -->
+
+ %=  include 'includes/builder_list'      
+
+<!--
+        <div id="organizations" class="">
+            <div class="container">
+                    <h2>The Tyee is grateful to the following Institutional Builders:</h2>
+                <div class="row">
+                    <div class="col-md-2">
+                        <img src="<%= $config->{'static_asset_path'} %>/ui/img/BCGEU_Logo_NoUnionName-Horizontal_2Spot.png">
+                    </div>
+                    <div class="col-md-2">
+                        <img src="<%= $config->{'static_asset_path'} %>/ui/img/MoveUp_Primary-withname_Pantone_large.png">
+                    </div>
+                    <div class="col-md-2">
+                        <img src="<%= $config->{'static_asset_path'} %>/ui/img/UNIFOR-logo.jpg">
+                    </div>
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </div><!-- people -->
+
+<!--
+<div class="container">
+                <div class="row">
+                    <div class="col-md-10">
+				    <p>Institutional Builders support The Tyee with annual voluntary subscriptions that range from $500/yr to $2,500/yr, depending on the size and resources of the organization.  </p><p>If you have paid subscriptions to other Canadian or international media, think of this as similar. With the key difference being that your organization’s financial support helps keep The Tyee free for all.   
+
+</p><p>To discuss becoming an Institutional Builder, please contact Jeanette Ageson at <a href="mailto:jageson@thetyee.ca">jageson@thetyee.ca</a>.</p>
+				</div>
+			 </div>			 
+</div>
+
+-->
+    
+% content_for javascript => begin
+%= javascript begin
+%   end
+% end
