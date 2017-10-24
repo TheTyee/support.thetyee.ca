@@ -21,7 +21,7 @@
                         </div>
                         <hr class="soften" />
                         <div class="from">
-                            <strong>From <span class="count">0</span> people, incuding: </strong>
+                            <strong>From <span class="count">0</span> people, including: </strong>
                            <!-- <strong>From  people like:</strong>-->
                         </div>
                         <ul class="contributor-list">
