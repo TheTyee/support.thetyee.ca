@@ -17,12 +17,12 @@
             <meta name="MSSmartTagsPreventParsing" content="TRUE" />
  
 <!-- OpenGraph properties -->
-            <meta property="og:title" content="I just supported the Rafe Mair Memorial Fund at The Tyee. Join me: " />
+            <meta property="og:title" content="I just supported strong, independent journalism. Join me: " />
             <meta property="og:description" content="Our democracy needs good journalism. Join me in supporting fact-based, independent journalism." />
             <meta property="og:type" content="website" />
             <meta property="og:url" content="https://support.thetyee.ca" />
-% #             <meta property="og:image" content="<%= $config->{'static_asset_path'} %>/ui/img/Tyee-Builders-facebook-1200x1200.jpg" />
-		<meta property="og:image" content="<%= $config->{'static_asset_path'} %>/ui/img/RafeMairFBshare.jpg" />
+            <meta property="og:image" content="<%= $config->{'static_asset_path'} %>/ui/img/Tyee-Builders-facebook-1200x1200.jpg" />
+% #		<meta property="og:image" content="<%= $config->{'static_asset_path'} %>/ui/img/RafeMairFBshare.jpg" />
 
 
 	    <meta property="og:site_name" content="The Tyee" />

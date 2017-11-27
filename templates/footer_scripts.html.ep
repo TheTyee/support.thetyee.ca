@@ -11,6 +11,9 @@
         % if ( $abs eq '/national' || $abs eq '/election2015' || $abs eq '/voices' || $abs eq '/powermap' || $abs eq '/' ) { # widget js
         <script src="<%= $config->{'static_asset_path'} %>/ui/js/widget.js"></script>
         % }
+	% if ($abs eq '/rafemair') { 
+ <script src="https://static.thetyee.ca/support/v1.8.2mair/ui/js/widget.js"></script>
+	% }
         <%= content_for 'javascript' %>
         <!--Google Analytics-->
         <script type="text/javascript">

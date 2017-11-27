@@ -1,5 +1,5 @@
 {
-    "app_version"               : "1.8.1",
+    "app_version"               : "1.8.2",
     "recurly_get_plans_filter" : "rafemair",
     "plans_onetime"          : [ 
         { 

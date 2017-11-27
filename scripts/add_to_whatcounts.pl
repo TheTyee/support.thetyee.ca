@@ -65,6 +65,8 @@ sub _process_records {    # Process each record
         {    # We got back a subscriber ID, so we're good.
                 # Mark the record as processed.
             $record->wc_status( 1 );
+        } else {
+                    app->log->debug("error " . $record->wc_response);
         }
 
         # Commit the update so far
@@ -167,6 +169,7 @@ sub _check_subscriber_details {
 sub _create_or_update {   # Post the vitals to WhatCounts, return the resposne
     my $record       = shift;
     my $frequency    = shift;
+    my   $fifteenth_year_mailme = $record->fifteenth_year_mailme // '';
     my $email        = $record->email;
     my $first        = $record->first_name;
     my $last         = $record->last_name;
@@ -178,6 +181,10 @@ sub _create_or_update {   # Post the vitals to WhatCounts, return the resposne
     my $hosted_login_token = $record->hosted_login_token;
     my $appeal_code  = $record->appeal_code;
     my $onetime      = '';
+    
+                        say "fiteenth_year_mailme = " . $fifteenth_year_mailme;
+
+    
     if ( !$record->plan_name ) {
         $onetime = 1;
     }
@@ -220,8 +227,10 @@ sub _create_or_update {   # Post the vitals to WhatCounts, return the resposne
         force_sub             => '1',
         format                => '2',
         data =>
-            "email,first,last,custom_builder_sub_date,custom_builder,$frequency,custom_builder_regular,custom_builder_onetime,custom_builder_national_newspriority,custom_builder_level,custom_builder_plan,custom_builder_is_anonymous,custom_builder_hosted_login_token,custom_builder_appeal,custom_pref_tyeenews_casl,custom_pref_sponsor_casl^$email,$first,$last,$date,1,1,$national,$onetime,$newspriority,$level,$plan,$anon,$hosted_login_token,$appeal_code,1,1"
+            "email,custom_fifteenth_year_mailme,first,last,custom_builder_sub_date,custom_builder,$frequency,custom_builder_regular,custom_builder_onetime,custom_builder_national_newspriority,custom_builder_level,custom_builder_plan,custom_builder_is_anonymous,custom_builder_hosted_login_token,custom_builder_appeal,custom_pref_tyeenews_casl,custom_pref_sponsor_casl^$email,$fifteenth_year_mailme,$first,$last,$date,1,1,$national,$onetime,$newspriority,$level,$plan,$anon,$hosted_login_token,$appeal_code,1,1"
     };
+    
+    say Dumper($update_or_sub);
     my $tx = $ua->post( $API => form => $update_or_sub );
     if ( my $res = $tx->success ) {
         $result = $res->body;

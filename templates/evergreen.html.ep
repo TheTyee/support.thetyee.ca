@@ -123,29 +123,7 @@ critical time to hold government accountable to its promises”</p>
             </div><!-- /.container -->
         </div><!-- people -->
 
-        <div id="organizations" class="">
-            <div class="container">
-                    <h2>The Tyee is grateful to the following Institutional Builders:</h2>
-                <div class="row">
-                    <div class="col-md-2">
-                        <img src="<%= $config->{'static_asset_path'} %>/ui/img/BCGEU_Logo_NoUnionName-Horizontal_2Spot.png">
-                    </div>
-                    <div class="col-md-2">
-                        <img src="<%= $config->{'static_asset_path'} %>/ui/img/MoveUp_Primary-withname_Pantone_large.png">
-                    </div>
-                    <div class="col-md-2">
-                        <img src="<%= $config->{'static_asset_path'} %>/ui/img/UNIFOR-logo.jpg">
-                    </div>
-                </div><!-- /.row -->
-			 <div class="row">
-				<p>Institutional Builders support The Tyee with annual voluntary subscriptions that range from $500/yr to $2500/yr, depending on the size and resources of the organization.  If you have paid subscriptions to other Canadian or international media, think of this as similar.  With the key difference being that your organization’s financial support helps keep The Tyee free for all. <br><br>
- </p><p>
-To discuss becoming an Institutional Builder, please contact <a href="mailto:jageson@thetyee.ca">Jeanette Ageson</a>.
-</p>
-				
-			 </div>
-            </div><!-- /.container -->
-        </div><!-- people -->
+
 
 % # %=  include 'includes/builder_list'      
     

@@ -204,8 +204,8 @@ group {
     any [qw(GET POST)] => '/' => sub {
         my $self = shift;
         $self->stash( body_id => 'evergreen', );
-        $self->flash( appeal_code => 'RafeMair2017' );
-    } => 'RafeMair';
+        $self->flash( appeal_code => 'evergreen' );
+    } => 'evergreen';
 
     any [qw(GET POST)] => '/powermap' => sub {
         my $self = shift;
@@ -214,6 +214,15 @@ group {
             appeal_code => 'powermap'
         );
     } => 'powermap';
+    
+     any [qw(GET POST)] => 'rafemair' => sub {
+        my $self = shift;
+        $self->stash(
+            body_id     => 'RafeMair2017',
+            appeal_code => 'RafeMair2017'
+        );
+    } => 'RafeMair';
+
 
     any [qw(GET POST)] => '/builders' => sub {
         my $self = shift;
