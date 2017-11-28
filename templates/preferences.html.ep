@@ -26,14 +26,7 @@
 		<br>
 
     <form action="preferences" method="POST" role="form">
-		
-<div class="form-group">
-	            <label for="fifteenth_year_mailme">Campaign updates</label>
-				<p>By default, we do not email any further campaign messages those who have already given.  </p>
-                <input type="checkbox" name="fifteenth_year_mailme" id="fifteenth_year_mailme" placeholder="">&nbsp; Check here if you want to get updates to see how we're doing with our goal.
-            
-</div>
-		<br>
+	
 <p class="lead">Inform our reporting. Tell us what matters most to you...</p>
     <form action="preferences" method="POST" role="form">
         <div class="form-group" id="newspriorities">
