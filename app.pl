@@ -221,6 +221,7 @@ group {
             body_id     => 'RafeMair2017',
             appeal_code => 'RafeMair2017'
         );
+         $self->flash( appeal_code => 'RafeMair2017');
     } => 'RafeMair';
 
 
