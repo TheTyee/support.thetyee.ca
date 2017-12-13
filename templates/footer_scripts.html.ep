@@ -12,7 +12,7 @@
         <script src="<%= $config->{'static_asset_path'} %>/ui/js/widget.js"></script>
         % }
 	% if ($abs eq '/rafemair') { 
- <script src="https://static.thetyee.ca/support/v1.8.2mair/ui/js/widget.js"></script>
+ <script src="https://static.thetyee.ca/support/v1.8.2mair/ui/js/widget.js?v=2"></script>
 	% }
         <%= content_for 'javascript' %>
         <!--Google Analytics-->
