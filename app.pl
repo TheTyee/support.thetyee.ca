@@ -67,6 +67,15 @@ helper find_or_new => sub {
     return $result;
 };
 
+helper search_records => sub {
+    my $self      = shift;
+    my $resultset = shift;
+    my $search    = shift;
+    my $schema    = $self->schema;
+    my $rs        = $schema->resultset( $resultset )->search( $search );
+    return $rs;
+};
+
 helper recurly_get_plans => sub {
     my $self   = shift;
     my $filter = shift;
@@ -608,6 +617,36 @@ any [qw(GET POST)] => '/help-us-grow' => sub {
     );
     $self->render( 'raiser' );
 } => 'raiser';
+
+get '/leaderboard' => sub {
+    my $self = shift;
+    my $rs   = $self->search_records( 'Transaction',
+        { raiser => { '!=', undef }, } );
+
+    #my $count = $rs->count;
+    #say Dumper( $count );
+    my $raisers = {};
+    while ( my $raised = $rs->next ) {
+        $raisers->{ $raised->raiser }->{'count'}++;
+    }
+    say Dumper( $raisers );
+    for my $raiser ( keys %$raisers ) {
+        my $raisers_rs
+            = $self->search_records( 'Transaction', { email => $raiser } );
+        my $r = $rs->first;
+        if ( $r ) {
+            $raisers->{$raiser}->{'first_name'} = $r->first_name;
+            $raisers->{$raiser}->{'last_name'}  = $r->last_name;
+            $raisers->{$raiser}->{'anonymous'}  = $r->pref_anonymous;
+        }
+    }
+    say Dumper( $raisers );
+    my @keys = sort { $raisers->{$a} cmp $raisers->{$b} } keys( %$raisers );
+    my @vals = @{$raisers}{@keys};
+    my @ordered = sort { $b->{'count'} <=> $a->{'count'} } @vals;
+    $self->stash( leaders => \@ordered );
+    $self->render( 'leaderboard' );
+} => 'leaderboard';
 
 get '/plans' => sub {    # List plans; Not used
     my $self = shift;

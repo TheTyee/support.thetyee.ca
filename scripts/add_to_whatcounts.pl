@@ -227,7 +227,7 @@ sub _create_or_update {   # Post the vitals to WhatCounts, return the resposne
         force_sub             => '1',
         format                => '2',
         data =>
-            "email,custom_fifteenth_year_mailme,first,last,custom_builder_sub_date,custom_builder,$frequency,custom_builder_regular,custom_builder_onetime,custom_builder_national_newspriority,custom_builder_level,custom_builder_plan,custom_builder_is_anonymous,custom_builder_hosted_login_token,custom_builder_appeal,custom_pref_tyeenews_casl,custom_pref_sponsor_casl^$email,$fifteenth_year_mailme,$first,$last,$date,1,1,$national,$onetime,$newspriority,$level,$plan,$anon,$hosted_login_token,$appeal_code,1,1"
+            "email,fax,custom_fifteenth_year_mailme,first,last,custom_builder_sub_date,custom_builder,$frequency,custom_builder_regular,custom_builder_onetime,custom_builder_national_newspriority,custom_builder_level,custom_builder_plan,custom_builder_is_anonymous,custom_builder_hosted_login_token,custom_builder_appeal,custom_pref_tyeenews_casl,custom_pref_sponsor_casl^$email,'cohort_skip',$fifteenth_year_mailme,$first,$last,$date,1,1,$national,$onetime,$newspriority,$level,$plan,$anon,$hosted_login_token,$appeal_code,1,1"
     };
     
     say Dumper($update_or_sub);
