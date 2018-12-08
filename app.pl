@@ -212,9 +212,9 @@ group {
 
     any [qw(GET POST)] => '/' => sub {
         my $self = shift;
-        $self->stash( body_id => 'evergreen', );
-        $self->flash( appeal_code => 'evergreen' );
-    } => 'evergreen';
+        $self->stash( body_id => 'DecBuilderCam2019', );
+        $self->flash( appeal_code => 'DecBuilderCamp2019' );
+    } => 'DecBuilderCamp2019';
 
     any [qw(GET POST)] => '/powermap' => sub {
         my $self = shift;
