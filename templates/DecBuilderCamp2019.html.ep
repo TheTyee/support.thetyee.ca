@@ -6,7 +6,7 @@
 
 
                 <h1>Canada needs more independent journalism. Join us <span>&nbsp;</span></h1>
-                <p class="lead">Help us reach our goal of 2019 monthly donors before the start of 2019.</p>
+                <p class="lead">Help us reach our goal of 2019 monthly supporters before the start of 2019.</p>
             </div>
 <p class="alert alert-warning"><!--<i class="glyphicon glyphicon-fire"></i>UPDATE: We reached our target of $20,000 on April 18! Thanks to all who made it happen.-->
 We have big plans for 2019, but we need your help to know we'll have the sustained support to pull it off.</big></p>
@@ -106,33 +106,6 @@ critical time to hold government accountable to its promises”</p>
  %# =  include 'includes/builder_list'      
 
 
-        <div id="organizations" class="">
-            <div class="container">
-                    <h2>The Tyee is grateful to the following Institutional Builders:</h2>
-                <div class="row">
-                    <div class="col-md-2">
-                        <img src="<%= $config->{'static_asset_path'} %>/ui/img/BCGEU_Logo_NoUnionName-Horizontal_2Spot.png">
-                    </div>
-                    <div class="col-md-2">
-                        <img src="<%= $config->{'static_asset_path'} %>/ui/img/MoveUp_Primary-withname_Pantone_large.png">
-                    </div>
-                    <div class="col-md-2">
-                        <img src="<%= $config->{'static_asset_path'} %>/ui/img/UNIFOR-logo.jpg">
-                    </div>
-                </div><!-- /.row -->
-            </div><!-- /.container -->
-        </div><!-- people -->
-
-
-<div class="container">
-                <div class="row">
-                    <div class="col-md-10">
-				    <p>Institutional Builders support The Tyee with annual voluntary subscriptions that range from $500/yr to $2,500/yr, depending on the size and resources of the organization.  </p><p>If you have paid subscriptions to other Canadian or international media, think of this as similar. With the key difference being that your organization’s financial support helps keep The Tyee free for all.   
-
-</p><p>To discuss becoming an Institutional Builder, please contact Jeanette Ageson at <a href="mailto:jageson@thetyee.ca">jageson@thetyee.ca</a>.</p>
-				</div>
-			 </div>			 
-</div>
 
 
     
