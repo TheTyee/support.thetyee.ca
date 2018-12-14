@@ -79,11 +79,15 @@ helper search_records => sub {
 helper recurly_get_plans => sub {
     my $self   = shift;
     my $filter = shift;
-    my $res = $ua->get( $API . '/plans/' => { Accept => 'application/xml' } )
-        ->res;
+    my $res = $ua->get( $API . '/plans?per_page=200' => { Accept => 'application/xml' } )->res;
     my $xml      = $res->body;
     my $dom      = Mojo::DOM->new( $xml );
     my $plans    = $dom->find( 'plan' );
+
+      app->log->debug("Plans " . Dumper $xml);
+
+
+
     my $filtered = [];
     foreach my $plan ( $plans->each ) {    # iterate the Collection object
         next unless $plan->plan_code->text =~ /$filter/;
