@@ -9,7 +9,7 @@
                 <p class="lead">Help us reach our goal of 2019 monthly supporters before the start of 2019.</p>
             </div>
 <p class="alert alert-warning"><!--<i class="glyphicon glyphicon-fire"></i>UPDATE: We reached our target of $20,000 on April 18! Thanks to all who made it happen.-->
-We have big plans for 2019, but we need your help to know we'll have the sustained support to pull it off.</big></p>
+Campaign update: We hit our target of 232 new monthly supporters on December 22. Help us hit our stretch goal of 300 new supporters by December 31!</big></p>
             <span id="campaign-end"></span>
             %= include 'includes/form'
            <div id="atf" class="row">
