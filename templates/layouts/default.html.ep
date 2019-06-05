@@ -17,11 +17,12 @@
             <meta name="MSSmartTagsPreventParsing" content="TRUE" />
  
 <!-- OpenGraph properties -->
-            <meta property="og:title" content="I just supported strong, independent journalism. Join me: " />
-            <meta property="og:description" content="Our democracy needs good journalism. Join me in supporting fact-based, independent journalism." />
+            <meta property="og:title" content="I just supported reader-powered election reporting by @TheTyee. Join me 
+here: " />
+            <meta property="og:description" content="Our democracy needs good journalism. Join me in supporting reader-powered election reporting." />
             <meta property="og:type" content="website" />
             <meta property="og:url" content="https://support.thetyee.ca" />
-            <meta property="og:image" content="<%= $config->{'static_asset_path'} %>/ui/img/Tyee-Builders-facebook-1200x1200.jpg" />
+            <meta property="og:image" content="<%= $config->{'static_asset_path'} %>/ui/img/Tyee-Builders-facebook-1200x1200.png" />
 % #		<meta property="og:image" content="<%= $config->{'static_asset_path'} %>/ui/img/RafeMairFBshare.jpg" />
 
 

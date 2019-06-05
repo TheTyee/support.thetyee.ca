@@ -1,0 +1,157 @@
+% layout 'default', title => 'Support fact-based independent journalism -- The Tyee'; 
+
+       <div class="container" id="content">
+		<div class="row manage">
+			
+			<button type="button" class="btn btn-info btn-xs manage"  data-toggle="modal" data-target="#myModal">Manage builder account</button>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Account Management Link</h4>
+      </div>
+      <div class="modal-body">
+        <p>Enter your email below to get a link to your account management page</p>
+	   <div class="emailform">
+				<form class="update" method="post" action="/get_update_link">
+					<input type="text" name="email" placeholder="Email" type="email" required>
+					
+					</input>
+					<button type="submit" id="getlink" class="btn btn-success btn-sm">Get account management link »</button>
+				</form>
+			</div>
+	   
+	   
+	   
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+			
+			
+			
+			
+			
+			
+			
+		</div>
+            <div id="campaign-copy" class="row">
+                <h1>Canada needs more independent journalism. Join us <span>&nbsp;</span></h1>
+                <p class="lead">SUPPORT THE TYEE'S READER-POWERED FEDERAL ELECTION COVERAGE.</p>
+            </div>
+
+            <span id="campaign-end" style="display:none;"></span>
+            %= include 'includes/form'
+            <div id="atf" class="row">
+                <div class="col-md-7 video-container">
+                    <iframe width="560" height="315" src="//www.youtube.com/embed/jF1ZElM7-nA" frameborder="0" allowfullscreen></iframe>
+                </div>
+                  <div class="col-md-4">
+                    %= include 'includes/widget'
+                </div>
+            </div> <!-- / #atf -->
+
+
+          <!-- <div class="row awards">
+                <div class="col-md-12 awards">
+                    <div class="col-md-3 col-sm-3 award">
+                        <img id="murrow" src="<%= $config->{'static_asset_path'} %>/ui/img/award-cjf.png" />
+                        <p>Excellence in Journalism Award (CDN), 2013, 2009</p>
+                    </div>
+                    <div class="col-md-3 col-sm-3 award">
+                        <img id="murrow" src="<%= $config->{'static_asset_path'} %>/ui/img/award-western.png" />
+                        <p>Western Magazine Award 2012</p>
+                    </div>
+                    <div class="col-md-3 col-sm-3 award">
+                        <img id="murrow" src="<%= $config->{'static_asset_path'} %>/ui/img/award-murrow.png" />
+                        <p>Edward R. Murrow Award (NA), 2011, 2009</p>
+                    </div>
+                    <div class="col-md-3 col-sm-3 award">
+                        <img id="murrow" src="<%= $config->{'static_asset_path'} %>/ui/img/award-webby.png" />
+                        <p>Webby Honourable Mention (Intl), 2010, 2009</p>
+                    </div>
+                </div>
+            </div> 
+-->
+
+        </div><!-- / .container -->
+
+        <div id="featurettes1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h2>Our vision</h2>
+                        <p>Canada has a federal election coming up. Instead of following the media pack and reacting to politicians, we’re going to try something different. We think that voters deserve to have their questions answered. That’s why we’ve developed an election reporting plan, informed by Tyee readers. Now we need your support to make it happen.</p>
+                    </div><!-- /.col-md-4 -->
+                    <div class="col-md-4">
+                        <h2>How you can help</h2>
+                        <p>Your support will allow us to pay independent, tough-minded journalists to do in-depth reporting on the questions that matter to our readers. We’ll assign reporters who will stay on the story and will be accountable to you. Help The Tyee deliver on an election reporting plan that is powered by readers, and is open and accessible to all.</p>
+                    </div><!-- /.col-md-4 -->
+                    <div class="col-md-4">
+                        <h2>Join our community</h2>
+                        <p>Tyee Builders are the power that drives our reporting. As a special thanks for joining, you’ll receive a snazzy Tyee lapel pin, special updates from our editorial team, random swag giveaways, and advance and discounted registration for our live events. And you’ll get our undying love for making our in-depth, solutions-focused reporting possible.</p>
+                    </div><!-- /.col-md-4 -->
+                </div><!-- /.row -->
+            </div><!-- / .container -->
+        </div><!-- / #featurettes1 -->
+								
+								<div class="container">
+								<div class="row">
+	<div class="col-md-7">
+		               
+
+<h2>Reporting coverage built by you</h2>
+		<p>We asked Tyee readers what they wanted us to report on this federal election. Because reporting should be based on what you want to know, not what political spinmeisters want you to know. 
+</p>
+<p>Our reader-powered election coverage will keep these questions in mind as we report on the election. 
+</p>
+<p>
+	<ol style="font-weight:bold;">
+<li>Do you agree Canada should be on an emergency footing regarding climate change, and if so what actions will your party take?</li>
+<li>What are the tax loopholes in Canada, how have other countries closed them, what are candidates willing to do to assure the rich pay their fair share and reverse the widening wealth gap?</li>
+<li>How do we transition to a green economy without causing mass unemployment and upheaval?</li>
+<li>What would you do in the next 36 months to improve housing in and provide potable water to remote First Nations communities?</li>
+<li>What would it mean to include dental care and Pharmacare as part of government-funded healthcare, and where do candidates stand?</li>		
+	</ol>
+</p>
+
+	</div>
+																		
+</div><!--/row-->
+
+</div>
+								
+								
+  %# %=  include 'includes/withyourhelp'
+
+
+       <!-- <div id="people" class="testimonial">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <p class="quotation">“I support The Tyee because its reporters are brave, independent and smart as hell — and because now is a 
+critical time to hold government accountable to its promises”</p>
+                        <p class="cite">Naomi Klein</p>
+                    </div>
+                    <div class="col-md-4">
+                        <img src="<%= $config->{'static_asset_path'} %>/ui/img/naomi-klein.jpg">
+                    </div>
+                </div>
+            </div>
+        </div><!-- people -->
+
+ %=  include 'includes/builder_list'      
+    
+% content_for javascript => begin
+%= javascript begin
+%   end
+% end

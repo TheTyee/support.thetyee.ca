@@ -8,7 +8,7 @@
                 <p>You can change the amount you're giving us monthly or stop subscribing at any time. Simply contact us and we'll put an end to your membership, which will take effect the next time a payment is due to be made. Due to the nature of the program we can't offer refunds mid-month. If you have any questions or need to cancel your membership, please contact us by <a href="mailto:builders@thetyee.ca">email</a>, phone (604-689-7489) or toll-free (1-844-301-6677).</p>
                  <p>Although we operate on a shoestring budget, we're technically a for-profit organization; as such, contributions to The Tyee are not tax-deductible. Find out more about our funding <a href="http://thetyee.ca/About/Us/" target="_blank">here</a>.
                 </p>
-                <p>&copy; 2018 The Tyee &middot; <a href="http://subscribe.thetyee.ca/privacy/">Privacy</a></p>
+                <p>&copy; 2019 The Tyee &middot; <a href="http://subscribe.thetyee.ca/privacy/">Privacy</a></p>
                 <p>support.thetyee.ca v<%= $config->{'app_version'} %></p>
             </div>
         </div>

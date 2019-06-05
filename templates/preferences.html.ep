@@ -26,8 +26,8 @@
 		<br>
 
     <form action="preferences" method="POST" role="form">
-	
-<p class="lead">Inform our reporting. Tell us what matters most to you...</p>-->
+<!--	
+<p class="lead">Inform our reporting. Tell us what matters most to you...</p>
     <form action="preferences" method="POST" role="form">
         <div class="form-group" id="newspriorities">
             <label for="pref_frequency">Choose one:</label>
@@ -93,7 +93,8 @@
               <span class="help-block">(I trust your news judgment, Tyee.)</span>
             </div>
         </div>
-
+	
+	-->
 	       <div class="form-group">
             <label for="pref_anonymous">We like to acknowledge our supporters publicly. May we acknowledge your contribution?</label>
             <br />
@@ -115,7 +116,6 @@
             <label class="radio-inline">
               <input type="radio" name="on_behalf_of" id="on_behalf_of_memory" value="memory"> Yes, in memory.
             </label>
-            <!--<p class="help-block">If you've chose to make your contribution in honour of someone else, you’ll be taken to a page right after this one where you can send your gift recipient an e-card.</p>-->
         </div>
         <div class="form-inline">
             <label for="on_behalf_of_name">What is the name of the person?</label>
