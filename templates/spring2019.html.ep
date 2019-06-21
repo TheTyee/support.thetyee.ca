@@ -50,6 +50,8 @@
             </div>
 
             <span id="campaign-end" style="display:none;"></span>
+            <p class="alert alert-warning">Campaign update: We hit our initial goal of $60,000 on Friday, June 21. Help us hit our stretch goal of $75,000 by midnight on June 24 so we can do even more election 
+coverage!</p>
             %= include 'includes/form'
             <div id="atf" class="row">
                 <div class="col-md-7 video-container">
@@ -123,6 +125,8 @@ you to know.
 <li>How do we transition to a green economy without causing mass unemployment and upheaval?</li>
 <li>What would you do in the next 36 months to improve housing in and provide potable water to remote First Nations communities?</li>
 <li>What would it mean to include dental care and Pharmacare as part of government-funded healthcare, and where do candidates stand?</li>		
+<li>The Liberals won after promising to reform our first-past-the-post voting system. Instead they killed the reform. But did 
+they? What advocacy have people been doing and what are politicians' promises this time around?</li>
 	</ol>
 </p>
 
