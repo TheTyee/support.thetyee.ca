@@ -228,6 +228,20 @@ group {
         );
     } => 'powermap';
     
+    
+    any [qw(GET POST)] => '/iframe' => sub {
+        my $self = shift;
+        $self->stash(
+            body_id     => 'iframe',
+            appeal_code => 'iframe'
+        );
+    } => 'iframe';
+    
+    
+    
+    
+    
+    
         any [qw(GET POST)] => '/dec2018' => sub {
         my $self = shift;
         $self->stash(
