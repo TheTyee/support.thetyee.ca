@@ -51,7 +51,9 @@
 
             <span id="campaign-end" style="display:none;"></span>
             <p class="alert alert-warning">Campaign update: We hit our 
-initial goal of $60,000 on Friday, June 22. Help us hit our stretch goal of $75,000 by midnight on June 24 so we can do even more election 
+initial goal of $60,000 on Saturday, June 22. Help us hit our stretch 
+goal of 
+$75,000 by midnight on June 24 so we can do even more election 
 coverage!</p>
             %= include 'includes/form'
             <div id="atf" class="row">
