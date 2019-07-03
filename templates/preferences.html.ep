@@ -26,7 +26,7 @@
 		<br>
 
     <form action="preferences" method="POST" role="form">
-<!--	
+	
 <p class="lead">Inform our reporting. Tell us what matters most to you...</p>
     <form action="preferences" method="POST" role="form">
         <div class="form-group" id="newspriorities">
@@ -94,7 +94,6 @@
             </div>
         </div>
 	
-	-->
 	       <div class="form-group">
             <label for="pref_anonymous">We like to acknowledge our supporters publicly. May we acknowledge your contribution?</label>
             <br />
