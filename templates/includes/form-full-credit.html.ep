@@ -14,6 +14,7 @@
                     <input type="hidden" class="plan-name" name="plan-name" value="">
                     <input type="hidden" class="plan-code" name="plan-code" value="">
                     <input type="hidden" class="amount-in-cents" name="amount-in-cents" value="">
+                    <input type="hidden" class="unit-amount-in-cents" name="unit-amount-in-cents" value="">
 
                     <div class="alert alert-info confirm-payment"><strong>You are about to make a payment for <span></span></strong></div>
                     <button type="submit" id="credit" class="subscribe btn btn-success btn-lg">Process payment &raquo;</button>

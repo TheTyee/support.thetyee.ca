@@ -11,27 +11,49 @@
         <div class="tab-content">
             <!-- Monthly -->
             <div class="tab-pane active" id="form-monthly">
-                <p>Choose your <b>monthly</b> level:</p>
+       
+
+<div class="chooseown" ">
+                <p><b>Monthly</b> level:</p>
                 <div class="btn-group" data-toggle="buttons">
                     % for my $p ( @$plans ) {
-                    <label rel="popover" class="<%= $p->plan_code->text %> btn btn-primary btn-lg" data-trigger="hover" data-container="body" data-placement="top" data-content="<%= $p->description->text %>" data-original-title="<%= $p->name->text %>" title="">
+                    <label rel="popover" class="<%= $p->plan_code->text %> btn btn-primary btn-lg <%= $p->plan_code->text eq "builder-15" ? "active" : "" %> " data-trigger="hover" data-container="body" data-placement="top" data-content="<%= $p->description->text %>" data-original-title="<%= $p->name->text %>" title="">
                         <input type="radio" name="plan" id="<%= $p->plan_code->text %>" value="<%= $p->plan_code->text %>" data-amount="<%= $p->unit_amount_in_cents->CAD->text %>" data-code="<%= $p->plan_code->text %>" data-plan="<%= $p->name->text %>"> $<%= $p->unit_amount_in_cents->CAD->text / 100 %>
                     </label>
 
                     % }
+                    
+
                 </div>
-                <div class="options-payment" style="display:none;">
+                
+                <div id="other-amount-label"><label for="other-amount">Or, enter your own amount:</label></div>
+                
+                <div class="input-group">
+                        <span class="input-group-addon">$</span>
+                        <input type="text" class="form-control" id="other-amount" name="amount" placeholder="Enter a round number, e.g., 25">
+                        <span class="input-group-addon">.00</span>
+                    </div>
+                
+                            <br>                
+                 </div>  
+                <label rel="popover" class="btn btn-primary btn-lg next">Choose payment options</label>
+                
+                            <br>
+                
+                
+                
+                <div class="options-payment" id="monthlypayment"  style="display:none;">
                     <br style="clear:both;" /> 
                     <p>Choose your <b>payment method:</b></p>
                     <a class="btn btn-primary" role="button" data-payment="credit" href="">Credit Card</a> <a class="btn btn-primary" role="button" data-payment="paypal" href="">Paypal</a> <a class="btn btn-primary" role="button" data-payment="bank" href="">Bank</a>
                 </div>
 
-                <div>
+             
                     <br style="clear:both;" /> 
                     <p class="help-block">If you already contribute monthly to The Tyee and would like to increase your contribution, give us a shout at 604-689-7489 or <a  href="mailto:builders@thetyee.ca" target="_blank">builders@thetyee.ca</a>.</p>           
 
                 </div>
-            </div>
+     
             <!--/Monthly-->
             <div class="tab-pane" id="form-onetime">
                 <div class="form-group">
@@ -108,6 +130,7 @@
 % content_for javascript => begin
 %= javascript begin
 
+
 // jQuery function for scrolling to elements
 $.fn.scrollView = function () {
     return this.each(function () {
@@ -158,14 +181,30 @@ function updateConfirmPayment(type) {
 // Show the payment type option buttons
 function showMonthlyPaymentOptions () {
     $('.options-payment').show();
+    $('.next').hide();
     $('#errors span.message').text('');
     $('#errors').hide();
+            $('html,body').animate({scrollTop:$("#monthlypayment").offset().top}, 500);
+
 //    updateConfirmPayment();
 // disable for now because can't be known until payment type chosen -- called later
 }
 
+
 // Capture the amount, set input values, show the payment types
-$( "#form-monthly label.btn" ).on( "click touchstart", function( event ) {
+$( "#form-monthly  label.btn.chooseown" ).on( "click touchstart", function( event ) {
+   $("div.chooseown").show();
+});
+
+
+// hide choose your own if you choose the default
+$( "#form-monthly label.btn.default" ).on( "click touchstart", function( event ) {
+$("div.chooseown").hide();
+});
+
+// Capture the amount, set input values, show the payment types
+$( "#form-monthly .chooseown label.btn, #form-monthly label.btn.default" ).on( "click touchstart", function( event ) {
+
     var selectedinput = $('input', this)[0];
     var amountInCents = selectedinput.dataset.amount;
     var planName = selectedinput.dataset.plan;
@@ -183,7 +222,35 @@ $( "#form-monthly label.btn" ).on( "click touchstart", function( event ) {
     $(this).val(planCode);
     });
     
-    showMonthlyPaymentOptions();
+});
+
+
+
+
+$(".btn.next").click(function(){
+
+
+var selectedinput = $('input#other-amount');
+    var amount = selectedinput.val();
+    
+   
+    
+                if (amount >= 1) {
+                    var amountInCents = amount * 100;
+                    $('input.amount-in-cents').val(amountInCents);
+                    showMonthlyPaymentOptions();
+               
+    
+    } else {
+                $("label.btn").each(function( index ) {
+                
+                
+                        if ($(this).hasClass("active")) {
+                            showMonthlyPaymentOptions();
+                        }
+                
+               });
+   }
 });
 
 // Capture the amount, set input values, show the payment types
@@ -196,16 +263,62 @@ $( "#form-onetime label.btn" ).on( "click touchstart", function( event ) {
     showMonthlyPaymentOptions();
 });
 
+var previousbutton;
+
+$('input#other-amount').focus(function(event) {
+previousbutton = $(".btn.active");
+   $(previousbutton).removeClass("active");
+});
+
 // User enters their own amount for a one-time payment
 $('input#other-amount').on( "blur", function( event ) {
+   
     var selectedinput = $(event.currentTarget);
     var amount = selectedinput.val();
     if (amount >= 1) {
         var amountInCents = amount * 100;
         $('input.amount-in-cents').val(amountInCents);
-        showMonthlyPaymentOptions();
+       // showMonthlyPaymentOptions();
+    } else {
+    $(previousbutton).addClass("active");
+    $(".btn.active input").select();
+    
     }
+
 });
+
+// for monthly payment instance of "other" only, populate hidden fields for plan name $amt
+$('#form-monthly input#other-amount').on( "blur", function( event ) {
+    var selectedinput = $(event.currentTarget);
+        var amount = selectedinput.val();
+    if (amount >= 1) {
+        var amountInCents = amount * 100;
+        $('input.amount-in-cents').val(amountInCents);
+       
+        
+    var planName = "custom_amount";
+    var planCode = "custom_amount";
+    $('input.amount-in-cents').each(function(){
+        $(this).val(amountInCents);
+    })
+    
+      $('input.unit-amount-in-cents').val(amountInCents);
+    $('input.unit-amount-in-cents').each(function(){
+        $(this).val(amountInCents);
+    })
+    
+    $('input.plan-name').each(function(){
+       $(this).val(planName); 
+
+    });
+    $('input.plan-code').each(function(){
+    $(this).val(planCode);
+    });
+    }
+
+});
+
+
 
 // Show the correct fields depending on the payment type
 function showPaymentForm(type) {
@@ -254,7 +367,6 @@ $('.options-payment a').on( "click touchstart", function( event ) {
     var paymentType = el.dataset.payment;
     $('.payment-type').val(paymentType);
     showPaymentForm(paymentType);
-    
     });
 
 

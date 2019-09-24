@@ -84,7 +84,7 @@ helper recurly_get_plans => sub {
     my $dom      = Mojo::DOM->new( $xml );
     my $plans    = $dom->find( 'plan' );
 
-      app->log->debug("Plans " . Dumper $xml);
+    #  app->log->debug("Plans " . Dumper $xml);
 
 
 
@@ -386,17 +386,12 @@ post '/get_update_link' => sub {
     my $email;
     my $res;
     my $text;
-    
-
 
                 $email = {    
             'account' => {
                 'account_code' => $self->param( 'email' )
                 }
             };
-                    
-
-   
 
         # Post the XML to the /transacdtions endpoint
         $res = $ua->get( $API. 'accounts/' .$self->param( 'email' ) =>  { 'Content-Type' => 'application/xml', Accept => '*/*' });
@@ -465,6 +460,7 @@ post '/process_transaction' => sub {
     # TODO remove $amount
     my $amount          = $self->param( 'amount' );
     my $amount_in_cents = $self->param( 'amount-in-cents' );
+    my $unit_amount_in_cents = $self->param( 'unit-amount-in-cents' );
     my $first_name      = $self->param( 'first-name' );
     my $last_name       = $self->param( 'last-name' );
     my $address         = $self->param( 'address1' );
@@ -525,6 +521,7 @@ post '/process_transaction' => sub {
             'subscription' => {
                 'plan_code' => $plan_code,
                 'currency'  => 'CAD',
+                'unit_amount_in_cents' => $unit_amount_in_cents,
                 'account'   => {
                     'account_code' => lc $email,
                     'first_name'   => $first_name,
