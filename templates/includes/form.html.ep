@@ -58,10 +58,10 @@
             <div class="tab-pane" id="form-onetime">
                 <div class="form-group">
                     <p>Select your <b>one-time</b> amount:</p>
-                    <div class="btn-group" data-toggle="buttons">
+                    <div class="btn-group choose-onetime" data-toggle="buttons">
                         % for my $p ( @$plans_onetime ) {
-                        <label rel="popover" class="btn btn-primary btn-lg" data-trigger="hover" data-container="body" data-placement="top" data-content="<%= $p->{'text'} %>" data-original-title="$<%= $p->{'amount'} %> one-time gift" title="$<%= $p->{'amount'} %> one-time gift">
-                            <input type="radio" name="amount" id="<%= $p->{'amount'} %>" value="<%= $p->{'amount'} %>"> $<%= $p->{'amount'} %>
+                        <label rel="popover" class="btn onetime-<%= $p->{'amount'} %> btn-primary btn-lg" data-trigger="hover" data-container="body" data-placement="top" data-content="<%= $p->{'text'} %>" data-original-title="$<%= $p->{'amount'} %> one-time gift" title="$<%= $p->{'amount'} %> one-time gift">
+                            <input type="radio" name="amount" id="<%= $p->{'amount'}  %>" value="<%= $p->{'amount'} %>"> $<%= $p->{'amount'} %>
                         </label>
 
                         % }
@@ -72,7 +72,13 @@
                         <input type="text" class="form-control" id="other-amount" name="amount" placeholder="Enter a round number, e.g., 25">
                         <span class="input-group-addon">.00</span>
                     </div>
+                    
+                                    <label rel="popover" class="btn btn-primary btn-lg next">Choose payment options</label>
+                
+                            <br>
                     <p class="help-block">Or, consider becoming a <a href="/" id="link-tab-monthly">sustaining monthly supporter</a> for less than the cost of a newspaper subscription.</p>
+
+
 
 
                     <div class="options-payment" style="display:none;">
@@ -228,39 +234,38 @@ $( "#form-monthly .chooseown label.btn, #form-monthly label.btn.default" ).on( "
 
 
 $(".btn.next").click(function(){
-
-
-var selectedinput = $('input#other-amount');
-    var amount = selectedinput.val();
-    
+        if ( $("#monthly").hasClass("active") ) {
+                    var selectedinput = $('input#other-amount');
+                    var amount = selectedinput.val();
+                            if (amount >= .01) {
+                                            var amountInCents = amount * 100;
+                                            $('input.amount-in-cents').val(amountInCents);
+                                            showMonthlyPaymentOptions();
+                                       
+                            } else {
+                                        $("label.btn").each(function( index ) {
+                                                if ($(this).hasClass("active")) {
+                                                    showMonthlyPaymentOptions();
+                                                }
+                                        
+                                       });
+                           }
+           
+        } else {
+         showMonthlyPaymentOptions();
+        }
    
-    
-                if (amount >= 1) {
-                    var amountInCents = amount * 100;
-                    $('input.amount-in-cents').val(amountInCents);
-                    showMonthlyPaymentOptions();
-               
-    
-    } else {
-                $("label.btn").each(function( index ) {
-                
-                
-                        if ($(this).hasClass("active")) {
-                            showMonthlyPaymentOptions();
-                        }
-                
-               });
-   }
 });
 
 // Capture the amount, set input values, show the payment types
-$( "#form-onetime label.btn" ).on( "click touchstart", function( event ) {
+$( "#form-onetime .choose-onetime label.btn" ).on( "click touchstart", function( event ) {
+console.log("click onetime");
     var selectedinput = $('input', this)[0];
     var amountInCents = $(selectedinput).val() * 100;
     $('input.amount-in-cents').val(amountInCents);
     $('input.plan-name').val('');
     $('input.plan-code').val('');
-    showMonthlyPaymentOptions();
+   //  showMonthlyPaymentOptions();
 });
 
 var previousbutton;
@@ -275,7 +280,7 @@ $('input#other-amount').on( "blur", function( event ) {
    
     var selectedinput = $(event.currentTarget);
     var amount = selectedinput.val();
-    if (amount >= 1) {
+    if (amount >= .01) {
         var amountInCents = amount * 100;
         $('input.amount-in-cents').val(amountInCents);
        // showMonthlyPaymentOptions();
@@ -291,7 +296,7 @@ $('input#other-amount').on( "blur", function( event ) {
 $('#form-monthly input#other-amount').on( "blur", function( event ) {
     var selectedinput = $(event.currentTarget);
         var amount = selectedinput.val();
-    if (amount >= 1) {
+    if (amount >= .01) {
         var amountInCents = amount * 100;
         $('input.amount-in-cents').val(amountInCents);
        
@@ -472,6 +477,48 @@ $('#form-paypal form').on('submit', function (event) {
             form.submit();
         }
       });
+});
+
+
+function setDefault() {
+        if ( $("#onetime").hasClass("active") ) {
+            console.log("onetime active");
+
+                   $(".onetime-50").click();
+
+$('input.amount-in-cents').each(function(){
+        $(this).val("5000");
+    })
+    
+    $('input.plan-name').each(function(){
+       $(this).val(""); 
+
+    });
+    $('input.plan-code').each(function(){
+         $(this).val("");
+    });
+
+            
+        } else if ( $("#form-monthly").hasClass("active") ) {
+    console.log("monthly active");
+                     $(".builder-15.btn").click();
+
+        }
+                   
+
+
+};
+
+$(".nav.nav-tabs a").click(function(e){
+    $('.next').show();
+setTimeout(function(){
+setDefault();
+}, 80);
+});
+
+$(document).ready(function(){
+setDefault();
+
 });
 
 

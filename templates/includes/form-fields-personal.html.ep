@@ -12,8 +12,3 @@
     <label for="email">Email</label>
     <input class="form-control required" data-recurly="email" id="email" name="email" placeholder="Email" type="email" required />
 </div>
-<div class="form-group">
-    <label for="email">Phone</label>
-    <input class="form-control" data-recurly="phone" id="phone" name="phone" placeholder="(555) 555 5555" type="tel" />
-      <span id="helpBlock" class="help-block">Optional</span>
-</div>
