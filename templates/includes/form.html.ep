@@ -228,6 +228,8 @@ $( "#form-monthly .chooseown label.btn, #form-monthly label.btn.default" ).on( "
     $(this).val(planCode);
     });
     
+     updateConfirmPayment("monthly");
+    
 });
 
 
@@ -252,6 +254,8 @@ $(".btn.next").click(function(){
                            }
            
         } else {
+        
+        
          showMonthlyPaymentOptions();
         }
    
@@ -259,13 +263,14 @@ $(".btn.next").click(function(){
 
 // Capture the amount, set input values, show the payment types
 $( "#form-onetime .choose-onetime label.btn" ).on( "click touchstart", function( event ) {
-console.log("click onetime");
+// console.log("click onetime");
     var selectedinput = $('input', this)[0];
     var amountInCents = $(selectedinput).val() * 100;
     $('input.amount-in-cents').val(amountInCents);
     $('input.plan-name').val('');
     $('input.plan-code').val('');
    //  showMonthlyPaymentOptions();
+    updateConfirmPayment("onetime");
 });
 
 var previousbutton;
@@ -284,6 +289,7 @@ $('input#other-amount').on( "blur", function( event ) {
         var amountInCents = amount * 100;
         $('input.amount-in-cents').val(amountInCents);
        // showMonthlyPaymentOptions();
+        updateConfirmPayment("onetime");
     } else {
     $(previousbutton).addClass("active");
     $(".btn.active input").select();
