@@ -421,10 +421,10 @@
             
             <br />
             <label class="radio-inline">
-              <input type="radio" name="on_behalf_of" id="on_behalf_of_honour" value="honour"> Yes, in honour.
+              <input type="radio" name="on_behalf_of" autocomplete="off" id="on_behalf_of_honour" value="honour"> Yes, in honour.
             </label>
             <label class="radio-inline">
-              <input type="radio" name="on_behalf_of" id="on_behalf_of_memory" value="memory"> Yes, in memory.
+              <input type="radio" name="on_behalf_of"  autocomplete="off" id="on_behalf_of_memory" value="memory"> Yes, in memory.
             </label>
         </div>
         <div class="form-inline">
