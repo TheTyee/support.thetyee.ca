@@ -2,7 +2,7 @@
 
 %  my $err_anon = validation->error('pref_anonymous');
 %  my $err_freq = validation->error('pref_frequency');
-
+%  my $err_mail = validation->error('pref_lapel');
 <div class="container" id="content-inner">
     <div class="row">
         <div class="col-md-8">
@@ -19,150 +19,30 @@
         Please correct the following problems with your selections:<br />
         <%== $err_freq ? 'Subscription preference is required<br />' : '' %>
         <%== $err_anon ? 'Acknoledgement choice is required<br />' : '' %>
+                <%== $err_anon ? 'Mailing / swag choice is required <br />' : '' %>
+
     </p>
     % }
 
-    <h1>Thanks very much! Stay in touch, won’t you?</h1>
+    <h1>Thanks very much! Don’t go yet, we have some questions for you.</h1>
 		<br>
 
     <form action="preferences" method="POST" role="form">
 	
-<p class="lead">Inform our reporting. Tell us what matters most to you...</p>
-    <form action="preferences" method="POST" role="form">
-        <div class="form-group" id="newspriorities">
-            <label for="pref_frequency">Choose one:</label>
-            <div class="radio">
-              <label>
-                <input type="radio" name="pref_newspriority" id="artsandculture" value="1">
-                Arts &amp; Culture 
-              </label>
-              <span class="help-block">(Bilingualism, Canadian identity and heritage, reviews and views, CBC funding, arts funding and cuts, grants cuts, cuts, cuts, and more cuts.)</span>
-            </div>
-            <div class="radio">
-              <label>
-                <input type="radio" name="pref_newspriority" id="energyandenvironment" value="2">
-                Energy &amp; Environment 
-              </label>
-              <span class="help-block">(Oil sands, LNG, fracking, pipelines, tankers, GMOs, honeybee extinction, climate change, peak oil, resource depletion. You know, the end of the world. Or the beginning of something new?)) </span>
-            </div>
-            <div class="radio">
-              <label>
-                <input type="radio" name="pref_newspriority" id="tradeandforeignpolity" value="3">
-                Trade &amp; Foreign Policy  
-              </label>
-              <span class="help-block">(UN, Canada’s international reputation, Donald Trump, defence, international law, CIDA/foreign aid, peacekeeping, World Bank, globalization, sweat shops, mining, G8, TPP, CETA, NAFTA, IMF, UN, and other acronyms.) </span>
-            </div>
-            <div class="radio">
-              <label>
-                <input type="radio" name="pref_newspriority" id="laboureconomy" value="4">
-               Labour &amp; Economy
-              </label>
-              <span class="help-block">(Union bargaining rights, collective agreements, outsourcing, temporary foreign workers, living wage, worker safety, privatization, jobs, progressive taxation and economics, corporate taxes, small business, you know, the 99% and the 1%.)</span>
-            </div>
-            <div class="radio">
-              <label>
-                <input type="radio" name="pref_newspriority" id="governmentaccountability" value="5">
-                Gov't Accountability  
-              </label><span class="help-block">(Transparency, federal-provincial relations, Senate reform, proportional representation, electoral fraud, etc.) </span>
-            </div>
-            <div class="radio">
-              <label>
-                <input type="radio" name="pref_newspriority" id="inequality" value="6">
-                Inequality &amp; Social Policy  
-              </label>
-              <span class="help-block">(Welfare reform, economic inequality, public pensions, social security, universal childcare, universal education, universal health care, affordability, etc.) </span>
-            </div>
-            <div class="radio">
-              <label>
-                <input type="radio" name="pref_newspriority" id="rightsandjustice" value="7">
-                Rights &amp; Justice
-              </label>
-              <span class="help-block">(LGBTQ, Indigenous, sexism, racism, immigrant and refugee rights, mental healthcare, disability rights, Treaty rights, Charter rights, protest rights, reproductive rights, right?) </span>
-            </div>
-            <div class="radio">
-              <label>
-                <input type="radio" name="pref_newspriority" id="openmedia" value="8">
-                Media &amp; Digital Policy 
-              </label><span class="help-block">(Media concentration, CRTC, journalism futures, the CBC, copyright law, Internet freedom, FOI, censorship, online spying.)</span>
-            </div>
-            <div class="radio">
-              <label>
-                <input type="radio" name="pref_newspriority" id="tyeechoice" value="0" checked>
-                Tyee's choice
-              </label>
-              <span class="help-block">(I trust your news judgment, Tyee.)</span>
-            </div>
-        </div>
-	
-	       <div class="form-group">
-            <label for="pref_anonymous">We like to acknowledge our supporters publicly. May we acknowledge your contribution?</label>
-            <br />
-            <label class="radio-inline">
-                <input checked="1" id="anon-no" name="pref_anonymous" type="radio" value="Yes" />
-                Yes</label>
-            <label class="radio-inline">
-                <input id="anon-yes" name="pref_anonymous" type="radio" value="No" />
-                No thanks, I'd prefer to be anonymous</label>
-        </div>
-
-
-        <div class="form-group">
-            <label for="on_behalf_of">Is this gift being made in honour, or in memory, of someone?</label>
-            <br />
-            <label class="radio-inline">
-              <input type="radio" name="on_behalf_of" id="on_behalf_of_honour" value="honour"> Yes, in honour.
-            </label>
-            <label class="radio-inline">
-              <input type="radio" name="on_behalf_of" id="on_behalf_of_memory" value="memory"> Yes, in memory.
-            </label>
-        </div>
-        <div class="form-inline">
-            <label for="on_behalf_of_name">What is the name of the person?</label>
-            <br />
-            <div class="form-group">
-                <input type="text" class="form-control" name="on_behalf_of_name_first" id="on_behalf_of_name_first" placeholder="Leonard">
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" name="on_behalf_of_name_last" id="on_behalf_of_name_last" placeholder="Cohen">
-            </div>
-            <p class="help-block">This name will be acknowledged publicly. Please enter only the person's first and last name.</p>
-        </div>
-        <div class="form-group">
-            <label for="pref_frequency">Would you like our stories emailed straight to your inbox?</label>
-            <br />
-            <label class="radio-inline">
-                <input checked="1" id="daily" name="pref_frequency" type="radio" value="Daily headlines" />
-                Daily
-            </label>
-            <label class="radio-inline">
-                <input id="weekly" name="pref_frequency" type="radio" value="Weekly headlines" />
-                Weekly
-            </label>
-            <label class="radio-inline">
-                <input id="national" name="pref_frequency" type="radio" value="National headlines" />
-                National (sent weekly)</label>
-            <label class="radio-inline">
-                <input id="noThanks" name="pref_frequency" type="radio" value="No thanks" />
-                No thanks</label>
-            <label class="radio-inline">
-                <input id="alreadySubscribe" name="pref_frequency" type="radio" value="I already subscribe" />
-                I already subscribe</label>
-        </div>
-        <div class="form-group">
-            <label>Mailing preference?</label>
-	    <p>One last thing. If this is your first time giving to The Tyee, we have a super cool custom Tyee lapel pin to send to you in the mail. But we understand 
-if you don’t want it. We get it.</p>	
+  <div class="form-group">
+           
+	    <p><strong>To receive your sweet Tyee swag in the mail, we’ll need your mailing address.</strong></p>	
             <label class="radio-inline">
                 <input id="lapel-yes" name="pref_lapel" type="radio" value="Yes" />
-                Yes, please send me Tyee swag</label>
+                Yes, please send me Tyee swag. Here is my address.</label>
             <label class="swag radio-inline">
                 <input checked="1"  id="lapel_no" name="pref_lapel" type="radio" value="No" />
-                Don’t send me anything in the mail</label>
+                No, please don’t send me anything in the mail</label>
         </div>
         <br />
 <div class="address_fields" style="display:none;">
 <div class="form-group">
-    <label for="address1">Street address (to mail you a pin)</label>
+    <label for="address1">Street address</label>
     <input class="form-control required" data-recurly="address1" id="address1" name="address1" placeholder="Address" type="text"  />
 </div>
 <div class="form-group">
@@ -445,13 +325,144 @@ if you don’t want it. We get it.</p>
 </div>
 
 <div class="form-group">
+      <label for="zip">Postal code</label>
+    <input class="form-control"  id="zip" name="zip" placeholder="Postal/Zip" type="text" >
+</div>
+
+<div class="form-group">
     <label for="email">Phone</label>
     <input class="form-control" data-recurly="phone" id="phone" name="phone" placeholder="(555) 555 5555" type="tel" />
       <span id="helpBlock" class="help-block">Optional</span>
 </div>
 
-
 </div>
+    
+<p class="lead"><strong>Inform our reporting. Tell us what matters most to you...</strong></p>
+    <form action="preferences" method="POST" role="form">
+        <div class="form-group" id="newspriorities">
+            <label for="pref_frequency">Choose one:</label>
+            <div class="radio">
+              <label>
+                <input type="radio" name="pref_newspriority" id="artsandculture" value="1">
+                Arts &amp; Culture 
+              </label>
+              <span class="help-block">(Bilingualism, Canadian identity and heritage, reviews and views, CBC funding, arts funding and cuts, grants cuts, cuts, cuts, and more cuts.)</span>
+            </div>
+            <div class="radio">
+              <label>
+                <input type="radio" name="pref_newspriority" id="energyandenvironment" value="2">
+                Energy &amp; Environment 
+              </label>
+              <span class="help-block">(Oil sands, LNG, fracking, pipelines, tankers, GMOs, honeybee extinction, climate change, peak oil, resource depletion. You know, the end of the world. Or the beginning of something new?)) </span>
+            </div>
+            <div class="radio">
+              <label>
+                <input type="radio" name="pref_newspriority" id="tradeandforeignpolity" value="3">
+                Trade &amp; Foreign Policy  
+              </label>
+              <span class="help-block">(UN, Canada’s international reputation, Donald Trump, defence, international law, CIDA/foreign aid, peacekeeping, World Bank, globalization, sweat shops, mining, G8, TPP, CETA, NAFTA, IMF, UN, and other acronyms.) </span>
+            </div>
+            <div class="radio">
+              <label>
+                <input type="radio" name="pref_newspriority" id="laboureconomy" value="4">
+               Labour &amp; Economy
+              </label>
+              <span class="help-block">(Union bargaining rights, collective agreements, outsourcing, temporary foreign workers, living wage, worker safety, privatization, jobs, progressive taxation and economics, corporate taxes, small business, you know, the 99% and the 1%.)</span>
+            </div>
+            <div class="radio">
+              <label>
+                <input type="radio" name="pref_newspriority" id="governmentaccountability" value="5">
+                Gov't Accountability  
+              </label><span class="help-block">(Transparency, federal-provincial relations, Senate reform, proportional representation, electoral fraud, etc.) </span>
+            </div>
+            <div class="radio">
+              <label>
+                <input type="radio" name="pref_newspriority" id="inequality" value="6">
+                Inequality &amp; Social Policy  
+              </label>
+              <span class="help-block">(Welfare reform, economic inequality, public pensions, social security, universal childcare, universal education, universal health care, affordability, etc.) </span>
+            </div>
+            <div class="radio">
+              <label>
+                <input type="radio" name="pref_newspriority" id="rightsandjustice" value="7">
+                Rights &amp; Justice
+              </label>
+              <span class="help-block">(LGBTQ, Indigenous, sexism, racism, immigrant and refugee rights, mental healthcare, disability rights, Treaty rights, Charter rights, protest rights, reproductive rights, right?) </span>
+            </div>
+            <div class="radio">
+              <label>
+                <input type="radio" name="pref_newspriority" id="openmedia" value="8">
+                Media &amp; Digital Policy 
+              </label><span class="help-block">(Media concentration, CRTC, journalism futures, the CBC, copyright law, Internet freedom, FOI, censorship, online spying.)</span>
+            </div>
+            <div class="radio">
+              <label>
+                <input type="radio" name="pref_newspriority" id="tyeechoice" value="0" checked>
+                Tyee's choice
+              </label>
+              <span class="help-block">(I trust your news judgment, Tyee.)</span>
+            </div>
+        </div>
+	
+	       <div class="form-group">
+            <label for="pref_anonymous">We like to acknowledge our supporters publicly. May we acknowledge your contribution?</label>
+            <br />
+            <label class="radio-inline">
+                <input checked="1" id="anon-no" name="pref_anonymous" type="radio" value="Yes" />
+                Yes</label>
+            <label class="radio-inline">
+                <input id="anon-yes" name="pref_anonymous" type="radio" value="No" />
+                No thanks, I'd prefer to be anonymous</label>
+        </div>
+
+
+        <div class="form-group">
+            <label for="on_behalf_of">Is this gift being made in honour, or in memory, of someone? (leave blank if not)</label>
+            
+            <br />
+            <label class="radio-inline">
+              <input type="radio" name="on_behalf_of" id="on_behalf_of_honour" value="honour"> Yes, in honour.
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="on_behalf_of" id="on_behalf_of_memory" value="memory"> Yes, in memory.
+            </label>
+        </div>
+        <div class="form-inline">
+            <label for="on_behalf_of_name">What is the name of the person?</label>
+            <br />
+            <div class="form-group">
+                <input type="text" class="form-control" name="on_behalf_of_name_first" id="on_behalf_of_name_first" placeholder="Leonard">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="on_behalf_of_name_last" id="on_behalf_of_name_last" placeholder="Cohen">
+            </div>
+            <p class="help-block">This name will be acknowledged publicly. Please enter only the person's first and last name.</p>
+        </div>
+        <div class="form-group">
+            <label for="pref_frequency">Would you like our stories emailed straight to your inbox?</label>
+            <br />
+            <label class="radio-inline">
+                <input checked="1" id="daily" name="pref_frequency" type="radio" value="Daily headlines" />
+                Daily
+            </label>
+            <label class="radio-inline">
+                <input id="weekly" name="pref_frequency" type="radio" value="Weekly headlines" />
+                Weekly
+            </label>
+            <label class="radio-inline">
+                <input id="national" name="pref_frequency" type="radio" value="National headlines" />
+                National (sent weekly)</label>
+            <label class="radio-inline">
+                <input id="noThanks" name="pref_frequency" type="radio" value="No thanks" />
+                No thanks</label>
+            <label class="radio-inline">
+                <input id="alreadySubscribe" name="pref_frequency" type="radio" value="I already subscribe" />
+                I already subscribe</label>
+        </div>
+        
+
+
+
 
 
     <div class="submit-button">
@@ -468,11 +479,11 @@ if you don’t want it. We get it.</p>
 $('input[name=pref_lapel]').on('click', function (event) {
     if (  $("#lapel-yes").prop("checked") == true  ) {
 	   $(".address_fields").css("display", "block");
-	   	$('.adres_fields').prop('required', true);
+	   	$('.address_fields').prop('required', true);
 	} else {
 	
 		   $(".address_fields").css("display", "none")
-	$('.adres_fields').prop('required', false);
+	$('.address_fields').prop('required', false);
 	}
 	
 
@@ -483,21 +494,21 @@ $('input[name=pref_lapel]').on('click', function (event) {
 // Simple HTML5 validation for the on behalf of name fields
 // if the on behlf of is set
 $('input[name=on_behalf_of]').on('click', function (event) {
-    $('#on_behalf_of_name_first').prop('required', true);
-    $('#on_behalf_of_name_last').prop('required', true);
+//    $('#on_behalf_of_name_first').prop('required', true);
+ //   $('#on_behalf_of_name_last').prop('required', true);
 });
 
 $('input[name=on_behalf_of_name_first]').on('blur', function (event) { 
 var el = event.currentTarget;
     if (el.value !== '') {
-        $('input[name=on_behalf_of]').prop('required', true);
+        $('input[name=on_behalf_of]').prop('required', false);
     }
 })
 
 $('input[name=on_behalf_of_name_last]').on('blur', function (event) { 
 var el = event.currentTarget;
     if (el.value !== '') {
-        $('input[name=on_behalf_of]').prop('required', true);
+        $('input[name=on_behalf_of]').prop('required', false);
     }
 })
 

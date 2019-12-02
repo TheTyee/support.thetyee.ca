@@ -1,5 +1,5 @@
 {
-    "app_version"               : "1.8.9",
+    "app_version"               : "1.9.1",
     "recurly_get_plans_filter" : "builder",
     "plans_onetime"          : [ 
         { 
