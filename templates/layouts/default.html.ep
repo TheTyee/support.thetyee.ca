@@ -40,7 +40,7 @@
 
     <title><%= $title %></title>
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <link href="<%= $config->{'static_asset_path'} %>/ui/css/styles.css?v=2" rel="stylesheet" media="screen">
+    <link href="<%= $config->{'static_asset_path'} %>/ui/css/styles.css?v=3" rel="stylesheet" media="screen">
     <script src="<%= $config->{'static_asset_path'} %>/ui/js/modernizr.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="<%= $config->{'static_asset_path'} %>/ui/js/jquery.validate.min.js"></script>
