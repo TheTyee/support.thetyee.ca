@@ -15,9 +15,9 @@
                         <!--</div>-->
                         <div class="time-left">
                               <!--<span class="days"></span> <i>days left</i>.-->
-                              <div><span class="days"></span><i class="days-left"></i></div>
+                              <div><span class="days"></span><i class="days-left"></i>
                               <span class="hours"></span>
-                              <span class="minutes"></span>
+                              <span class="minutes"></span></div>
                         </div>
                         <hr class="soften" />
                         <div class="from">
