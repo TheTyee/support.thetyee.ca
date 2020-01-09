@@ -3,8 +3,9 @@
 <% } %>
     <div id="form">
         <ul class="nav nav-tabs">
-            <li id="onetime" class="" ><a href="#form-onetime" data-toggle="tab">One-time</a></li>
             <li id="monthly" class="active"><a href="#form-monthly" data-toggle="tab">Monthly</a></li>
+                        <li id="onetime" class="" ><a href="#form-onetime" data-toggle="tab">One-time</a></li>
+
             <li id="offline" ><a href="#form-offline" data-toggle="tab">Offline</a></li>
         </ul>
 
