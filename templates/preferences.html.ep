@@ -395,6 +395,15 @@
                 Media &amp; Digital Policy 
               </label><span class="help-block">(Media concentration, CRTC, journalism futures, the CBC, copyright law, Internet freedom, FOI, censorship, online spying.)</span>
             </div>
+<div class="radio">
+              <label>
+                <input type="radio" name="pref_newspriority" id="inequality" value="7">
+                Housing
+              </label>
+              <span class="help-block">
+(Land use, purpose-built rental, co-ops, social housing, community land trusts, market rentals, missing middle, how to put a roof over people’s heads)
+</span>
+            </div>
             <div class="radio">
               <label>
                 <input type="radio" name="pref_newspriority" id="tyeechoice" value="0" checked>
