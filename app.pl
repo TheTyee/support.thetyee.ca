@@ -433,6 +433,7 @@ post '/get_update_link' => sub {
     from => 'builders@thetyee.ca',
     type => 'text/html',
     to      => $self->param( 'email' ),
+    bcc     => 'builders@thetyee.ca',
     subject => 'The Tyee - Modify Your Builder Account',
     data    => 'You appear to have requested your sign-in for your builder account with The Tyee at https://support.thetyee.ca.  You can sign in to your account by visiting the following link: https://' . $subdomain .'.recurly.com/account/' .  $dom->at( 'hosted_login_token' )->text . "\n \n <br><br>"  . 'Note that for security reasons, if you are updating a card you have to re-input the entire card, expiry and security code (even if only the expiry has changed). If this was sent by mistake you can delete or ignore it - we only send this information to the email registered on the account.',
   );
