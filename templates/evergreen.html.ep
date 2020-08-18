@@ -1,7 +1,7 @@
 % layout 'default', title => 'Support fact-based independent journalism -- The Tyee'; 
 
        <div class="container" id="content">
-		<div class="row manage">
+		<div class="row manage" style="display:none;">
 			
 			<button type="button" class="btn btn-info btn-xs manage"  data-toggle="modal" data-target="#myModal">Manage builder account</button>
 
