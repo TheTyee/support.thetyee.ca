@@ -1,65 +1,41 @@
 % layout 'default', title => 'Support fact-based independent journalism -- The Tyee'; 
 
        <div class="container" id="content">
-		<div class="row manage" style="display:none;">
-			
-			<button type="button" class="btn btn-info btn-xs manage"  data-toggle="modal" data-target="#myModal">Manage builder account</button>
-
-<!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Account Management Link</h4>
-      </div>
-      <div class="modal-body">
-        <p>Enter your email below to get a link to your account management page</p>
-	   <div class="emailform">
-				<form class="update" method="post" action="/get_update_link">
-					<input type="text" name="email" placeholder="Email" type="email" required>
-					
-					</input>
-					<button type="submit" id="getlink" class="btn btn-success btn-sm">Get account management link »</button>
-				</form>
-			</div>
-	   
-	   
-	   
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-
-  </div>
-</div>
-			
-			
-			
-			
-			
-			
-			
-		</div>
             <div id="campaign-copy" class="row">
-                <h1>Canada needs more independent journalism. Join us <span>&nbsp;</span></h1>
-                <p class="lead">Support The Tyee and bring more diverse, fact-driven reporting to the public conversation.</p>
-            </div>
+			
 
-            <span id="campaign-end" style="display:none;"></span>
+
+                <h1>Canada needs more independent journalism. Join us <span>&nbsp;</span></h1>
+                <p class="lead">Help us reach our goal of 600 new monthly supporters</p>
+            </div>
+<!--<p class="alert alert-warning"><i class="glyphicon glyphicon-fire"></i>Campaign update: We hit our target of 500 new monthly supporters on December 29. Help us hit our stretch goal of 600 new supporters by December 31!</big></p>-->
+
+            <span id="campaign-end"></span>
             %= include 'includes/form'
-            <div id="atf" class="row">
-                <div class="col-md-7 video-container">
+           <div id="atf" class="row">
+               <div class="col-md-7 video-container">
                     <iframe width="560" height="315" src="//www.youtube.com/embed/jF1ZElM7-nA" frameborder="0" allowfullscreen></iframe>
                 </div>
-                <div class="col-md-5">
-		<h2 style="margin-top:0;">Who are we?</h2>
-                    %= include 'includes/about'
+<!--                <div class="col-lg-8">
+		<h2 style="margin-top:0;">2019 by 2019!</h2>
+                   
+			    <p><big>Help us reach our goal of 500 new monthly donors before the start of 2020.</big></p>
+<p><big>
+We have big plans for 2020, but we need your help to know we'll have the sustained support to pull it off.</big></p>
+
+			    
+			    
+                </div>-->
+			     <div class="col-md-4">
+                    %= include 'includes/widget-twentynineteen'
                 </div>
-            </div> <!-- / #atf -->
+			 
+			 
+			 
+			 
+            </div>  <!-- / #atf -->
+
+
 
            <div class="row awards">
                 <div class="col-md-12 awards">
@@ -67,7 +43,7 @@
                         <a href="https://thetyee.ca/Tyeenews/2020/04/22/National-Magazine-Award-Woodend/"><img style="width: 130px;"  id="murrow" src="<%= $config->{'static_asset_path'} %>/ui/img/DPA2020.png" />
                         <p>Digital Publishing Award 2020</p></a>
                     </div>
-                    <div class="col-md-3 col-sm-3 award">
+      <div class="col-md-3 col-sm-3 award">
                         <a href="https://thetyee.ca/Blogs/TheHook/2013/06/14/CJF-Award-Win-2013/"><img id="murrow" src="<%= $config->{'static_asset_path'} %>/ui/img/award-cjf.png" />
                         <p>Excellence in Journalism Award (CDN), 2013, 2009</p></a>
                     </div>
@@ -86,7 +62,9 @@
 
         </div><!-- / .container -->
 
-        <div id="featurettes1">
+  %# = include 'includes/withyourhelp'
+
+  <div id="featurettes1">
             <div class="container">
                 <div class="row">
                     <div class="col-md-4">
@@ -95,20 +73,19 @@
                     </div><!-- /.col-md-4 -->
                     <div class="col-md-4">
                         <h2>How you can help</h2>
-                        <p>By contributing to The Tyee on a monthly basis, you are helping to strengthen and grow our team of fierce, tough-minded journalists and editors. Tyee Builders who give every month allow our small and nimble team to plan ahead, and produce original stories that you will not see anywhere else. We don’t put our articles behind paywalls, so your contribution helps to keep our stories open and available to everyone.</p>
+                        <p>More people than ever before are reading The Tyee. To meet demand, we’re publishing at double our previous rate. We want to keep up momentum and do even more. By committing to a monthly contribution, you’ll help us add to our team so we can keep putting out deeply researched, high-quality journalism. By giving every month, you’ll allow us to know we have the resources on hand to support a new editorial position.</p>
                     </div><!-- /.col-md-4 -->
                     <div class="col-md-4">
                         <h2>Join our community</h2>
-                        <p>We want to know which issues matter most to you. Energy and environment? Inequality? Electoral reform? When you sign up, you’ll 
-complete a news priority survey that will help inform our reporting. As a special thanks for joining, you’ll receive editorial reports, discounts from partners, 
-random swag giveaways, and discounts on special events and Tyee Master Classes.</p>
+                        <p>We want to know which issues matter most to you. Energy and environment? Inequality? Electoral reform? When you sign up, you’ll complete a news priority survey that will help inform our reporting. As a special thanks for joining, you’ll receive editorial reports, random swag giveaways, and discounts and advance registration for special events.
+</p>
                     </div><!-- /.col-md-4 -->
                 </div><!-- /.row -->
             </div><!-- / .container -->
         </div><!-- / #featurettes1 -->
   %# %=  include 'includes/withyourhelp'
 
-<div id="powermap-pitch">
+      <div id="powermap-pitch">
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
@@ -149,24 +126,13 @@ random swag giveaways, and discounts on special events and Tyee Master Classes.<
             </div><!-- / .container -->
         </div><!-- / #featurettes1 -->
 
-        <div id="people" class="testimonial">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8">
-                        <p class="quotation">“I support The Tyee because its reporters are brave, independent and smart as hell — and because now is a 
-critical time to hold government accountable to its promises”</p>
-                        <p class="cite">Naomi Klein</p>
-                    </div>
-                    <div class="col-md-4">
-                        <img src="<%= $config->{'static_asset_path'} %>/ui/img/naomi-klein.jpg">
-                    </div>
-                </div><!-- /.row -->
-            </div><!-- /.container -->
-        </div><!-- people -->
+
+
+%=  include 'includes/builder_list'      
 
 
 
-% # %=  include 'includes/builder_list'      
+
     
 % content_for javascript => begin
 %= javascript begin
