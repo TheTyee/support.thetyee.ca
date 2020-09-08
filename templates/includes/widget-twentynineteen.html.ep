@@ -6,7 +6,7 @@
                                   <span class="sr-only"><span class="percentage">0</span>% Complete</span>
                               </div>
                         </div>
-                        <p class="raised-goal"><!--<i><strike>500</strike>&nbsp; --><!--Pledged --><span class="goal"></span> new monthly supporters goal</i><br /></p>
+                        <p class="raised-goal"><!--<i><strike>500</strike>&nbsp; --><!--Pledged --> of <span class="goal"></span> new monthly supporters goal</i><br /></p>
                         <!--<p>$<span class="onetimetotal"></span> raised in one-time donations</p>-->
                         <!--<div class="reader-priorities">-->
                             <!--<strong>Top reader priorities:</strong>-->
