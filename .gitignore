@@ -9,3 +9,4 @@ NOTES.md
 local
 cpanfile.snapshot
 /.perl-version
+/cpanfile.snapshot

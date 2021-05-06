@@ -15,3 +15,6 @@ requires 'XML::Mini', '';
 requires 'Crypt::CBC', '';
 requires 'MIME::Base64::URLSafe', '';
 requires 'Crypt::Blowfish', '';
+requires 'Email::Valid', '';
+requires 'Data::Dumper::HTML', '';
+requires 'Mojolicious::Plugin::Mail', '==1.2';
