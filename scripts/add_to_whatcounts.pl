@@ -72,7 +72,7 @@ sub _process_records {    # Process each record
         # Commit the update so far
         $record->update;
 
-        if ( $record->wc_status == 1 ) {
+        if ( $record->wc_status eq '1' ) {
 
             # Send a one-off message to new contributors
             # assuming we have the information we need
@@ -169,7 +169,7 @@ sub _check_subscriber_details {
 sub _create_or_update {   # Post the vitals to WhatCounts, return the resposne
     my $record       = shift;
     my $frequency    = shift;
-    my   $fifteenth_year_mailme = $record->fifteenth_year_mailme // '';
+    my $fifteenth_year_mailme = $record->fifteenth_year_mailme // '';
     my $email        = $record->email;
     my $first        = $record->first_name;
     my $last         = $record->last_name;
@@ -179,12 +179,9 @@ sub _create_or_update {   # Post the vitals to WhatCounts, return the resposne
     my $level        = $record->amount_in_cents / 100;
     my $plan         = $record->plan_code // '';
     my $hosted_login_token = $record->hosted_login_token;
-    my $appeal_code  = $record->appeal_code;
-    my $perks        = $record->pref_lapel;
+    my $appeal_code  = $record->appeal_code // '';
+    my $perks        = $record->pref_lapel // '';
     my $onetime      = '';
-    
-                        say "fiteenth_year_mailme = " . $fifteenth_year_mailme;
-
     
     if ( !$record->plan_name ) {
         $onetime = 1;
@@ -296,9 +293,6 @@ sub _send_message {
     # }
  
  
- 
-    
-    # Get the subscriber record, if there is one already
     my $s = $ua->post( $API => form => $message_args );
     if ( my $res = $s->success ) {
         $result = $res->body;
