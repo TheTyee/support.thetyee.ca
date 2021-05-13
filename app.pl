@@ -387,7 +387,7 @@ $state = $params->{'state'} ;
     my $result = $self->find_or_new( $transaction_details );
     $transaction_details->{'id'} = $result->id;
     $self->flash( { transaction_details => $transaction_details, } );
-    $self->redirect_to( 'preferences' );
+    $self->redirect_to( 'perks' );
 };
 
 
