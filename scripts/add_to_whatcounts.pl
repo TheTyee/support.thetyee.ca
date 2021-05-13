@@ -66,7 +66,7 @@ sub _process_records {    # Process each record
                 # Mark the record as processed.
             $record->wc_status( 1 );
         } else {
-                    app->log->debug("error " . $record->wc_response);
+                    app->log->debug("error getting subscriber record back here's the response: " . $record->wc_response);
         }
 
         # Commit the update so far
@@ -207,16 +207,23 @@ sub _create_or_update {   # Post the vitals to WhatCounts, return the resposne
         cmd   => 'find',
         email => $email,
     };
+	app->log->debug("now searching for email : $email \n");
 
     # Get the subscriber record, if there is one already
     my $s = $ua->post( $API => form => $search_args );
     if ( my $res = $s->success ) {
         $search = $res->body;
+	app->log->debug("success finding record" . $search  . "end res body \n");
+     $search = (split(" ", $search))[0];
+        chomp( $search );
+     	app->log->debug("id only = $search");
+ 
     }
     else {
         my ( $err, $code ) = $s->error;
         $result = $code ? "$code response: $err" : "Connection error: $err";
-    }
+app->log->debug("failure finding record" . $result);    
+}
     my $update_or_sub = {
         %args,
 
@@ -226,28 +233,38 @@ sub _create_or_update {   # Post the vitals to WhatCounts, return the resposne
         override_confirmation => '1',
         force_sub             => '1',
         format                => '2',
+        identity_field        => 'email',
         data =>
-            "email,fax,custom_fifteenth_year_mailme,first,last,custom_builder_sub_date,custom_builder,$frequency,custom_builder_regular,custom_builder_onetime,custom_builder_national_newspriority,custom_builder_level,custom_builder_plan,custom_builder_is_anonymous,custom_builder_hosted_login_token,custom_builder_appeal,custom_pref_tyeenews_casl,custom_pref_sponsor_casl^$email,'cohort_skip',$fifteenth_year_mailme,$first,$last,$date,1,1,$national,$onetime,$newspriority,$level,$plan,$anon,$hosted_login_token,$appeal_code,1,1"
+            "email,fax,custom_fifteenth_year_mailme,first,last,custom_builder_sub_date,custom_builder,$frequency,custom_builder_regular,custom_builder_onetime,custom_builder_national_newspriority,custom_builder_level,custom_builder_plan,custom_builder_is_anonymous,custom_builder_hosted_login_token,custom_builder_appeal,custom_pref_tyeenews_casl,custom_pref_sponsor_casl^$email,cohort_skip,$fifteenth_year_mailme,$first,$last,$date,1,1,$national,$onetime,$newspriority,$level,$plan,$anon,$hosted_login_token,$appeal_code,1,1"
     };
     
     say Dumper($update_or_sub);
     my $tx = $ua->post( $API => form => $update_or_sub );
     if ( my $res = $tx->success ) {
         $result = $res->body;
+        app->log->debug("success updating or subbing body result:" . $result);    
+
     }
     else {
         my ( $err, $code ) = $tx->error;
         $result = $code ? "$code response: $err" : "Connection error: $err";
-    }
+    app->log->debug("failure updating record or subbing: $err  $result");    
+
+}
 
 # For some reason, WhatCounts doesn't return the subscriber ID on creation, so we search again.
     if ( $result =~ /SUCCESS/ ) {
         my $r = $ua->post( $API => form => $search_args );
-        if ( my $res = $r->success ) { $result = $res->body }
-        else {
+        if ( my $res = $r->success ) {
+            $result = $res->body;
+                app->log->debug("success finding after adding");    
+
+            } else {
             my ( $err, $code ) = $r->error;
             $result
                 = $code ? "$code response: $err" : "Connection error: $err";
+                    app->log->debug("error finding after wards : $err  $result");    
+
         }
     }
 
@@ -279,10 +296,20 @@ sub _send_message {
         to          => $record->email,
         from        => '"The Tyee" <builders@thetyee.ca>',
         charset     => 'ISO-8859-1',
-        template_id => '3182',
+        template_id => '1190',
 #        template_id => '1684',
         data        => "amount,plan_code,hosted_login_token^$amount,$plan_code,$hosted_login_token"
-    }; 
+    };
+
+    
+    if (  (!$plan_code && $amount >= 75)  || ($plan_code && $amount >=15 )  ){
+        $message_args->{'template_id'} = '1684';
+        say "amount is larger than 75 one-time or 15 monthly for " . $record->email;
+    } else {
+        say "amount is smaller than 75 one timeor 15 monthly, normal message " . $record->email;
+    }
+ 
+ 
  
     
     # Get the subscriber record, if there is one already
