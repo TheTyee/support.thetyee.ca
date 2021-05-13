@@ -15,7 +15,7 @@ use XML::Mini::Document;
 use Crypt::CBC;
 use MIME::Base64::URLSafe;
 use Email::Valid;
-  use Data::Dumper::HTML qw(dumper_html);
+use Data::Dumper::HTML qw(dumper_html);
 
 plugin('DefaultHelpers');
  plugin 'mail';
@@ -602,9 +602,24 @@ post '/process_transaction' => sub {
         my $result = $self->find_or_new( $transaction_details );
         $transaction_details->{'id'} = $result->id;
         $self->flash( { transaction_details => $transaction_details, } );
-        $self->redirect_to( 'preferences' );
+        $self->redirect_to( 'perks' );
     }
 };
+
+any [qw(GET POST)] => '/perks' => sub {
+    my $self   = shift;
+    my $record = $self->flash( 'transaction_details' );
+    $self->stash( { record => $record, } );
+    $self->flash( { transaction_details => $record } );
+
+    if ( $self->req->method eq 'POST' && $record ) {    # Submitted form
+
+        my $update = $self->find_or_new( $record );
+        $update->update( $self->req->params->to_hash );
+        $self->flash( { transaction_details => $record } );
+        $self->redirect_to( 'preferences' );
+    }
+} => 'perks';
 
 any [qw(GET POST)] => '/preferences' => sub {
     my $self   = shift;
@@ -672,7 +687,7 @@ get '/leaderboard' => sub {
     while ( my $raised = $rs->next ) {
         $raisers->{ $raised->raiser }->{'count'}++;
     }
-    say Dumper( $raisers );
+    # say Dumper( $raisers );
     for my $raiser ( keys %$raisers ) {
         my $raisers_rs
             = $self->search_records( 'Transaction', { email => $raiser } );
@@ -683,7 +698,7 @@ get '/leaderboard' => sub {
             $raisers->{$raiser}->{'anonymous'}  = $r->pref_anonymous;
         }
     }
-    say Dumper( $raisers );
+    #say Dumper( $raisers );
     my @keys = sort { $raisers->{$a} cmp $raisers->{$b} } keys( %$raisers );
     my @vals = @{$raisers}{@keys};
     my @ordered = sort { $b->{'count'} <=> $a->{'count'} } @vals;
