@@ -264,6 +264,7 @@ sub _send_message {
     my $amount_in_cents = $record->amount_in_cents;
     my $amount = $amount_in_cents / 100;
     my $plan_code = $record->plan_code;
+    my $perks        = $record->pref_lapel;
     my $hosted_login_token = $record->hosted_login_token;
     my %wc_args = (
         r         => $wc_realm,
@@ -283,16 +284,16 @@ sub _send_message {
         template_id => '3182',
         # template_id => '1190',
 #        template_id => '1684',
-        data        => "amount,plan_code,hosted_login_token^$amount,$plan_code,$hosted_login_token"
+        data        => "amount,plan_code,hosted_login_token,perks^$amount,$plan_code,$hosted_login_token,$perks"
     };
 
     
-    if (  (!$plan_code && $amount >= 75)  || ($plan_code && $amount >=15 )  ){
-        $message_args->{'template_id'} = '1684';
-        say "amount is larger than 75 one-time or 15 monthly for " . $record->email;
-    } else {
-        say "amount is smaller than 75 one timeor 15 monthly, normal message " . $record->email;
-    }
+    # if (  (!$plan_code && $amount >= 75)  || ($plan_code && $amount >=15 )  ){
+    #     $message_args->{'template_id'} = '1684';
+    #     say "amount is larger than 75 one-time or 15 monthly for " . $record->email;
+    # } else {
+    #     say "amount is smaller than 75 one timeor 15 monthly, normal message " . $record->email;
+    # }
  
  
  
