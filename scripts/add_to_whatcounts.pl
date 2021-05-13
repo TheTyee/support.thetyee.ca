@@ -280,7 +280,8 @@ sub _send_message {
         to          => $record->email,
         from        => '"The Tyee" <builders@thetyee.ca>',
         charset     => 'ISO-8859-1',
-        template_id => '1190',
+        template_id => '3182',
+        # template_id => '1190',
 #        template_id => '1684',
         data        => "amount,plan_code,hosted_login_token^$amount,$plan_code,$hosted_login_token"
     };
