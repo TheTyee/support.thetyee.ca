@@ -47,14 +47,14 @@
            
 	    <p><strong>To receive your sweet Tyee swag in the mail, we’ll need your mailing address.</strong></p>	
             <label class="radio-inline">
-                <input checked="1" id="lapel-yes" name="pref_lapel" type="radio" value="Yes" />
+                <input id="lapel-yes" name="pref_lapel" type="radio" value="Yes" />
                 Yes, please send me Tyee swag. Here is my address.</label>
             <label class="swag radio-inline">
-                <input   id="lapel_no" name="pref_lapel" type="radio" value="No" />
+                <input checked="1" id="lapel_no" name="pref_lapel" type="radio" value="No" />
                 No, please don’t send me anything in the mail</label>
         </div>
         <br />
-<div class="address_fields">
+<div class="address_fields" style="display:none;">
 <div class="form-group">
     <label for="address1">Street address</label>
     <input class="form-control required" data-recurly="address1" id="address1" name="address1" placeholder="Address" type="text"  />
