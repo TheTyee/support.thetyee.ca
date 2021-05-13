@@ -16,7 +16,7 @@
     </p>
     % }
 
-    <h1>Don’t go yet, we have some questions for you.</h1>
+    <h1>Don’t go yet, we have some questions for you:</h1>
 		<br>
 
     <form action="preferences" method="POST" role="form">
