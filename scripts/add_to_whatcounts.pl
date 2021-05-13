@@ -72,7 +72,7 @@ sub _process_records {    # Process each record
         # Commit the update so far
         $record->update;
 
-        if ( $record->wc_status eq '1' ) {
+        if ( $record->wc_status == 1 ) {
 
             # Send a one-off message to new contributors
             # assuming we have the information we need
@@ -169,7 +169,7 @@ sub _check_subscriber_details {
 sub _create_or_update {   # Post the vitals to WhatCounts, return the resposne
     my $record       = shift;
     my $frequency    = shift;
-    my $fifteenth_year_mailme = $record->fifteenth_year_mailme // '';
+    my   $fifteenth_year_mailme = $record->fifteenth_year_mailme // '';
     my $email        = $record->email;
     my $first        = $record->first_name;
     my $last         = $record->last_name;
@@ -179,9 +179,11 @@ sub _create_or_update {   # Post the vitals to WhatCounts, return the resposne
     my $level        = $record->amount_in_cents / 100;
     my $plan         = $record->plan_code // '';
     my $hosted_login_token = $record->hosted_login_token;
-    my $appeal_code  = $record->appeal_code // '';
-    my $perks        = $record->pref_lapel // '';
+    my $appeal_code  = $record->appeal_code;
     my $onetime      = '';
+    
+                        say "fiteenth_year_mailme = " . $fifteenth_year_mailme;
+
     
     if ( !$record->plan_name ) {
         $onetime = 1;
@@ -225,7 +227,7 @@ sub _create_or_update {   # Post the vitals to WhatCounts, return the resposne
         force_sub             => '1',
         format                => '2',
         data =>
-            "email,fax,custom_pref_lapel,custom_fifteenth_year_mailme,first,last,custom_builder_sub_date,custom_builder,$frequency,custom_builder_regular,custom_builder_onetime,custom_builder_national_newspriority,custom_builder_level,custom_builder_plan,custom_builder_is_anonymous,custom_builder_hosted_login_token,custom_builder_appeal,custom_pref_tyeenews_casl,custom_pref_sponsor_casl^$email,'cohort_skip',$perks,$fifteenth_year_mailme,$first,$last,$date,1,1,$national,$onetime,$newspriority,$level,$plan,$anon,$hosted_login_token,$appeal_code,1,1"
+            "email,fax,custom_fifteenth_year_mailme,first,last,custom_builder_sub_date,custom_builder,$frequency,custom_builder_regular,custom_builder_onetime,custom_builder_national_newspriority,custom_builder_level,custom_builder_plan,custom_builder_is_anonymous,custom_builder_hosted_login_token,custom_builder_appeal,custom_pref_tyeenews_casl,custom_pref_sponsor_casl^$email,'cohort_skip',$fifteenth_year_mailme,$first,$last,$date,1,1,$national,$onetime,$newspriority,$level,$plan,$anon,$hosted_login_token,$appeal_code,1,1"
     };
     
     say Dumper($update_or_sub);
@@ -261,7 +263,6 @@ sub _send_message {
     my $amount_in_cents = $record->amount_in_cents;
     my $amount = $amount_in_cents / 100;
     my $plan_code = $record->plan_code;
-    my $perks        = $record->pref_lapel;
     my $hosted_login_token = $record->hosted_login_token;
     my %wc_args = (
         r         => $wc_realm,
@@ -279,20 +280,12 @@ sub _send_message {
         from        => '"The Tyee" <builders@thetyee.ca>',
         charset     => 'ISO-8859-1',
         template_id => '3182',
-        # template_id => '1190',
 #        template_id => '1684',
-        data        => "amount,plan_code,hosted_login_token,perks^$amount,$plan_code,$hosted_login_token,$perks"
-    };
-
+        data        => "amount,plan_code,hosted_login_token^$amount,$plan_code,$hosted_login_token"
+    }; 
+ 
     
-    # if (  (!$plan_code && $amount >= 75)  || ($plan_code && $amount >=15 )  ){
-    #     $message_args->{'template_id'} = '1684';
-    #     say "amount is larger than 75 one-time or 15 monthly for " . $record->email;
-    # } else {
-    #     say "amount is smaller than 75 one timeor 15 monthly, normal message " . $record->email;
-    # }
- 
- 
+    # Get the subscriber record, if there is one already
     my $s = $ua->post( $API => form => $message_args );
     if ( my $res = $s->success ) {
         $result = $res->body;
