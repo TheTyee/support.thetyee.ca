@@ -616,6 +616,7 @@ any [qw(GET POST)] => '/perks' => sub {
 
         my $update = $self->find_or_new( $record );
         $update->update( $self->req->params->to_hash );
+        $record->{'pref_lapel'} = $update->pref_lapel;
         $self->flash( { transaction_details => $record } );
         $self->redirect_to( 'preferences' );
     }
@@ -653,6 +654,7 @@ get '/share' => sub {
     my $self                = shift;
     my $transaction_details = $self->flash( 'transaction_details' );
     my $email               = $transaction_details->{'email'};
+    $self->app->log->info( Dumper $transaction_details );
     $self->stash(
         {   transaction_details => $transaction_details,
             raiser_id           => $self->raiser_encode( $email ),

@@ -33,8 +33,7 @@
         </dl>
         <p>Please give your transaction details a quick review. If there's anything wrong, just let us know by <a href="http://www.google.com/recaptcha/mailhide/d?k=01Lpo-7rwiM1MAnRgeZ5aaqA==&c=yGPyHyFeLT7FyKm1p8ePC5O5yYHihWV1fDsc7V5i1ME=">email</a> or by calling us at 604-689-7489.
         </div>
-
-    % if ( $transaction_details->{'pref_lapel'} == 'Yes') {
+    % if ( $transaction_details->{'pref_lapel'} eq 'Yes') {
         <h3>Tyee swag that will be on its way to you shortly:</h3>
         <div style="float:left;">
             <span class="glyphicon glyphicon-ok-sign" style="float:right;position:relative;left:-20px"></span>
