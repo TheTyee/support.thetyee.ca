@@ -66,7 +66,7 @@ sub _process_records {    # Process each record
                 # Mark the record as processed.
             $record->wc_status( 1 );
         } else {
-                    app->log->debug("error getting subscriber record back here's the response: " . $record->wc_response);
+            app->log->debug("error getting subscriber record back here's the response: " . $record->wc_response);
         }
 
         # Commit the update so far
@@ -169,7 +169,7 @@ sub _check_subscriber_details {
 sub _create_or_update {   # Post the vitals to WhatCounts, return the resposne
     my $record       = shift;
     my $frequency    = shift;
-    my   $fifteenth_year_mailme = $record->fifteenth_year_mailme // '';
+    my $fifteenth_year_mailme = $record->fifteenth_year_mailme // '';
     my $email        = $record->email;
     my $first        = $record->first_name;
     my $last         = $record->last_name;
@@ -181,10 +181,6 @@ sub _create_or_update {   # Post the vitals to WhatCounts, return the resposne
     my $hosted_login_token = $record->hosted_login_token;
     my $appeal_code  = $record->appeal_code;
     my $onetime      = '';
-    
-                        say "fiteenth_year_mailme = " . $fifteenth_year_mailme;
-
-    
     if ( !$record->plan_name ) {
         $onetime = 1;
     }
@@ -222,7 +218,7 @@ sub _create_or_update {   # Post the vitals to WhatCounts, return the resposne
     else {
         my ( $err, $code ) = $s->error;
         $result = $code ? "$code response: $err" : "Connection error: $err";
-app->log->debug("failure finding record" . $result);    
+        app->log->debug("failure finding record" . $result);    
 }
     my $update_or_sub = {
         %args,
@@ -257,13 +253,13 @@ app->log->debug("failure finding record" . $result);
         my $r = $ua->post( $API => form => $search_args );
         if ( my $res = $r->success ) {
             $result = $res->body;
-                app->log->debug("success finding after adding");    
+            app->log->debug("success finding after adding");    
 
             } else {
             my ( $err, $code ) = $r->error;
             $result
                 = $code ? "$code response: $err" : "Connection error: $err";
-                    app->log->debug("error finding after wards : $err  $result");    
+            app->log->debug("error finding after wards : $err  $result");    
 
         }
     }
@@ -281,6 +277,7 @@ sub _send_message {
     my $amount = $amount_in_cents / 100;
     my $plan_code = $record->plan_code;
     my $hosted_login_token = $record->hosted_login_token;
+    my $perks = $record->pref_lapel;
     my %wc_args = (
         r         => $wc_realm,
         p         => $wc_pw,
@@ -296,23 +293,12 @@ sub _send_message {
         to          => $record->email,
         from        => '"The Tyee" <builders@thetyee.ca>',
         charset     => 'ISO-8859-1',
-        template_id => '1190',
-#        template_id => '1684',
-        data        => "amount,plan_code,hosted_login_token^$amount,$plan_code,$hosted_login_token"
-    };
-
-    
-    if (  (!$plan_code && $amount >= 75)  || ($plan_code && $amount >=15 )  ){
-        $message_args->{'template_id'} = '1684';
-        say "amount is larger than 75 one-time or 15 monthly for " . $record->email;
-    } else {
-        say "amount is smaller than 75 one timeor 15 monthly, normal message " . $record->email;
-    }
+        # template_id => '1190',
+        # template_id => '1684',
+        template_id => '3182', # New 2021 template with perks info
+        data        => "amount,plan_code,hosted_login_token,perks^$amount,$plan_code,$hosted_login_token,$perks"
+    }; 
  
- 
- 
-    
-    # Get the subscriber record, if there is one already
     my $s = $ua->post( $API => form => $message_args );
     if ( my $res = $s->success ) {
         $result = $res->body;
