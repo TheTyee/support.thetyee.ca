@@ -14,28 +14,8 @@
     <p> 
         Thanks for your support. Keep an eye on your inbox for a receipt and welcome message within the next 24 hours. 
     </p>
-    <p>
-        In the meantime, amplify your impact by using the Facebook, Twitter and email buttons below to encourage your friends to join in.
-    </p>
-    <p>
-        We all win when there's more independent, fact-driven reporting in Canada.
-    </p>
 
-    <br />
-    <div style="float: left; with: 50%; margin-right: 20px;">
-        <a target="_blank" href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-count="none" data-size="large" data-text="I just supported strong, independent journalism @TheTyee. Join me here:" data-url="https://support.thetyee.ca/?utm_source=twitter&utm_medium=social&utm_campaign=buildershare&raiser=<%= $raiser_id %>">Tweet</a>
-        <a target="_blank" style="border:none; position:relative; top: -12px; left:5px;" href="http://www.facebook.com/sharer.php?u=<%= url_escape 'https://support.thetyee.ca/?utm_source=facebook&utm_medium=social&utm_campaign=buildershare&raiser=' . $raiser_id %>"> <img = src="<%= $config->{'static_asset_path'} %>/ui/img/fb-logo.jpg" /></a>
-    </div>
-
-    <br clear="all" />
-    <br clear="all" />
-
-        <p>
-            <b>Pssst... </b>If you'd like to encourage your family, friends, and colleagues to support The Tyee's reporting, please use this <a href="http://support.thetyee.ca/?raiser=<%= $raiser_id %>">personal link</a> so we can recognize you for those contributions: <a href="http://support.thetyee.ca/?raiser=<%= $raiser_id %>">http://support.thetyee.ca/?raiser=<%= $raiser_id %></a>
-        </p>
-
-    <br clear="all" />
-    <div class="well" id="transactiondetails">
+ <div class="well" id="transactiondetails">
         <h4>Transaction Confirmation Details</h4>
         <dl class="dl-horizontal">
             <dt>Your name</dt>
@@ -45,7 +25,7 @@
             <dt>Amount</dt>
             <dd>$<%= $transaction_details->{'amount_in_cents'} / 100 %>
                 <% if ( $transaction_details->{'plan_code'} ) { %>
-                / every month
+                / every month until cancelled
                 <% } else { %>
                 / one time
                 <% } %>
@@ -53,11 +33,52 @@
         </dl>
         <p>Please give your transaction details a quick review. If there's anything wrong, just let us know by <a href="http://www.google.com/recaptcha/mailhide/d?k=01Lpo-7rwiM1MAnRgeZ5aaqA==&c=yGPyHyFeLT7FyKm1p8ePC5O5yYHihWV1fDsc7V5i1ME=">email</a> or by calling us at 604-689-7489.
         </div>
-<% if ( $transaction_details->{'on_behalf_of'} eq 'honour' ) { %>
-<% } %>
+
+    % if ( $transaction_details->{'pref_lapel'} eq 'Yes') {
+        <h3>Tyee swag that will be on its way to you shortly:</h3>
+        <div style="float:left;">
+            <span class="glyphicon glyphicon-ok-sign" style="float:right;position:relative;left:-20px"></span>
+            <img src="<%= $config->{'static_asset_path'} %>/ui/img/fishswag.jpg" width="150" />
+        </div>
+        % if ( $transaction_details->{'plan_code'} ) {
+        % my $monthly_amount = $transaction_details->{'amount_in_cents'} / 100;
+            % if ( $monthly_amount >= '15') {
+            <div style="float:left;">
+                <span class="glyphicon glyphicon-ok-sign" style="float:right;position:relative;left:-20px"></span>
+                <img src="https://thetyee.ca/ui/img/support/BuilderNotebook.jpg" width="150" />
+            </div>    
+            % }
+            % if ( $monthly_amount >= '25') {
+            <div style="float:left;">
+                <span class="glyphicon glyphicon-ok-sign" style="float:right;position:relative;left:-20px"></span>
+                <img src="https://thetyee.ca/ui/img/support/BuilderTote.jpg" width="150" />
+            </div>
+            % }  
+            % if ( $monthly_amount >= '50') {
+            <div style="float:left;">
+                <span class="glyphicon glyphicon-ok-sign" style="float:right;position:relative;left:-20px"></span>
+                <img src="https://thetyee.ca/ui/img/support/BuilderMug.jpg" width="150" />
+            </div>
+            % } 
+        % }   
+    % } else {
+        <h3>You have opted out of receiving Tyee swag</h3>
+            <img src="<%= $config->{'static_asset_path'} %>/ui/img/tyee-happy-earth.jpg" />
+
+    % }
+        <br clear="all" />
+
+    <br />
+    <div style="float: left; with: 50%; margin-right: 20px;">
+        <a target="_blank" href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-count="none" data-size="large" data-text="I just supported The Tyee! 🎉 Join me in supporting independent, no-nonsense journalism in Canada." data-url="https://support.thetyee.ca/?utm_source=twitter&utm_medium=social&utm_campaign=buildershare&raiser=<%= $raiser_id %>">Tweet</a>
+        <a target="_blank" style="border:none; position:relative; top: -12px; left:5px;" href="http://www.facebook.com/sharer.php?u=<%= url_escape 'https://support.thetyee.ca/?utm_source=facebook&utm_medium=social&utm_campaign=buildershare&raiser=' . $raiser_id %>"> <img = src="<%= $config->{'static_asset_path'} %>/ui/img/fb-logo.jpg" /></a>
+    </div>
+    <br clear="all" />
+   
+
         <hr class="soften" />
         <div>
-            <p>Done telling the world? <a href="http://thetyee.ca">Head back to TheTyee.ca</a></p>
+            <p><a href="http://thetyee.ca">Head back to TheTyee.ca</a></p>
         </div>
     </div>
     </div>
