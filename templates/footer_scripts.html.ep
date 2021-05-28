@@ -17,7 +17,7 @@
 	% if ($abs eq '/cityhall') {
  <script src="https://static.thetyee.ca/support/v1.8.3cityhall/ui/js/widget.js?v=2"></script>
         % } else { 
-<script src="<%= $config->{'static_asset_path'} %>/ui/js/widget.js"></script>
+<script src="<%= $config->{'static_asset_path'} %>/ui/js/widget.js?v=2"></script>
 % }
 
         <%= content_for 'javascript' %>
