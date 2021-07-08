@@ -49,7 +49,7 @@
                 <p class="lead">Support The Tyee and bring more diverse, fact-driven reporting to the public conversation.</p>
             </div>
 
-            <span id="campaign-end" style="display:none;"></span>
+           <!-- <span id="campaign-end" style="display:none;"></span>-->
             %= include 'includes/form'
             <div id="atf" class="row">
                 <div class="col-md-7 video-container">
