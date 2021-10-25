@@ -109,6 +109,7 @@ helper recurly_get_account_code => sub {
     return $account_code;
 };
 
+
 helper recurly_get_account_details => sub {
     my $self         = shift;
     my $account_code = shift;
@@ -132,6 +133,27 @@ helper recurly_get_billing_details => sub {
     my $xml = $res->body;
     my $dom = Mojo::DOM->new( $xml );
     return $dom;
+};
+
+helper recurly_get_active_subs => sub {
+    my $self         = shift;
+    my $account_code = shift;
+    my $res
+        = $ua->get( $API
+            . '/accounts/'
+            . $account_code
+            . '/subscriptions?state=active' => { Accept => 'application/xml' } )->res;
+    my $xml = $res->body;
+    my $dom = Mojo::DOM->new( $xml );
+       my $ub = Mojo::UserAgent->new;
+my $collection = $dom->find('subscription');
+  $ub->post($config->{'notify_url'} => json => {text => $collection });
+my @elements = $collection->each;
+if ((scalar @elements) >= 2 ) {
+ $ub->post($config->{'notify_url'} => json => {text => "Note: Count of subs for someone who just subscribed, account code $account_code are greater than 1, they are " . (scalar @elements) });
+}
+    return $dom;
+ 
 };
 
 # Set the salt and initialize the cipher
@@ -560,11 +582,11 @@ post '/process_transaction' => sub {
         $self->redirect_to( '/' );
     }
     else {    # Otherwise, store the transaction and send to /preferences
-        my $account_code
-            = $self->recurly_get_account_code( $dom->at( 'account' ) );
+        my $account_code = $self->recurly_get_account_code( $dom->at( 'account' ) );
         my $account = $self->recurly_get_account_details( $account_code );
-        my $billing_info
-            = $self->recurly_get_billing_details( $account_code );
+        my $activesubs = $self->recurly_get_active_subs($account_code);
+        my $billing_info = $self->recurly_get_billing_details( $account_code );
+          
         my $transaction_details = {
             email      => $email,
             first_name => $first_name,
