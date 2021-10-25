@@ -147,7 +147,6 @@ helper recurly_get_active_subs => sub {
     my $dom = Mojo::DOM->new( $xml );
        my $ub = Mojo::UserAgent->new;
 my $collection = $dom->find('subscription');
-  $ub->post($config->{'notify_url'} => json => {text => $collection });
 my @elements = $collection->each;
 if ((scalar @elements) >= 2 ) {
  $ub->post($config->{'notify_url'} => json => {text => "Note: Count of subs for someone who just subscribed, account code $account_code are greater than 1, they are " . (scalar @elements) });
