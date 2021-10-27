@@ -19,7 +19,7 @@
                     <div class="alert alert-info confirm-payment"><strong>You are about to make a payment for <span></span></strong></div>
                     <button type="submit" id="credit" class="subscribe btn btn-success btn-lg">Process payment &raquo;</button>
                     <p><i class="glyphicon glyphicon-lock">&nbsp;</i><strong>Your transaction is secure.</strong> The Tyee uses industry-standard SSL encryption to secure your connection. Your transaction is then processed securely by our payment processors, Recurly and Beanstream.</p>
-                    <p>Because we publish hard-hitting political journalism, we can't be a charity and therefore can't offer charitble tax receipts. Learn <a href="http://thetyee.ca/About/Us/#faq-funding">more</a></p>
+                    <p>Because we publish hard-hitting political journalism, we can't be a charity and therefore can't offer charitable tax receipts. Learn <a href="http://thetyee.ca/About/Us/#faq-funding">more</a>.</p>
                     <hr class="soften" />
                 </div>
             </form>
