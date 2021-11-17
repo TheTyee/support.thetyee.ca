@@ -63,23 +63,38 @@
 
            <div class="row awards">
                 <div class="col-md-12 awards">
-                  <div class="col-md-3 col-sm-3 award">
-                        <a href="https://thetyee.ca/Tyeenews/2020/04/22/National-Magazine-Award-Woodend/"><img style="width: 130px;"  id="murrow" src="<%= $config->{'static_asset_path'} %>/ui/img/DPA2020.png" />
-                        <p>Digital Publishing Award 2020</p></a>
+                  
+                           <div class="col-md-3 col-sm-3 award">
+                       <a href="https://thetyee.ca/Tyeenews/2021/11/04/Tyww-Wins-Three-Webster-Awards/"><img id="murrow" src="<%= $config->{'static_asset_path'} %>/ui/img/jw.jpg" /> 
+                        <p><br>2021 — BC's Top Journalism Prize<br>
+Winner in 3 Categories:<br>
+Tech, Inclusion & Business</p></a>
                     </div>
+                    
+                  
+                  
                     <div class="col-md-3 col-sm-3 award">
-                        <a href="https://thetyee.ca/Blogs/TheHook/2013/06/14/CJF-Award-Win-2013/"><img id="murrow" src="<%= $config->{'static_asset_path'} %>/ui/img/award-cjf.png" />
-                        <p>Excellence in Journalism Award (CDN), 2013, 2009</p></a>
+                       <a href="https://thetyee.ca/Tyeenews/2021/09/20/Tyee-Wins-Bill-Good-Award-Webster-Contribution-Journalism/"><img id="murrow" src="<%= $config->{'static_asset_path'} %>/ui/img/jw.jpg" /> 
+                        <p><br>2021 — BC's Top Journalism Prize<br>
+Bill Good Award
+<br>
+For 'significant contribution to journalism in the province'.</p></a>
                     </div>
+                    
+                    
+           
+                                        <div class="col-md-3 col-sm-3 award">
+
+                        <a href="https://thetyee.ca/Tyeenews/2020/04/22/National-Magazine-Award-Woodend/"><img style="width: 130px;"  id="murrow" src="<%= $config->{'static_asset_path'} %>/ui/img/DPA2020.png" />
+                        <p><br>Digital Publishing Award 2020</p></a>
+                    </div>
+
                     
                     <div class="col-md-3 col-sm-3 award">
                         <a href="https://thetyee.ca/Tyeenews/2019/06/27/Tyee-Award-Surveillance-Privacy/"><img id="murrow" style="width: 130px;" src="<%= $config->{'static_asset_path'} %>/ui/img/fipa.jpg" />
-                        <p>FIPA award for outstanding reporting related to surveillance and privacy, 2019</p></a>
+                        <p><br>FIPA award for outstanding reporting related to surveillance and privacy, 2019</p></a>
                     </div>
-                    <div class="col-md-3 col-sm-3 award">
-                       <a href="https://thetyee.ca/Tyeenews/2018/12/17/Katie-Hyslop-Champion-Reporter"><img id="murrow" src="<%= $config->{'static_asset_path'} %>/ui/img/firstcall.png" /> 
-                        <p>Champion of Child and Youth Rights Award, 2019</p></a>
-                    </div>
+                    
                 </div>
             </div> 
 
