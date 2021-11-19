@@ -64,13 +64,7 @@
            <div class="row awards">
                 <div class="col-md-12 awards">
                   
-                           <div class="col-md-3 col-sm-3 award">
-                       <a href="https://thetyee.ca/Tyeenews/2021/11/04/Tyww-Wins-Three-Webster-Awards/"><img id="murrow" src="<%= $config->{'static_asset_path'} %>/ui/img/jw.jpg" /> 
-                        <p><br>2021 — BC's Top Journalism Prize<br>
-Winner in 3 Categories:<br>
-Tech, Inclusion & Business</p></a>
-                    </div>
-                    
+                  
                   
                   
                     <div class="col-md-3 col-sm-3 award">
@@ -178,8 +172,9 @@ critical time to hold government accountable to its promises”</p>
                 </div><!-- /.row -->
             </div><!-- /.container -->
         </div><!-- people -->
-
-
+<!-- This site is converting visitors into subscribers and customers with OptinMonster - https://optinmonster.com -->
+<script>(function(d,u,ac){var s=d.createElement('script');s.type='text/javascript';s.src='https://a.omappapi.com/app/js/api.min.js';s.async=true;s.dataset.user=u;s.dataset.account=ac;s.dataset.env=e;d.getElementsByTagName('head')[0].appendChild(s);})(document,67324,75717);</script>
+<!-- / OptinMonster -->
 
 % # %=  include 'includes/builder_list'      
     
