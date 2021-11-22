@@ -47,7 +47,7 @@
                         <input type="text" class="form-control" id="other-amount" name="amount" placeholder="Enter a round number, e.g., 25">
                         <span class="input-group-addon">.00</span>
                     </div>
-                    <p class="help-block">Or, consider becoming a <a href="/" id="link-tab-monthly">sustaining monthly supporter</a> for less than the cost of a newspaper subscription.</p>
+                    <p class="help-block">Or, consider becoming a <a href="/" id="link-tab-monthly">sustaining monthly supporter</a> at any amount. Monthly contributions help us plan ahead and support staff positions.</p>
                 </div>
                 <button type="submit" class="btn btn-success btn-lg">Continue to payment &raquo;</button>
             </form>
