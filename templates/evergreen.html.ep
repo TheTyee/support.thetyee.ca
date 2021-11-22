@@ -68,12 +68,22 @@
                   
                   
                     <div class="col-md-3 col-sm-3 award">
+                       <a href="https://thetyee.ca/Tyeenews/2021/11/04/Tyww-Wins-Three-Webster-Awards/"><img id="murrow" src="<%= $config->{'static_asset_path'} %>/ui/img/jw.jpg" /> 
+                        <p><br>2021 — BC's Top Journalism Prize<br>
+Winner in 3 categories:
+<br>
+Tech, Inclustion & Business</p></a>
+                    </div>
+                    
+                            
+                    <div class="col-md-3 col-sm-3 award">
                        <a href="https://thetyee.ca/Tyeenews/2021/09/20/Tyee-Wins-Bill-Good-Award-Webster-Contribution-Journalism/"><img id="murrow" src="<%= $config->{'static_asset_path'} %>/ui/img/jw.jpg" /> 
                         <p><br>2021 — BC's Top Journalism Prize<br>
 Bill Good Award
 <br>
 For 'significant contribution to journalism in the province'.</p></a>
                     </div>
+                    
                     
                     
            
