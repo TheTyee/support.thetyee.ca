@@ -1,5 +1,5 @@
         <footer>
-        <div class="container" style="display:<%= $display %>;">
+        <div class="container">
             <p class="pull-right"><a href="#">Back to top</a></p>
             <div id="tos">
                 <h3>Terms of service</h3>
