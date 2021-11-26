@@ -51,7 +51,7 @@
 
            <!-- <span id="campaign-end" style="display:none;"></span>-->
             %= include 'includes/form'
-            <div id="atf" class="row">
+            <div id="atf" class="row" style="display:<%= $display %>;" >
                 <div class="col-md-7 video-container">
                     <iframe width="560" height="315" src="//www.youtube.com/embed/jF1ZElM7-nA" frameborder="0" allowfullscreen></iframe>
                 </div>
@@ -61,7 +61,7 @@
                 </div>
             </div> <!-- / #atf -->
 
-           <div class="row awards">
+           <div class="row awards" style="display:<%= $display %>;">
                 <div class="col-md-12 awards">
                   
                   
@@ -105,7 +105,7 @@ For 'significant contribution to journalism in the province'.</p></a>
 
         </div><!-- / .container -->
 
-        <div id="featurettes1">
+        <div id="featurettes1" style="display:<%= $display %>;">
             <div class="container">
                 <div class="row">
                     <div class="col-md-4">
@@ -127,7 +127,7 @@ As thanks for joining, you'll get our special Builders-only newsletter giving yo
         </div><!-- / #featurettes1 -->
   %# %=  include 'includes/withyourhelp'
 
-<div id="powermap-pitch">
+<div id="powermap-pitch" style="display:<%= $display %>;">
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
@@ -168,7 +168,7 @@ As thanks for joining, you'll get our special Builders-only newsletter giving yo
             </div><!-- / .container -->
         </div><!-- / #featurettes1 -->
 
-        <div id="people" class="testimonial">
+        <div id="people" class="testimonial" style="display:<%= $display %>;">
             <div class="container">
                 <div class="row">
                     <div class="col-md-8">

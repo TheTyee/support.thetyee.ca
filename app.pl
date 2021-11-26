@@ -31,6 +31,7 @@ plugin 'Util::RandomString' => {
     }
 };
 
+  my $ab = 'evergreen';
 my $ua        = Mojo::UserAgent->new;
 my $url       = Mojo::URL->new;
 my $subdomain = $config->{'subdomain'};
@@ -178,6 +179,7 @@ helper raiser_decode => sub {
 group {
     under [qw(GET POST)] => '/' => sub {
         my $self = shift;
+      
 
         # Store the referrer once in the flash
         my $referrer = $self->req->headers->referrer;
@@ -235,11 +237,23 @@ group {
         );
     };
 
-    any [qw(GET POST)] => '/' => sub {
+    
+    my $ab;
+
+     
+        any [qw(GET POST)] => '/' => sub {
         my $self = shift;
-        $self->stash( body_id => 'evergreen', );
-        $self->flash( appeal_code => 'evergreen' );
+            my $dt          = DateTime->now;
+        my $seconds =  $dt->sec;
+        
+    my $display;
+    if ($seconds >= 31) { $ab = 'evergreen'; $display="block";} else { $ab = 'evergreen-squeeze'; $display = "none"; };
+
+        $self->stash( body_id => $ab, );
+        $self->flash( appeal_code => $ab );
+        $self->stash( display => $display );           
     } => 'evergreen';
+        
 
     any [qw(GET POST)] => '/powermap' => sub {
         my $self = shift;
