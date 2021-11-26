@@ -344,7 +344,8 @@ group {
         my $self = shift;
         $self->stash(
             body_id     => 'evergreen',
-            appeal_code => 'evergreen'
+            appeal_code => 'evergreen',
+            display => 'block'
         );
     } => 'evergreen';
     any [qw(GET POST)] => '/election2017-2' => sub {
