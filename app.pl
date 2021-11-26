@@ -243,17 +243,28 @@ group {
      
         any [qw(GET POST)] => '/' => sub {
         my $self = shift;
-            my $dt          = DateTime->now;
+        my $dt          = DateTime->now;
         my $seconds =  $dt->sec;
-        
-    my $display;
-    if ($seconds >= 31) { $ab = 'evergreen'; $display="block";} else { $ab = 'evergreen-squeeze'; $display = "none"; };
-
+        my $display;
+        if ($seconds >= 31) { $ab = 'evergreen'; $display="block";} else { $ab = 'evergreen-squeeze'; $display = "none"; };
+        if ($self->param( 'squeeze' ) ) {$ab = $self->param( 'evergreen-squeeze' ) ; $display = "none"; };
+        if ($self->param( 'evergreen' ) ) {$ab = $self->param( 'evergreen' ) ; $display = "block"; };
         $self->stash( body_id => $ab, );
         $self->flash( appeal_code => $ab );
         $self->stash( display => $display );           
     } => 'evergreen';
-        
+       
+        any [qw(GET POST)] => '/sq' => sub {
+        my $self = shift;
+         my $dt          = DateTime->now;
+        my $seconds =  $dt->sec;
+        my $display;
+        $ab = 'evergreen-squeeze'; $display = "none"; 
+        $self->stash( body_id => $ab, );
+        $self->flash( appeal_code => $ab );
+        $self->stash( display => $display );           
+    } => 'evergreen-squeeze';
+         
 
     any [qw(GET POST)] => '/powermap' => sub {
         my $self = shift;

@@ -63,3 +63,8 @@
 %= javascript begin
 %   end
 % end
+<script>
+ $(document).ready(function(){
+  $("footer .container").css("display","<%= $display %>");
+ });
+</script>

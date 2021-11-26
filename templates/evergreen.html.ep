@@ -183,9 +183,13 @@ critical time to hold government accountable to its promises”</p>
             </div><!-- /.container -->
         </div><!-- people -->
 
-% # %=  include 'includes/builder_list'      
-    
+% # %=  include 'includes/builder_list'
 % content_for javascript => begin
 %= javascript begin
 %   end
 % end
+<script>
+ $(document).ready(function(){
+  $("footer .container").css("display","<%= $display %>");
+ });
+</script>
