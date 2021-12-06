@@ -1,0 +1,160 @@
+% layout 'default', title => 'Support fact-based independent journalism -- The Tyee'; 
+
+       <div class="container" id="content">
+            <div id="campaign-copy" class="row">
+			
+
+
+                <h1>Canada needs more independent journalism. Join us <span>&nbsp;</span></h1>
+                <p class="lead">SUPPORT THE TYEE AND HELP US HIT 650 NEW MONTHLY SUPPORTERS BY DEC. 31</p>
+            </div>
+<!--<p class="alert alert-warning"><i class="glyphicon glyphicon-fire"></i>Campaign update: We hit our target of 650 new monthly supporters early. Join us and help us hit our stretch goal of 850 new supporters!</big></p>-->
+
+            <span id="campaign-end"></span>
+            %= include 'includes/form'
+           <div id="atf" class="row">
+               <div class="col-md-7 video-container">
+                    <iframe width="560" height="315" src="//www.youtube.com/embed/jF1ZElM7-nA" frameborder="0" allowfullscreen></iframe>
+                </div>
+<!--                <div class="col-lg-8">
+		<h2 style="margin-top:0;">2019 by 2019!</h2>
+                   
+			    <p><big>Help us reach our goal of 500 new monthly donors before the start of 2020.</big></p>
+<p><big>
+We have big plans for 2020, but we need your help to know we'll have the sustained support to pull it off.</big></p>
+
+			    
+			    
+                </div>-->
+			     <div class="col-md-4">
+                    %= include 'includes/widget-twentynineteen'
+                </div>
+			 
+			 
+			 
+			 
+            </div>  <!-- / #atf -->
+
+
+
+           <div class="row awards" >
+                <div class="col-md-12 awards">
+                  
+                  
+                  
+                  
+                    <div class="col-md-3 col-sm-3 award">
+                       <a href="https://thetyee.ca/Tyeenews/2021/11/04/Tyww-Wins-Three-Webster-Awards/"><img id="murrow" src="<%= $config->{'static_asset_path'} %>/ui/img/jw.jpg" /> 
+                        <p><br>2021 — BC's Top Journalism Prize<br>
+Winner in 3 categories:
+<br>
+Tech, Inclustion & Business</p></a>
+                    </div>
+                    
+                            
+                    <div class="col-md-3 col-sm-3 award">
+                       <a href="https://thetyee.ca/Tyeenews/2021/09/20/Tyee-Wins-Bill-Good-Award-Webster-Contribution-Journalism/"><img id="murrow" src="<%= $config->{'static_asset_path'} %>/ui/img/jw.jpg" /> 
+                        <p><br>2021 — BC's Top Journalism Prize<br>
+Bill Good Award
+<br>
+For 'significant contribution to journalism in the province'.</p></a>
+                    </div>
+                    
+                    
+                    
+           
+                                        <div class="col-md-3 col-sm-3 award">
+
+                        <a href="https://thetyee.ca/Tyeenews/2020/04/22/National-Magazine-Award-Woodend/"><img style="width: 130px;"  id="murrow" src="<%= $config->{'static_asset_path'} %>/ui/img/DPA2020.png" />
+                        <p><br>Digital Publishing Award 2020</p></a>
+                    </div>
+
+                    
+                    <div class="col-md-3 col-sm-3 award">
+                        <a href="https://thetyee.ca/Tyeenews/2019/06/27/Tyee-Award-Surveillance-Privacy/"><img id="murrow" style="width: 130px;" src="<%= $config->{'static_asset_path'} %>/ui/img/fipa.jpg" />
+                        <p><br>FIPA award for outstanding reporting related to surveillance and privacy, 2019</p></a>
+                    </div>
+                    
+                </div>
+            </div> 
+
+
+        </div><!-- / .container -->
+
+  %# = include 'includes/withyourhelp'
+
+  <div id="featurettes1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h2>Our vision</h2>
+                        <p>Canada is facing major challenges ahead. At the same time, our national media is in collapse. Newsrooms continue to shrink and consolidate under the control of fewer and fewer corporations, and there are fewer journalists asking tough questions of those in power. We believe that our democratic conversation is made possible by strong, independent media, who exist first and foremost to serve the needs of its readers.</p>
+                    </div><!-- /.col-md-4 -->
+                    <div class="col-md-4">
+                        <h2>How you can help</h2>
+                        <p>By contributing to The Tyee on a monthly basis, you are helping to strengthen and grow our team of fierce, tough-minded journalists and editors. Tyee Builders who give every month allow our small and nimble team to plan ahead, and produce original stories that you will not see anywhere else. We don’t put our articles behind paywalls, so your contribution helps to keep our stories open and available to everyone.</p>
+                    </div><!-- /.col-md-4 -->
+                    <div class="col-md-4">
+                        <h2>Join our community</h2>
+                        <p>
+As thanks for joining, you'll get our special Builders-only newsletter giving you the inside scoop on how our newsroom operates, custom swag, and discounts and early invites to Tyee events.
+</p>
+                    </div><!-- /.col-md-4 -->
+                </div><!-- /.row -->
+            </div><!-- / .container -->
+        </div><!-- / #featurettes1 -->
+  %# %=  include 'includes/withyourhelp'
+
+      <div id="powermap-pitch">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        
+                        <h2>Support independent media, get sweet Tyee gear</h2>
+                        <p>
+                       Helping to create more in-depth coverage of our communities is its own reward. To sweeten the deal and show our special thanks, we’ve created custom, high-quality items <strong>exclusively for those who sign up as monthly recurring supporters.</strong> 
+                        </p>
+                        <p>
+                           Want to give to The Tyee but don’t want the swag? Not to worry, you can opt out of receiving items when you complete your payment.
+                        </p>
+                        <p>
+                           We worked with Vancouver artist, Ciele Beau, and Fairware, a local supplier specializing in ethical gear, to create this line of gifts we hope you’ll love.<br><br>
+                        </p>
+                        <h3>Give at any level: Custom Tyee lapel pin</h3>
+                        <p>
+                            Show off your Tyee Builder status with our snazzy silver Tyee fish pin.<br><br>
+                        </p>
+                 
+                    <h3>$15 or more per month: Pin and pocket notebook</h3>
+                    <p>You’ll receive everything mentioned above PLUS a special pocket notebook to capture all of your thoughts, ideas for your next project, doodles and lists. </p>
+                    <p>Notebook is three by five inches. Printed with vegetable-based inks on 100% recycled papers with offset presses powered by renewable energy, and handcrafted in Portland, Oregon.<br><br></p>
+                    <h3>$25 or more per month: Pin, pocket notebook and tote</h3>
+                    <p>You’ll receive everything mentioned above PLUS a beautifully illustrated tote bag. This is not some flimsy tote bag that will fall apart after a couple of uses. This heavy cotton bag is big enough for some serious grocery store expeditions and strong enough to do the job. </p>
+                    <p>Made from 12 oz 100% certified organic cotton canvas. Control Union Certified (Netherlands).<br><br></p>
+                    <h3>$50 or more per month: Pin, pocket notebook, tote, and mug</h3>
+                    <p>Get all of the things! You’ll receive everything mentioned above PLUS a custom 15 oz Tyee mug. </p>
+                    </div><!-- /.col-md-6 -->
+                    <div class="col-md-6">
+                        <center>
+                            <img src="https://thetyee.ca/ui/img/support/BuilderNotebook.jpg" />
+                            <img src="https://thetyee.ca/ui/img/support/BuilderTote.jpg" />
+                            <img src="https://thetyee.ca/ui/img/support/BuilderMug.jpg" />
+                        </center>
+                    </div><!-- /.col-md-6 -->
+                </div><!-- /.row -->
+                <hr class="soften" />
+            </div><!-- / .container -->
+        </div><!-- / #featurettes1 -->
+
+
+
+%=  include 'includes/builder_list'      
+
+
+
+
+    
+% content_for javascript => begin
+%= javascript begin
+%   end
+% end
