@@ -240,19 +240,20 @@ group {
     
     my $ab;
 
-     
+  # making both of these test conditions Dec2021 so can easily ad a test if we want during campaign.  Probably a waste of resources if not using later   
         any [qw(GET POST)] => '/' => sub {
         my $self = shift;
         my $dt          = DateTime->now;
         my $seconds =  $dt->sec;
         my $display;
-        if ($seconds >= 31) { $ab = 'evergreen'; $display="block";} else { $ab = 'evergreen-squeeze'; $display = "none"; };
-        if ($self->param( 'squeeze' ) ) {$ab = $self->param( 'evergreen-squeeze' ) ; $display = "none"; };
-        if ($self->param( 'evergreen' ) ) {$ab = $self->param( 'evergreen' ) ; $display = "block"; };
-        $self->stash( body_id => $ab, );
+       # if ($seconds >= 31) { $ab = 'evergreen'; $display="block";} else { $ab = 'evergreen-squeeze'; $display = "none"; };
+       # if ($self->param( 'squeeze' ) ) {$ab = $self->param( 'evergreen-squeeze' ) ; $display = "none"; };
+       # if ($self->param( 'evergreen' ) ) {$ab = $self->param( 'evergreen' ) ; $display = "block"; };
+       $ab = 'Dec2021'; $display = "block"; # undoing all the above
+	 $self->stash( body_id => $ab, );
         $self->flash( appeal_code => $ab );
         $self->stash( display => $display );           
-    } => 'evergreen';
+    } => 'Dec2021';
        
         any [qw(GET POST)] => '/sq' => sub {
         my $self = shift;
@@ -263,7 +264,7 @@ group {
         $self->stash( body_id => $ab, );
         $self->flash( appeal_code => $ab );
         $self->stash( display => $display );           
-    } => 'evergreen-squeeze';
+    } => 'Dec2021';
          
 
     any [qw(GET POST)] => '/powermap' => sub {
