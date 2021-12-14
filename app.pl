@@ -95,8 +95,8 @@ helper recurly_get_plans => sub {
         push @$filtered, $plan;
     }
     @$filtered = sort {
-        $a->unit_amount_in_cents->CAD->text <=>
-            $b->unit_amount_in_cents->CAD->text
+        $b->unit_amount_in_cents->CAD->text <=>
+            $a->unit_amount_in_cents->CAD->text
     } @$filtered;
     return $filtered;
 };
