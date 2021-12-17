@@ -251,14 +251,14 @@ my $ab;
         if ($seconds >= 31) {
           $self->redirect_to( 'b' );
          } else {
-         $ab = 'Dec2021'; # $display = "none";
+         $ab = 'Dec2021-B'; # $display = "none";
        # if ($self->param( 'squeeze' ) ) {$ab = $self->param( 'evergreen-squeeze' ) ; $display = "none"; };
       #  if ($self->param( 'evergreen' ) ) {$ab = $self->param( 'evergreen' ) ; $display = "block"; };
 	 $self->stash( body_id => $ab, );
         $self->flash( appeal_code => $ab );
         $self->stash( display => $display );
         }
-    } => 'Dec2021';
+    } => 'Dec2021-B';
         
         any [qw(GET POST)] => '/b' => sub {
         my $ab;
@@ -269,7 +269,7 @@ my $ab;
         if ($seconds <= 31) {
           $self->redirect_to( '/' );
          } else {
-         $ab = 'Dec2021-B'; 
+         $ab = 'Dec2021'; 
        # if ($self->param( 'squeeze' ) ) {$ab = $self->param( 'evergreen-squeeze' ) ; $display = "none"; };
       #  if ($self->param( 'evergreen' ) ) {$ab = $self->param( 'evergreen' ) ; $display = "block"; };
        $display = "block";  #undoing all the above
@@ -277,7 +277,7 @@ my $ab;
         $self->flash( appeal_code => $ab );
         $self->stash( display => $display );
         }
-    } => 'Dec2021-B';
+    } => 'Dec2021';
        
 
     any [qw(GET POST)] => '/powermap' => sub {
