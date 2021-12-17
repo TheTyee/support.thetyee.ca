@@ -31,7 +31,6 @@ plugin 'Util::RandomString' => {
     }
 };
 
-  my $ab = 'evergreen';
 my $ua        = Mojo::UserAgent->new;
 my $url       = Mojo::URL->new;
 my $subdomain = $config->{'subdomain'};
@@ -176,6 +175,8 @@ helper raiser_decode => sub {
     return $decrypted_data;
 };
 
+
+
 group {
     under [qw(GET POST)] => '/' => sub {
         my $self = shift;
@@ -236,26 +237,49 @@ group {
             }
         );
     };
-
+my $ab;
     
-    my $ab;
+  
 
   # making both of these test conditions Dec2021 so can easily ad a test if we want during campaign.  Probably a waste of resources if not using later   
         any [qw(GET POST)] => '/' => sub {
+        my $ab;
         my $self = shift;
         my $dt          = DateTime->now;
         my $seconds =  $dt->sec;
         my $display;
-       # if ($seconds >= 31) { $ab = 'evergreen'; $display="block";} else { $ab = 'evergreen-squeeze'; $display = "none"; };
+        if ($seconds >= 31) {
+          $self->redirect_to( 'b' );
+         } else {
+         $ab = 'Dec2021'; # $display = "none";
        # if ($self->param( 'squeeze' ) ) {$ab = $self->param( 'evergreen-squeeze' ) ; $display = "none"; };
-       # if ($self->param( 'evergreen' ) ) {$ab = $self->param( 'evergreen' ) ; $display = "block"; };
-       $ab = 'Dec2021'; $display = "block"; # undoing all the above
+      #  if ($self->param( 'evergreen' ) ) {$ab = $self->param( 'evergreen' ) ; $display = "block"; };
 	 $self->stash( body_id => $ab, );
         $self->flash( appeal_code => $ab );
-        $self->stash( display => $display );           
+        $self->stash( display => $display );
+        }
     } => 'Dec2021';
+        
+        any [qw(GET POST)] => '/b' => sub {
+        my $ab;
+        my $self = shift;
+        my $dt          = DateTime->now;
+        my $seconds =  $dt->sec;
+        my $display;
+        if ($seconds <= 31) {
+          $self->redirect_to( '/' );
+         } else {
+         $ab = 'Dec2021-B'; 
+       # if ($self->param( 'squeeze' ) ) {$ab = $self->param( 'evergreen-squeeze' ) ; $display = "none"; };
+      #  if ($self->param( 'evergreen' ) ) {$ab = $self->param( 'evergreen' ) ; $display = "block"; };
+       $display = "block";  #undoing all the above
+	 $self->stash( body_id => $ab, );
+        $self->flash( appeal_code => $ab );
+        $self->stash( display => $display );
+        }
+    } => 'Dec2021-B';
        
-        any [qw(GET POST)] => '/sq' => sub {
+        any [qw(GET POST)] => '/b' => sub {
         my $self = shift;
          my $dt          = DateTime->now;
         my $seconds =  $dt->sec;
@@ -264,7 +288,7 @@ group {
         $self->stash( body_id => $ab, );
         $self->flash( appeal_code => $ab );
         $self->stash( display => $display );           
-    } => 'Dec2021';
+    } => 'Dec2021-B';
          
 
     any [qw(GET POST)] => '/powermap' => sub {
