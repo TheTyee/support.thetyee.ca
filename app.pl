@@ -279,17 +279,6 @@ my $ab;
         }
     } => 'Dec2021-B';
        
-        any [qw(GET POST)] => '/b' => sub {
-        my $self = shift;
-         my $dt          = DateTime->now;
-        my $seconds =  $dt->sec;
-        my $display;
-        $ab = 'evergreen-squeeze'; $display = "none"; 
-        $self->stash( body_id => $ab, );
-        $self->flash( appeal_code => $ab );
-        $self->stash( display => $display );           
-    } => 'Dec2021-B';
-         
 
     any [qw(GET POST)] => '/powermap' => sub {
         my $self = shift;
