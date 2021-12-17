@@ -5,7 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
     <script> window.history.pushState("", "", '/'); console.log("faked root url");</script>
-    <-- note that will tell a browser we are at root-->
+    <!-- note that will tell a browser we are at root-->
         
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
