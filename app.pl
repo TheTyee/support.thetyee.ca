@@ -248,38 +248,31 @@ my $ab;
         my $dt          = DateTime->now;
         my $seconds =  $dt->sec;
         my $display;
-        if ($seconds >= 31) {
+        if ($seconds >= 29) {
           $self->redirect_to( 'b' );
          } else {
-         $ab = 'Dec2021-B'; # $display = "none";
+         $ab = 'Dec2021'; # $display = "none";
        # if ($self->param( 'squeeze' ) ) {$ab = $self->param( 'evergreen-squeeze' ) ; $display = "none"; };
       #  if ($self->param( 'evergreen' ) ) {$ab = $self->param( 'evergreen' ) ; $display = "block"; };
 	 $self->stash( body_id => $ab, );
         $self->flash( appeal_code => $ab );
         $self->stash( display => $display );
         }
-    } => 'Dec2021-B';
-        
+    } => 'Dec2021';   
         any [qw(GET POST)] => '/b' => sub {
         my $ab;
         my $self = shift;
         my $dt          = DateTime->now;
         my $seconds =  $dt->sec;
-        my $display;
-        if ($seconds <= 31) {
-          $self->redirect_to( '/' );
-         } else {
-         $ab = 'Dec2021'; 
+        my $display;  
+         $ab = 'Dec2021-B'; 
        # if ($self->param( 'squeeze' ) ) {$ab = $self->param( 'evergreen-squeeze' ) ; $display = "none"; };
       #  if ($self->param( 'evergreen' ) ) {$ab = $self->param( 'evergreen' ) ; $display = "block"; };
        $display = "block";  #undoing all the above
 	 $self->stash( body_id => $ab, );
         $self->flash( appeal_code => $ab );
-        $self->stash( display => $display );
-        }
-    } => 'Dec2021';
-       
-
+        $self->stash( display => $display );      
+    } => 'Dec2021-B';
     any [qw(GET POST)] => '/powermap' => sub {
         my $self = shift;
         $self->stash(
