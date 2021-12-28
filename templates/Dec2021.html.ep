@@ -65,8 +65,8 @@ For 'significant contribution to journalism in the province'.</p></a>
            
                                         <div class="col-md-3 col-sm-3 award">
 
-                        <a href="https://thetyee.ca/Tyeenews/2020/04/22/National-Magazine-Award-Woodend/"><img style="width: 130px;"  id="murrow" src="<%= $config->{'static_asset_path'} %>/ui/img/DPA2020.png" />
-                        <p><br>Digital Publishing Award 2020</p></a>
+                        <a href="https://thetyee.ca/Tyeenews/2021/06/14/Tyee-Wins-Two-Digital-Publishing-Awards-Alberta-Honour/"><img style="width: 130px;"  id="murrow" src="<%= $config->{'static_asset_path'} %>/ui/img/DPA2020.png" />
+                        <p><br>Digital Publishing Award 2021</p></a>
                     </div>
 
                     
