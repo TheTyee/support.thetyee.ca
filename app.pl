@@ -239,10 +239,18 @@ group {
     };
 my $ab;
     
-  
+     any [qw(GET POST)] => '/' => sub {
+        my $ab = 'evergreen';
+        my $self = shift;
+        my $display = 'block';
+       
+	 $self->stash( body_id => $ab, );
+        $self->flash( appeal_code => $ab );
+        $self->stash( display => $display );
+    } => 'evergreen';   
 
   # making both of these test conditions Dec2021 so can easily ad a test if we want during campaign.  Probably a waste of resources if not using later   
-        any [qw(GET POST)] => '/' => sub {
+        any [qw(GET POST)] => '/dec2021' => sub {
         my $ab;
         my $self = shift;
         my $dt          = DateTime->now;
@@ -259,7 +267,7 @@ my $ab;
         $self->stash( display => $display );
         }
     } => 'Dec2021';   
-        any [qw(GET POST)] => '/b' => sub {
+        any [qw(GET POST)] => '/dec2021b' => sub {
         my $ab;
         my $self = shift;
         my $dt          = DateTime->now;
