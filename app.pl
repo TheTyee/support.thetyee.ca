@@ -267,7 +267,7 @@ my $ab;
         $self->stash( display => $display );
         }
     } => 'Dec2021';   
-        any [qw(GET POST)] => '/dec2021b' => sub {
+        any [qw(GET POST)] => '/b' => sub {
         my $ab;
         my $self = shift;
         my $dt          = DateTime->now;
