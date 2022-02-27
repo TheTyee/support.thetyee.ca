@@ -1,6 +1,5 @@
         <header>
-        <h1>The Tyee</h1>
-            <h2>Tyee Builders</h2>
         <div class="container">
+         <img src="<%= $config->{'static_asset_path'} %>/ui/img/tyeebuilders.svg">
         </div>
         </header>

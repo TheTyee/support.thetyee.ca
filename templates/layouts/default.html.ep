@@ -45,6 +45,7 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="<%= $config->{'static_asset_path'} %>/ui/js/jquery.validate.min.js"></script>
     <script type="text/javascript" src="//use.typekit.net/sjz2xsw.js"></script>
+    <link rel="stylesheet" href="https://use.typekit.net/whf8gkh.css">
     <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
     <script src="https://js.recurly.com/v4/recurly.js"></script>
     <link rel="shortcut icon" href="<%= $config->{'static_asset_path'} %>/ui/img/favicon.ico">
