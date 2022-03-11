@@ -16,7 +16,7 @@
 		<br>
     <div style="float:left;">
         <span class="glyphicon glyphicon-ok-sign" style="float:right;position:relative;left:-20px"></span>
-        <img src="<%= $config->{'static_asset_path'} %>/ui/img/fishswag.jpg" width="150" />
+        <img src="<%= $config->{'static_asset_path'} %>/ui/img/fishswag.jpg?v=1" width="150" />
     </div>
   % if ( $record->{'plan_code'} ) {
   % my $monthly_amount = $record->{'amount_in_cents'} / 100;
@@ -48,14 +48,27 @@
 	    <p><strong>To receive your sweet Tyee swag in the mail, we’ll need your mailing address.</strong></p>	
             <label class="radio-inline">
                 <input id="lapel-yes" name="pref_lapel" type="radio" value="Yes" />
-                Yes, please send me Tyee swag. Here is my address.</label>
+                Yes, please send me (or my gift recipient) Tyee swag. Here is my address.</label>
             <label class="swag radio-inline">
                 <input checked="1" id="lapel_no" name="pref_lapel" type="radio" value="No" />
                 No, please don’t send me anything in the mail</label>
         </div>
         <br />
 <div class="address_fields" style="display:none;">
+  
+  <div class="form-group">
+        <label for="first-name-swag">First name of who the mailed swag should go to</label>
+        <input class="form-control required" data-recurly="first_name_swag" id="first_name_swag" name="first-name-swag" placeholder="First name for swag" type="text" value="" required />
+    </div>
+    <div class="form-group">
+        <label for="last-name">Last name</label>
+        <input class="form-control required" data-recurly="last_name_swag" id="last_name_swag" name="last-name-swag" placeholder="Last Name for swag" type="text" value="" required />
+    </div>
+  
 <div class="form-group">
+  
+  
+  
     <label for="address1">Street address</label>
     <input class="form-control required" data-recurly="address1" id="address1" name="address1" placeholder="Address" type="text"  />
     <span id="helpBlock" class="help-block">Outside of Canada/USA? Please include your full mailing address in this field.</span>
