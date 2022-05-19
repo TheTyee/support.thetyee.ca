@@ -228,8 +228,11 @@ group {
 
         my $plans = $self->recurly_get_plans(
             $config->{'recurly_get_plans_filter'} );
+        my $annual_plans = $self->recurly_get_plans(
+            $config->{'recurly_annual_plans_filter'} );
         $self->stash(
             {   plans         => $plans,
+                annual_plans  => $annual_plans,
                 plans_onetime => $config->{'plans_onetime'},
                 amount        => $amount,
                 onetime       => $onetime || $self->flash( 'onetime' ),
