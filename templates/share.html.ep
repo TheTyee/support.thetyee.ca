@@ -14,7 +14,7 @@
     </p>
     
     <br style="clear:both;"/>
-<p><strong>Feels great to support independent media? <br>Help spread the feeling by tweeting, posting on Facebook, or emailing below:</strong></p>
+<p><strong>Doesn't it feel great to support independent media? <br>Help spread the feeling by tweeting, posting on Facebook or emailing below:</strong></p>
 
 <br style="clear:both;"/>
     <div style="float: left; with: 50%; margin-right: 20px;">
@@ -35,8 +35,10 @@
             <dd><%= $transaction_details->{'email'} %></dd>
             <dt>Amount</dt>
             <dd>$<%= $transaction_details->{'amount_in_cents'} / 100 %>
-                <% if ( $transaction_details->{'plan_code'} ) { %>
+                <% if ( $transaction_details->{'plan_code'} =~ /builder|custom_amount/ ) { %>
                 / every month until cancelled
+                <% } elsif ( $transaction_details->{'plan_code'} =~ /annual/ ) { %>
+                / every year until cancelled
                 <% } else { %>
                 / one time
                 <% } %>
@@ -50,8 +52,33 @@
             <span class="glyphicon glyphicon-ok-sign" style="float:right;position:relative;left:-20px"></span>
             <img src="<%= $config->{'static_asset_path'} %>/ui/img/fishswag.jpg" width="150" />
         </div>
-        % if ( $transaction_details->{'plan_code'} ) {
         % my $monthly_amount = $transaction_details->{'amount_in_cents'} / 100;
+        % if ( $transaction_details->{'plan_code'} ) {
+ 
+        % my $annual;
+        % $annual = 1 if $transaction_details->{'plan_code'} =~ /annual/;
+        % if ($annual ) {
+        % if ( $monthly_amount >= '180') {
+            <div style="float:left;">
+                <span class="glyphicon glyphicon-ok-sign" style="float:right;position:relative;left:-20px"></span>
+                <img src="https://thetyee.ca/ui/img/support/BuilderNotebook.jpg" width="150" />
+            </div>    
+            % }
+            % if ( $monthly_amount >= '240') {
+            <div style="float:left;">
+                <span class="glyphicon glyphicon-ok-sign" style="float:right;position:relative;left:-20px"></span>
+                <img src="https://thetyee.ca/ui/img/support/BuilderTote.jpg" width="150" />
+            </div>
+            % }  
+            % if ( $monthly_amount >= '300') {
+            <div style="float:left;">
+                <span class="glyphicon glyphicon-ok-sign" style="float:right;position:relative;left:-20px"></span>
+                <img src="https://thetyee.ca/ui/img/support/BuilderMug.jpg" width="150" />
+            </div>
+            % } 
+        
+        
+        %  } else { 
             % if ( $monthly_amount >= '15') {
             <div style="float:left;">
                 <span class="glyphicon glyphicon-ok-sign" style="float:right;position:relative;left:-20px"></span>
@@ -70,7 +97,8 @@
                 <img src="https://thetyee.ca/ui/img/support/BuilderMug.jpg" width="150" />
             </div>
             % } 
-        % }   
+        % }
+        % }
     % } else {
         <h3>You have opted out of receiving Tyee swag</h3>
             <img src="<%= $config->{'static_asset_path'} %>/ui/img/tyee-happy-earth.jpg" />

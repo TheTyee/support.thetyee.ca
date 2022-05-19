@@ -1,5 +1,6 @@
             <form id="form-full-credit" class="recurly" method="post" action="/process_transaction">
                 <div class="fields fields-personal">
+                        <p><em>Please enter your details below.</em></p>
                     %= include 'includes/form-fields-personal'
                 </div>
                 <div class="fields fields-credit">

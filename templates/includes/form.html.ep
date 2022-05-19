@@ -3,7 +3,7 @@
 <% } %>
     <div id="form">
         <ul class="nav nav-tabs">
-            <li id="monthly" class="active"><a href="#form-monthly" data-toggle="tab">Monthly</a></li>
+            <li id="monthly" class="active"><a href="#form-monthly" data-toggle="tab">Monthly</a></li><li id="annual" class=""><a href="#form-annual" data-toggle="tab">Annual</a></li>
                         <li id="onetime" class="" ><a href="#form-onetime" data-toggle="tab">One-time</a></li>
 
             <li id="offline" ><a href="#form-offline" data-toggle="tab">Offline</a></li>
@@ -51,11 +51,59 @@
 
              
                     <br style="clear:both;" /> 
-                    <p class="help-block">If you already contribute monthly to The Tyee and would like to increase your contribution, give us a shout at 604-689-7489 or <a  href="mailto:builders@thetyee.ca" target="_blank">builders@thetyee.ca</a>.</p>           
+                    <p class="help-block">If you already contribute monthly to The Tyee and would like to increase your contribution, give us a shout at 604-689-7489 or <a  href="mailto:builders@thetyee.ca" target="_blank">builders@thetyee.ca</a>.
+                    </p>           
 
                 </div>
      
             <!--/Monthly-->
+            
+                        <div class="tab-pane" id="form-annual">
+       
+
+<div class="chooseown" ">
+                <p><b>Annual</b> level:</p>
+                <div class="btn-group" data-toggle="buttons">
+                    % for my $p ( @$annual_plans ) {
+                    <label rel="popover" class="<%= $p->plan_code->text %> btn btn-primary btn-lg <%= $p->plan_code->text eq "builder-15" ? "active" : "" %> " data-trigger="hover" data-container="body" data-placement="top" data-content="<%= $p->description->text %>" data-original-title="<%= $p->name->text %>" title="">
+                        <input type="radio" name="plan" id="<%= $p->plan_code->text %>" value="<%= $p->plan_code->text %>" data-amount="<%= $p->unit_amount_in_cents->CAD->text %>" data-code="<%= $p->plan_code->text %>" data-plan="<%= $p->name->text %>"> $<%= $p->unit_amount_in_cents->CAD->text / 100 %>/yr
+                    </label>
+
+                    % }
+                    
+
+                </div>
+                
+                <div id="other-amount-label"><label for="other-amount">Or, enter your own amount:</label></div>
+                
+                <div class="input-group">
+                        <span class="input-group-addon">$</span>
+                        <input type="text" class="form-control" id="other-amount" name="amount" placeholder="Enter a round number, e.g., 25">
+                        <span class="input-group-addon">.00</span>
+                    </div>
+                
+                            <br>                
+                 </div>  
+                <label rel="popover" class="btn btn-primary btn-lg next">Choose payment options</label>
+                
+                            <br>
+                
+                
+                
+                <div class="options-payment" id="monthlypayment"  style="display:none;">
+                    <br style="clear:both;" /> 
+                    <p>Choose your <b>payment method:</b></p>
+                    <a class="btn btn-primary" role="button" data-payment="credit" href="">Credit Card</a> <a class="btn btn-primary" role="button" data-payment="paypal" href="">Paypal</a> <a class="btn btn-primary" role="button" data-payment="bank" href="">Bank</a>
+                </div>
+
+             
+                    <br style="clear:both;" /> 
+                    <p class="help-block">If you already contribute monthly to The Tyee and would like to increase your contribution, give us a shout at 604-689-7489 or <a  href="mailto:builders@thetyee.ca" target="_blank">builders@thetyee.ca</a>.
+                    </p>           
+
+                </div>
+     
+<!--/annual-->
             <div class="tab-pane" id="form-onetime">
                 <div class="form-group">
                     <p>Select your <b>one-time</b> amount:</p>
@@ -178,7 +226,11 @@ function updateConfirmPayment(type) {
     amount = '$' + amount  // $ sign
     var plan   = $('#form-full-' + type + ' input.plan-name').val();
     if ( plan ) {
-        paymentString = amount + ' / month';
+                     if ( $("#annual").hasClass("active") ) {
+                    paymentString = amount + ' / year';
+                     } else {
+                 paymentString = amount + ' / month';
+                     }
         } else {
         paymentString = amount + ' one time';
     }
@@ -199,13 +251,13 @@ function showMonthlyPaymentOptions () {
 
 
 // Capture the amount, set input values, show the payment types
-$( "#form-monthly  label.btn.chooseown" ).on( "click touchstart", function( event ) {
+$( "#form-monthly  label.btn.chooseown, #form-annual label.btn.chooseown" ).on( "click touchstart", function( event ) {
    $("div.chooseown").show();
 });
 
 
 // hide choose your own if you choose the default
-$( "#form-monthly label.btn.default" ).on( "click touchstart", function( event ) {
+$( "#form-monthly label.btn.default, #form-annual label.btn.default" ).on( "click touchstart", function( event ) {
 $("div.chooseown").hide();
 });
 
@@ -233,7 +285,28 @@ $( "#form-monthly .chooseown label.btn, #form-monthly label.btn.default" ).on( "
     
 });
 
+$( "#form-annual .chooseown label.btn, #form-annual label.btn.default" ).on( "click touchstart", function( event ) {
 
+    var selectedinput = $('input', this)[0];
+    var amountInCents = selectedinput.dataset.amount;
+    var planName = selectedinput.dataset.plan;
+    var planCode = selectedinput.dataset.code;
+    $('input.amount-in-cents').each(function(){
+        $(this).val(amountInCents);
+    })
+    
+    
+    $('input.plan-name').each(function(){
+       $(this).val(planName); 
+
+    });
+    $('input.plan-code').each(function(){
+    $(this).val(planCode);
+    });
+    
+     updateConfirmPayment("annual");
+    
+});
 
 
 $(".btn.next").click(function(){
@@ -254,7 +327,27 @@ $(".btn.next").click(function(){
                                        });
                            }
            
-        } else {
+        } else if ( $("#annual").hasClass("active") ) {        
+                    var selectedinput = $('#form-annual input#other-amount');
+                    var amount = selectedinput.val();
+                            if (amount >= .01) {
+                                            var amountInCents = amount * 100;
+                                            $('input.amount-in-cents').val(amountInCents);
+                                            showMonthlyPaymentOptions();
+                                       
+                            } else {
+                                        $("label.btn").each(function( index ) {
+                                                if ($(this).hasClass("active")) {
+                                                    showMonthlyPaymentOptions();
+                                                }
+                                        
+                                       });
+                           }
+           
+        
+        
+        
+       } else {
         
         
          showMonthlyPaymentOptions();
@@ -330,6 +423,37 @@ $('#form-monthly input#other-amount').on( "blur", function( event ) {
 
 });
 
+
+// same as above but for the annual version
+$('#form-annual input#other-amount').on( "blur", function( event ) {
+    var selectedinput = $(event.currentTarget);
+        var amount = selectedinput.val();
+    if (amount >= .01) {
+        var amountInCents = amount * 100;
+        $('input.amount-in-cents').val(amountInCents);
+       
+        
+    var planName = "custom_annual";
+    var planCode = "custom_annual";
+    $('input.amount-in-cents').each(function(){
+        $(this).val(amountInCents);
+    })
+    
+      $('input.unit-amount-in-cents').val(amountInCents);
+    $('input.unit-amount-in-cents').each(function(){
+        $(this).val(amountInCents);
+    })
+    
+    $('input.plan-name').each(function(){
+       $(this).val(planName); 
+
+    });
+    $('input.plan-code').each(function(){
+    $(this).val(planCode);
+    });
+    }
+
+});
 
 
 // Show the correct fields depending on the payment type
@@ -510,11 +634,12 @@ $('input.amount-in-cents').each(function(){
     console.log("monthly active");
                      $(".builder-15.btn").click();
 
-        }
-                   
-
-
+        } else if ( $("#form-annual").hasClass("active") ) {
+    console.log("annual active");
+                     $(".annual-bxilder-240.btn").click();
 };
+
+ };
 
 $(".nav.nav-tabs a").click(function(e){
     $('.next').show();

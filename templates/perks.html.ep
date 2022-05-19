@@ -18,9 +18,31 @@
         <span class="glyphicon glyphicon-ok-sign" style="float:right;position:relative;left:-20px"></span>
         <img src="<%= $config->{'static_asset_path'} %>/ui/img/fishswag.jpg?v=1" width="150" />
     </div>
+  % my $monthly_amount = $record->{'amount_in_cents'} / 100;  
   % if ( $record->{'plan_code'} ) {
-  % my $monthly_amount = $record->{'amount_in_cents'} / 100;
-      % if ( $monthly_amount >= '15') {
+  % if ($record->{'plan_code'} =~ /annual/) {
+  
+  % if ( $monthly_amount >= '180') {
+    <div style="float:left;">
+        <span class="glyphicon glyphicon-ok-sign" style="float:right;position:relative;left:-20px"></span>
+        <img src="https://thetyee.ca/ui/img/support/BuilderNotebook.jpg" width="150" />
+    </div>    
+      % }
+      % if ( $monthly_amount >= '240') {
+    <div style="float:left;">
+        <span class="glyphicon glyphicon-ok-sign" style="float:right;position:relative;left:-20px"></span>
+        <img src="https://thetyee.ca/ui/img/support/BuilderTote.jpg" width="150" />
+    </div>
+      % }  
+      % if ( $monthly_amount >= '300') {
+    <div style="float:left;">
+        <span class="glyphicon glyphicon-ok-sign" style="float:right;position:relative;left:-20px"></span>
+        <img src="https://thetyee.ca/ui/img/support/BuilderMug.jpg" width="150" />
+    </div>
+    % }
+  % } else {
+  
+  % if ( $monthly_amount >= '15') {
     <div style="float:left;">
         <span class="glyphicon glyphicon-ok-sign" style="float:right;position:relative;left:-20px"></span>
         <img src="https://thetyee.ca/ui/img/support/BuilderNotebook.jpg" width="150" />
@@ -38,7 +60,9 @@
         <img src="https://thetyee.ca/ui/img/support/BuilderMug.jpg" width="150" />
     </div>
       % } 
-    % }   
+    % }
+    
+    % }
     <br clear="all" />
 
     <form action="perks" method="POST" role="form">
