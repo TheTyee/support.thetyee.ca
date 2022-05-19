@@ -1,6 +1,7 @@
 {
     "app_version"               : "1.9.7",
     "recurly_get_plans_filter" : "builder",
+ "recurly_annual_plans_filter" : "annual-bxilder",
     "plans_onetime"          : [ 
             { 
                 "amount": "20",
