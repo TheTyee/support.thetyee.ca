@@ -21,7 +21,7 @@
             <meta property="og:description" content="Our democracy needs good journalism. Join me in supporting fact-based, independent journalism." />
             <meta property="og:type" content="website" />
             <meta property="og:url" content="https://support.thetyee.ca" />
-            <meta property="og:image" content="<%= $config->{'static_asset_path'} %>/ui/img/Tyee-Builders-facebook-1200x1200.jpg" />
+            <meta property="og:image" content="<%= $config->{'static_asset_path'} %>/ui/img/Tyee-Builders-facebook-800x800.jpg" />
 % #		<meta property="og:image" content="<%= $config->{'static_asset_path'} %>/ui/img/RafeMairFBshare.jpg" />
 
 
