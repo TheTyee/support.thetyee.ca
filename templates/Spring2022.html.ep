@@ -1,4 +1,4 @@
-% layout 'default-b', title => 'Support fact-based independent journalism -- The Tyee'; 
+% layout 'default-squeeze', title => 'Support fact-based independent journalism -- The Tyee'; 
        <div class="container" id="content">
             <div id="campaign-copy" class="row">
                 <h1>Canada needs more independent journalism. Join us <span>&nbsp;</span></h1>
