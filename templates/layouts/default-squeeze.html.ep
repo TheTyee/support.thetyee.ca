@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+   <!-- <script> window.history.pushState("", "", '/'); console.log("faked root url");</script>-->
+    <!-- note that will tell a browser we are at root-->
+        
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<!-- General properties -->
+            <meta name="description" content="We're an independent, online news magazine from B.C. We're devoted to fact-driven reporting and analysis to inform and enliven our democratic conversation." />
+	    <meta name="author" content="The Tyee">
+            <meta name="keywords" content="Canada, national, news, media concentration, fact-driven reporting">
+            <meta name="robots" content="index, follow" />
+	    <meta name="revisit-after" content="1 days" />
+	    <meta name="copyright" content="The Tyee 2016" />
+            <meta name="MSSmartTagsPreventParsing" content="TRUE" />
+ 
+<!-- OpenGraph properties -->
+            <meta property="og:title" content="I just supported strong, independent journalism. Join me: " />
+            <meta property="og:description" content="Our democracy needs good journalism. Join me in supporting fact-based, independent journalism." />
+            <meta property="og:type" content="website" />
+            <meta property="og:url" content="https://support.thetyee.ca" />
+            <meta property="og:image" content="<%= $config->{'static_asset_path'} %>/ui/img/Tyee-Builders-facebook-800x800.jpg" />
+% #		<meta property="og:image" content="<%= $config->{'static_asset_path'} %>/ui/img/RafeMairFBshare.jpg" />
+
+
+	    <meta property="og:site_name" content="The Tyee" />
+            <meta property="fb:admins" content="648146258, 512340590, 121503155, 13609677, 877285452, 584785109" />
+ 
+<!-- Dublin Core properties -->
+            <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+            <link rel="schema.DCTERMS" href="http://purl.org/dc/terms/" />
+            <meta name="DC.title" lang="English" content="" />
+            <meta name="DC.creator" content="The Tyee" />
+            <meta name="DC.description" lang="English" content="We're an independent, online news magazine from B.C. We're devoted to fact-driven reporting and analysis to inform and enliven our democratic conversation." />
+            <meta name="DC.publisher" content="The Tyee" />
+            <meta name="DC.format" content="text/html" />
+            <meta name="DC.language" scheme="DCTERMS.URI" content="English" />
+
+    <title><%= $title %></title>
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link href="<%= $config->{'static_asset_path'} %>/ui/css/styles.css?v=3" rel="stylesheet" media="screen">
+    <style>
+    
+    .video-container {
+        width: 98%;
+        clear:both;
+    }
+    
+    
+    .contributor-list li {
+        font-size: 90%;
+    }
+    
+    
+    .amountwrap, .time-left {
+       
+        width:44% !important;
+        float:left !important;
+    }
+    
+    .from {
+        display: inline-block;
+        float:left;
+        font-size: 90% !important;
+        padding-right: 5px;
+    }
+    .amountwrap {
+        margin-right:4%;
+    }
+    
+    .progress {
+         margin-bottom:0px !important;
+         clear:both;
+    }
+    
+    #campaign-copy {
+        margin-left:0px;
+        padding-left:0px;
+    }
+    
+    #widgetwrap {
+                    width: 100%;
+                    float:right;
+                    padding-left:0;
+                }
+    
+    #campaign-widget {
+        min-width: 100% !important;
+        padding: 10px;
+    }
+        
+        #campaign-widget .raised, #campaign-widget .days, #campaign-widget .hour, #campaign-widget .goal {
+            font-size: 110%;
+            font-family: "source-sans-pro", sans-serif;
+            font-weight: bold;
+        }
+        
+          @media screen and (max-width: 600px) {
+            #campaign-copy {
+                line-height: 100%;
+                font-size: 100%;
+            }
+            #campaign-copy h1 {
+                font-size: 140%;
+                line-height: 100%;
+                margin: 0 0 10px;
+            }
+            
+     
+            
+            #campaign-copy .lead {
+                margin-bottom: 0px;
+            }
+            
+          }
+        
+         
+    @media screen and (max-width: 800px) {    
+        
+               .btn.next {
+                font-size: 15px !important;
+            }
+            
+            .btn-group .btn {
+                font-size: 18px;
+            }
+    }
+        
+    @media screen and (min-width: 800px) {
+        .payment-fields {
+        max-width: 49%;
+        float: left;
+        clear: left;
+        }
+        
+        #awardwrap {
+            
+            float:right; max-width:50%
+        }
+        
+               /* #form {
+                    width: 50%;
+                    float:left;
+                }
+               */
+               
+               
+                
+                
+                .video-container {
+                    max-width:50%;
+                    float:left;
+                
+                }
+    }
+        
+    </style>
+    <script src="<%= $config->{'static_asset_path'} %>/ui/js/modernizr.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="<%= $config->{'static_asset_path'} %>/ui/js/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="//use.typekit.net/sjz2xsw.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+    <script src="https://js.recurly.com/v4/recurly.js"></script>
+    <link rel="shortcut icon" href="<%= $config->{'static_asset_path'} %>/ui/img/favicon.ico">
+</head>
+<body id="<%= $body_id %>">
+    <!-- Google Tag Manager -->
+    <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MSQQB3"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MSQQB3');</script>
+    <!-- End Google Tag Manager -->
+    <!--[if lt IE 7]>
+    <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+    <![endif]-->
+    <noscript id="js-warning" style="background: black; display: block; color: white; padding:10px;">
+    This page requires Javascript. Your browser either doesn't support JavaScript or you have it turned off. Please enable JavaScript before you proceed.
+    </noscript>
+    %= include 'header'
+    <%= content %>
+    %= include 'footer'
+    %= include 'footer_scripts'
+    </body>
+</html>
