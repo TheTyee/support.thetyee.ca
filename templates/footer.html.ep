@@ -5,7 +5,7 @@
                 <h3>Terms of service</h3>
                 <p>All Tyee Builder transactions are processed in Canadian Dollars. The Tyee is a Canadian organization, located in Vancouver, B.C.</p>
 
-                <p>You can change the amount you're giving us monthly or stop subscribing at any time. Simply contact us and we'll put an end to your membership, which will take effect the next time a payment is due to be made. Due to the nature of the program we can't offer refunds mid-month. If you have any questions or need to cancel your membership, please contact us by <a href="mailto:builders@thetyee.ca">email</a>, phone (604-689-7489) or toll-free (1-844-301-6677).</p>
+                <p>You can change the amount you're giving us monthly or stop subscribing at any time.  Simply visit <a href="https://account.thetyee.ca/">account.thetyee.ca</a> to make changes, or if you're having trouble, contact us by <a href="mailto:builders@thetyee.ca">email</a>, phone (604-689-7489) or toll-free (1-844-301-6677).</p>
                  <p>We are a non-profit organization but at this time donations to The Tyee are not tax deductible. Find out more about our funding <a href="http://thetyee.ca/About/Us/" target="_blank">here</a>.
                 </p>
                  <h3>Frequently Asked Questions</h3>
@@ -14,7 +14,9 @@
                 <p><strong>Are you a Qualified Canadian Journalism Organization (QCJO)? Can I claim my Tyee Builders payment as a qualifying subscription on my taxes?</strong></p>
                 <p>We are a QCJO but Tyee Builders is not a qualifying subscription expense and is not eligible for a tax credit because subscriptions are meant to provide access past a paywall. Tyee Builders is not a subscription, it is a supporters program.</p>
                 <p><strong>How can I make changes or stop my monthly contribution?</strong></p>
-                <p>You can change the amount you're giving us monthly or stop subscribing at any time. Simply contact us and we'll put an end to your membership, which will take effect the next time a payment is due to be made. If you have any questions or need to cancel your membership, please contact us by email, phone (604-689-7489) or toll-free (1-844-301-6677).</p>
+                <p>You can change the amount you're giving us monthly or stop subscribing at any time. 
+Just log in to your member account at <a href="https://account.thetyee.ca">account.thetyee.ca</a> any time to make changes. 
+Or if you're having trouble, you can contact us by email, phone (604-689-7489) or toll-free (1-844-301-6677).</p>
                 <p>&copy; 2022 The Tyee &middot; <a href="http://subscribe.thetyee.ca/privacy/">Privacy</a></p>
                 <p>support.thetyee.ca v<%= $config->{'app_version'} %></p>
             </div>
