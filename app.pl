@@ -243,10 +243,24 @@ group {
 my $ab;
     
      any [qw(GET POST)] => '/' => sub {
-        my $ab = 'Spring2022';
+        my $ab;
         my $self = shift;
-        my $display = 'block';
-       
+        my $dt          = DateTime->now;
+        my $seconds =  $dt->sec;
+        my $display;
+        my $urlstring;
+        my $count;
+                my $params = $self->req->query_params;
+        
+        
+           app->log->debug(  "url string  = $params");
+        
+    my $path = "/b" . '?' . $params;
+        if ($seconds >= 29) {
+          $self->redirect_to( $path);
+         } else {
+         $ab = 'Spring2022'; # $display = "none";
+        }
 	 $self->stash( body_id => $ab, );
         $self->flash( appeal_code => $ab );
         $self->stash( display => $display );
@@ -259,6 +273,8 @@ my $ab;
         my $dt          = DateTime->now;
         my $seconds =  $dt->sec;
         my $display;
+
+        
         if ($seconds >= 29) {
           $self->redirect_to( 'b' );
          } else {
@@ -269,21 +285,22 @@ my $ab;
         $self->flash( appeal_code => $ab );
         $self->stash( display => $display );
         }
-    } => 'Dec2021';   
+    } => 'Dec2021';
+        
         any [qw(GET POST)] => '/b' => sub {
         my $ab;
         my $self = shift;
         my $dt          = DateTime->now;
         my $seconds =  $dt->sec;
         my $display;  
-         $ab = 'Dec2021-B'; 
+         $ab = 'Spring2022-B'; 
        # if ($self->param( 'squeeze' ) ) {$ab = $self->param( 'evergreen-squeeze' ) ; $display = "none"; };
       #  if ($self->param( 'evergreen' ) ) {$ab = $self->param( 'evergreen' ) ; $display = "block"; };
        $display = "block";  #undoing all the above
 	 $self->stash( body_id => $ab, );
         $self->flash( appeal_code => $ab );
         $self->stash( display => $display );      
-    } => 'Dec2021-B';
+    } => 'Spring2022-B';
     any [qw(GET POST)] => '/powermap' => sub {
         my $self = shift;
         $self->stash(
@@ -300,11 +317,6 @@ my $ab;
             appeal_code => 'iframe'
         );
     } => 'iframe';
-    
-    
-    
-    
-    
     
         any [qw(GET POST)] => '/dec2018' => sub {
         my $self = shift;
@@ -452,6 +464,13 @@ $state = $params->{'state'} ;
     my $result = $self->find_or_new( $transaction_details );
     $transaction_details->{'id'} = $result->id;
     $self->flash( { transaction_details => $transaction_details, } );
+    
+    
+  my $res = $ua->post( $config->{'iats_process_proxy'} => {  Accept => '*/*' } => form => $transaction_details);
+  
+     app->log->debug(  Dumper $res);
+
+  
     $self->redirect_to( 'perks' );
 };
 
