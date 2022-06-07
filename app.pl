@@ -255,12 +255,14 @@ my $ab;
         
            app->log->debug(  "url string  = $params");
         
-    my $path = "/b" . '?' . $params;
-        if ($seconds >= 29) {
-          $self->redirect_to( $path);
-         } else {
-         $ab = 'Spring2022'; # $display = "none";
-        }
+#    my $path = "/b" . '?' . $params;
+ #       if ($seconds >= 29) {
+  #        $self->redirect_to( $path);
+   #      } else {
+    #     $ab = 'Spring2022'; # $display = "none";
+     #   }
+ $ab = 'Spring2022'; # $display = "none";
+
 	 $self->stash( body_id => $ab, );
         $self->flash( appeal_code => $ab );
         $self->stash( display => $display );
