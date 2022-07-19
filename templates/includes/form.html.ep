@@ -226,18 +226,19 @@ function updateConfirmPayment(type) {
     var amount = $('input.amount-in-cents').val();
     amount = amount / 100; // To dollars
     amount = '$' + amount  // $ sign
-    var plan   = $('#form-full-' + type + ' input.plan-name').val();
-    if ( plan ) {
+ 
                      if ( $("#annual").hasClass("active") ) {
                     paymentString = amount + ' / year';
-                     } else {
+                     } else if  ( $("#monthly").hasClass("active") ) {
                  paymentString = amount + ' / month';
-                     }
+                    
         } else {
         paymentString = amount + ' one time';
     }
     $('.confirm-payment span').text(paymentString);
+
 }
+
 
 // Show the payment type option buttons
 function showMonthlyPaymentOptions () {
