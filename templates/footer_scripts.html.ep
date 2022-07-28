@@ -35,7 +35,9 @@
         %   if ( $self->req->url->to_abs->path eq '/preferences' && defined $self->stash('record') ) { 
         %   my $record = $self->stash('record');
         %   my $category = $record->{'plan_name'} ? 'monthly' : 'onetime';
-        %   if ($record->{'plan_name'} =~ /annual/) { $category = 'annual' };
+        %   if ($record->{'plan_code'} =~ /annual/) { $category = 'annual' };
+
+% app->log->debug( " ecommerce category is $category");
         ga('require', 'ecommerce');
         ga('ecommerce:addTransaction', {
           'id': '<%= $record->{'id'} %>',                           // Transaction ID. Required.
