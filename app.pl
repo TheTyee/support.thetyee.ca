@@ -255,12 +255,12 @@ my $ab;
         
            app->log->debug(  "url string  = $params");
         
-#    my $path = "/b" . '?' . $params;
- #       if ($seconds >= 29) {
-  #        $self->redirect_to( $path);
-   #      } else {
-    #     $ab = 'Spring2022'; # $display = "none";
-     #   }
+ my $path = "/b" . '?' . $params;
+        if ($seconds >= 29) {
+          $self->redirect_to( $path);
+        } else {
+        $ab = 'evergreen'; # $display = "none";
+       }
  $ab = 'evergreen'; # $display = "none";
 
 	 $self->stash( body_id => $ab, );
@@ -280,14 +280,14 @@ my $ab;
         if ($seconds >= 29) {
           $self->redirect_to( 'b' );
          } else {
-         $ab = 'Dec2021'; # $display = "none";
+         $ab = 'evergreen'; # $display = "none";
        # if ($self->param( 'squeeze' ) ) {$ab = $self->param( 'evergreen-squeeze' ) ; $display = "none"; };
       #  if ($self->param( 'evergreen' ) ) {$ab = $self->param( 'evergreen' ) ; $display = "block"; };
 	 $self->stash( body_id => $ab, );
         $self->flash( appeal_code => $ab );
         $self->stash( display => $display );
         }
-    } => 'Dec2021';
+    } => 'evergreen';
         
         any [qw(GET POST)] => '/b' => sub {
         my $ab;
@@ -295,14 +295,16 @@ my $ab;
         my $dt          = DateTime->now;
         my $seconds =  $dt->sec;
         my $display;  
-         $ab = 'Spring2022-B'; 
-       # if ($self->param( 'squeeze' ) ) {$ab = $self->param( 'evergreen-squeeze' ) ; $display = "none"; };
-      #  if ($self->param( 'evergreen' ) ) {$ab = $self->param( 'evergreen' ) ; $display = "block"; };
-       $display = "block";  #undoing all the above
+         $ab = 'evergreen-squeeze'; 
+        if ($self->param( 'squeeze' ) ) {$ab = $self->param( 'evergreen-squeeze' ) ; $display = "none"; };
+        if ($self->param( 'evergreen' ) ) {$ab = $self->param( 'evergreen' ) ; $display = "block"; };
+     #  $display = "block";  #undoing all the above
 	 $self->stash( body_id => $ab, );
         $self->flash( appeal_code => $ab );
         $self->stash( display => $display );      
-    } => 'Spring2022-B';
+    } => 'evergreen-squeeze';
+        
+        
     any [qw(GET POST)] => '/powermap' => sub {
         my $self = shift;
         $self->stash(
@@ -380,6 +382,15 @@ my $ab;
             display => 'block'
         );
     } => 'evergreen';
+    
+        any [qw(GET POST)] => '/evergreen-squeeze' => sub {
+        my $self = shift;
+        $self->stash(
+            body_id     => 'evergreen-squeeze',
+            appeal_code => 'evergreen-squeeze',
+            display => 'block'
+        );
+    } => 'evergreen-squeeze';
     any [qw(GET POST)] => '/election2017-2' => sub {
         my $self = shift;
         $self->stash(
