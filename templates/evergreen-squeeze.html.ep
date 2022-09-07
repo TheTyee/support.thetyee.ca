@@ -1,4 +1,4 @@
-% layout 'default', title => 'Support fact-based independent journalism -- The Tyee'; 
+% layout 'default-b', title => 'Support fact-based independent journalism -- The Tyee'; 
 
        <div class="container" id="content">
 		<div class="row manage" style="display:none;">
