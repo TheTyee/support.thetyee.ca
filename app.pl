@@ -251,10 +251,7 @@ my $ab;
         my $urlstring;
         my $count;
                 my $params = $self->req->query_params;
-        
-        
-           app->log->debug(  "url string  = $params");
-        
+                   app->log->debug(  "url string  = $params");       
  my $path = "/b" . '?' . $params;
         if ($seconds >= 29) {
           $self->redirect_to( $path);
