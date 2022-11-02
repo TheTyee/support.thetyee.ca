@@ -245,25 +245,25 @@ my $ab;
      any [qw(GET POST)] => '/' => sub {
         my $ab;
         my $self = shift;
-        my $dt          = DateTime->now;
-        my $seconds =  $dt->sec;
+       # my $dt          = DateTime->now;
+       #  my $seconds =  $dt->sec;
         my $display;
         my $urlstring;
         my $count;
-                my $params = $self->req->query_params;
-                   app->log->debug(  "url string  = $params");       
- my $path = "/b" . '?' . $params;
-        if ($seconds >= 29) {
-          $self->redirect_to( $path);
-        } else {
-        $ab = 'evergreen'; # $display = "none";
-       }
- $ab = 'evergreen'; # $display = "none";
+      #          my $params = $self->req->query_params;
+       #            app->log->debug(  "url string  = $params");       
+# my $path = "/b" . '?' . $params;
+ #       if ($seconds >= 29) {
+  #        $self->redirect_to( $path);
+   #     } else {
+    #    $ab = 'evergreen'; # $display = "none";
+    #   }
+ $ab = 'evergreen-squeeze'; # $display = "none";
 
 	 $self->stash( body_id => $ab, );
         $self->flash( appeal_code => $ab );
         $self->stash( display => $display );
-    } => 'evergreen';   
+    } => 'evergreen-squeeze';   
 
   # making both of these test conditions Dec2021 so can easily ad a test if we want during campaign.  Probably a waste of resources if not using later   
         any [qw(GET POST)] => '/dec2021' => sub {
