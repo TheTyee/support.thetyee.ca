@@ -206,6 +206,11 @@ $('a#link-tab-monthly').on('click', function( event ) {
     $('#monthly a:last').tab('show');
 });
 
+$(".nav-tabs li").on('click', function(event){
+$(this).children("a").click();
+});
+
+
 // Switch to one-time tab from monthly
 $('a#link-tab-onetime').on('click', function( event ) {
     event.preventDefault();
@@ -373,7 +378,7 @@ $( "#form-onetime .choose-onetime label.btn" ).on( "click touchstart", function(
 var previousbutton;
 
 $('input#other-amount').focus(function(event) {
-previousbutton = $(".btn.active");
+previousbutton = $(".chooseown .btn.active");
    $(previousbutton).removeClass("active");
 });
 
