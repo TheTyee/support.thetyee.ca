@@ -271,6 +271,7 @@ $("div.chooseown").hide();
 
 // Capture the amount, set input values, show the payment types
 $( "#form-monthly .chooseown label.btn, #form-monthly label.btn.default" ).on( "click touchstart", function( event ) {
+$("#other-amount").val(""); //clear custom amount
 
     var selectedinput = $('input', this)[0];
     var amountInCents = selectedinput.dataset.amount;
@@ -291,10 +292,11 @@ $( "#form-monthly .chooseown label.btn, #form-monthly label.btn.default" ).on( "
     
      updateConfirmPayment("monthly");
     
+    
 });
 
 $( "#form-annual .chooseown label.btn, #form-annual label.btn.default" ).on( "click touchstart", function( event ) {
-
+$("#other-amount").val(""); //clear custom amount
     var selectedinput = $('input', this)[0];
     var amountInCents = selectedinput.dataset.amount;
     var planName = selectedinput.dataset.plan;
@@ -366,6 +368,8 @@ $(".btn.next").click(function(){
 // Capture the amount, set input values, show the payment types
 $( "#form-onetime .choose-onetime label.btn" ).on( "click touchstart", function( event ) {
 // console.log("click onetime");
+$("#other-amount").val(""); //clear custom amount
+
     var selectedinput = $('input', this)[0];
     var amountInCents = $(selectedinput).val() * 100;
     $('input.amount-in-cents').val(amountInCents);
