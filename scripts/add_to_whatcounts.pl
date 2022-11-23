@@ -9,10 +9,12 @@ use Mojo::DOM;
 use utf8::all;
 use Try::Tiny;
 use Data::Dumper;
+use Digest::MD5 qw(md5 md5_hex md5_base64);
 
 # Get the configuration
 my $mode = $ARGV[0];
 my $config = plugin 'JSONConfig' => { file => "../app.$mode.json" };
+say $mode;
 
 # Get a UserAgent
 my $ua = Mojo::UserAgent->new;
@@ -61,10 +63,12 @@ sub _process_records {    # Process each record
         # because we want all records to be stored in WhatCounts
         $wc_response = _create_or_update( $record, $frequency );
         $record->wc_response( $wc_response );
-        if ( $record->wc_response =~ /^\d+$/ )
+        if ( $record->wc_response )
         {    # We got back a subscriber ID, so we're good.
                 # Mark the record as processed.
             $record->wc_status( 1 );
+                        app->log->debug("success from Mailchipm maybe: Here's the response" . $record->wc_response);
+
         } else {
             app->log->debug("error getting subscriber record back here's the response: " . $record->wc_response);
         }
@@ -76,10 +80,10 @@ sub _process_records {    # Process each record
 
             # Send a one-off message to new contributors
             # assuming we have the information we need
-            my $data_check
-                = _check_subscriber_details( $record->wc_response );
-            if ( $data_check && !$record->wc_send_response )
-            {    # Only those not already e-mailed
+            # disabling this check
+            # my $data_check = _check_subscriber_details( $record->wc_response );
+            # if ( $data_check && !$record->wc_send_response )
+            #{    # Only those not already e-mailed
                 say "We're going to send a message to subscriber: "
                     . $record->email
                     . ' (Subscriber ID: '
@@ -88,7 +92,7 @@ sub _process_records {    # Process each record
                 my $wc_send_response = _send_message( $record );
                 $record->wc_send_response( $wc_send_response );
                 $record->update;
-            }
+            # } always sending
         }
     }
 }
@@ -203,23 +207,11 @@ sub _create_or_update {   # Post the vitals to WhatCounts, return the resposne
         cmd   => 'find',
         email => $email,
     };
-	app->log->debug("now searching for email : $email \n");
+#	app->log->debug("now searching for email : $email \n");
 
     # Get the subscriber record, if there is one already
-    my $s = $ua->post( $API => form => $search_args );
-    if ( my $res = $s->success ) {
-        $search = $res->body;
-	app->log->debug("success finding record" . $search  . "end res body \n");
-     $search = (split(" ", $search))[0];
-        chomp( $search );
-     	app->log->debug("id only = $search");
- 
-    }
-    else {
-        my ( $err, $code ) = $s->error;
-        $result = $code ? "$code response: $err" : "Connection error: $err";
-        app->log->debug("failure finding record" . $result);    
-}
+
+#keeping args for whatcounts even though not sent.. for later if needed    
     my $update_or_sub = {
         %args,
 
@@ -234,40 +226,104 @@ sub _create_or_update {   # Post the vitals to WhatCounts, return the resposne
             "email,fax,custom_fifteenth_year_mailme,first,last,custom_builder_sub_date,custom_builder,$frequency,custom_builder_regular,custom_builder_onetime,custom_builder_national_newspriority,custom_builder_level,custom_builder_plan,custom_builder_is_anonymous,custom_builder_hosted_login_token,custom_builder_appeal,custom_pref_tyeenews_casl,custom_pref_sponsor_casl^$email,cohort_skip,$fifteenth_year_mailme,$first,$last,$date,1,1,$national,$onetime,$newspriority,$level,$plan,$anon,$hosted_login_token,$appeal_code,1,1"
     };
     
-    say Dumper($update_or_sub);
-    my $tx = $ua->post( $API => form => $update_or_sub );
-    if ( my $res = $tx->success ) {
-        $result = $res->body;
-        app->log->debug("success updating or subbing body result:" . $result);    
+     my $lcemail    = lc $email;
+   my $md5email = md5_hex ($lcemail); 
+  
 
-    }
-    else {
-        my ( $err, $code ) = $tx->error;
-        $result = $code ? "$code response: $err" : "Connection error: $err";
-    app->log->debug("failure updating record or subbing: $err  $result");    
+my $ub = Mojo::UserAgent->new;
 
-}
+my $merge_fields = {
+    APPEAL => $appeal_code,
+    FNAME => $first,
+    LNAME => $last,
+    B_LEVEL => $level,
+    B_PLAN => $plan,
+    MMERGE13 => $anon,
+    B_ONETIME => $onetime,
+    B_SUB_DATE => $date,
+    B_HOSTED_L => $hosted_login_token
+    
+    
+};
+    
+my $interests = {};
+
+if ($frequency =~ /national/) { $interests -> {'34d456542c'} = \1 };
+if ($frequency =~ /daily/)  { $interests -> {'e96d6919a3'} = \1 };
+if ($frequency =~ /national/) {$interests -> {'7056e4ff8d'} = \1 };
+
+$interests -> {'3f212bb109'} = \1 ;
+$interests -> {'5c17ad7674'} = \1 ;
+
+# add to both casl specila newsletter prefs by default
+$email = lc $email;
+my $errorText;
+    # Post it to Mailchimp
+    my $args = {
+        email_address   => $email,
+        status =>       => 'subscribed',
+        status_if_new => 'subscribed',
+        merge_fields => $merge_fields,
+        interests => $interests
+    };
+    
+        my $URL = Mojo::URL->new('https://Bryan:' . $config->{"mc_key"} . '@us14.api.mailchimp.com/3.0/lists/' . $config->{"mc_listid"} . '/members/' . $md5email);
+    my $tx = $ua->put( $URL => json => $args );
+    my $js = $tx->result->json;
+     app->log->debug( "code" . $tx->res->code);
+   app->log->debug( Dumper( $js));
+     app->log->debug( "unique email id" .  $js->{'unique_email_id'});
+    
+   # my $tx = $ua->post( $API => form => $update_or_sub );
+#    if ( my $res = $tx->success ) {
+#        $result = $res->body;
+#        app->log->debug("success updating or subbing body result:" . $result);    
+#
+#    }
+ #   else {
+#        my ( $err, $code ) = $tx->error;
+#        $result = $code ? "$code response: $err" : "Connection error: $err";
+#    app->log->debug("failure updating record or subbing: $err  $result");    
+
+#}
+
+# check params at https://docs.mojolicious.org/Mojo/Transaction/HTTP
+  
+ 
+       
+
 
 # For some reason, WhatCounts doesn't return the subscriber ID on creation, so we search again.
-    if ( $result =~ /SUCCESS/ ) {
-        my $r = $ua->post( $API => form => $search_args );
-        if ( my $res = $r->success ) {
-            $result = $res->body;
-            app->log->debug("success finding after adding");    
+ if ($tx->res->code == 200 )
+   {     
+   
+   
 
-            } else {
-            my ( $err, $code ) = $r->error;
-            $result
-                = $code ? "$code response: $err" : "Connection error: $err";
-            app->log->debug("error finding after wards : $err  $result");    
-
-        }
-    }
 
     # Just the subscriber ID please!
-    $result =~ s/^(?<subscriber_id>\d+?)\s.*/$+{'subscriber_id'}/gi;
-    chomp( $result );
-    return $result;
+   # $result =~ s/^(?<subscriber_id>\d+?)\s.*/$+{'subscriber_id'}/gi;
+   # chomp( $result );
+    $result = $tx->result->body;
+        # Output response when debugging
+      #          app->log->debug( Dumper( $tx  ) );
+      #  app->log->debug( Dumper( $result ) );
+            if ( $result =~ 'subscribed' ) {
+            my $subscriberID = $js->{'unique_email_id'};
+            return $subscriberID;
+             }
+        
+    } else {
+        my ( $err, $code ) = $tx->error;
+        $result = $code ? "$code response: $err" : "Connection error: " . $err->{'message'};
+        # TODO this needs to notify us of a problem
+        app->log->debug( Dumper( $result ) );
+        # Send a 500 back to the request, along with a helpful message
+            
+	app->log->info("error: "  . $errorText) unless $email eq 'api@thetyee.ca';
+            app->log->debug("error: "  . $errorText);
+
+    }
+   
 }
 
 sub _send_message {
