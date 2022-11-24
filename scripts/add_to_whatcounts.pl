@@ -89,7 +89,7 @@ sub _process_records {    # Process each record
                     . ' (Subscriber ID: '
                     . $record->wc_response . ')';
 
-                my $wc_send_response = _send_message( $record );
+               my $wc_send_response = _send_message( $record );
                 $record->wc_send_response( $wc_send_response );
                 $record->update;
             # } always sending
@@ -272,7 +272,8 @@ my $errorText;
     my $js = $tx->result->json;
      app->log->debug( "code" . $tx->res->code);
    app->log->debug( Dumper( $js));
-     app->log->debug( "unique email id" .  $js->{'unique_email_id'});
+   
+
     
    # my $tx = $ua->post( $API => form => $update_or_sub );
 #    if ( my $res = $tx->success ) {
@@ -297,7 +298,8 @@ my $errorText;
  if ($tx->res->code == 200 )
    {     
    
-   
+        app->log->debug( "unique email id" .  $js->{'unique_email_id'});
+
 
 
     # Just the subscriber ID please!
@@ -318,9 +320,10 @@ my $errorText;
         # TODO this needs to notify us of a problem
         app->log->debug( Dumper( $result ) );
         # Send a 500 back to the request, along with a helpful message
-            
-	app->log->info("error: "  . $errorText) unless $email eq 'api@thetyee.ca';
+            $errorText = "error: "  . "status: " .  $js->{'status'} . " title: " .  $js->{'title'};
+	app->log->info( $errorText) unless $email eq 'api@thetyee.ca';
             app->log->debug("error: "  . $errorText);
+           return ($errorText);
 
     }
    
