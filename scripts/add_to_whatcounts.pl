@@ -10,6 +10,8 @@ use utf8::all;
 use Try::Tiny;
 use Data::Dumper;
 use Digest::MD5 qw(md5 md5_hex md5_base64);
+use POSIX qw(strftime);
+use Time::Piece;
 
 # Get the configuration
 my $mode = $ARGV[0];
@@ -175,9 +177,15 @@ sub _create_or_update {   # Post the vitals to WhatCounts, return the resposne
     my $frequency    = shift;
     my $fifteenth_year_mailme = $record->fifteenth_year_mailme // '';
     my $email        = $record->email;
+    say "email attempt is $email";
     my $first        = $record->first_name;
     my $last         = $record->last_name;
     my $date         = $record->trans_date;
+    say "date is $date";
+      my $t = Time::Piece->strptime($date, "%Y-%m-%dT%H:%M:%S");
+         my $mctime = $t->strftime("%m/%d/%Y");
+   $date = $mctime;   
+   
     my $national     = 1;
     my $newspriority = $record->pref_newspriority // '';
     my $level        = $record->amount_in_cents / 100;
@@ -236,21 +244,26 @@ my $merge_fields = {
     APPEAL => $appeal_code,
     FNAME => $first,
     LNAME => $last,
-    B_LEVEL => $level,
-    B_PLAN => $plan,
     MMERGE13 => $anon,
-    B_ONETIME => $onetime,
-    B_SUB_DATE => $date,
-    B_HOSTED_L => $hosted_login_token
-    
-    
+    B_HOSTED_L => $hosted_login_token,
+    P_T_CASL => 1
 };
+
+if ($onetime) {
+$merge_fields->{'ONETIME_DT'} = $date;
+$merge_fields->{'B_ONE_AMT'} = $level;
+$merge_fields->{'B_ONETIME'} = $onetime;
+} else {
+   $merge_fields->{'B_LEVEL'} = $level;
+   $merge_fields->{'B_PLAN'} = $plan;
+   $merge_fields->{'B_SUB_DATE'} = $date;
+}
     
 my $interests = {};
 
-if ($frequency =~ /national/) { $interests -> {'34d456542c'} = \1 };
-if ($frequency =~ /daily/)  { $interests -> {'e96d6919a3'} = \1 };
-if ($frequency =~ /national/) {$interests -> {'7056e4ff8d'} = \1 };
+if ($frequency =~ /national/) { $interests -> {'34d456542c'} = \1 ; $merge_fields->{'P_S_CASL'} = 1 };
+if ($frequency =~ /daily/)  { $interests -> {'e96d6919a3'} = \1 ; $merge_fields->{'P_S_CASL'} = 1};
+if ($frequency =~ /national/) {$interests -> {'7056e4ff8d'} = \1; $merge_fields->{'P_S_CASL'} = 1 };
 
 $interests -> {'3f212bb109'} = \1 ;
 $interests -> {'5c17ad7674'} = \1 ;
