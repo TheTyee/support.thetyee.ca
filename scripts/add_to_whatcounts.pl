@@ -257,6 +257,8 @@ $merge_fields->{'B_ONETIME'} = $onetime;
    $merge_fields->{'B_LEVEL'} = $level;
    $merge_fields->{'B_PLAN'} = $plan;
    $merge_fields->{'B_SUB_DATE'} = $date;
+   $merge_fields->{'B_L_T_DATE'} = $date;
+
 }
     
 my $interests = {};
