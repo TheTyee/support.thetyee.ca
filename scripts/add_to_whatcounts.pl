@@ -13,6 +13,10 @@ use Digest::MD5 qw(md5 md5_hex md5_base64);
 use POSIX qw(strftime);
 use Time::Piece;
 
+       my $ub = Mojo::UserAgent->new;    
+
+my $notification;
+
 # Get the configuration
 my $mode = $ARGV[0];
 my $config = plugin 'JSONConfig' => { file => "../app.$mode.json" };
@@ -288,6 +292,7 @@ my $errorText;
      app->log->debug( "code" . $tx->res->code);
    app->log->debug( Dumper( $js));
    
+ $ub->post($config->{'notify_url_2'} => json => {text => "email $email added with result from mailchimp: " . Dumper($js) }) unless $email eq 'api@thetyee.ca'; 
 
     
    # my $tx = $ua->post( $API => form => $update_or_sub );
