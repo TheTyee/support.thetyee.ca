@@ -263,7 +263,6 @@ $merge_fields->{'B_ONETIME'} = $onetime;
    $merge_fields->{'B_SUB_DATE'} = $date;
    $merge_fields->{'B_L_T_DATE'} = $date;
    $merge_fields->{'BUILDER'} = 1;
-
 }
     
 my $interests = {};
