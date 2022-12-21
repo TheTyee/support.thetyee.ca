@@ -3,28 +3,23 @@
     "recurly_get_plans_filter" : "builder",
  "recurly_annual_plans_filter" : "annual-bxilder",
     "plans_onetime"          : [ 
-            { 
-                "amount": "20",
-                "text" : "You get: Everything in the previous level, plus the knowledge that your contribution could cover the entry fee for four access-to-information requests."
-
-            },
-            { 
-                "amount": "50",
-                "text" : "You get: Everything in the previous level, and a virtual high-five with Tyee editors."
-
+            {
+                "amount": "1000",
+                "text" : "Custom lapel pin, plus an invitation to an annual dinner with Tyee editors and reporters."
             },
             {
-                "amount": "75",
-                "text" : "You get: Everything in the previous level plus an equipment upgrade for one of our reporters. "
+                "amount": "250",
+                "text" : "You get: custom lapel pin, and the satisfaction of covering the cost of a freelance story."
+
             },
             {
                 "amount": "100",
-                "text" : "You get: Everything in the previous level, and an imaginary group hug with The Tyee's newsroom."
-
+                "text" : "You get: custom Tyee lapel pin, plus the knowledge that your contribution is enough to cover the entry fee for 10 access-to-information."
             },
-            {
-                "amount": "1000",
-                "text" : "You get: Everything in the previous level, plus an invitation to an annual dinner with Tyee reporters and editors."
+            { 
+                "amount": "50",
+                "text" : "You get: a custom Tyee lapel pin, and a virtual high-five from our newsroom."
+
             }
     ]
 }

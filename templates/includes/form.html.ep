@@ -628,7 +628,7 @@ function setDefault() {
         if ( $("#onetime").hasClass("active") ) {
             console.log("onetime active");
 
-                   $(".onetime-50").click();
+                   $(".onetime-100").click();
 
 $('input.amount-in-cents').each(function(){
         $(this).val("5000");
