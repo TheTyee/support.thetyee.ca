@@ -66,7 +66,7 @@
 % #                   %= include 'includes/about-15thyear'
                 </div>
 			     <div class="col-md-4">
-% #                    %= include 'includes/widget-rafemair'
+                    %#= include 'includes/widget-rafemair'
                 </div>
 			 <br style="clear:both;">
 <br style="clear:both;">
@@ -98,7 +98,7 @@
 
 
 
-% # %=  include 'includes/builder_list-rafemair'      
+ %#=  include 'includes/builder_list-rafemair'      
 
 
     

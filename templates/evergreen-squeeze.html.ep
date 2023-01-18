@@ -26,6 +26,7 @@
   background: white;
 color: black;
 border: #FFD000 solid 4px;
+background: rgba(255,252,66,0.2);
  }
  
 .btn.btn-primary.btn-lg.next:hover {

@@ -57,8 +57,47 @@
         });
         ga('ecommerce:send');
 
+								// ga 4 implementation
+								
+				gtag("event", "purchase", {
+    transaction_id: '<%= $record->{'id'} %>', 
+    affiliation: 'support.thetyee.ca',    
+    value:'<%= $record->{'amount_in_cents'} / 100 %>',
+    tax: '',
+    shipping: '',
+    currency: "CAD",
+   
+    items: [
+     {
+      item_id: '<%= $record->{'id'} %>',  
+      item_name: "Donation",
+      affiliation: 'support.thetyee.ca',    
+      index: 0,
+      item_category: '<%= $category %>',  
+      price: '<%= $record->{'amount_in_cents'} / 100 %>',
+      quantity: 1
+    }
+   ]
+});
+								
+								
        % }
         </script>
+
+
+!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0W29ZX6R12"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0W29ZX6R12');
+</script>
+
+
+
+
 
 <!-- This site is converting visitors into subscribers and customers with OptinMonster - https://optinmonster.com -->
 <script>(function(d){var s=d.createElement('script');s.type='text/javascript';s.src='https://a.omappapi.com/app/js/api.min.js';s.async=true;s.dataset.user='67324';s.dataset.account='75717';d.getElementsByTagName('head')[0].appendChild(s);})(document);</script>
