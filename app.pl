@@ -17,8 +17,6 @@ use Crypt::CBC;
 use MIME::Base64::URLSafe;
 use Email::Valid;
 use Data::Dumper::HTML qw(dumper_html);
-use JSON::XS;
-use XML::Hash;
 
 plugin('DefaultHelpers');
  plugin 'mail';
@@ -50,10 +48,6 @@ helper schema => sub {
 helper find_or_new => sub {
     my $self = shift;
     my $doc  = shift;
-    my $dom = shift;
-    my $trans_type = shift;
-    my $params = shift;
-    my $original_params = shift;
     my $dbh  = $self->schema();
     my $result;
     
@@ -72,40 +66,6 @@ helper find_or_new => sub {
     catch {
         $self->app->log->warn( $_ );
     };
-    
-    my $hashref = {};
-    
-    $doc->{'id'} = $result->id;
-    if ($doc) {
-    $hashref-> {"local"} = $doc;
-    }
-    if ($dom && $trans_type) {
-    $hashref->{$trans_type} = $dom;
-    }
-    if ($params) {
-     $hashref->{'params'}  = $params;
-    }
-    if ($original_params) {
-     $hashref->{'original_params'} = $original_params;
-    }
-         $self->app->log->info("dump of hashref");
-
-     $self->app->log->info( Dumper($hashref));
-             $self->app->log->info("end dump of hashref");
-
-    
-    my $drupal_endpoint = $config->{'drupal_endpoint'};
-      my $res = $ua->post( $config->{'drupal_endpoint'} => {  Accept => '*/*' } => json => $hashref);
-        $self->app->log->info("return from drupal dump:");
-        $self->app->log->info( Dumper($res));
-        $self->app->log->info("end drupal dump:");
-                $self->app->log->info( "result dump");
-
-        $self->app->log->info( Dumper($result));
-                        $self->app->log->info( "end result dump");
-
-
-        
     return $result;
 };
 
@@ -279,7 +239,6 @@ group {
                 amount        => $amount,
                 onetime       => $onetime || $self->flash( 'onetime' ),
                 error         => $self->flash( 'error' ),
-                params        => $self->req->query_params
             }
         );
     };
@@ -293,8 +252,6 @@ my $ab;
         my $display;
         my $urlstring;
         my $count;
-        
-        
       #          my $params = $self->req->query_params;
        #            app->log->debug(  "url string  = $params");       
 # my $path = "/b" . '?' . $params;
@@ -303,13 +260,12 @@ my $ab;
    #     } else {
     #    $ab = 'evergreen'; # $display = "none";
     #   }
- $ab = 'Dec2022'; # $display = "none";
+ $ab = 'evergreen-squeeze'; # $display = "none";
 
 	 $self->stash( body_id => $ab, );
         $self->flash( appeal_code => $ab );
         $self->stash( display => $display );
-        $self->flash ( original_params => $self->req->query_params);
-    } => 'Dec2022';   
+    } => 'evergreen-squeeze';   
 
   # making both of these test conditions Dec2021 so can easily ad a test if we want during campaign.  Probably a waste of resources if not using later   
         any [qw(GET POST)] => '/dec2021' => sub {
@@ -473,7 +429,6 @@ any [qw(GET POST)] => '/process_bank' => sub {
     $dt->set_time_zone( 'Europe/London' );
     my $trans_date = $dt->ymd . ' ' . $dt->hms;
     my $states     = $params->{'state'};
-    my $original_params =    $self->flash( 'original_params' );
 
     # There are two possible state values, but only one should be used
 #    my $state = @$states[0] ? @$states[0] : @$states[1];
@@ -518,24 +473,14 @@ $state = $params->{'state'} ;
         referrer    => $referrer,
         user_agent  => $self->req->headers->user_agent,
     };
-    
-      my $res = $ua->post( $config->{'iats_process_proxy'} => {  Accept => '*/*' } => form => $transaction_details);
-app->log->debug( "res->body from iats proxy dump:");
-
-app->log->debug( Dumper($res->res->content->asset->{"content"}));
-   app->log->debug( "end res->body from iats proxy dump:");
-    
-      my $json_return = decode_json($res->res->content->asset->{"content"});
-      
-      
-      
-    my $result = $self->find_or_new( $transaction_details, $json_return, "IATS", $params, $original_params);
+    my $result = $self->find_or_new( $transaction_details );
     $transaction_details->{'id'} = $result->id;
     $self->flash( { transaction_details => $transaction_details, } );
     
     
+  my $res = $ua->post( $config->{'iats_process_proxy'} => {  Accept => '*/*' } => form => $transaction_details);
   
- #    app->log->debug(  Dumper $res);
+     app->log->debug(  Dumper $res);
 
   
     $self->redirect_to( 'perks' );
@@ -633,8 +578,6 @@ post '/process_transaction' => sub {
     my $email           = $self->param( 'email' );
     my $phone           = $self->param( 'phone' );
     my $params          = $self->req->body_params->to_hash;
-    my $original_params = $self->flash('original_params');
-
     if ( $payment_type eq 'bank' )
     {    # If it's a EFT/ACH, redirect to /process_bank
         $self->flash(
@@ -642,8 +585,7 @@ post '/process_transaction' => sub {
                 campaign          => $campaign,
                 raiser            => $raiser,
                 appeal_code       => $appeal_code,
-                original_referrer => $referrer,
-                original_params => $original_params
+                original_referrer => $referrer
             }
         );
         $self->redirect_to( 'process_bank' );
@@ -707,12 +649,6 @@ post '/process_transaction' => sub {
                 $transxml )->res;
     }
     my $xml = $res->body;
-  
-  
-$self->app->log->info("dump of transaction or subscription:");    
-$self->app->log->info( Dumper $xml );
-$self->app->log->info("end of dump:");    
-
     my $dom = Mojo::DOM->new( $xml );
     if ( $dom->at( 'error' ) ) {    # We got an error message back
         my $error = $dom->at( 'error' )->text;
@@ -759,18 +695,9 @@ $self->app->log->info("end of dump:");
             phone        => $phone,
             user_agent   => $self->req->headers->user_agent,
         };
-        my %domhash= %$dom;
-        my $domref = \%domhash;
-        $self->app->log->info( "domhash dump");
-        $self->app->log->info( Dumper(%domhash));
-        $self->app->log->info( "end domhash dump");
-
-        my $xml_converter = XML::Hash->new();
-        my $xml_hash = $xml_converter->fromXMLStringtoHash($xml);
-            my $raiser      = $self->flash( 'raiser' );
-        my $result = $self->find_or_new( $transaction_details, $xml_hash, "RECURLY", $params, $original_params);
+        my $result = $self->find_or_new( $transaction_details );
         $transaction_details->{'id'} = $result->id;
-        $self->flash( { transaction_details => $transaction_details } );
+        $self->flash( { transaction_details => $transaction_details, } );
         $self->redirect_to( 'perks' );
     }
 };
