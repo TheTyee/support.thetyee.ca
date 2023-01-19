@@ -29,7 +29,6 @@
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
         ga('create', 'UA-169022-1', 'auto');
-        ga('send', 'pageview');
 
         % # Provide e-commerce data on successful transactions
         %   if ( $self->req->url->to_abs->path eq '/preferences' && defined $self->stash('record') ) { 
@@ -92,7 +91,7 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'G-0W29ZX6R12');
+  gtag('config', 'G-0W29ZX6R12', { 'debug_mode':true });
 </script>
 
 
