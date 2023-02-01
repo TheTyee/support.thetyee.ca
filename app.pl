@@ -782,8 +782,12 @@ any [qw(GET POST)] => '/perks' => sub {
     $self->flash( { transaction_details => $record } );
 
     if ( $self->req->method eq 'POST' && $record ) {    # Submitted form
-
-        my $update = $self->find_or_new( $record );
+my $noxml = '<?xml version="1.0" ?>' . "\n" . '<metadata>' . "\n" . '</metadata>';#creating blank xml so it will conform to expectations when received by the helper
+ my $xml_converter = XML::Hash->new();
+        my $xml_hash = $xml_converter->fromXMLStringtoHash($noxml);
+         my $params          = $self->req->body_params->to_hash;
+    my $original_params = $self->flash('original_params');
+        my $update = $self->find_or_new( $record , $xml_hash, "PERKS_PHASE", $params, $original_params);
         $update->update( $self->req->params->to_hash );
         $record->{'pref_lapel'} = $update->pref_lapel;
         $self->flash( { transaction_details => $record } );
@@ -810,8 +814,13 @@ any [qw(GET POST)] => '/preferences' => sub {
             if $validation->has_error;
 
         #return $self->render( 'preferences' ) if $validation->has_error;
-
-        my $update = $self->find_or_new( $record );
+my $noxml = '<?xml version="1.0" ?>' . "\n" . '<metadata>' . "\n" . '</metadata>'; #creating blank xml so it will conform to expectations when received by the helper
+ my $xml_converter = XML::Hash->new();
+        my $xml_hash = $xml_converter->fromXMLStringtoHash($noxml);
+         my $params          = $self->req->body_params->to_hash;
+    my $original_params = $self->flash('original_params'); 
+        my $update = $self->find_or_new( $record , $xml_hash, "PREFERENCES_PHASE", $params, $original_params);
+       
         $update->update( $self->req->params->to_hash );
         $record->{'on_behalf_of'} = $update->on_behalf_of;
         $self->flash( { transaction_details => $record } );
