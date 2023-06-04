@@ -33,10 +33,13 @@
         </div>
 
 
-        <div class="form-group">
+        <div class="form-group" id="on_behalf_group">
             <label for="on_behalf_of">Is this gift being made in honour, or in memory, of someone? (leave blank if not)</label>
             
             <br />
+            <label class="radio-inline">
+              <input id="on_behalf_off" type="radio" checked="checked" name="on_behalf_of" autocomplete="off" id="on_behalf_of_honour" value=""> Neither (blank)
+            </label>
             <label class="radio-inline">
               <input type="radio" name="on_behalf_of" autocomplete="off" id="on_behalf_of_honour" value="honour"> Yes, in honour.
             </label>
@@ -44,7 +47,7 @@
               <input type="radio" name="on_behalf_of"  autocomplete="off" id="on_behalf_of_memory" value="memory"> Yes, in memory.
             </label>
         </div>
-        <div class="form-inline">
+        <div class="form-inline" id="thename" style="display:none;">
             <label for="on_behalf_of_name">What is the name of the person?</label>
             <br />
             <div class="form-group">
@@ -109,7 +112,18 @@ $('input[name=pref_lapel]').on('click', function (event) {
 $('input[name=on_behalf_of]').on('click', function (event) {
 //    $('#on_behalf_of_name_first').prop('required', true);
  //   $('#on_behalf_of_name_last').prop('required', true);
+ 
+ 
 });
+
+$('input#on_behalf_of_honour, input#on_behalf_of_memory, input#on_behalf_off').on('click', function (event) {
+    if (  $("input#on_behalf_of_honour").prop("checked") == true | $("input#on_behalf_of_memory").prop("checked") ) {
+$("#thename").show();
+} else {
+$("#thename").hide();
+}
+});
+
 
 $('input[name=on_behalf_of_name_first]').on('blur', function (event) { 
 var el = event.currentTarget;
