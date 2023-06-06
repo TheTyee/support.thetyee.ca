@@ -166,7 +166,7 @@
     <script type="text/javascript" src="//use.typekit.net/sjz2xsw.js"></script>
     <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
     <script src="https://js.recurly.com/v4/recurly.js"></script>
-    <link rel="shortcut icon" href="<%= $config->{'static_asset_path'} %>/ui/img/favicon.ico">
+    <link rel="shortcut icon" href="https://thetyee.ca/design-article.thetyee.ca/ui/img/favicon_new.ico">
     <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
