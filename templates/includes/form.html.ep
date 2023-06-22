@@ -631,7 +631,7 @@ function setDefault() {
                    $(".onetime-100").click();
 
 $('input.amount-in-cents').each(function(){
-        $(this).val("5000");
+        $(this).val("10000");
     })
     
     $('input.plan-name').each(function(){
