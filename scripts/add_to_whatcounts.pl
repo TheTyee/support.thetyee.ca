@@ -269,7 +269,7 @@ my $interests = {};
 
 if ($frequency =~ /national/) { $interests -> {'34d456542c'} = \1 ; $merge_fields->{'P_S_CASL'} = 1; $interests -> {'5c17ad7674'} = \1 ; };
 if ($frequency =~ /daily/)  { $interests -> {'e96d6919a3'} = \1 ; $merge_fields->{'P_S_CASL'} = 1; $interests -> {'5c17ad7674'} = \1 ;};
-if ($frequency =~ /national/) {$interests -> {'7056e4ff8d'} = \1; $merge_fields->{'P_S_CASL'} = 1; $interests -> {'5c17ad7674'} = \1 ; };
+if ($frequency =~ /weekly/) {$interests -> {'7056e4ff8d'} = \1; $merge_fields->{'P_S_CASL'} = 1; $interests -> {'5c17ad7674'} = \1 ; };
 
 $interests -> {'3f212bb109'} = \1 ; #tyee news
 # $interests -> {'5c17ad7674'} = \1 ; # sponsor casl - not by default unless one above selected 
