@@ -17,7 +17,7 @@
                 <p>You can change the amount you're giving us monthly or stop subscribing at any time. 
 Just log in to your member account at <a href="https://account.thetyee.ca">account.thetyee.ca</a> any time to make changes. 
 Or if you're having trouble, you can contact us by email, phone (604-689-7489) or toll-free (1-844-301-6677).</p>
-                <p>&copy; 2022 The Tyee &middot; <a href="http://subscribe.thetyee.ca/privacy/">Privacy</a></p>
+                <p>&copy; 2023 The Tyee &middot; <a href="http://subscribe.thetyee.ca/privacy/">Privacy</a></p>
                 <p>support.thetyee.ca v<%= $config->{'app_version'} %></p>
             </div>
         </div>
