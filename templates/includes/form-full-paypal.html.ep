@@ -15,6 +15,7 @@
                     <input type="hidden" class="plan-code" name="plan-code" value="">
                     <input type="hidden" class="amount-in-cents" name="amount-in-cents" value="">
                     <input type="hidden" class="unit-amount-in-cents" name="unit-amount-in-cents" value="">
+                    <input type="checkbox" class="add_fees" > <strong>Round up by $1 to cover transaction fees.</strong><br><br>
 
                     <div class="alert alert-info confirm-payment"><strong>You are about to make a payment for <span></span></strong></div>
                     <button type="submit" id="paypal" class="subscribe btn btn-success btn-lg">Process PayPal payment &raquo;</button>

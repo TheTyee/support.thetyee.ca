@@ -115,7 +115,7 @@ If you are already a recurring contributor  and would like to increase your cont
                             <input type="radio" name="amount" id="<%= $p->{'amount'}  %>" value="<%= $p->{'amount'} %>"> $<%= $p->{'amount'} %>
                         </label>
 
-                        % }
+                        % } 
                     </div>
                     <div id="other-amount-label"><label for="other-amount">Or, enter your own amount:</label></div>
                     <div class="input-group">
@@ -206,9 +206,9 @@ $('a#link-tab-monthly').on('click', function( event ) {
     $('#monthly a:last').tab('show');
 });
 
-$(".nav-tabs li").on('click', function(event){
-$(this).children("a").click();
-});
+//$(".nav-tabs li").on('click', function(event){
+//$(this).children("a").click();
+//});
 
 
 // Switch to one-time tab from monthly
@@ -229,6 +229,7 @@ $('ul.nav-tabs').on('click', function( event ) {
 var paymentString = '';
 function updateConfirmPayment(type) {
     var amount = $('input.amount-in-cents').val();
+  
     amount = amount / 100; // To dollars
     amount = '$' + amount  // $ sign
  
@@ -240,10 +241,15 @@ function updateConfirmPayment(type) {
         } else {
         paymentString = amount + ' one time';
     }
+    
+    
     $('.confirm-payment span').text(paymentString);
 
 }
 
+
+
+    
 
 // Show the payment type option buttons
 function showMonthlyPaymentOptions () {
@@ -318,6 +324,32 @@ $("#form-annual #other-amount").val(""); //clear custom amount
     
 });
 
+$("input.add_fees").click(function(){
+var freq;
+  if ( $("#monthly").hasClass("active") ) {
+  freq = "monthly";
+
+        } else if ( $("#annual").hasClass("active") ) {        
+  freq = "annual";
+}
+
+// if the round up is selected, update the overall amount then push it back to the hidden field tracking it
+  
+  var amount = parseInt( $('input.amount-in-cents').val());
+   if ( $('input.add_fees').is(':checked')) {
+   $('input.amount-in-cents').val( amount + 100) ;   
+   } else {
+      $('input.amount-in-cents').val( amount - 100) ;   
+   }
+
+       updateConfirmPayment(freq);
+
+
+
+
+
+
+});
 
 $(".btn.next").click(function(){
         if ( $("#monthly").hasClass("active") ) {
@@ -628,7 +660,7 @@ function setDefault() {
         if ( $("#onetime").hasClass("active") ) {
             console.log("onetime active");
 
-                   $(".onetime-100").click();
+                  $(".onetime-100").click();
 
 $('input.amount-in-cents').each(function(){
         $(this).val("10000");
@@ -645,11 +677,11 @@ $('input.amount-in-cents').each(function(){
             
         } else if ( $("#form-monthly").hasClass("active") ) {
     console.log("monthly active");
-                     $(".builder-15.btn").click();
+                  $(".builder-15.btn").click();
 
         } else if ( $("#form-annual").hasClass("active") ) {
     console.log("annual active");
-                     $(".annual-bxilder-240.btn").click();
+        $(".annual-bxilder-240.btn").click();
 };
 
  };
