@@ -24,9 +24,11 @@
             <meta property="og:description" content="Our democracy needs good journalism. Join me in supporting fact-based, independent journalism." />
             <meta property="og:type" content="website" />
             <meta property="og:url" content="https://support.thetyee.ca" />
-            <meta property="og:image" content="<%= $config->{'static_asset_path'} %>/ui/img/Tyee-Builders-facebook-800x800.jpg" />
+            <meta property="og:image" content="<%= $config->{'static_asset_path'} %>/ui/img/fb-share-collage.jpg" />
 % #		<meta property="og:image" content="<%= $config->{'static_asset_path'} %>/ui/img/RafeMairFBshare.jpg" />
-
+ <meta name="twitter:site" content="@thetyee" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image:src" content="<%= $config->{'static_asset_path'} %>/ui/img/fb-share-collage.jpg" />
 
 	    <meta property="og:site_name" content="The Tyee" />
             <meta property="fb:admins" content="648146258, 512340590, 121503155, 13609677, 877285452, 584785109" />
