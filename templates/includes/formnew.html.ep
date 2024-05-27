@@ -84,7 +84,7 @@
                 
                             <br>                
                  </div>  
-                <label rel="popover" class="btn btn-primary btn-lg next">Choose payment options ⇨</label>
+                <label rel="popover" class="btn btn-primary btn-lg next">PROCEED TO  PAYMENT OPTIONS ⇨</label>
                 
                             <br>
                 
@@ -123,7 +123,7 @@ If you are already a recurring contributor  and would like to increase your cont
                         <span class="input-group-addon">.00</span>
                     </div>
                     
-                                    <label rel="popover" class="btn btn-primary btn-lg next">Choose payment options ⇨</label>
+                                    <label rel="popover" class="btn btn-primary btn-lg next">PROCEED TO PAYMENT OPTIONSW ⇨</label>
                 
                             <br>
                     <p class="help-block">Or, consider becoming a <a href="/" id="link-tab-monthly">sustaining monthly supporter</a> at any amount. Monthly contributions help us plan ahead and support staff positions.</p>
