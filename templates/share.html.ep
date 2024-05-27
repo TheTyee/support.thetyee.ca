@@ -1,31 +1,73 @@
 % layout 'default', title => 'You just helped fund more independent journalism. Tell your friends...', body_id => 'share';
 % use Mojo::Util qw(b64_encode url_escape url_unescape);
+<script src="https://kit.fontawesome.com/23eb04b7a7.js" crossorigin="anonymous"></script>
 
 
+<script>
+
+
+function share_tw(url) {
+
+window.open('https://twitter.com/intent/tweet?original_referer=https%3A%2F%2Fsupport.thetyee.ca&text=I%20just%20supported%20%40TheTyee%21%20Join%20me%20in%20supporting%20independent%2C%20no-nonsense%20journalism%20in%20Canada.%20https%3A%2F%2Fsupport.thetyee.ca%2F%3Futm_campaign%3Dbuildershare','myWin', "width=626,height=436");
+}
+
+
+function share_bluesky(url) {
+window.open('https://bsky.app/intent/compose?text=I%20just%20supported%20%40TheTyee%21%20Join%20me%20in%20supporting%20independent%2C%20no-nonsense%20journalism%20in%20Canada.%20https%3A%2F%2Fsupport.thetyee.ca%2F%3Futm_campaign%3Dbuildershare%20via%20@thetyee.ca%20', 'myWin', "width=626,height=436");
+}
+
+function share_mast(url) {
+
+window.open('https://tootpick.org/#text=I%20just%20supported%20%40TheTyee%21%20Join%20me%20in%20supporting%20independent%2C%20no-nonsense%20journalism%20in%20Canada.%20https%3A%2F%2Fsupport.thetyee.ca%2F%3Futm_campaign%3Dbuildershare%20via%20@thetyee@mstdn.ca', 'myWin', "width=626,height=436");
+}
+
+function share_flip(url) {
+window.open('https://share.flipboard.com/bookmarklet/popout?v=2&title=I%20just%20supported%20%40TheTyee%21%20Join%20me%20in%20supporting%20independent%2C%20no-nonsense%20journalism%20in%20Canada.%20https%3A%2F%2Fsupport.thetyee.ca%2F%3Futm_campaign%3Dbuildershare&url=https%3A%2F%2Fsupport.thetyee.ca','myWin', "width=626,height=436");
+}
+
+</script>
 
 
 <div class="container" id="content-inner">
     <div class="row">
-        <div class="col-md-8">
-    <h1>Welcome to the team</h1>
+        <div class="col-md-6">
+    <h3>Welcome to the team</h3>
   
     <p> 
         Thanks for your support. Keep an eye on your inbox for a receipt and welcome message within the next 24 hours. 
     </p>
     
     <br style="clear:both;"/>
-<p><strong>Doesn't it feel great to support independent media? <br>Help spread the feeling by tweeting, posting on Facebook or emailing below:</strong></p>
+    
+<p>Doesn't it feel great to support independent media? <br>Help spread the feeling by posting on your favourite social network or emailing below:</p>
 
 <br style="clear:both;"/>
-    <div style="float: left; with: 50%; margin-right: 20px;">
-        <a target="_blank" href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-count="none" data-size="large" data-text="I just supported @TheTyee ! Join me in supporting independent, no-nonsense journalism in Canada." data-url="https://support.thetyee.ca/?utm_source=twitter&utm_medium=social&utm_campaign=buildershare&raiser=<%= $raiser_id %>">Tweet</a>
-        <a target="_blank" style="border:none; position:relative; top: -12px; left:5px;" href="http://www.facebook.com/sharer.php?u=<%= url_escape 'https://support.thetyee.ca/?utm_source=facebook&utm_medium=social&utm_campaign=buildershare&raiser=' . $raiser_id %>"> <img style="width:26px; height:auto;" src="<%= $config->{'static_asset_path'} %>/ui/img/fb-logo.jpg" /></a>
-     &nbsp;&nbsp;   <a style="border-bottom:none; text-decoration:none;" target="_blank" href="mailto:?subject=I%20just%20supported%20The%20Tyee&body=I%20just%20supported%20The%20Tyee%27s%20independent%20journalism.%0D%0A%0D%0ALearn%20more%20and%20join%20me%20at%20https%3A%2F%2Fsupport.thetyee.ca%2F%3Fcampaign%3Des"><img = src="<%= $config->{'static_asset_path'} %>/ui/img/email.png" style="position:relative; bottom: 10px; width:40px; height:auto;"></a>
+<div class="tool-bar">
+<ul class="clearfix">
 
-    </div>
 
-<br>
-<br style="clear:both;"/>
+
+
+<li id="email"><a class="btn btn-social-icon btn-email" target="_blank" href="mailto:?subject=I%20just%20supported%20The%20Tyee&body=I%20just%20supported%20The%20Tyee%27s%20independent%20journalism.%0D%0A%0D%0ALearn%20more%20and%20join%20me%20at%20https%3A%2F%2Fsupport.thetyee.ca%2F%3Futm_campaign%3Dbuildershare"><i class="fas fa-envelope" aria-hidden="true"></i></a></li>
+       
+        <li id="twitter"><a style="color:white;" target="_blank" href="#" onclick="share_tw(); return false;" class="btn btn-social-icon btn-twitter"><i class="fab fa-x-twitter" aria-hidden="true"></i></a></li>
+
+       <li id="bluesky" class="bluesky">
+       <a target="_blank" onclick="share_bluesky(); return false;" class="bluesky btn btn-social-icon btn-flip" href="#" rel="noopener noreferrer"><img style="width:26px;" src="https://thetyee.ca/ui/img/bluesky-white-small.png"></a>
+      </li>
+     <li id="mastadon" class="mastodon">
+        <a onclick="share_mast(); return false;" class="mastodon btn btn-social-icon btn-flip" href="#" title="follow us on Mastodon" rel="noopener noreferrer"><i class="fab fa-brands fa-mastodon" aria-hidden="true"></i></a>
+</li>
+
+<li id="flipboard"><a style="color:white;" target="_blank" href="#" onclick="share_flip(); return false;" class="btn btn-social-icon btn-flip"><i class="fab fa-flipboard" aria-hidden="true"></i></a></li>
+
+  
+    </ul>
+</div>
+
+
+ <br>
+ <br style="clear:both;"/>
  <div class="well" id="transactiondetails">
         <h4>Transaction Confirmation Details</h4>
         <dl class="dl-horizontal">
@@ -101,18 +143,18 @@
         % }
     % } else {
         <h3>You have opted out of receiving Tyee swag</h3>
-            <img src="<%= $config->{'static_asset_path'} %>/ui/img/tyee-happy-earth.jpg" />
+            <img style="width: 200px; height: auto;" src="<%= $config->{'static_asset_path'} %>/ui/img/tyee-happy-earth.jpg" />
 
     % }
-        <br clear="all" />
-
-    <br />
+        
     <br clear="all" />
    
 
         <hr class="soften" />
         <div>
-            <p><a href="http://thetyee.ca">Head back to TheTyee.ca</a></p>
+         <a style="color:black; border-bottom: none;" href="http://thetyee.ca">
+           <label class="btn btn-primary btn-lg next" style="background-color: #b4f4f4;"> Head back to TheTyee.ca</label>
+         </a>
         </div>
     </div>
     </div>

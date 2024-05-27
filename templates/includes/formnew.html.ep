@@ -37,7 +37,7 @@
                 
                             <br>                
                  </div>  
-                <label rel="popover" class="btn btn-primary btn-lg next">Choose payment options ⇨</label>
+                <label rel="popover" class="btn btn-primary btn-lg next">PROCEED TO PAYMENT OPTIONS ⇨</label>
                 
                             <br>
                 
@@ -51,8 +51,8 @@
 
              
                     <br style="clear:both;" /> 
-                    <p class="help-block">If you are already a recurring contributor  and would like to increase your contribution, please log in to your account at <a href="https://account.thetyee.ca">account.thetyee.ca</a> to manage your level.  Or give us a shout at 604-689-7489 or <a  href="mailto:builders@thetyee.ca" target="_blank">builders@thetyee.ca</a>.
-                    </p>           
+                   <!-- <p class="help-block">If you are already a recurring contributor  and would like to increase your contribution, please log in to your account at <a href="https://account.thetyee.ca">account.thetyee.ca</a> to manage your level.  Or give us a shout at 604-689-7489 or <a  href="mailto:builders@thetyee.ca" target="_blank">builders@thetyee.ca</a>.
+                    </p>    -->       
 
                 </div>
      
@@ -108,7 +108,6 @@ If you are already a recurring contributor  and would like to increase your cont
 <!--/annual-->
             <div class="tab-pane" id="form-onetime">
                 <div class="form-group">
-                    <p>Select your <b>one-time</b> amount:</p>
                     <div class="btn-group choose-onetime" data-toggle="buttons">
                         % for my $p ( @$plans_onetime ) {
                         <label rel="popover" class="btn onetime-<%= $p->{'amount'} %> btn-primary btn-lg" data-trigger="hover" data-container="body" data-placement="top" data-content="<%= $p->{'text'} %>" data-original-title="$<%= $p->{'amount'} %> one-time gift" title="$<%= $p->{'amount'} %> one-time gift">
@@ -189,7 +188,7 @@ If you are already a recurring contributor  and would like to increase your cont
 
 
 $(".nav-tabs li").click(function(e){
-$(this).children("a").click();
+// $(this).children("a").click();
 })
 
 // jQuery function for scrolling to elements
@@ -690,6 +689,12 @@ $('input.amount-in-cents').each(function(){
 
  };
 
+$(".options-payment .btn").click(function(e){
+ $(".options-payment .btn").removeClass("active");
+ $(this).addClass("active");
+
+})
+
 $(".nav.nav-tabs a").click(function(e){
     $('.next').show();
 setTimeout(function(){
@@ -701,6 +706,7 @@ $(document).ready(function(){
 setDefault();
 
 });
+
 
 
 %   end
