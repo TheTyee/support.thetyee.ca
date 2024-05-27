@@ -15,12 +15,10 @@
                     <input type="hidden" class="plan-code" name="plan-code" value="">
                     <input type="hidden" class="amount-in-cents" name="amount-in-cents" value="">
                     <input type="hidden" class="unit-amount-in-cents" name="unit-amount-in-cents" value="">
-                    <input type="checkbox" class="add_fees" > <strong>Round up by $1 to cover transaction fees.</strong><br><br>
+                    <input type="checkbox" class="add_fees" > Round up by $1 to cover transaction fees.<br><br>
 
-                    <div class="alert alert-info confirm-payment"><strong>You are about to make a payment for <span></span></strong></div>
-                    <button type="submit" id="paypal" class="subscribe btn btn-success btn-lg">Process PayPal payment &raquo;</button>
-                    <p><i class="glyphicon glyphicon-lock">&nbsp;</i><strong>Your transaction is secure.</strong> The Tyee uses industry-standard SSL encryption to secure your connection. Your transaction is then processed securely by our payment processors, Recurly and Beanstream.</p>
-                    <p>Because we publish hard-hitting political journalism, we can't be a charity and therefore can't offer charitable tax receipts. Learn <a href="http://thetyee.ca/About/Us/#faq-funding">more</a>.</p>
+                    <!--<div class="alert alert-info confirm-payment"><strong>You are about to make a payment for <span></span></strong></div>-->
+                    <button type="submit" id="paypal" class="subscribe btn btn-success btn-lg confirm-payment">Give <span></span></button>
                     <hr class="soften" />
                 </div>
             </form>

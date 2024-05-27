@@ -5,7 +5,7 @@
 %  my $err_mail = validation->error('pref_lapel');
 <div class="container" id="content-inner">
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-6">
     
 
     % if ( $err_anon || $err_freq ) {
@@ -16,7 +16,7 @@
     </p>
     % }
 
-    <h1>Don’t go yet, we have some questions for you:</h1>
+    <h3>Don’t go yet, we have some questions for you:</h3>
 		<br>
 
     <form action="preferences" method="POST" role="form">
@@ -26,7 +26,7 @@
             <br />
             <label class="radio-inline">
                 <input checked="1" id="anon-no" name="pref_anonymous" type="radio" value="Yes" />
-                Yes</label>
+                Yes</label><br>
             <label class="radio-inline">
                 <input id="anon-yes" name="pref_anonymous" type="radio" value="No" />
                 No thanks, I'd prefer to be anonymous</label>
@@ -38,11 +38,11 @@
             
             <br />
             <label class="radio-inline">
-              <input id="on_behalf_off" type="radio" checked="checked" name="on_behalf_of" autocomplete="off" id="on_behalf_of_honour" value=""> Neither (blank)
-            </label>
+              <input id="on_behalf_off" type="radio" checked="checked" name="on_behalf_of" autocomplete="off" id="on_behalf_of_honour" value=""> No
+            </label><br>
             <label class="radio-inline">
               <input type="radio" name="on_behalf_of" autocomplete="off" id="on_behalf_of_honour" value="honour"> Yes, in honour.
-            </label>
+            </label><br>
             <label class="radio-inline">
               <input type="radio" name="on_behalf_of"  autocomplete="off" id="on_behalf_of_memory" value="memory"> Yes, in memory.
             </label>
@@ -65,19 +65,25 @@
                 <input checked="1" id="daily" name="pref_frequency" type="radio" value="Daily headlines" />
                 Daily
             </label>
+            <br>
             <label class="radio-inline">
                 <input id="weekly" name="pref_frequency" type="radio" value="Weekly headlines" />
                 Weekly
             </label>
+            <br>
             <label class="radio-inline">
                 <input id="national" name="pref_frequency" type="radio" value="National headlines" />
                 National (sent weekly)</label>
+            <br>
+            <label class="radio-inline">
+                <input id="alberta" name="pref_frequency" type="radio" value="Alberta edge" />
+                Alberta Edge (sent weekly)</label>
+            <br>
             <label class="radio-inline">
                 <input id="noThanks" name="pref_frequency" type="radio" value="No thanks" />
                 No thanks</label>
-            <label class="radio-inline">
-                <input id="alreadySubscribe" name="pref_frequency" type="radio" value="I already subscribe" />
-                I already subscribe</label>
+        
+       
         </div>
         
 
