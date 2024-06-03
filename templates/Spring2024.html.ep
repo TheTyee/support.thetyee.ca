@@ -12,7 +12,7 @@
        <div class="container" id="content">
             <div id="campaign-copy" class="row">
                 <h1>Canada needs more independent journalism. Join us <span>&nbsp;</span></h1>
-                <p class="lead">Support The Tyee and help us reach our goal of $65,000 by June 17!</p>
+                <p class="lead">Support The Tyee and help us reach our stretch goal of $120,000 by June 17!</p>
             </div>
             <div class="col-md-4" id="widgetwrap">
                     %= include 'includes/widget-2021-B'
