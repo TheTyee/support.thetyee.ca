@@ -5,107 +5,7 @@
  });
  
 </script>
-<style>
- .btn-primary.active {
-  color: white;
-  font-weight:bold;
-  background-color: gray;
-  border-color: #2d0d05;
-}
- 
-.nav > li > a {
-  position: relative;
-  display: block;
-  padding: 0;
-  font-size: .8em;
-}
- 
- .btn.btn-primary.btn-lg.next {
-  padding: 10px;
-  width: 100%;
-  background: white;
-color: black;
-border: #FFD000 solid 4px;
-background: rgba(255,252,66,0.2);
- }
- 
-.btn.btn-primary.btn-lg.next:hover {
- background: #FCFF42;
-}
- 
- .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
-  color: inherit;
-  cursor: pointer;
-  border: none;
-    border-bottom-color: currentcolor;
-  border-bottom-color: transparent;
-  background-color: transparent;
-}
 
-.btn-primary:hover, .btn-primary:focus {
-  background-color: white;
-  border-color: #2d0d05;
-  color: black;
-}
-
-.choose-onetime .btn {
- width: 19.5% !important;
-}
- 
- .nav-tabs li {
-  width: 24.5%;
- }
- 
- .nav-tabs > li > a {
- color: black;
- font-weight:bold;
- padding: 2vw 1vw;
- } 
-  
- .btn-group > .btn, .btn-group-vertical > .btn {
-  width: 33%;
- }
- 
- .btn-group, .btn-group-vertical {
-  width: 100%;
-  }
-   .chooseown > p { display:none;}
-   
-   .btn-primary, .btn-national {
-  color: black;
-  
-  background-color: #D9E3D1;
-  padding: 0;
-  font-weight:bold;
-  border-color: gray;
-   }
-   
-   .btn-group .btn {
-    padding: 1vw 2vw;
-    margin-bottom: 10px;
-   }
-   
-     @media screen and (max-width: 768px) {
-header {
-  margin-bottom: 10px;
-}
-
-.btn-primary, .btn-national {
-font-size:14px;
-}
-     }
-     
-    #form .tab-content {
-  margin-top: 15px;
-}
-
-   #monthlypayment .btn {
-    width: 32%;
-padding: 10px;
-
-   }
- 
-</style>
        <div class="container" id="content">
 		<div class="row manage" style="display:none;">
 			
@@ -156,7 +56,7 @@ padding: 10px;
             </div>
 
            <!-- <span id="campaign-end" style="display:none;"></span>-->
-            %= include 'includes/form'
+            %= include 'includes/formnew'
           
 
         </div><!-- / .container -->
