@@ -17,6 +17,14 @@
                 <p>You can change the amount you're giving us monthly or stop subscribing at any time. 
 Just log in to your member account at <a href="https://account.thetyee.ca">account.thetyee.ca</a> any time to make changes. 
 Or if you're having trouble, you can contact us by email, phone (604-689-7489) or toll-free (1-844-301-6677).</p>
+
+		<p><strong>Can I get a refund? </strong></p>
+                <p>Contributions to The Tyee are non-refundable. </p>
+                <p>In case an error is made in the amount of a contribution, the payor has 72 hours (three days) to notify The Tyee. All requests for refunds must be made in writing by email to builders@thetyee.ca. The request should have details of the initial contribution including the date, amount, full name and email of the payor, and the nature of the error.</p>
+                <p>In case an error is made by The Tyee, full refunds will be issued immediately upon notification of the error.</p>
+                <p>Please note that the refund policy can be subject to change on a case-by-case basis.</p>
+
+
                 <p>&copy; 2024 The Tyee &middot; <a href="http://subscribe.thetyee.ca/privacy/">Privacy</a></p>
                 <p>support.thetyee.ca v<%= $config->{'app_version'} %></p>
             </div>
