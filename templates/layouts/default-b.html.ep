@@ -40,7 +40,7 @@
             <meta name="DC.publisher" content="The Tyee" />
             <meta name="DC.format" content="text/html" />
             <meta name="DC.language" scheme="DCTERMS.URI" content="English" />
-
+  <link rel="preconnect" href="https://p.typekit.net" crossorigin>
     <title><%= $title %></title>
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <link href="<%= $config->{'static_asset_path'} %>/ui/css/styles.css?v=4" rel="stylesheet" media="screen">
@@ -49,6 +49,13 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="<%= $config->{'static_asset_path'} %>/ui/js/jquery.validate.min.js"></script>
     <script type="text/javascript" src="//use.typekit.net/sjz2xsw.js"></script>
+  <link rel="preload" as="style" href="https://use.typekit.net/whf8gkh.css">
+<link rel="stylesheet" href="https://use.typekit.net/whf8gkh.css">
+
+
+
+<script>try{Typekit.load({ async: true });}catch(e){}</script>
+
     <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
     <script src="https://js.recurly.com/v4/recurly.js"></script>
     <link rel="shortcut icon" href="https://thetyee.ca/design-article.thetyee.ca/ui/img/favicon_new.ico">
