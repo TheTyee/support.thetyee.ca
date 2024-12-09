@@ -221,245 +221,244 @@ helper raiser_decode => sub {
 
 
 group {
-    under [qw(GET POST)] => '/' => sub {
+    under [ qw(GET POST) ] => '/' => sub {
         my $self = shift;
-      
+
 
         # Store the referrer once in the flash
         my $referrer = $self->req->headers->referrer;
-        if ( !$self->flash( 'original_referrer' ) ) {
-            $self->flash( original_referrer => $referrer );
+        if (!$self->flash('original_referrer')) {
+            $self->flash(original_referrer => $referrer);
         }
 
         # Store the campaign-tracking value
         my $campaign
-            = $self->param( 'campaign' ) || $self->flash( 'campaign' );
-        $self->flash( campaign => $campaign );
-        my $raiser = $self->param( 'raiser' ) || $self->flash( 'raiser' );
-        $self->flash( raiser => $raiser );
+            = $self->param('campaign') || $self->flash('campaign');
+        $self->flash(campaign => $campaign);
+        my $raiser = $self->param('raiser') || $self->flash('raiser');
+        $self->flash(raiser => $raiser);
 
         # TODO remove these two
-        my $onetime = $self->param( 'onetime' );
-        my $amount  = $self->param( 'amount' );
+        my $onetime = $self->param('onetime');
+        my $amount = $self->param('amount');
 
         # TODO remove this statement
-        if ( $self->req->method eq 'POST' && $amount =~ /\D/ ) {
+        if ($self->req->method eq 'POST' && $amount =~ /\D/) {
             $self->flash(
-                {   error    => 'Amount needs to be a whole number',
+                { error      => 'Amount needs to be a whole number',
                     onetime  => 'onetime',
                     campaign => $campaign,
                 }
             );
-            $self->param( { amount => '0' } );
+            $self->param({ amount => '0' });
             $amount = '';
-            $self->redirect_to( '' );
+            $self->redirect_to('');
         }
 
         # TODO remove
         my $amount_in_cents;
-        if ( $amount ) {
+        if ($amount) {
             $amount_in_cents = $amount * 100;
         }
 
         # TODO remove this hash
-        my $options = {    # RecurlyJS signature options
+        my $options = { # RecurlyJS signature options
             'transaction[currency]'        => 'CAD',
             'transaction[amount_in_cents]' => $amount_in_cents,
-            'transaction[description]' =>
+            'transaction[description]'     =>
                 'Support for fact-based independent journalism at The Tyee',
         };
 
         my $plans = $self->recurly_get_plans(
-            $config->{'recurly_get_plans_filter'} );
+            $config->{'recurly_get_plans_filter'});
         my $annual_plans = $self->recurly_get_plans(
-            $config->{'recurly_annual_plans_filter'} );
+            $config->{'recurly_annual_plans_filter'});
         $self->stash(
-            {   plans         => $plans,
+            { plans           => $plans,
                 annual_plans  => $annual_plans,
                 plans_onetime => $config->{'plans_onetime'},
                 amount        => $amount,
-                onetime       => $onetime || $self->flash( 'onetime' ),
-                error         => $self->flash( 'error' ),
+                onetime       => $onetime || $self->flash('onetime'),
+                error         => $self->flash('error'),
                 params        => $self->req->query_params
             }
         );
     };
-my $ab;
-    
-     any [qw(GET POST)] => '/' => sub {
+    my $ab;
+
+    any [ qw(GET POST) ] => '/' => sub {
         my $ab;
         my $self = shift;
-       # my $dt          = DateTime->now;
-       #  my $seconds =  $dt->sec;
+        #        my $dt          = DateTime->now;
+        #        my $seconds =  $dt->sec;
         my $display;
         my $urlstring;
         my $count;
-        
-        
-      #          my $params = $self->req->query_params;
-       #            app->log->debug(  "url string  = $params");       
-# my $path = "/b" . '?' . $params;
- #       if ($seconds >= 29) {
-  #        $self->redirect_to( $path);
-   #     } else {
-    #    $ab = 'evergreen'; # $display = "none";
-    #   }
- $ab = 'evegreen-squeeze'; # $display = "none";
 
-	 $self->stash( body_id => $ab, );
-        $self->flash( appeal_code => $ab );
-        $self->stash( display => $display );
-        $self->flash ( original_params => $self->req->query_params);
-    } => 'evergreen-squeeze';   
 
-  # making both of these test conditions Dec2021 so can easily ad a test if we want during campaign.  Probably a waste of resources if not using later   
-        any [qw(GET POST)] => '/dec2021' => sub {
-        my $ab;
+        #             my $params = $self->req->query_params;
+        #                 app->log->debug(  "url string  = $params");
+        # my $path = "/b" . '?' . $params;
+        #      if ($seconds >= 29) {
+        #       $self->redirect_to( $path);
+        #     } else {
+        #    $ab = 'evergreen-squeeze'; # $display = "none";
+        #   }
+        $ab = 'dec2024'; # $display = "none";
+
+        $self->stash(body_id => $ab,);
+        $self->flash(appeal_code => $ab);
+        $self->stash(display => $display);
+        $self->flash(original_params => $self->req->query_params);
+    }                    => 'Dec2024';
+
+    # making both of these test conditions Dec2021 so can easily ad a test if we want during campaign.  Probably a waste of resources if not using later
+    any [ qw(GET POST) ] => '/Spring2024' => sub {
+        my $ab = 'Spring2024';
         my $self = shift;
-        my $dt          = DateTime->now;
-        my $seconds =  $dt->sec;
+        #        my $dt          = DateTime->now;
+        #       my $seconds =  $dt->sec;
         my $display;
 
-        
-        if ($seconds >= 29) {
-          $self->redirect_to( 'b' );
-         } else {
-         $ab = 'Dec2023'; # $display = "none";
-       # if ($self->param( 'squeeze' ) ) {$ab = $self->param( 'evergreen-squeeze' ) ; $display = "none"; };
-      #  if ($self->param( 'evergreen' ) ) {$ab = $self->param( 'evergreen' ) ; $display = "block"; };
-	 $self->stash( body_id => $ab, );
-        $self->flash( appeal_code => $ab );
-        $self->stash( display => $display );
-        }
-    } => 'Dec2023';
-        
-        any [qw(GET POST)] => '/b' => sub {
+
+        #      if ($seconds >= 29) {
+        #       $self->redirect_to( 'b' );
+        #     } else {
+        #    $ab = 'Spring2024'; # $display = "none";
+        # if ($self->param( 'squeeze' ) ) {$ab = $self->param( 'evergreen-squeeze' ) ; $display = "none"; };
+        #  if ($self->param( 'evergreen' ) ) {$ab = $self->param( 'evergreen' ) ; $display = "block"; };
+        $self->stash(body_id => $ab,);
+        $self->flash(appeal_code => $ab);
+        $self->stash(display => $display);
+    }                    => 'Spring2024';
+
+    any [ qw(GET POST) ] => '/b' => sub {
         my $ab;
         my $self = shift;
-        my $dt          = DateTime->now;
-        my $seconds =  $dt->sec;
-        my $display;  
-         $ab = 'evergreen-squeeze'; 
-        if ($self->param( 'squeeze' ) ) {$ab = $self->param( 'evergreen-squeeze' ) ; $display = "none"; };
-        if ($self->param( 'evergreen' ) ) {$ab = $self->param( 'evergreen' ) ; $display = "block"; };
-     #  $display = "block";  #undoing all the above
-	 $self->stash( body_id => $ab, );
-        $self->flash( appeal_code => $ab );
-        $self->stash( display => $display );      
-    } => 'evergreen-squeeze';
-        
-        
-    any [qw(GET POST)] => '/powermap' => sub {
+        my $dt = DateTime->now;
+        my $seconds = $dt->sec;
+        my $display;
+        $ab = 'evergreen-squeeze';
+        if ($self->param('squeeze')) {
+            $ab = $self->param('evergreen-squeeze');
+            $display = "none";
+        };
+        if ($self->param('evergreen')) {
+            $ab = $self->param('evergreen');
+            $display = "block";
+        };
+        #  $display = "block";  #undoing all the above
+        $self->stash(body_id => $ab,);
+        $self->flash(appeal_code => $ab);
+        $self->stash(display => $display);
+    }                    => 'evergreen-squeeze';
+
+    any [ qw(GET POST) ] => '/powermap' => sub {
         my $self = shift;
         $self->stash(
             body_id     => 'powermap',
             appeal_code => 'powermap'
         );
-    } => 'powermap';
-    
-    
-    any [qw(GET POST)] => '/iframe' => sub {
+    }                    => 'powermap';
+
+    any [ qw(GET POST) ] => '/iframe' => sub {
         my $self = shift;
         $self->stash(
             body_id     => 'iframe',
             appeal_code => 'iframe'
         );
-    } => 'iframe';
-    
-        any [qw(GET POST)] => '/Spring2023' => sub {
+    }                    => 'iframe';
+
+    any [ qw(GET POST) ] => '/Spring2023' => sub {
         my $self = shift;
         $self->stash(
             body_id     => 'Spring2023',
             appeal_code => 'Spring2023'
         );
-    } => 'Spring2023';
-    
-    
-     any [qw(GET POST)] => 'rafemair' => sub {
+    }                    => 'Spring2023';
+
+    any [ qw(GET POST) ] => 'rafemair' => sub {
         my $self = shift;
         $self->stash(
             body_id     => 'RafeMair2017',
             appeal_code => 'RafeMair2017'
         );
-         $self->flash( appeal_code => 'RafeMair2017');
-    } => 'RafeMair';
+        $self->flash(appeal_code => 'RafeMair2017');
+    }                    => 'RafeMair';
 
-
-    any [qw(GET POST)] => '/builders' => sub {
+    any [ qw(GET POST) ] => '/builders' => sub {
         my $self = shift;
         $self->stash(
             body_id     => 'builders',
             appeal_code => 'builders'
         );
-    } => 'builders';
+    }                    => 'builders';
 
-  any [qw(GET POST)] => '/builders' => sub {
+    any [ qw(GET POST) ] => '/builders' => sub {
         my $self = shift;
         $self->stash(
             body_id     => 'builders',
             appeal_code => 'builders'
         );
-    } => 'builders';
+    }                    => 'builders';
 
-
-
-   any [qw(GET POST)] => '/dec2018' => sub {
+    any [ qw(GET POST) ] => '/dec2018' => sub {
         my $self = shift;
         $self->stash(
             body_id     => 'dec2018',
             appeal_code => 'dec2018'
         );
-    } => 'DecBuilderCamp2019';
+    }                    => 'DecBuilderCamp2019';
 
-    any [qw(GET POST)] => '/national' => sub {
+    any [ qw(GET POST) ] => '/national' => sub {
         my $self = shift;
         $self->stash(
             body_id     => 'national',
             appeal_code => 'national'
         );
-    } => 'national';
-    any [qw(GET POST)] => '/evergreen' => sub {
+    }                    => 'national';
+    any [ qw(GET POST) ] => '/evergreen' => sub {
         my $self = shift;
         $self->stash(
             body_id     => 'evergreen',
             appeal_code => 'evergreen',
-            display => 'block'
+            display     => 'block'
         );
-    } => 'evergreen';
-    
-        any [qw(GET POST)] => '/evergreen-squeeze' => sub {
+    }                    => 'evergreen';
+
+    any [ qw(GET POST) ] => '/evergreen-squeeze' => sub {
         my $self = shift;
         $self->stash(
             body_id     => 'evergreen-squeeze',
             appeal_code => 'evergreen-squeeze',
-            display => 'block'
+            display     => 'block'
         );
-    } => 'evergreen-squeeze';
-    any [qw(GET POST)] => '/election2017-2' => sub {
+    }                    => 'evergreen-squeeze';
+    any [ qw(GET POST) ] => '/election2017-2' => sub {
         my $self = shift;
         $self->stash(
             body_id     => 'election2017-2',
             appeal_code => 'election2017-2'
         );
-        $self->flash( appeal_code => 'election2017-2' );
-    } => 'election2017-2';
-    
-    any [qw(GET POST)] => '/election2015' => sub {
+        $self->flash(appeal_code => 'election2017-2');
+    }                    => 'election2017-2';
+
+    any [ qw(GET POST) ] => '/election2015' => sub {
         my $self = shift;
         $self->stash(
             body_id     => 'election2015',
             appeal_code => 'election2015'
         );
-        $self->flash( appeal_code => 'election2015' );
-    } => 'election2015';
-    any [qw(GET POST)] => '/voices' => sub {
+        $self->flash(appeal_code => 'election2015');
+    }                    => 'election2015';
+    any [ qw(GET POST) ] => '/voices' => sub {
         my $self = shift;
         $self->stash(
             body_id     => 'voices',
             appeal_code => 'voices'
         );
-        $self->flash( appeal_code => 'voices' );
-    } => 'voices';
+        $self->flash(appeal_code => 'voices');
+    }                    => 'voices';
 };
 
 # New route for processing EFT/ACH subscriptions

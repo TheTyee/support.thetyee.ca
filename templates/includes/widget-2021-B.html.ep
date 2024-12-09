@@ -1,10 +1,9 @@
                     <div id="campaign-widget" class="well well-lg">
                         <div class="amountwrap">  
   🙋                                        
-<span class="raised"><!-- remove $ for count only-->$</span><span class="amount raised">0</span>
-                                        <span class="raised-goal">
-                                                           of <strike>$65,000</strike>&nbsp<!--Pledged -->
-                                                            <span class="goal"></span>
+<span class="raised"><!-- remove $ for count only--></span><span class="amount raised">0</span>
+                                        <span class="raised-goal">of<!--<strike>500</strike>&nbsp--><!--Pledged -->
+                                                            <span class="goal"></span> new recurring supporters goal
                                         <br />
                                         </span>
                         </div>
