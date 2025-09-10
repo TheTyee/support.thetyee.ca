@@ -64,7 +64,7 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'G-0W29ZX6R12', { 'debug_mode':true });
+  gtag('config', 'G-0W29ZX6R12', { 'debug_mode':false });
 </script>
 </head>
 <body id="<%= $body_id %>">
