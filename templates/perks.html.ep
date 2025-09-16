@@ -32,7 +32,10 @@
     <div style="float:left;">
         <span class="glyphicon glyphicon-ok-sign" style="float:right;position:relative;left:-20px"></span>
         <img src="https://thetyee.ca/ui/img/support/BuilderTote.jpg" width="150" />
+
     </div>
+       <br style="clear:both;"><br>         
+<br>
       % }  
       % if ( $monthly_amount >= '300') {
     <div style="float:left;">
@@ -53,6 +56,8 @@
         <span class="glyphicon glyphicon-ok-sign" style="float:right;position:relative;left:-20px"></span>
         <img src="https://thetyee.ca/ui/img/support/BuilderTote.jpg" width="150" />
     </div>
+       <br style="clear:both;"><br>  
+    <br>
       % }  
       % if ( $monthly_amount >= '50') {
     <div style="float:left;">
