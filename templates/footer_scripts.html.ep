@@ -11,12 +11,12 @@
         % if ( $abs eq '/national' || $abs eq '/election2015' || $abs eq '/voices' || $abs eq '/powermap' ) { # widget js
         <script src="<%= $config->{'static_asset_path'} %>/ui/js/widget.js?v=3"></script>
         % }
-	% if ($abs eq '/rafemair') { 
+% if ($abs eq '/rafemair') {
  <script src="https://static.thetyee.ca/support/v1.8.3mair/ui/js/widget.js?v=2"></script>
-	% }
-	% if ($abs eq '/cityhall') {
+% }
+% if ($abs eq '/cityhall') {
  <script src="https://static.thetyee.ca/support/v1.8.3cityhall/ui/js/widget.js?v=2"></script>
-        % } else { 
+% } else {
 <script src="<%= $config->{'static_asset_path'} %>/ui/js/widget.js?v=2"></script>
 % }
 
@@ -84,7 +84,7 @@
 });
 								
 								
-       % }
+% }
         </script>
 
 
