@@ -41,48 +41,49 @@
 %   if ($record->{'plan_code'} =~ /annual/) { $category = 'annual' };
 
 % app->log->debug( " ecommerce category is $category");
-        ga('require', 'ecommerce');
-        ga('ecommerce:addTransaction', {
-          'id': '<%= $record->{'id'} %>',                           // Transaction ID. Required.
-          'affiliation': 'support.thetyee.ca',                      // Affiliation or store name.
-          'revenue': '<%= $record->{'amount_in_cents'} / 100 %>',   // Grand Total.
-          'shipping': '',                                           // Shipping.
-          'tax': ''                                                 // Tax.
-        });
-    
-        ga('ecommerce:addItem', {
-          'id': '<%= $record->{'id'} %>',                           // Transaction ID. Required.
-          'name': 'Donation',                                       // Product name. Required.
-          'sku': '',                                                // SKU/code.
-          'category': '<%= $category %>',                                           // Category or variation.
-          'price': '<%= $record->{'amount_in_cents'} / 100 %>',     // Unit price.
-          'quantity': '1'                                           // Quantity.
-        });
-        ga('ecommerce:send');
+$( document ).ready(function() {
+    ga('require', 'ecommerce');
+    ga('ecommerce:addTransaction', {
+        'id': '<%= $record->{'id'} %>',                           // Transaction ID. Required.
+        'affiliation': 'support.thetyee.ca',                      // Affiliation or store name.
+        'revenue': '<%= $record->{'amount_in_cents'} / 100 %>',   // Grand Total.
+        'shipping': '',                                           // Shipping.
+        'tax': ''                                                 // Tax.
+    });
 
-								// ga 4 implementation
-								
-				gtag("event", "purchase", {
-    transaction_id: '<%= $record->{'id'} %>', 
-    affiliation: 'support.thetyee.ca',    
-    value:'<%= $record->{'amount_in_cents'} / 100 %>',
-    tax: '',
-    shipping: '',
-    currency: "CAD",
-   
-    items: [
-     {
-      item_id: '<%= $record->{'id'} %>',  
-      item_name: "Donation",
-      affiliation: 'support.thetyee.ca',    
-      index: 0,
-      item_category: '<%= $category %>',  
-      price: '<%= $record->{'amount_in_cents'} / 100 %>',
-      quantity: 1
-    }
-   ]
+    ga('ecommerce:addItem', {
+        'id': '<%= $record->{'id'} %>',                           // Transaction ID. Required.
+        'name': 'Donation',                                       // Product name. Required.
+        'sku': '',                                                // SKU/code.
+        'category': '<%= $category %>',                                           // Category or variation.
+        'price': '<%= $record->{'amount_in_cents'} / 100 %>',     // Unit price.
+        'quantity': '1'                                           // Quantity.
+    });
+    ga('ecommerce:send');
+
+    // ga 4 implementation
+
+    gtag("event", "purchase", {
+        transaction_id: '<%= $record->{'id'} %>',
+        affiliation: 'support.thetyee.ca',
+        value: '<%= $record->{'amount_in_cents'} / 100 %>',
+        tax: '',
+        shipping: '',
+        currency: "CAD",
+
+        items: [
+            {
+                item_id: '<%= $record->{'id'} %>',
+                item_name: "Donation",
+                affiliation: 'support.thetyee.ca',
+                index: 0,
+                item_category: '<%= $category %>',
+                price: '<%= $record->{'amount_in_cents'} / 100 %>',
+                quantity: 1
+            }
+        ]
+    });
 });
-								
 								
 % }
         </script>
