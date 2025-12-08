@@ -4,7 +4,7 @@
 
 <div class="container" id="content-inner">
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-12">
     % if ( defined $self->stash('record') ) {
     <div class="alert alert-success fade in" style="margin-top: 20px;"><i class="glyphicon glyphicon-check"></i>
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -12,28 +12,68 @@
     </div>
     % }
 
-    <h3>Thanks! Your contribution makes you eligible for special Tyee swag. Do you want it?</h3>
-		<br>
-    <div style="float:left;">
+    <h3>Thanks! Don't leave yet! </strong></h3>
+
+
+     <p>We'll need your address if you'd like to get a tax receipt <strong>emailed</strong> to you</em> (CRA requires a legal physical address for valid receipts). </p>
+
+
+            <label class="radio-inline">
+                <input id="tax-yes" checked="1" name="pref_tax" type="radio" value="Yes" />
+                Yes, I want my tax receipt. I'll fill out my address below.</label>
+                <br style="clear: both;">
+            <label class="swag radio-inline">
+                <input id="tax_no" name="pref_tax" type="radio" value="No" />
+                No, I don't want my tax receipt (scroll below) </label>
+
+
+       <br style="clear:both;">
+    <form action="perks" method="POST" role="form">
+
+% my $monthly_amount = $record->{'amount_in_cents'} / 100;
+% if ( ($record->{'plan_code'} && $monthly_amount >= '5') | $monthly_amount >= 22) {
+<div class="form-group">
+<br style="clear:both">
+
+   <h3>Your gift also qualifiess you for swag, pictured below.  </h3>
+
+
+            <label class="radio-inline">
+                <input id="lapel-yes" name="pref_lapel" type="radio" value="Yes" />
+                Yes, please send me Tyee swag. (make sure you fill out your address below) </label>
+                <br style="clear: both;">
+            <label class="swag radio-inline">
+                <input checked="1" id="lapel_no" name="pref_lapel" type="radio" value="No" />
+                No, I don't want any swag, please. </label>
+        </div>
+% }
+
+  % if ( $record->{'plan_code'} ) {
+  % if ($record->{'plan_code'} =~ /annual/) {
+
+% if ( $monthly_amount >= '5') {
+  <div style="float:left;">
         <span class="glyphicon glyphicon-ok-sign" style="float:right;position:relative;left:-20px"></span>
         <img src="<%= $config->{'static_asset_path'} %>/ui/img/fishswag.jpg?v=1" width="150" />
     </div>
-  % my $monthly_amount = $record->{'amount_in_cents'} / 100;  
-  % if ( $record->{'plan_code'} ) {
-  % if ($record->{'plan_code'} =~ /annual/) {
-  
+% }      
+
   % if ( $monthly_amount >= '180') {
     <div style="float:left;">
         <span class="glyphicon glyphicon-ok-sign" style="float:right;position:relative;left:-20px"></span>
         <img src="https://thetyee.ca/ui/img/support/BuilderNotebook.jpg" width="150" />
-    </div>    
+    </div>
+     <div style="float:left;">
+        <span class="glyphicon glyphicon-ok-sign" style="float:right;position:relative;left:-20px"></span>
+        <img src="https://thetyee.ca/ui/img/support/hats.jpg" width="150" />
+    </div>
       % }
       % if ( $monthly_amount >= '240') {
     <div style="float:left;">
         <span class="glyphicon glyphicon-ok-sign" style="float:right;position:relative;left:-20px"></span>
         <img src="https://thetyee.ca/ui/img/support/BuilderTote.jpg" width="150" />
     </div>
-      % }  
+      % }
       % if ( $monthly_amount >= '300') {
     <div style="float:left;">
         <span class="glyphicon glyphicon-ok-sign" style="float:right;position:relative;left:-20px"></span>
@@ -41,48 +81,55 @@
     </div>
     % }
   % } else {
-  
+% if ( $monthly_amount >= '5') {
+  <div style="float:left;">
+        <span class="glyphicon glyphicon-ok-sign" style="float:right;position:relative;left:-20px"></span>
+        <img src="<%= $config->{'static_asset_path'} %>/ui/img/fishswag.jpg?v=1" width="150" />
+    </div>
+% }
+
   % if ( $monthly_amount >= '15') {
     <div style="float:left;">
         <span class="glyphicon glyphicon-ok-sign" style="float:right;position:relative;left:-20px"></span>
         <img src="https://thetyee.ca/ui/img/support/BuilderNotebook.jpg" width="150" />
-    </div>    
+    </div>
+     <div style="float:left;">
+        <span class="glyphicon glyphicon-ok-sign" style="float:right;position:relative;left:-20px"></span>
+        <img src="https://thetyee.ca/ui/img/support/hats.jpg" width="150" />
+    </div>
       % }
       % if ( $monthly_amount >= '25') {
     <div style="float:left;">
         <span class="glyphicon glyphicon-ok-sign" style="float:right;position:relative;left:-20px"></span>
         <img src="https://thetyee.ca/ui/img/support/BuilderTote.jpg" width="150" />
     </div>
-      % }  
+      % }
       % if ( $monthly_amount >= '50') {
     <div style="float:left;">
         <span class="glyphicon glyphicon-ok-sign" style="float:right;position:relative;left:-20px"></span>
         <img src="https://thetyee.ca/ui/img/support/BuilderMug.jpg" width="150" />
     </div>
-      % } 
+      % }
     % }
-    
-    % }
-    <br clear="all" />
 
-    <form action="perks" method="POST" role="form">
-	
-  <div class="form-group">
-           
-	    <p><strong>To receive your sweet Tyee swag in the mail, we’ll need your mailing address.</strong></p>	
-            <label class="radio-inline">
-                <input id="lapel-yes" name="pref_lapel" type="radio" value="Yes" />
-                Yes, please send me (or my gift recipient) Tyee swag. Here is my address.</label>
-            <label class="swag radio-inline">
-                <input checked="1" id="lapel_no" name="pref_lapel" type="radio" value="No" />
-                No, please don’t send me anything in the mail</label>
-        </div>
-        <br />
+    % } elsif ($monthly_amount >= '22'){  # no plan but amount more than 5 bucks monthly_amount is a misnomer
+
+    <div style="float:left;">
+        <span class="glyphicon glyphicon-ok-sign" style="float:right;position:relative;left:-20px"></span>
+        <img src="<%= $config->{'static_asset_path'} %>/ui/img/fishswag.jpg?v=1" width="150" />
+    </div>
+
+
+%        }
+
+    <br style="clear:both;">
+
   
-<div class="address_fields" style="display:none;">
 <div class="form-group">
   
-  
+   
+<div class="address_fields" style="">   
+ 
   
     <label for="address1">Street address</label>
     <input class="form-control required" data-recurly="address1" id="address1" name="address1" placeholder="Address" type="text"  />
@@ -435,34 +482,34 @@
       <span id="helpBlock" class="help-block">Optional</span>
 </div>
 
-</div>
-    
 
+    <br clear="all" />
 
     <div class="submit-button">
         <input class="btn btn-success btn-lg" id="submit" type="submit" value="Save information & continue »" />
     </div>
 </form>
-        </div>
-    </div>
+ </div>
 </div>
+        </div>
+
 
 % content_for javascript => begin
 %= javascript begin
 
-$('input[name=pref_lapel]').on('click', function (event) {
-    if (  $("#lapel-yes").prop("checked") == true  ) {
-	   $(".address_fields").css("display", "block");
-	   	$('.address_fields').prop('required', true);
-	} else {
+//$('input[name=pref_lapel]').on('click', function (event) {
+ //   if (  $("#lapel-yes").prop("checked") == true  ) {
+	 //  $(".address_fields").css("display", "block");
+	   //	$('.address_fields').prop('required', true);
+//	} else {
 	
-		   $(".address_fields").css("display", "none")
-	$('.address_fields').prop('required', false);
-	}
+	//	   $(".address_fields").css("display", "none")
+	//$('.address_fields').prop('required', false);
+	//}
 	
 
    
-});
+// });
 
 
 // Simple HTML5 validation for the on behalf of name fields
