@@ -34,7 +34,7 @@ window.open('https://share.flipboard.com/bookmarklet/popout?v=2&title=I%20just%2
     <h3>Welcome to the team</h3>
   
     <p> 
-        Thanks for your support. Keep an eye on your inbox for a receipt and welcome message within the next 24 hours. 
+        Thanks for your support. Keep an eye on your inbox for a welcome message within the next 24 hours. If you provided an address, we will email your tax receipt no later than January 31.
     </p>
     
     <br style="clear:both;"/>
@@ -89,17 +89,25 @@ window.open('https://share.flipboard.com/bookmarklet/popout?v=2&title=I%20just%2
         </div>
     % if ( $transaction_details->{'pref_lapel'} eq 'Yes') {
         <h3>Tyee swag that will be on its way to you shortly:</h3>
-        <div style="float:left;">
-            <span class="glyphicon glyphicon-ok-sign" style="float:right;position:relative;left:-20px"></span>
-            <img src="<%= $config->{'static_asset_path'} %>/ui/img/fishswag.jpg" width="150" />
-        </div>
+
         % my $monthly_amount = $transaction_details->{'amount_in_cents'} / 100;
         % if ( $transaction_details->{'plan_code'} ) {
  
         % my $annual;
         % $annual = 1 if $transaction_details->{'plan_code'} =~ /annual/;
         % if ($annual ) {
-        % if ( $monthly_amount >= '180') {
+% if ( $monthly_amount >= '5') {
+                    <div style="float:left;">
+                        <span class="glyphicon glyphicon-ok-sign" style="float:right;position:relative;left:-20px"></span>
+                        <img src="<%= $config->{'static_asset_path'} %>/ui/img/fishswag.jpg?v=1" width="150" />
+                    </div>
+% }
+
+% if ( $monthly_amount >= '180') {
+ <div style="float:left;">
+        <span class="glyphicon glyphicon-ok-sign" style="float:right;position:relative;left:-20px"></span>
+        <img src="https://thetyee.ca/ui/img/support/hats.jpg" width="150" />
+    </div>
             <div style="float:left;">
                 <span class="glyphicon glyphicon-ok-sign" style="float:right;position:relative;left:-20px"></span>
                 <img src="https://thetyee.ca/ui/img/support/BuilderNotebook.jpg" width="150" />
@@ -122,8 +130,18 @@ window.open('https://share.flipboard.com/bookmarklet/popout?v=2&title=I%20just%2
             % } 
         
         
-        %  } else { 
+        %  } else {
+% if ( $monthly_amount >= '5') {
+                    <div style="float:left;">
+                        <span class="glyphicon glyphicon-ok-sign" style="float:right;position:relative;left:-20px"></span>
+                        <img src="<%= $config->{'static_asset_path'} %>/ui/img/fishswag.jpg?v=1" width="150" />
+                    </div>
+% }
             % if ( $monthly_amount >= '15') {
+             <div style="float:left;">
+        <span class="glyphicon glyphicon-ok-sign" style="float:right;position:relative;left:-20px"></span>
+        <img src="https://thetyee.ca/ui/img/support/hats.jpg" width="150" />
+    </div>
             <div style="float:left;">
                 <span class="glyphicon glyphicon-ok-sign" style="float:right;position:relative;left:-20px"></span>
                 <img src="https://thetyee.ca/ui/img/support/BuilderNotebook.jpg" width="150" />
@@ -144,18 +162,24 @@ window.open('https://share.flipboard.com/bookmarklet/popout?v=2&title=I%20just%2
             </div>
             % } 
         % }
-        % }
-    % } else {
-        <h3>You have opted out of receiving Tyee swag</h3>
-            <img style="width: 200px; height: auto;" src="<%= $config->{'static_asset_path'} %>/ui/img/tyee-happy-earth.jpg" />
+        % } elsif ($monthly_amount >= '22'){  # no plan but amount more than 5 bucks monthly_amount is a misnomer
 
+
+            <div style="float:left;">
+                <span class="glyphicon glyphicon-ok-sign" style="float:right;position:relative;left:-20px"></span>
+                <img src="<%= $config->{'static_asset_path'} %>/ui/img/fishswag.jpg" width="150" />
+            </div>
     % }
-        
-    <br clear="all" />
+    % } else {
+            <h3>You have opted out of receiving Tyee swag</h3>
+            <img class="hide-iframe" style="width: 200px; height: auto;" src="<%= $config->{'static_asset_path'} %>/ui/img/tyee-happy-earth.jpg" />
+% }
+
+            <br class="hide-iframe clear="all" />
    
 
-        <hr class="soften" />
-        <div>
+        <hr class="soften hide-iframe" />
+        <div class="hide-iframe">
          <a style="color:black; border-bottom: none;" href="http://thetyee.ca">
            <label class="btn btn-primary btn-lg next" style="background-color: #b4f4f4;"> Head back to TheTyee.ca</label>
          </a>
@@ -164,7 +188,7 @@ window.open('https://share.flipboard.com/bookmarklet/popout?v=2&title=I%20just%2
     </div>
 </div>
 
-    <div id="fb-root"></div>
+    <div id="fb-root" class="hide-iframe"></div>
     <script>(function(d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) return;

@@ -1,0 +1,291 @@
+% layout 'default-squeeze', title => 'Support fact-based independent journalism -- The Tyee'; 
+    
+<script>
+ $(document).ready(function(){
+  $(".nav-tabs li").addClass("btn btn-primary");
+ });
+ 
+</script>
+  
+    
+    
+       <div class="container" id="content">
+            <div id="campaign-copy" class="row">
+                <h1>Canada needs more independent journalism. Join us! <span>&nbsp;</span></h1>
+                <p class="lead">Support The Tyee and help us gain 750 new recurring contributions by Dec 31.
+<br><br><i>Sign up to give $15 per month or $180 per year to get a limited edition Tyee baseball cap!</i>
+</p>
+
+            </div>
+            <div class="col-md-4" id="widgetwrap">
+                    %= include 'includes/widget-2021-B'
+                </div>
+<!--<p style="display:block;clear:both;" class="alert alert-warning"><i class="glyphicon glyphicon-fire"></i>Campaign update: We hit our target of $65,000 early. Join us and help us hit our stretch goal of $120,000!</big></p>
+            <span id="campaign-end" style="display:block;clear:both;"></span>-->
+            %= include 'includes/formnew'
+       </div>         
+<div id="graybg">
+            <div class="container">
+                <div class="row">               
+           <div id="atf"  style="clear:left;" >
+               <div class="col-md-6 video-container">
+                <img src="<%= $config->{'static_asset_path'} %>/ui/img/tyeestaffCAJ.jpg">
+                   
+                <!--    <iframe width="560" height="315" src="//www.youtube.com/embed/jF1ZElM7-nA" frameborder="0" allowfullscreen></iframe>-->
+                </div>
+<!--                <div class="col-lg-8">
+		<h2 style="margin-top:0;">2019 by 2019!</h2>
+                   
+			    <p><big>Help us reach our goal of 500 new monthly donors before the start of 2020.</big></p>
+<p><big>
+We have big plans for 2020, but we need your help to know we'll have the sustained support to pull it off.</big></p>
+
+			    
+			    
+                </div>-->
+			    
+			 
+			 
+			 
+			 
+            </div>  <!-- / #atf -->
+
+
+
+           <div id="awardwrap" class="">
+                <div class="col-md-12">
+                 
+		<h2 style="margin-top:0;">Who are we?</h2>
+                    <p><big>
+We're an independent, online news magazine from BC founded in 2003. We're devoted to fact-driven 
+stories, reporting and analysis that informs and enlivens our democratic conversation. Our 
+reporting has changed laws, started movements and garnered numerous awards and the respect of our 
+peers and readers. While some journalism gives the last word to power, we try to give the last 
+word to ordinary folks.
+</big></p>
+
+<p><big>
+Since 2009, Tyee Builders have pitched in to hire extra reporters, boost our coverage of 
+provincial and federal election campaigns, and help grow The Tyee while other newsrooms shrink. 
+Join Tyee Builders and together, let’s make good news.
+</big></p>
+
+                  
+                  
+                  
+                </div>
+
+
+           </div>
+           
+                </div>
+
+
+                </div></div>
+                <div style="background: #d9e3d1; padding-top: 20px;">
+                <div class="container">
+                <div class="row">
+                <div class="col-md-12" style="text-align: center;">
+
+               <h3 style="line-height: 1.2em;" style="text-align: center;">
+               The Tyee is now a Registered Journalism Organization,<br> which means you will receive tax receipts for your contributions.
+                </h3>
+                </div></div></div></div>
+</div>
+
+
+                     <!--  
+             <div class="awards" style="clear:left;">
+                <div class="col-md-12 awards">       
+           
+                                        
+         <div class="col-md-3 col-sm-3 award">
+                        <a href="https://thetyee.ca/Tyeenews/2020/04/22/National-Magazine-Award-Woodend/"><img style="width: 130px;"  id="murrow" src="<%= $config->{'static_asset_path'} %>/ui/img/DPA2020.png" />
+                        <p>Digital Publishing Award 2020</p></a>
+                    </div>
+                    
+                    
+                    <div class="col-md-3 col-sm-3 award">
+                        <a href="https://thetyee.ca/Tyeenews/2019/06/27/Tyee-Award-Surveillance-Privacy/"><img id="murrow" style="width: 130px;" src="<%= $config->{'static_asset_path'} %>/ui/img/fipa.jpg" />
+                        <p><br>FIPA award for outstanding reporting related to surveillance and privacy, 2019</p></a>
+                    </div>
+                    
+        
+                    <div class="col-md-3 col-sm-3 award">
+                       <a href="https://thetyee.ca/Tyeenews/2018/12/17/Katie-Hyslop-Champion-Reporter"><img id="murrow" src="<%= $config->{'static_asset_path'} %>/ui/img/firstcall.png" /> 
+                        <p>Champion of Child and Youth Rights Award, 2019</p></a>
+                    </div>
+                    
+                      <div class="col-md-3 col-sm-3 award">
+                        <a href="https://thetyee.ca/Blogs/TheHook/2013/06/14/CJF-Award-Win-2013/"><img id="murrow" src="<%= $config->{'static_asset_path'} %>/ui/img/award-cjf.png" />
+                        <p>Excellence in Journalism Award (CDN), 2013, 2009</p></a>
+                    </div>
+                    
+                </div>
+            </div> 
+
+
+            -->
+
+  %# = include 'includes/withyourhelp'
+       </div>
+<br style="clear:both;">
+  <div id="featurettes1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h2>Our vision</h2>
+                        <p>Canada is facing major challenges ahead. At the same time, our national media is in collapse. Newsrooms continue to shrink and consolidate under the control of fewer and fewer corporations, and there are fewer journalists asking tough questions of those in power. We believe that our democratic conversation is made possible by strong, independent media, who exist first and foremost to serve the needs of its readers.</p>
+                    </div><!-- /.col-md-4 -->
+                    <div class="col-md-4">
+                        <h2>How you can help</h2>
+                        <p>By contributing to The Tyee on a recurring basis, you are helping to strengthen and grow our team of fierce, tough-minded journalists and editors. Tyee Builders who give every month allow our small and nimble team to plan ahead, and produce original stories that you will not see anywhere else. We don’t put our articles behind paywalls, so your contribution helps to keep our stories open and available to everyone.</p>
+                    </div><!-- /.col-md-4 -->
+                    <div class="col-md-4">
+                        <h2>Join our community</h2>
+                        <p>
+As thanks for joining, you'll get our special Builders-only newsletter a few times a year, updating our supporters on The Tyee's journalism and the impact their money has made.
+</p>
+                    </div><!-- /.col-md-4 -->
+                </div><!-- /.row -->
+            </div><!-- / .container -->
+        </div><!-- / #featurettes1 -->
+  %# %=  include 'includes/withyourhelp'
+
+
+     <div id="powermap-pitch">
+            <div class="container">
+                <div class="row" >
+                    <div class="col-md-6">
+                     
+                        <h2>Support independent media, get sweet Tyee gear</h2>
+                        <p>
+                       Helping to create more in-depth coverage of our communities is its own reward. To sweeten the deal and show our special thanks, we’ve created custom, high-quality items <strong>exclusively for those who sign up as monthly or annual recurring supporters.</strong> 
+                        </p>
+                        <p>
+                           Want to give to The Tyee but don’t want the swag? Not to worry, you can opt out of receiving items when you complete your payment.
+                        </p>
+                        
+      
+                    </div>
+                                        <div class="col-md-6">
+                        <center>
+                            <!-- Carousel container -->
+<div id="my-pics" class="carousel slide" data-ride="carousel" style="width:300px;margin:auto;">
+
+<!-- Indicators -->
+<ol class="carousel-indicators">
+<li data-target="#my-pics" data-slide-to="0" class="active"></li>
+<li data-target="#my-pics" data-slide-to="1"></li>
+<li data-target="#my-pics" data-slide-to="2"></li>
+<li data-target="#my-pics" data-slide-to="3"></li>
+
+</ol>
+
+<!-- Content -->
+<div class="carousel-inner" role="listbox">
+
+<div class="item active">
+<img src="https://thetyee.ca/ui/img/support/mixedbag.jpg" alt="Sunset over beach">
+</div>
+
+
+<!-- Slide 1 -->
+<div class="item">
+<img src="https://thetyee.ca/ui/img/support/BuilderNotebook.jpg" alt="Sunset over beach">
+</div>
+
+<!-- Slide 2 -->
+<div class="item">
+<img src="https://thetyee.ca/ui/img/support/BuilderTote.jpg" alt="Rob Roy Glacier">
+</div>
+
+<!-- Slide 3 -->
+<div class="item">
+<img src="https://thetyee.ca/ui/img/support/BuilderMug.jpg" alt="Longtail boats at Phi Phi">
+</div>
+
+</div>
+
+<!-- Previous/Next controls -->
+<a class="left carousel-control" href="#my-pics" role="button" data-slide="prev">
+<span class="icon-prev" aria-hidden="true"></span>
+<span class="sr-only">Previous</span>
+</a>
+<a class="right carousel-control" href="#my-pics" role="button" data-slide="next">
+<span class="icon-next" aria-hidden="true"></span>
+<span class="sr-only">Next</span>
+</a>
+
+</div><!--carousel-->
+                        </center>
+                    </div><!-- /.col-md-6 -->
+
+                </div>
+     
+     <div class="row">
+                    <div class="col-md-12 center roundwhite large">
+                        <h4>For any contributions above $5/month or $5/year</h4>
+                        <h3>Custom Tyee lapel pin</h3>
+                        <p>
+                            Show off your Tyee Builder status with our newly minted Tyee logo pin.<br><br>Supporters of all levels will receive our special Builders-only newsletter a few times a year, updating our supporters on The Tyee’s journalism and the impact their money has made.<br><br>
+                        </p>
+                    </div>
+                    
+                    
+                    
+     </div>
+                     <div class="row smallround">
+                   <div class="col-md-4 center roundwhite">
+                    <h4>$15/month or $180/year</h4>
+                    <h3>Cap, pin and pocket notebook</h3>
+                    <p>You’ll receive everything mentioned above PLUS a limited edition Tyee baeball cap (only for Dec) and a special pocket notebook to capture all of your thoughts, ideas for your next project, doodles and lists. </p>
+                    <p>Notebook is three by five inches. Printed with vegetable-based inks on 100% recycled papers with offset presses powered by renewable energy, and handcrafted in Portland, Oregon.<br><br></p>
+                   </div>
+                   <div class="col-md-4  center roundwhite">
+                    <h4>$25/month or $240/year</h4>
+                    <h3>Cap, pin, pocket notebook and tote</h3>
+                    <p>You’ll receive everything mentioned in the previous levels PLUS a Tyee tote bag. This is not some flimsy tote bag that will fall apart after a couple of uses. This heavy cotton bag is big enough for some serious grocery store expeditions and strong enough to do the job. </p>
+
+
+                    </div>
+
+                   <div class="col-md-4  center roundwhite">
+                    <h4>$50/month or $300/year<h4>
+                    <h3>Cap, pin, pocket notebook, tote, and mug</h3>
+                    <p>Get all of the things! You’ll receive everything mentioned in the previous levels PLUS a custom 15 oz Tyee mug. </p>
+                    
+                    
+                    </div><!-- /.col-md-6 -->
+                </div><!-- /.row -->
+                    
+                  <div class="row">
+                    <div class="col-md-12 center roundwhite large" style="background:#d9e3d1;">
+                        <h3>Special offer for Dec only:</h3>
+
+                        <p>
+                            Get our limited edition Tyee baseball cap when you sign up as a recurring builder for $15/month or $180/ year.<br><br>
+                        </p>
+                    </div>
+
+
+
+     </div>
+                <hr class="soften" />
+            </div><!-- / .container -->
+        </div><!-- / #featurettes1 -->
+
+
+
+
+
+%=  include 'includes/builder_list'      
+
+
+
+
+    
+% content_for javascript => begin
+%= javascript begin
+%   end
+% end
