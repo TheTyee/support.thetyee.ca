@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <h3>Tyee readers supporting this campaign: <span id="builder-count"></span> and counting</h3>
+                <h3>Tyee readers supporting this campaign (including one-time contributions): <span id="builder-count"></span> and counting</h3>
                 <ul>
 
                 </ul>
