@@ -18,7 +18,7 @@
                 <p><b>Monthly</b> level:</p>
                 <div class="btn-group" data-toggle="buttons">
                     % for my $p ( @$plans ) {
-                    <label rel="popover" class="<%= $p->plan_code->text %> btn btn-primary btn-lg <%= $p->plan_code->text eq "builder-20" ? "active" : "" %> " data-trigger="hover" data-container="body" data-placement="top" data-content="<%= $p->description->text %>" data-original-title="<%= $p->name->text %>" title="">
+                    <label rel="popover" class="<%= $p->plan_code->text %> btn btn-primary btn-lg <%= $p->plan_code->text eq "builder-15" ? "active" : "" %> " data-trigger="hover" data-container="body" data-placement="top" data-content="<%= $p->description->text %>" data-original-title="<%= $p->name->text %>" title="">
                         <input type="radio" name="plan" id="<%= $p->plan_code->text %>" value="<%= $p->plan_code->text %>" data-amount="<%= $p->unit_amount_in_cents->CAD->text %>" data-code="<%= $p->plan_code->text %>" data-plan="<%= $p->name->text %>"> $<%= $p->unit_amount_in_cents->CAD->text / 100 %>/mo
                     </label>
 
@@ -51,8 +51,8 @@
 
              
                     <br style="clear:both;" /> 
-                   <!-- <p class="help-block">If you are already a recurring contributor  and would like to increase your contribution, please log in to your account at <a href="https://account.thetyee.ca">account.thetyee.ca</a> to manage your level.  Or give us a shout at 604-689-7489 or <a  href="mailto:builders@thetyee.ca" target="_blank">builders@thetyee.ca</a>.
-                    </p>    -->       
+                   <p class="help-block">If you are already a recurring contributor  and would like to increase your contribution, please log in to your account at <a href="https://account.thetyee.ca">account.thetyee.ca</a> to manage your level.  Or give us a shout at 604-689-7489 or <a  href="mailto:builders@thetyee.ca" target="_blank">builders@thetyee.ca</a>.
+                    </p>        
 
                 </div>
      
@@ -680,7 +680,7 @@ $('input.amount-in-cents').each(function(){
             
         } else if ( $("#form-monthly").hasClass("active") ) {
     console.log("monthly active");
-                  $(".builder-20.btn").click();
+                  $(".builder-15.btn").click();
 
         } else if ( $("#form-annual").hasClass("active") ) {
     console.log("annual active");
