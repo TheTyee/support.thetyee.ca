@@ -128,20 +128,20 @@
 <div class="form-group">
   
    
-<div class="address_fields" style="">   
+<div class="address_fields" required style="">
  
   
     <label for="address1">Street address</label>
-    <input class="form-control required" data-recurly="address1" id="address1" name="address1" placeholder="Address" type="text"  />
+    <input  class="form-control required" data-recurly="address1" id="address1" name="address1" placeholder="Address" type="text"  />
     <span id="helpBlock" class="help-block">Outside of Canada/USA? Please include your full mailing address in this field.</span>
 </div>
 <div class="form-group">
     <label for="city">City</label>
-    <input class="form-control" data-recurly="city" id="city" name="city" placeholder="City" type="text" />
+    <input  class="form-control" data-recurly="city" id="city" name="city" placeholder="City" type="text" />
 </div>
 <div class="form-group">
     <label for="state">Province/State</label>
-    <input class="form-control" data-recurly="state" id="state-alt" name="" type="text" placeholder="State" style="display:none;" />
+    <input  class="form-control" data-recurly="state" id="state-alt" name="" type="text" placeholder="State" style="display:none;" />
     <select class="form-control" data-recurly="state" id="state" name="state">
         <option value="--">------------</option>
         <option value="-">Outside of Canada/USA</option>
@@ -219,7 +219,7 @@
 </div>
 <div class="form-group" ">
     <label for="country">Country</label>
-<select class="form-control" data-recurly="country" id="country" name="country">
+<select  class="form-control" data-recurly="country" id="country" name="country">
     <option value="-">Select Country</option>
     <option value="--">------------</option>
     <option value="AF">Afghanistan</option>
@@ -497,19 +497,33 @@
 % content_for javascript => begin
 %= javascript begin
 
-//$('input[name=pref_lapel]').on('click', function (event) {
- //   if (  $("#lapel-yes").prop("checked") == true  ) {
+function setAddressRequired(isRequired) {
+  $('#address1, #city, #state, #country, #zip').prop('required', isRequired);
+}
+
+function recomputeRequired() {
+  const lapelYes = $('#lapel-yes').prop('checked');
+  const taxYes   = $('#tax-yes').prop('checked');
+  setAddressRequired(lapelYes || taxYes);
+}
+
+$('input[name=pref_lapel], input[name=pref_tax]').on('change', recomputeRequired);
+recomputeRequired();
+
+
+$('input[name=pref_lapel]').on('click', function (event) {
+    if (  $("#lapel-yes").prop("checked") == true  ) {
 	 //  $(".address_fields").css("display", "block");
-	   //	$('.address_fields').prop('required', true);
-//	} else {
+	  	$('.address_fields').prop('required', true);
+	} else {
 	
 	//	   $(".address_fields").css("display", "none")
-	//$('.address_fields').prop('required', false);
-	//}
+	$('.address_fields').prop('required', false);
+	}
 	
 
    
-// });
+ });
 
 
 // Simple HTML5 validation for the on behalf of name fields
