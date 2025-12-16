@@ -782,52 +782,53 @@ any [qw(GET POST)] => '/perks' => sub {
     $self->flash( { transaction_details => $record } );
 
     if ( $self->req->method eq 'POST' && $record ) {
-        # ---------------------------
-        # Server-side conditional validation
-        # ---------------------------
         my $v = $self->validation;
 
-        # Grab the controlling fields
-        my $pref_lapel = $v->optional('pref_lapel')->trim->param // '';
-        my $pref_tax   = $v->optional('pref_tax')->trim->param   // '';
+        # Helper to safely trim a param string
+        my $trim = sub {
+            my ($s) = @_;
+            $s = '' unless defined $s;
+            $s =~ s/^\s+//;
+            $s =~ s/\s+$//;
+            return $s;
+        };
 
-        # Normalize to a boolean: address required if either is Yes
-        my $needs_address = (($pref_lapel // '') eq 'Yes') || (($pref_tax // '') eq 'Yes');
+        # Read controlling fields (trimmed)
+        my $pref_lapel = $trim->($v->optional('pref_lapel')->param);
+        my $pref_tax   = $trim->($v->optional('pref_tax')->param);
+
+        my $needs_address = ($pref_lapel eq 'Yes') || ($pref_tax eq 'Yes');
 
         if ($needs_address) {
-            # Require address fields (and require non-empty after trim)
-            $v->required('address1')->trim->size(1, 255);
-            $v->required('city')->trim->size(1, 255);
+            # Mark required on server
+            $v->required('address1')->size(1, 255);
+            $v->required('city')->size(1, 255);
+            $v->required('zip')->size(1, 20);
 
-            # state and country are selects; block default placeholder values too
-            $v->required('state')->trim->like(qr/^(?!\-\-|-)..+/);   # not "--" or "-"
-            $v->required('country')->trim->like(qr/^(?!\-)..+/);     # not "-"
+            # Reject placeholder values for selects
+            $v->required('state')->like(qr/^(?!\-\-|-)..+/);   # not "--" or "-"
+            $v->required('country')->like(qr/^(?!-)..+/);      # not "-"
 
-            $v->required('zip')->trim->size(1, 20);
-
-            # phone is optional
-            $v->optional('phone')->trim->size(0, 50);
+            # Extra guard: treat whitespace-only as empty (since no ->trim filter)
+            for my $f (qw/address1 city zip/) {
+                my $val = $trim->($v->param($f));
+                $v->error($f => ['required']) if $val eq '';
+            }
         } else {
-            # Optional fields (if they provided something, you can still validate format/length)
-            $v->optional('address1')->trim->size(0, 255);
-            $v->optional('city')->trim->size(0, 255);
-            $v->optional('state')->trim;
-            $v->optional('country')->trim;
-            $v->optional('zip')->trim->size(0, 20);
-            $v->optional('phone')->trim->size(0, 50);
+            # Optional
+            $v->optional('address1')->size(0, 255);
+            $v->optional('city')->size(0, 255);
+            $v->optional('zip')->size(0, 20);
+            $v->optional('state');
+            $v->optional('country');
         }
 
-        # If validation fails: re-render same template with errors + keep record
         if ($v->has_error) {
             $self->stash(record => $record);
-            $self->flash({ transaction_details => $record }); # keep it around
-            return $self->render(template => 'perks');         # or just 'perks' depending on your setup
+            $self->flash({ transaction_details => $record });
+            return $self->render(template => 'perks');
         }
 
-        # ---------------------------
-        # Existing code continues
-        # ---------------------------# Submitted form
-        
 my $noxml = '<?xml version="1.0" ?>' . "\n" . '<metadata>' . "\n" . '</metadata>';#creating blank xml so it will conform to expectations when received by the helper
  my $xml_converter = XML::Hash->new();
         my $xml_hash = $xml_converter->fromXMLStringtoHash($noxml);
