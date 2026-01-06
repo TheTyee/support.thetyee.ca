@@ -17,7 +17,7 @@
             <meta name="MSSmartTagsPreventParsing" content="TRUE" />
  
 <!-- OpenGraph properties -->
-            <meta property="og:title" content="Support strong, independent journalism. Join me: " />
+            <meta property="og:title" content="Support strong, independent journalism. Join me " />
             <meta property="og:description" content="Our democracy needs good journalism. Join me in supporting fact-based, independent journalism." />
             <meta property="og:type" content="website" />
             <meta property="og:url" content="https://support.thetyee.ca" />
@@ -40,7 +40,15 @@
 
     <title><%= $title %></title>
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+% if  (  $self->stash('iframe') | $self->flash('iframe')  ) {
+    <link href="<%= $config->{'static_asset_path'} %>/ui/css/styles-iframe.css?v=4" rel="stylesheet" media="screen">
+% $self->stash('iframe' => 1);
+%  $self->flash('iframe' => 1);
+% } else {
     <link href="<%= $config->{'static_asset_path'} %>/ui/css/styles.css?v=4" rel="stylesheet" media="screen">
+
+% }
+
     <script src="<%= $config->{'static_asset_path'} %>/ui/js/modernizr.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="<%= $config->{'static_asset_path'} %>/ui/js/jquery.validate.min.js"></script>
@@ -58,6 +66,21 @@
 
   gtag('config', 'G-0W29ZX6R12', { 'debug_mode':true });
 </script>
+<!-- Matomo -->
+<script>
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//matomo.thetyee.ca/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '2']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
 </head>
 <body id="<%= $body_id %>">
     <!-- Google Tag Manager -->
@@ -75,9 +98,13 @@
     <noscript id="js-warning" style="background: black; display: block; color: white; padding:10px;">
     This page requires Javascript. Your browser either doesn't support JavaScript or you have it turned off. Please enable JavaScript before you proceed.
     </noscript>
+    % unless (  $self->stash('iframe') | $self->flash('iframe')  ) {
     %= include 'header'
+    % }
     <%= content %>
+% unless (  $self->stash('iframe') | $self->flash('iframe')  ) {
     %= include 'footer'
+% }
     %= include 'footer_scripts'
     </body>
 </html>
