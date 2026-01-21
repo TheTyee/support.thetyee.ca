@@ -43,9 +43,10 @@
     <meta name="DC.language" scheme="DCTERMS.URI" content="English" />
 
     <title><%= $title %></title>
+<link rel="stylesheet" href="<%= $config->{'static_asset_path'} %>/ui/css/bootstrap.min.css">
+
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <link href="<%= $config->{'static_asset_path'} %>/ui/css/styles.css?v=4" rel="stylesheet" media="screen">
-
     <script src="<%= $config->{'static_asset_path'} %>/ui/js/modernizr.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="<%= $config->{'static_asset_path'} %>/ui/js/jquery.validate.min.js"></script>
