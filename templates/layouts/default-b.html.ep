@@ -43,6 +43,7 @@
   <link rel="preconnect" href="https://p.typekit.net" crossorigin>
     <title><%= $title %></title>
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link rel="stylesheet" href="<%= $config->{'static_asset_path'} %>/ui/css/bootstrap.min.css">
     <link href="<%= $config->{'static_asset_path'} %>/ui/css/styles.css?v=4" rel="stylesheet" media="screen">
     
     <script src="<%= $config->{'static_asset_path'} %>/ui/js/modernizr.js"></script>
@@ -51,7 +52,6 @@
     <script type="text/javascript" src="//use.typekit.net/sjz2xsw.js"></script>
   <link rel="preload" as="style" href="https://use.typekit.net/whf8gkh.css">
 <link rel="stylesheet" href="https://use.typekit.net/whf8gkh.css">
-
 
 
 <script>try{Typekit.load({ async: true });}catch(e){}</script>
