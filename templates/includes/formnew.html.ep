@@ -4,108 +4,97 @@
     <div id="form">
         <ul class="nav nav-tabs">
             <li id="monthly" class="<%= $self->param( 'def' ) eq 'ann' ? '' : 'active' %>"><a href="#form-monthly" data-toggle="tab">Monthly</a></li><li id="annual" class="<%= $self->param( 'def' ) eq 'ann' ? 'active' : '' %>"><a href="#form-annual" data-toggle="tab">Annual</a></li>
-                        <li id="onetime" class="" ><a href="#form-onetime" data-toggle="tab">One-time</a></li>
-
-            <li id="offline" ><a href="#form-offline" data-toggle="tab">Offline</a></li>
+            <li id="onetime" class=""><a href="#form-onetime" data-toggle="tab">One-time</a></li>
+            <li id="offline"><a href="#form-offline" data-toggle="tab">Offline</a></li>
         </ul>
 
         <div class="tab-content">
             <!-- Monthly -->
             <div class="tab-pane <%= $self->param( 'def' ) eq 'ann' ? '' : 'active' %>" id="form-monthly">
-       
 
-<div class="chooseown" ">
-                <p><b>Monthly</b> level:</p>
-                <div class="btn-group" data-toggle="buttons">
-                    % for my $p ( @$plans ) {
-                    <label rel="popover" class="<%= $p->plan_code->text %> btn btn-primary btn-lg <%= $p->plan_code->text eq "builder-20" ? "active" : "" %> " data-trigger="hover" data-container="body" data-placement="top" data-content="<%= $p->description->text %>" data-original-title="<%= $p->name->text %>" title="">
-                        <input type="radio" name="plan" id="<%= $p->plan_code->text %>" value="<%= $p->plan_code->text %>" data-amount="<%= $p->unit_amount_in_cents->CAD->text %>" data-code="<%= $p->plan_code->text %>" data-plan="<%= $p->name->text %>"> $<%= $p->unit_amount_in_cents->CAD->text / 100 %>/mo
-                    </label>
+                <div class="chooseown" ">
+                    <p><b>Monthly</b> level:</p>
+                    <div class="btn-group" data-toggle="buttons">
+                        % for my $p ( @$plans ) {
+                        <label rel="popover" class="<%= $p->plan_code->text %> btn btn-primary btn-lg <%= $p->plan_code->text eq "builder-20" ? "active" : "" %> " data-trigger="hover" data-container="body" data-placement="top" data-content="<%= $p->description->text %>" data-original-title="<%= $p->name->text %>" title="">
+                            <input type="radio" name="plan" id="<%= $p->plan_code->text %>" value="<%= $p->plan_code->text %>" data-amount="<%= $p->unit_amount_in_cents->CAD->text %>" data-code="<%= $p->plan_code->text %>" data-plan="<%= $p->name->text %>"> $<%= $p->unit_amount_in_cents->CAD->text / 100 %>/mo
+                        </label>
+                        % }
+                    </div>
 
-                    % }
-                    
+                    <div id="other-amount-label"><label for="other-amount">Or, enter your own amount:</label></div>
 
-                </div>
-                
-                <div id="other-amount-label"><label for="other-amount">Or, enter your own amount:</label></div>
-                
-                <div class="input-group">
+                    <div class="input-group">
                         <span class="input-group-addon">$</span>
                         <input type="text" class="form-control" id="other-amount" name="amount" placeholder="Enter a round number, e.g., 25">
                         <span class="input-group-addon">.00</span>
                     </div>
-                
-                            <br>                
-                 </div>  
+
+                    <br>
+                </div>
                 <label rel="popover" class="btn btn-primary btn-lg next">PROCEED TO PAYMENT OPTIONS ⇨</label>
-                
-                            <br>
-                
-                
-                
+
+                <br>
+
                 <div class="options-payment" id="monthlypayment"  style="display:none;">
-                    <br style="clear:both;" /> 
+                    <br style="clear:both;" />
                     <p>Choose your <b>payment method:</b></p>
-                    <a class="btn btn-primary" role="button" data-payment="credit" href="">Credit Card</a> <a class="btn btn-primary" role="button" data-payment="paypal" href="">Paypal</a> <a class="btn btn-primary" role="button" data-payment="bank" href="">Bank</a>
+                    <a class="btn btn-primary" role="button" data-payment="credit" href="">Credit Card</a>
+                    <a class="btn btn-primary" role="button" data-payment="paypal" href="">Paypal</a>
+                    <a class="btn btn-primary" role="button" data-payment="bank" href="">Bank</a>
                 </div>
 
-             
-                    <br style="clear:both;" /> 
-                   <!-- <p class="help-block">If you are already a recurring contributor  and would like to increase your contribution, please log in to your account at <a href="https://account.thetyee.ca">account.thetyee.ca</a> to manage your level.  Or give us a shout at 604-689-7489 or <a  href="mailto:builders@thetyee.ca" target="_blank">builders@thetyee.ca</a>.
-                    </p>    -->       
+<br style="clear:both;" />
+                <p class="help-block">
+                    If you are already a recurring contributor  and would like to increase your contribution, please log in to your account at <a href="https://account.th
+etyee.ca">account.thetyee.ca</a> to manage your level.  Or give us a shout at 604-689-7489 or <a  href="mailto:builders@thetyee.ca" target="_blank">builders@thetyee.ca</a> to change your contribution — or discuss other ways you can support The Tyee's journalism.
 
-                </div>
-     
+
+
+            </div>
             <!--/Monthly-->
-            
-                        <div class="tab-pane <%= $self->param( 'def' ) eq 'ann' ? 'active' : '' %>" id="form-annual">
-       
 
-<div class="chooseown" ">
-                <p><b>Annual</b> level:</p>
-                <div class="btn-group" data-toggle="buttons">
-                    % for my $p ( @$annual_plans ) {
-                    <label rel="popover" class="<%= $p->plan_code->text %> btn btn-primary btn-lg <%= $p->plan_code->text eq "annual-bxilder-240" ? "active" : "" %> " data-trigger="hover" data-container="body" data-placement="top" data-content="<%= $p->description->text %>" data-original-title="<%= $p->name->text %>" title="">
-                        <input type="radio" name="plan" id="<%= $p->plan_code->text %>" value="<%= $p->plan_code->text %>" data-amount="<%= $p->unit_amount_in_cents->CAD->text %>" data-code="<%= $p->plan_code->text %>" data-plan="<%= $p->name->text %>"> $<%= $p->unit_amount_in_cents->CAD->text / 100 %>/yr
-                    </label>
+            <div class="tab-pane <%= $self->param( 'def' ) eq 'ann' ? 'active' : '' %>" id="form-annual">
 
-                    % }
-                    
+                <div class="chooseown" ">
+                    <p><b>Annual</b> level:</p>
+                    <div class="btn-group" data-toggle="buttons">
+                        % for my $p ( @$annual_plans ) {
+                        <label rel="popover" class="<%= $p->plan_code->text %> btn btn-primary btn-lg <%= $p->plan_code->text eq "annual-bxilder-240" ? "active" : "" %> " data-trigger="hover" data-container="body" data-placement="top" data-content="<%= $p->description->text %>" data-original-title="<%= $p->name->text %>" title="">
+                            <input type="radio" name="plan" id="<%= $p->plan_code->text %>" value="<%= $p->plan_code->text %>" data-amount="<%= $p->unit_amount_in_cents->CAD->text %>" data-code="<%= $p->plan_code->text %>" data-plan="<%= $p->name->text %>"> $<%= $p->unit_amount_in_cents->CAD->text / 100 %>/yr
+                        </label>
+                        % }
+                    </div>
 
-                </div>
-                
-                <div id="other-amount-label"><label for="other-amount">Or, enter your own amount:</label></div>
-                
-                <div class="input-group">
+                    <div id="other-amount-label"><label for="other-amount">Or, enter your own amount:</label></div>
+
+                    <div class="input-group">
                         <span class="input-group-addon">$</span>
                         <input type="text" class="form-control" id="other-amount" name="amount" placeholder="Enter a round number, e.g., 25">
                         <span class="input-group-addon">.00</span>
                     </div>
-                
-                            <br>                
-                 </div>  
+
+                    <br>
+                </div>
                 <label rel="popover" class="btn btn-primary btn-lg next">PROCEED TO  PAYMENT OPTIONS ⇨</label>
-                
-                            <br>
-                
-                
-                
+
+                <br>
+
                 <div class="options-payment" id="monthlypayment"  style="display:none;">
-                    <br style="clear:both;" /> 
+                    <br style="clear:both;" />
                     <p>Choose your <b>payment method:</b></p>
-                    <a class="btn btn-primary" role="button" data-payment="credit" href="">Credit Card</a> <a class="btn btn-primary" role="button" data-payment="paypal" href="">Paypal</a> <a class="btn btn-primary" role="button" data-payment="bank" href="">Bank</a>
+                    <a class="btn btn-primary" role="button" data-payment="credit" href="">Credit Card</a>
+                    <a class="btn btn-primary" role="button" data-payment="paypal" href="">Paypal</a>
+                    <a class="btn btn-primary" role="button" data-payment="bank" href="">Bank</a>
                 </div>
 
-             
-                    <br style="clear:both;" /> 
-                    <p class="help-block">
-If you are already a recurring contributor  and would like to increase your contribution, please log in to your account at <a href="https://account.thetyee.ca"
->account.thetyee.ca</a> to manage your level.  Or give us a shout at 604-689-7489 or <a  href="mailto:builders@thetyee.ca" target="_blank">builders@thetyee.ca</a>.
-                    </p>           
+                <br style="clear:both;" />
+                <p class="help-block">
+                    If you are already a recurring contributor  and would like to increase your contribution, please log in to your account at <a href="https://account.thetyee.ca">account.thetyee.ca</a> to manage your level.  Or give us a shout at 604-689-7489 or <a  href="mailto:builders@thetyee.ca" target="_blank">builders@thetyee.ca</a>.
+                </p>
+            </div>
 
-                </div>
-     
-<!--/annual-->
+            <!--/annual-->
             <div class="tab-pane" id="form-onetime">
                 <div class="form-group">
                     <div class="btn-group choose-onetime" data-toggle="buttons">
@@ -113,8 +102,7 @@ If you are already a recurring contributor  and would like to increase your cont
                         <label rel="popover" class="btn onetime-<%= $p->{'amount'} %> btn-primary btn-lg" data-trigger="hover" data-container="body" data-placement="top" data-content="<%= $p->{'text'} %>" data-original-title="$<%= $p->{'amount'} %> one-time gift" title="$<%= $p->{'amount'} %> one-time gift">
                             <input type="radio" name="amount" id="<%= $p->{'amount'}  %>" value="<%= $p->{'amount'} %>"> $<%= $p->{'amount'} %>
                         </label>
-
-                        % } 
+                        % }
                     </div>
                     <div id="other-amount-label"><label for="other-amount">Or, enter your own amount:</label></div>
                     <div class="input-group">
@@ -122,26 +110,23 @@ If you are already a recurring contributor  and would like to increase your cont
                         <input type="text" class="form-control" id="other-amount" name="amount" placeholder="Enter a round number, e.g., 25">
                         <span class="input-group-addon">.00</span>
                     </div>
-                    
-                                    <label rel="popover" class="btn btn-primary btn-lg next">PROCEED TO PAYMENT OPTIONS ⇨</label>
-                
-                            <br>
+
+                    <label rel="popover" class="btn btn-primary btn-lg next">PROCEED TO PAYMENT OPTIONS ⇨</label>
+
+                    <br>
                     <p class="help-block">Or, consider becoming a <a href="/" id="link-tab-monthly">sustaining monthly supporter</a> at any amount. Monthly contributions help us plan ahead and support staff positions.</p>
 
-
-
-
                     <div class="options-payment" style="display:none;">
-                        <br style="clear:both;" /> 
+                        <br style="clear:both;" />
                         <p>Choose your <b>payment method:</b></p>
-                        <a class="btn btn-primary" role="button" data-payment="credit" href="">Credit Card</a> <a class="btn btn-primary" role="button" data-payment="paypal" href="">Paypal</a> 
+                        <a class="btn btn-primary" role="button" data-payment="credit" href="">Credit Card</a>
+                        <a class="btn btn-primary" role="button" data-payment="paypal" href="">Paypal</a>
                     </div>
-
-
                 </div>
             </div>
+
             <div class="tab-pane" id="form-offline">
-                <p>Don't trust the Internet? Can't stand credit cards? Does your organization (or you?) want to make a large contribution or one that matches reader contributions?</p> 
+                <p>Don't trust the Internet? Can't stand credit cards? Does your organization (or you?) want to make a large contribution or one that matches reader contributions?</p>
                 <p><strong>How to support The Tyee without ever touching your keyboard.</strong></p>
                 <div style="margin-left:20px;">
                     <p><b>Option 1: Register with your credit card by phone:</b></p>
@@ -155,41 +140,36 @@ If you are already a recurring contributor  and would like to increase your cont
                         Vancouver, BC V6C 3T7
                         <br />
                     </p>
-                    <p>Please include with your cheque your full name, return address, phone number and email, plus indicate whether you would like your contribution to remain anonymous. If 
-                        you'd like to contribute monthly from your bank account, print off <a href="http://static.thetyee.ca/support/v1.5.3/ui/img/TyeeBuildersBankWithdrawalForm.pdf">this form</a> and follow 
+                    <p>Please include with your cheque your full name, return address, phone number and email, plus indicate whether you would like your contribution to remain anonymous. If
+                        you'd like to contribute monthly from your bank account, print off <a href="http://static.thetyee.ca/support/v1.5.3/ui/img/TyeeBuildersBankWithdrawalForm.pdf">this form</a> and follow
                         the instructions.</p>
                 </div>
                 <p><strong>How to set-up larger and matching contributions:</strong></p>
                 <div style="margin-left:20px;">
-                    <p>Would your organization or business be interested in making a larger contribution? You can do so by cheque as outlined above, or if you're interested in offering a matching contribution, give us a shout. Matching contributions can really help ramp up a campaign, and your organization gets great exposure as a supporter of independent journalism in the process.  If this is you, contact us by <a href="mailto:builders@thetyee.ca">email</a> or phone (604-689-7409).<p>
-                        </div>
-                    </div>
+                    <p>Would your organization or business be interested in making a larger contribution? You can do so by cheque as outlined above, or if you're interested in offering a matching contribution, give us a shout. Matching contributions can really help ramp up a campaign, and your organization gets great exposure as a supporter of independent journalism in the process.  If this is you, contact us by <a href="mailto:builders@thetyee.ca">email</a> or phone (604-689-7409).<p>
                 </div>
             </div>
+        </div>
+    </div>
 
-            <div id="errors" style="display:none;">
-                <p class="alert alert-danger"><i class="glyphicon glyphicon-exclamation-sign">&nbsp;</i><span class="message"></span></p>
-            </div>
+    <div id="errors" style="display:none;">
+        <p class="alert alert-danger"><i class="glyphicon glyphicon-exclamation-sign">&nbsp;</i><span class="message"></span></p>
+    </div>
 
-            <div class="payment-fields">
-                <div id="form-credit" class="form" style="display:none;">
-                    %= include 'includes/form-full-credit'
-                </div>
-                <div id="form-paypal" class="form" style="display:none;">
-                    %= include 'includes/form-full-paypal'
-                </div>
-                <div id="form-bank" class="form" style="display:none;">
-                    %= include 'includes/form-full-bank'
-                </div>
-            </div>
+    <div class="payment-fields">
+        <div id="form-credit" class="form" style="display:none;">
+            %= include 'includes/form-full-credit'
+        </div>
+        <div id="form-paypal" class="form" style="display:none;">
+            %= include 'includes/form-full-paypal'
+        </div>
+        <div id="form-bank" class="form" style="display:none;">
+            %= include 'includes/form-full-bank'
+        </div>
+    </div>
 
 % content_for javascript => begin
 %= javascript begin
-
-
-$(".nav-tabs li").click(function(e){
-// $(this).children("a").click();
-})
 
 // jQuery function for scrolling to elements
 $.fn.scrollView = function () {
@@ -198,9 +178,9 @@ $.fn.scrollView = function () {
             scrollTop: $(this).offset().top
         }, 1000);
     });
-}
+};
 
-// Eanble the description popovers
+// Enable the description popovers
 $('[rel="popover"]').popover();
 
 // Switch to monthly tab from one-time
@@ -208,11 +188,6 @@ $('a#link-tab-monthly').on('click', function( event ) {
     event.preventDefault();
     $('#monthly a:last').tab('show');
 });
-
-//$(".nav-tabs li").on('click', function(event){
-//$(this).children("a").click();
-//});
-
 
 // Switch to one-time tab from monthly
 $('a#link-tab-onetime').on('click', function( event ) {
@@ -228,31 +203,23 @@ $('ul.nav-tabs').on('click', function( event ) {
     $('#errors').hide();
 });
 
-// Kludge to udpate a payment confirmation panel
+// Kludge to update a payment confirmation panel
 var paymentString = '';
 function updateConfirmPayment(type) {
     var amount = $('input.amount-in-cents').val();
-  
     amount = amount / 100; // To dollars
-    amount = '$' + amount  // $ sign
- 
-                     if ( $("#annual").hasClass("active") ) {
-                    paymentString = amount + ' / year';
-                     } else if  ( $("#monthly").hasClass("active") ) {
-                 paymentString = amount + ' / month';
-                    
-        } else {
+    amount = '$' + amount;  // $ sign
+
+    if ( $("#annual").hasClass("active") ) {
+        paymentString = amount + ' / year';
+    } else if  ( $("#monthly").hasClass("active") ) {
+        paymentString = amount + ' / month';
+    } else {
         paymentString = amount + ' one time';
     }
-    
-    
+
     $('.confirm-payment span').text(paymentString);
-
 }
-
-
-
-    
 
 // Show the payment type option buttons
 function showMonthlyPaymentOptions () {
@@ -260,249 +227,209 @@ function showMonthlyPaymentOptions () {
     $('.next').hide();
     $('#errors span.message').text('');
     $('#errors').hide();
-            $('html,body').animate({scrollTop:$("#monthlypayment").offset().top}, 500);
-
-//    updateConfirmPayment();
-// disable for now because can't be known until payment type chosen -- called later
+    $('html,body').animate({scrollTop:$("#monthlypayment").offset().top}, 500);
 }
 
-
 // Capture the amount, set input values, show the payment types
-$( "#form-monthly  label.btn.chooseown, #form-annual label.btn.chooseown" ).on( "click touchstart", function( event ) {
+$("#form-monthly  label.btn.chooseown, #form-annual label.btn.chooseown").on("click touchstart", function( event ) {
    $("div.chooseown").show();
 });
 
-
 // hide choose your own if you choose the default
-$( "#form-monthly label.btn.default, #form-annual label.btn.default" ).on( "click touchstart", function( event ) {
-$("div.chooseown").hide();
+$("#form-monthly label.btn.default, #form-annual label.btn.default").on("click touchstart", function( event ) {
+    $("div.chooseown").hide();
 });
 
-// Capture the amount, set input values, show the payment types
-$( "#form-monthly .chooseown label.btn, #form-monthly label.btn.default" ).on( "click touchstart", function( event ) {
-$("#form-monthly #other-amount").val(""); //clear custom amount
+// Capture the amount, set input values, show the payment types (monthly)
+$("#form-monthly .chooseown label.btn, #form-monthly label.btn.default").on("click touchstart", function( event ) {
+    $("#form-monthly #other-amount").val(""); //clear custom amount
 
     var selectedinput = $('input', this)[0];
     var amountInCents = selectedinput.dataset.amount;
     var planName = selectedinput.dataset.plan;
     var planCode = selectedinput.dataset.code;
+
     $('input.amount-in-cents').each(function(){
         $(this).val(amountInCents);
-    })
-    
-    
-    $('input.plan-name').each(function(){
-       $(this).val(planName); 
+    });
 
+    $('input.plan-name').each(function(){
+       $(this).val(planName);
     });
     $('input.plan-code').each(function(){
-    $(this).val(planCode);
+        $(this).val(planCode);
     });
-    
-     updateConfirmPayment("monthly");
-    
-    
+
+    updateConfirmPayment("monthly");
 });
 
-$( "#form-annual .chooseown label.btn, #form-annual label.btn.default" ).on( "click touchstart", function( event ) {
-$("#form-annual #other-amount").val(""); //clear custom amount
+// Capture the amount, set input values, show the payment types (annual)
+$("#form-annual .chooseown label.btn, #form-annual label.btn.default").on("click touchstart", function( event ) {
+    $("#form-annual #other-amount").val(""); //clear custom amount
     var selectedinput = $('input', this)[0];
     var amountInCents = selectedinput.dataset.amount;
     var planName = selectedinput.dataset.plan;
     var planCode = selectedinput.dataset.code;
+
     $('input.amount-in-cents').each(function(){
         $(this).val(amountInCents);
-    })
-    
-    
-    $('input.plan-name').each(function(){
-       $(this).val(planName); 
+    });
 
+    $('input.plan-name').each(function(){
+       $(this).val(planName);
     });
     $('input.plan-code').each(function(){
-    $(this).val(planCode);
+        $(this).val(planCode);
     });
-    
-     updateConfirmPayment("annual");
-    
+
+    updateConfirmPayment("annual");
 });
 
+// Round up by $1 to cover transaction fees
 $("input.add_fees").click(function(){
-var freq;
-  if ( $("#monthly").hasClass("active") ) {
-  freq = "monthly";
+    var freq;
+    if ( $("#monthly").hasClass("active") ) {
+        freq = "monthly";
+    } else if ( $("#annual").hasClass("active") ) {
+        freq = "annual";
+    }
 
-        } else if ( $("#annual").hasClass("active") ) {        
-  freq = "annual";
-}
+    var amount = parseInt( $('input.amount-in-cents').val());
+    if ( $('input.add_fees').is(':checked')) {
+        $('input.amount-in-cents').val( amount + 100 );
+    } else {
+        $('input.amount-in-cents').val( amount - 100 );
+    }
 
-// if the round up is selected, update the overall amount then push it back to the hidden field tracking it
-  
-  var amount = parseInt( $('input.amount-in-cents').val());
-   if ( $('input.add_fees').is(':checked')) {
-   $('input.amount-in-cents').val( amount + 100) ;   
-   } else {
-      $('input.amount-in-cents').val( amount - 100) ;   
-   }
-
-       updateConfirmPayment(freq);
-
-
-
-
-
-
+    updateConfirmPayment(freq);
 });
 
+// "Proceed to payment options" button
 $(".btn.next").click(function(){
-        if ( $("#monthly").hasClass("active") ) {
-                    var selectedinput = $('input#other-amount');
-                    var amount = selectedinput.val();
-                            if (amount >= .01) {
-                                            var amountInCents = amount * 100;
-                                            $('input.amount-in-cents').val(amountInCents);
-                                            showMonthlyPaymentOptions();
-                                       
-                            } else {
-                                        $("label.btn").each(function( index ) {
-                                                if ($(this).hasClass("active")) {
-                                                    showMonthlyPaymentOptions();
-                                                }
-                                        
-                                       });
-                           }
-           
-        } else if ( $("#annual").hasClass("active") ) {        
-                    var selectedinput = $('#form-annual input#other-amount');
-                    var amount = selectedinput.val();
-                            if (amount >= .01) {
-                                            var amountInCents = amount * 100;
-                                            $('input.amount-in-cents').val(amountInCents);
-                                            showMonthlyPaymentOptions();
-                                       
-                            } else {
-                                        $("label.btn").each(function( index ) {
-                                                if ($(this).hasClass("active")) {
-                                                    showMonthlyPaymentOptions();
-                                                }
-                                        
-                                       });
-                           }
-           
-        
-        
-        
-       } else {
-        
-        
-         showMonthlyPaymentOptions();
+    if ( $("#monthly").hasClass("active") ) {
+        var selectedinput = $('input#other-amount');
+        var amount = selectedinput.val();
+        if (amount >= .01) {
+            var amountInCents = amount * 100;
+            $('input.amount-in-cents').val(amountInCents);
+            showMonthlyPaymentOptions();
+        } else {
+            $("label.btn").each(function( index ) {
+                if ($(this).hasClass("active")) {
+                    showMonthlyPaymentOptions();
+                }
+            });
         }
-   
+    } else if ( $("#annual").hasClass("active") ) {
+        var selectedinputA = $('#form-annual input#other-amount');
+        var amountA = selectedinputA.val();
+        if (amountA >= .01) {
+            var amountInCentsA = amountA * 100;
+            $('input.amount-in-cents').val(amountInCentsA);
+            showMonthlyPaymentOptions();
+        } else {
+            $("label.btn").each(function( index ) {
+                if ($(this).hasClass("active")) {
+                    showMonthlyPaymentOptions();
+                }
+            });
+        }
+    } else {
+        showMonthlyPaymentOptions();
+    }
 });
 
-// Capture the amount, set input values, show the payment types
-$( "#form-onetime .choose-onetime label.btn" ).on( "click touchstart", function( event ) {
-// console.log("click onetime");
-$("#form-onetime #other-amount").val(""); //clear custom amount
+// Capture the amount, set input values, show the payment types for one-time presets
+$("#form-onetime .choose-onetime label.btn").on("click touchstart", function( event ) {
+    $("#form-onetime #other-amount").val(""); //clear custom amount
 
     var selectedinput = $('input', this)[0];
     var amountInCents = $(selectedinput).val() * 100;
+
     $('input.amount-in-cents').val(amountInCents);
     $('input.plan-name').val('');
     $('input.plan-code').val('');
-   //  showMonthlyPaymentOptions();
+
     updateConfirmPayment("onetime");
 });
 
 var previousbutton;
 
 $('input#other-amount').focus(function(event) {
-previousbutton = $(".btn-group .btn.active");
-   $(previousbutton).removeClass("active");
+    previousbutton = $(".btn-group .btn.active");
+    $(previousbutton).removeClass("active");
 });
 
 // User enters their own amount for a one-time payment
-$('input#other-amount').on( "blur", function( event ) {
-   
+$('input#other-amount').on("blur", function( event ) {
     var selectedinput = $(event.currentTarget);
     var amount = selectedinput.val();
     if (amount >= .01) {
         var amountInCents = amount * 100;
         $('input.amount-in-cents').val(amountInCents);
-       // showMonthlyPaymentOptions();
         updateConfirmPayment("onetime");
         $(previousbutton).removeClass("active");
     } else {
-    $(previousbutton).addClass("active");
-    $(".btn.active input").select();
-    
+        $(previousbutton).addClass("active");
+        $(".btn.active input").select();
     }
-
 });
 
 // for monthly payment instance of "other" only, populate hidden fields for plan name $amt
-$('#form-monthly input#other-amount').on( "blur", function( event ) {
+$('#form-monthly input#other-amount').on("blur", function( event ) {
     var selectedinput = $(event.currentTarget);
-        var amount = selectedinput.val();
+    var amount = selectedinput.val();
     if (amount >= .01) {
         var amountInCents = amount * 100;
         $('input.amount-in-cents').val(amountInCents);
-       
-        
-    var planName = "custom_amount";
-    var planCode = "custom_amount";
-    $('input.amount-in-cents').each(function(){
-        $(this).val(amountInCents);
-    })
-    
-      $('input.unit-amount-in-cents').val(amountInCents);
-    $('input.unit-amount-in-cents').each(function(){
-        $(this).val(amountInCents);
-    })
-    
-    $('input.plan-name').each(function(){
-       $(this).val(planName); 
 
-    });
-    $('input.plan-code').each(function(){
-    $(this).val(planCode);
-    });
+        var planName = "custom_amount";
+        var planCode = "custom_amount";
+
+        $('input.amount-in-cents').each(function(){
+            $(this).val(amountInCents);
+        });
+
+        $('input.unit-amount-in-cents').each(function(){
+            $(this).val(amountInCents);
+        });
+
+        $('input.plan-name').each(function(){
+           $(this).val(planName);
+        });
+        $('input.plan-code').each(function(){
+            $(this).val(planCode);
+        });
     }
-
 });
-
 
 // same as above but for the annual version
-$('#form-annual input#other-amount').on( "blur", function( event ) {
+$('#form-annual input#other-amount').on("blur", function( event ) {
     var selectedinput = $(event.currentTarget);
-        var amount = selectedinput.val();
+    var amount = selectedinput.val();
     if (amount >= .01) {
         var amountInCents = amount * 100;
         $('input.amount-in-cents').val(amountInCents);
-       
-        
-    var planName = "custom_annual";
-    var planCode = "custom_annual";
-    $('input.amount-in-cents').each(function(){
-        $(this).val(amountInCents);
-    })
-    
-      $('input.unit-amount-in-cents').val(amountInCents);
-    $('input.unit-amount-in-cents').each(function(){
-        $(this).val(amountInCents);
-    })
-    
-    $('input.plan-name').each(function(){
-       $(this).val(planName); 
 
-    });
-    $('input.plan-code').each(function(){
-    $(this).val(planCode);
-    });
+        var planName = "custom_annual";
+        var planCode = "custom_annual";
+
+        $('input.amount-in-cents').each(function(){
+            $(this).val(amountInCents);
+        });
+
+        $('input.unit-amount-in-cents').each(function(){
+            $(this).val(amountInCents);
+        });
+
+        $('input.plan-name').each(function(){
+           $(this).val(planName);
+        });
+        $('input.plan-code').each(function(){
+            $(this).val(planCode);
+        });
     }
-
 });
-
 
 // Show the correct fields depending on the payment type
 function showPaymentForm(type) {
@@ -510,204 +437,352 @@ function showPaymentForm(type) {
     var el = $('#form-' + type);
     el.show();
     if (type === 'bank') { // make these fields required too
-            $('.fields-bank input').prop('required',true);
-        } else {
-            $('.fields-bank input').prop('required',false);
+        $('.fields-bank input').prop('required',true);
+    } else {
+        $('.fields-bank input').prop('required',false);
     }
     updateConfirmPayment(type);
-};
+}
 
 // Switch from drop down to input on other countries
-$('#country').on('change', function(event) { 
+$('#country').on('change', function(event) {
     var el = event.currentTarget;
     var country = el.value;
     if ( country !== 'CA' ) {
-            $('#state').hide();
-            $('#state').attr('name', '');
-            $('#state').attr('data-recurly', '');
-            $('#state-alt').show();
-            $('#state-alt').attr('name', 'state');
-            $('#state-alt').attr('data-recurly', 'state');
-
-        } else if ( country === 'CA' ) {
-            $('#state-alt').hide();
-            $('#state-alt').attr('name', '');
-            $('#state-alt').attr('data-recurly', '');
-            $('#state').show();
-            $('#state').attr('name', 'state');
-            $('#state').attr('data-recurly', 'state');
-    };
+        $('#state').hide();
+        $('#state').attr('name', '');
+        $('#state').attr('data-recurly', '');
+        $('#state-alt').show();
+        $('#state-alt').attr('name', 'state');
+        $('#state-alt').attr('data-recurly', 'state');
+    } else if ( country === 'CA' ) {
+        $('#state-alt').hide();
+        $('#state-alt').attr('name', '');
+        $('#state-alt').attr('data-recurly', '');
+        $('#state').show();
+        $('#state').attr('name', 'state');
+        $('#state').attr('data-recurly', 'state');
+    }
 });
 
-
-
-// Capture the payment type
-$('.options-payment a').on( "click touchstart", function( event ) {
+// Capture the payment type (credit / paypal / bank)
+$('.options-payment a').on("click touchstart", function( event ) {
     event.preventDefault();
-     updateConfirmPayment();
+    updateConfirmPayment();
     $('#errors span.message').text('');
     $('#errors').hide();
     var el = event.currentTarget;
     var paymentType = el.dataset.payment;
     $('.payment-type').val(paymentType);
     showPaymentForm(paymentType);
-    });
-
-
-// A simple Recurly credit card error handling function to expose errors to the customer
-function error (err) {
-    console.log(err);
-    $('#errors span.message').text('The following fields appear to be invalid: ' + err.fields.join(', '));
-    $("#errors").show();
-    $('button').prop('disabled', false);
-    $.each(err.fields, function (i, field) {
-        $('[data-recurly=' + field + ']').addClass('has-error');
-        $('[data-recurly=' + field + ']').parent().addClass('has-error');
-        $('[data-label=' + field + ']').addClass('has-error');
-    });
-    $('#errors').scrollView();
-}
-// A simple Paypal error handling function to expose errors to the customer
-function errorPaypal (err) {
-    console && console.error(err);
-    $("#errors").show();
-    $('#errors span.message').text('There was a problem intializing the PayPal transaction. Please try again in a few moments.');
-    $('#errors').scrollView();
-    $('button').prop('disabled', false);
-}
-
-recurly.configure({
-    publicKey: '<%= $config->{'pkey'} %>',
-    style: {
-        all: {
-        },
-        number: {
-            placeholder: '4111 1111 1111 1111'
-        },
-        month: {
-            placeholder: 'Month (mm)'
-        },
-        year: {
-            placeholder: 'Year (yy)'
-        },
-        cvv: {
-            fontSize: '12px',
-            placeholder: {
-                content: 'Security Code'
-            }
-        }
-    }
 });
 
-// When a customer hits their 'enter' key while in a field
-//recurly.on('form.recurly field:submit', function (event) {
- //   $('form.recurly').submit();
-//});
-
-// On form submit, we stop submission to go get the token
-// and figure out what type of payment needs to be processed
-$('#form-credit form').on('submit', function (event) {
-    // Prevent the form from submitting while we retrieve the token from Recurly
-    event.preventDefault();
-
-    // Reset the errors display
-    $('#errors span.message').text('');
-    $('label.control-label').removeClass('has-error');
-    $('input').removeClass('has-error');
-
-    // Disable the submit button
-    $('button').prop('disabled', true);
-
-    var form = this;
-    
-    $(this).input
-    // Now we call recurly.token with the form. It goes to Recurly servers
-    // to tokenize the credit card information, then injects the token into the
-    // data-recurly="token" field above
-    recurly.token(form, function (err, token) {
-
-        // send any errors to the error function below
-        if (err) error(err);
-
-        // Otherwise we continue with the form submission
-        else form.submit();
-    });
-});
-
-$('#form-paypal form').on('submit', function (event) {
-    event.preventDefault();
-    // Reset the errors display
-    $('#errors span.message').text('');
-    $('label.control-label').removeClass('has-error');
-    $('input').removeClass('has-error');
-    var paypalDescription = 'A ' + paymentString + ' contribution to The Tyee.'
-    // Disable the submit button
-    $('button').prop('disabled', true);
-    var form = this;
-    var opts = { description: paypalDescription };
-      recurly.paypal(opts, function (err, token) {
-        if (err) {
-            // let's handle any errors using the function below
-            errorPaypal(err);
-        } else {
-            // set the hidden field above to the token we get back from Recurly
-            $('.recurly-token').val(token.id);
-            // Now we submit the form!
-            form.submit();
-        }
-      });
-});
-
-
+// Default selection logic
 function setDefault() {
-        if ( $("#onetime").hasClass("active") ) {
-            console.log("onetime active");
+    if ( $("#onetime").hasClass("active") ) {
+        $(".onetime-100").click();
 
-                  $(".onetime-100").click();
+        $('input.amount-in-cents').each(function(){
+            $(this).val("10000");
+        });
 
-$('input.amount-in-cents').each(function(){
-        $(this).val("10000");
-    })
-    
-    $('input.plan-name').each(function(){
-       $(this).val(""); 
+        $('input.plan-name').each(function(){
+            $(this).val("");
+        });
+        $('input.plan-code').each(function(){
+            $(this).val("");
+        });
 
-    });
-    $('input.plan-code').each(function(){
-         $(this).val("");
-    });
-
-            
-        } else if ( $("#form-monthly").hasClass("active") ) {
-    console.log("monthly active");
-                  $(".builder-20.btn").click();
-
-        } else if ( $("#form-annual").hasClass("active") ) {
-    console.log("annual active");
+    } else if ( $("#form-monthly").hasClass("active") ) {
+        $(".builder-20.btn").click();
+    } else if ( $("#form-annual").hasClass("active") ) {
         $(".annual-bxilder-240.btn").click();
-};
-
- };
+    }
+}
 
 $(".options-payment .btn").click(function(e){
- $(".options-payment .btn").removeClass("active");
- $(this).addClass("active");
-
-})
+    $(".options-payment .btn").removeClass("active");
+    $(this).addClass("active");
+});
 
 $(".nav.nav-tabs a").click(function(e){
     $('.next').show();
-setTimeout(function(){
-setDefault();
-}, 80);
+    setTimeout(function(){
+        setDefault();
+    }, 80);
 });
+
+// --------- STRIPE INTEGRATION (card only) ---------
 
 $(document).ready(function(){
-setDefault();
+    setDefault();
 
+    // Only init Stripe if we have the key and Stripe.js
+    if (!window.STRIPE_PUBLISHABLE_KEY || typeof Stripe === 'undefined') {
+        console.warn('Stripe publishable key not present or Stripe.js not loaded.');
+        return;
+    }
+
+    var stripe = Stripe(window.STRIPE_PUBLISHABLE_KEY);
+    var elements = stripe.elements();
+    var card = elements.create('card', { hidePostalCode: true });
+    card.mount('#card-element');
+
+    card.on('change', function (event) {
+        var displayError = document.getElementById('card-errors');
+        if (event.error) {
+            displayError.textContent = event.error.message;
+        } else {
+            displayError.textContent = '';
+        }
+    });
+
+    var form = document.getElementById('form-full-credit');
+    if (!form) {
+        console.warn("form-full-credit not found");
+        return;
+    }
+
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        var submitButton = form.querySelector('button[type="submit"]');
+        if (submitButton) submitButton.disabled = true;
+
+        var cardErrorSpan = document.getElementById('card-errors');
+        cardErrorSpan.textContent = '';
+        $('#errors span.message').text('');
+        $('#errors').hide();
+
+        var amountInCentsInput = form.querySelector('.amount-in-cents');
+        var amountInCents = amountInCentsInput && amountInCentsInput.value
+            ? parseInt(amountInCentsInput.value, 10)
+            : 0;
+
+        if (!amountInCents || isNaN(amountInCents)) {
+            cardErrorSpan.textContent = 'Please select an amount.';
+            if (submitButton) submitButton.disabled = false;
+            return;
+        }
+
+        var planCodeInput = form.querySelector('.plan-code');
+        var planCode = planCodeInput && planCodeInput.value ? planCodeInput.value : '';
+
+        var paymentTypeInput = form.querySelector('.payment-type');
+        var paymentType = paymentTypeInput && paymentTypeInput.value ? paymentTypeInput.value : 'card';
+
+        var firstName = (form.querySelector('input[name="first-name"]') || {}).value || '';
+        var lastName  = (form.querySelector('input[name="last-name"]')  || {}).value || '';
+        var email     = (form.querySelector('input[name="email"]')      || {}).value || '';
+
+        function fail(errMsg) {
+            cardErrorSpan.textContent = errMsg || 'There was a problem processing your payment.';
+            if (submitButton) submitButton.disabled = false;
+            $('#errors span.message').text(errMsg || 'There was a problem processing your payment.');
+            $('#errors').show();
+            $('#errors').scrollView();
+        }
+
+        // If somehow user has "bank" as payment-type on this form, just submit normally
+        if (paymentType === 'bank') {
+            form.submit();
+            return;
+        }
+
+        // ONE-TIME: no plan-code => PaymentIntent
+        if (!planCode) {
+            fetch('/create-payment-intent', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                body: JSON.stringify({
+                    amount_in_cents: amountInCents,
+                    email: email
+                })
+            })
+            .then(function (response) { return response.json(); })
+            .then(function (data) {
+                if (!data || !data.clientSecret) {
+                    throw new Error(data && data.error ? data.error : 'Unable to create payment.');
+                }
+
+                return stripe.confirmCardPayment(data.clientSecret, {
+                    payment_method: {
+                        card: card,
+                        billing_details: {
+                            name: (firstName + ' ' + lastName).trim(),
+                            email: email || undefined
+                        }
+                    }
+                });
+            })
+            .then(function (result) {
+                if (result.error) {
+                    throw result.error;
+                }
+                if (result.paymentIntent && result.paymentIntent.status === 'succeeded') {
+                    var piInput = document.createElement('input');
+                    piInput.type = 'hidden';
+                    piInput.name = 'payment_intent_id';
+                    piInput.value = result.paymentIntent.id;
+                    form.appendChild(piInput);
+                    form.submit();
+                } else {
+                    throw new Error('Payment not completed.');
+                }
+            })
+            .catch(function (err) {
+                console.error(err);
+                fail(err.message);
+            });
+
+            return; // done for one-time
+        }
+
+        // RECURRING (monthly or annual): create SetupIntent, confirm, then submit with customer + pm
+        fetch('/create-setup-intent', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            body: JSON.stringify({
+                email: email,
+                name: (firstName + ' ' + lastName).trim()
+            })
+        })
+        .then(function (response) { return response.json(); })
+        .then(function (data) {
+            if (!data || !data.clientSecret || !data.customerId) {
+                throw new Error(data && data.error ? data.error : 'Unable to start subscription setup.');
+            }
+
+            return stripe.confirmCardSetup(data.clientSecret, {
+                payment_method: {
+                    card: card,
+                    billing_details: {
+                        name: (firstName + ' ' + lastName).trim(),
+                        email: email || undefined
+                    }
+                }
+            }).then(function (result) {
+                if (result.error) {
+                    throw result.error;
+                }
+                return {
+                    setupIntent: result.setupIntent,
+                    customerId: data.customerId
+                };
+            });
+        })
+        .then(function (payload) {
+            var setupIntent = payload.setupIntent;
+            var customerId  = payload.customerId;
+
+            if (!setupIntent || setupIntent.status !== 'succeeded') {
+                throw new Error('Could not confirm your card for subscription.');
+            }
+
+            var pmInput = document.createElement('input');
+            pmInput.type = 'hidden';
+            pmInput.name = 'stripe_payment_method_id';
+            pmInput.value = setupIntent.payment_method;
+            form.appendChild(pmInput);
+
+            var custInput = document.createElement('input');
+            custInput.type = 'hidden';
+            custInput.name = 'stripe_customer_id';
+            custInput.value = customerId;
+            form.appendChild(custInput);
+
+            form.submit();
+        })
+        .catch(function (err) {
+            console.error(err);
+            fail(err.message);
+        });
+    });
 });
 
+// --------- REURLY PAYPAL-ONLY WIRING ---------
 
+// A simple Paypal error handling function to expose errors to the customer
+function errorPaypal (err) {
+    console && console.error('Recurly PayPal error:', err);
+
+    var msg = 'There was a problem intializing the PayPal transaction. Please try again in a few moments.';
+
+    // Try to surface useful info for us (but keep user-friendly)
+    if (err) {
+        if (err.message) {
+            msg += ' (' + err.message + ')';
+        } else if (err.code) {
+            msg += ' (code: ' + err.code + ')';
+        }
+    }
+
+    $("#errors").show();
+    $('#errors span.message').text(msg);
+    $('#errors').scrollView();
+
+    // Re-enable buttons so user can try again
+    $('button').prop('disabled', false);
+
+    // Also send the error back to the server log for debugging
+    try {
+        $.ajax({
+            url: '/log_js_error',
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                source: 'recurly.paypal',
+                message: err && err.message ? err.message : null,
+                code: err && err.code ? err.code : null,
+                name: err && err.name ? err.name : null,
+                raw: err || null
+            })
+        });
+    } catch (e) {
+        // don’t let logging crash anything
+        console && console.error('Failed to send PayPal error to server:', e);
+    }
+}
+
+// Configure Recurly JUST so PayPal works; card is handled by Stripe now.
+if (window.recurly) {
+    recurly.configure({
+        publicKey: '<%= $config->{'pkey'} %>'
+    });
+
+    // Handle PayPal form submission
+    $('#form-paypal form').on('submit', function (event) {
+        event.preventDefault();
+
+        // Reset the errors display
+        $('#errors span.message').text('');
+        $('label.control-label').removeClass('has-error');
+        $('input').removeClass('has-error');
+
+        var paypalDescription = 'A ' + paymentString + ' contribution to The Tyee.';
+
+        // Disable the submit button
+        $('button').prop('disabled', true);
+
+        var form = this;
+        var opts = { description: paypalDescription };
+
+        recurly.paypal(opts, function (err, token) {
+            if (err) {
+                errorPaypal(err);
+            } else {
+                $('.recurly-token').val(token.id);
+                form.submit();
+            }
+        });
+    });
+}
 
 %   end
 % end

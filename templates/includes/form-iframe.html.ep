@@ -31,28 +31,24 @@
                 
                 <div class="input-group">
                         <span class="input-group-addon">$</span>
-                        <input type="text" class="form-control" id="other-amount" name="amount" placeholder="Enter a round number, e.g., 25">
+                        <input type="text" class="form-control" id="other-amount" name="amount" placeholder="OR enter your own ROUND  number, e.g., 25">
                         <span class="input-group-addon">.00</span>
                     </div>
                 
-                            <br>                
-                 </div>  
-                <label rel="popover" class="btn btn-primary btn-lg next">Choose payment options ⇨</label>
+                 </div>
+                <label rel="popover" class="btn btn-primary btn-lg next">PROCEED TO PAYMENT OPTIONS ⇨</label>
                 
-                            <br>
-                
+
                 
                 
                 <div class="options-payment" id="monthlypayment"  style="display:none;">
-                    <br style="clear:both;" /> 
                     <p>Choose your <b>payment method:</b></p>
                     <a class="btn btn-primary" role="button" data-payment="credit" href="">Credit Card</a> <a class="btn btn-primary" role="button" data-payment="paypal" href="">Paypal</a> <a class="btn btn-primary" role="button" data-payment="bank" href="">Bank</a>
                 </div>
 
              
-                    <br style="clear:both;" /> 
-                    <p class="help-block">If you are already a recurring contributor  and would like to increase your contribution, please log in to your account at <a href="https://account.thetyee.ca">account.thetyee.ca</a> to manage your level.  Or give us a shout at 604-689-7489 or <a  href="mailto:builders@thetyee.ca" target="_blank">builders@thetyee.ca</a> to change your contribution — or discuss other ways you can support The Tyee's journalism.
-                    </p>           
+                   <!-- <p class="help-block">If you are already a recurring contributor  and would like to increase your contribution, please log in to your account at <a href="https://account.thetyee.ca">account.thetyee.ca</a> to manage your level.  Or give us a shout at 604-689-7489 or <a  href="mailto:builders@thetyee.ca" target="_blank">builders@thetyee.ca</a>.
+                    </p>    -->       
 
                 </div>
      
@@ -84,7 +80,7 @@
                 
                             <br>                
                  </div>  
-                <label rel="popover" class="btn btn-primary btn-lg next">Choose payment options ⇨</label>
+                <label rel="popover" class="btn btn-primary btn-lg next">PROCEED TO  PAYMENT OPTIONS ⇨</label>
                 
                             <br>
                 
@@ -100,7 +96,7 @@
                     <br style="clear:both;" /> 
                     <p class="help-block">
 If you are already a recurring contributor  and would like to increase your contribution, please log in to your account at <a href="https://account.thetyee.ca"
->account.thetyee.ca</a> to manage your level.  Or give us a shout at 604-689-7489 or <a  href="mailto:builders@thetyee.ca" target="_blank">builders@thetyee.ca</a>.
+>account.thetyee.ca</a> to manage your level.  Or give us a shout at 604-689-7489 or <a  href="mailto:builders@thetyee.ca" target="_blank">builders@thetyee.ca</a>to change your contribution — or discuss other ways you can support The Tyee's journalism.
                     </p>           
 
                 </div>
@@ -108,7 +104,6 @@ If you are already a recurring contributor  and would like to increase your cont
 <!--/annual-->
             <div class="tab-pane" id="form-onetime">
                 <div class="form-group">
-                    <p>Select your <b>one-time</b> amount:</p>
                     <div class="btn-group choose-onetime" data-toggle="buttons">
                         % for my $p ( @$plans_onetime ) {
                         <label rel="popover" class="btn onetime-<%= $p->{'amount'} %> btn-primary btn-lg" data-trigger="hover" data-container="body" data-placement="top" data-content="<%= $p->{'text'} %>" data-original-title="$<%= $p->{'amount'} %> one-time gift" title="$<%= $p->{'amount'} %> one-time gift">
@@ -124,7 +119,7 @@ If you are already a recurring contributor  and would like to increase your cont
                         <span class="input-group-addon">.00</span>
                     </div>
                     
-                                    <label rel="popover" class="btn btn-primary btn-lg next">Choose payment options ⇨</label>
+                                    <label rel="popover" class="btn btn-primary btn-lg next">PROCEED TO PAYMENT OPTIONS ⇨</label>
                 
                             <br>
                     <p class="help-block">Or, consider becoming a <a href="/" id="link-tab-monthly">sustaining monthly supporter</a> at any amount. Monthly contributions help us plan ahead and support staff positions.</p>
@@ -174,7 +169,7 @@ If you are already a recurring contributor  and would like to increase your cont
 
             <div class="payment-fields">
                 <div id="form-credit" class="form" style="display:none;">
-                    %= include 'includes/form-full-credit'
+                    %= include 'includes/form-full-credit-iframe'
                 </div>
                 <div id="form-paypal" class="form" style="display:none;">
                     %= include 'includes/form-full-paypal'
@@ -189,7 +184,7 @@ If you are already a recurring contributor  and would like to increase your cont
 
 
 $(".nav-tabs li").click(function(e){
-$(this).children("a").click();
+// $(this).children("a").click();
 })
 
 // jQuery function for scrolling to elements
@@ -261,7 +256,8 @@ function showMonthlyPaymentOptions () {
     $('.next').hide();
     $('#errors span.message').text('');
     $('#errors').hide();
-            $('html,body').animate({scrollTop:$("#monthlypayment").offset().top}, 500);
+   //        $('html,body').animate({scrollTop:$("#monthlypayment").offset().top}, 500);
+                   $(".nav-tabs, .chooseown").hide();
 
 //    updateConfirmPayment();
 // disable for now because can't be known until payment type chosen -- called later
@@ -372,7 +368,7 @@ $(".btn.next").click(function(){
                                         
                                        });
                            }
-           
+
         } else if ( $("#annual").hasClass("active") ) {        
                     var selectedinput = $('#form-annual input#other-amount');
                     var amount = selectedinput.val();
@@ -391,14 +387,14 @@ $(".btn.next").click(function(){
                            }
            
         
-        
+
         
        } else {
         
         
          showMonthlyPaymentOptions();
         }
-   
+
 });
 
 // Capture the amount, set input values, show the payment types
@@ -691,6 +687,12 @@ $('input.amount-in-cents').each(function(){
 
  };
 
+$(".options-payment .btn").click(function(e){
+ $(".options-payment .btn").removeClass("active");
+ $(this).addClass("active");
+
+})
+
 $(".nav.nav-tabs a").click(function(e){
     $('.next').show();
 setTimeout(function(){
@@ -702,6 +704,7 @@ $(document).ready(function(){
 setDefault();
 
 });
+
 
 
 %   end
