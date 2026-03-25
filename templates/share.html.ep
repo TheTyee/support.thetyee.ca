@@ -48,7 +48,7 @@ window.open('https://share.flipboard.com/bookmarklet/popout?v=2&title=I%20just%2
 
 
 
-<li id="email"><a class="btn btn-social-icon btn-email" target="_blank" href="mailto:?subject=I%20just%20supported%20The%20Tyee&body=I%20just%20supported%20The%20Tyee%27s%20independent%20journalism.%0D%0A%0D%0ALearn%20more%20and%20join%20me%20at%20https%3A%2F%2Fsupport.thetyee.ca%2F%3Futm_campaign%3Dbuildershare"><i class="fas fa-envelope" aria-hidden="true"></i></a></li>
+<li id="email"><a class="btn btn-social-icon btn-email" target="_blank" href="	mailto:?subject=I%20just%20supported%20The%20Tyee&body=I%20just%20supported%20The%20Tyee%27s%20independent%20journalism.%0D%0A%0D%0ALearn%20more%20and%20join%20me%20at%20https%3A%2F%2Fsupport.thetyee.ca%2F%3Futm_campaign%3Dbuildershare"><i class="fas fa-envelope" aria-hidden="true"></i></a></li>
        
 
        <li id="bluesky" class="bluesky">
@@ -85,7 +85,7 @@ window.open('https://share.flipboard.com/bookmarklet/popout?v=2&title=I%20just%2
                 <% } %>
             </dd>
         </dl>
-        <p>Please give your transaction details a quick review. If there's anything wrong, just let us know by <a href="http://www.google.com/recaptcha/mailhide/d?k=01Lpo-7rwiM1MAnRgeZ5aaqA==&c=yGPyHyFeLT7FyKm1p8ePC5O5yYHihWV1fDsc7V5i1ME=">email</a> or by calling us at 604-689-7489.
+        <p>Please give your transaction details a quick review. If there's anything wrong, just let us know by <a href="mailto:builders@thetyee.ca">email</a> or by calling us at 604-689-7489.
         </div>
     % if ( $transaction_details->{'pref_lapel'} eq 'Yes') {
         <h3>Tyee swag that will be on its way to you shortly:</h3>
