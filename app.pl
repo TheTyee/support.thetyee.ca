@@ -22,7 +22,7 @@ use JSON::XS;
 use XML::Hash;
 
 plugin('DefaultHelpers');
- plugin 'mail';
+plugin 'mail';
 
 
 my $config = plugin 'JSONConfig';
@@ -57,7 +57,7 @@ helper find_or_new => sub {
     my $original_params = shift;
     my $dbh  = $self->schema();
     my $result;
-    
+
     try {
         $result = $dbh->txn_do(
             sub {
@@ -73,40 +73,40 @@ helper find_or_new => sub {
     catch {
         $self->app->log->warn( $_ );
     };
-    
+
     my $hashref = {};
-    
+
     $doc->{'id'} = $result->id;
     if ($doc) {
-    $hashref-> {"local"} = $doc;
+        $hashref-> {"local"} = $doc;
     }
     if ($dom && $trans_type) {
-    $hashref->{$trans_type} = $dom;
+        $hashref->{$trans_type} = $dom;
     }
     if ($params) {
-     $hashref->{'params'}  = $params;
+        $hashref->{'params'}  = $params;
     }
     if ($original_params) {
-     $hashref->{'original_params'} = $original_params;
+        $hashref->{'original_params'} = $original_params;
     }
-         $self->app->log->info("dump of hashref");
+    $self->app->log->info("dump of hashref");
 
-     $self->app->log->info( Dumper($hashref));
-             $self->app->log->info("end dump of hashref");
+    $self->app->log->info( Dumper($hashref));
+    $self->app->log->info("end dump of hashref");
 
-    
+
     my $drupal_endpoint = $config->{'drupal_endpoint'};
-      my $res = $ua->post( $config->{'drupal_endpoint'} => {  Accept => '*/*' } => json => $hashref);
-        $self->app->log->info("return from drupal dump:");
-        $self->app->log->info( Dumper($res));
-        $self->app->log->info("end drupal dump:");
-                $self->app->log->info( "result dump");
+    my $res = $ua->post( $config->{'drupal_endpoint'} => {  Accept => '*/*' } => json => $hashref);
+    $self->app->log->info("return from drupal dump:");
+    $self->app->log->info( Dumper($res));
+    $self->app->log->info("end drupal dump:");
+    $self->app->log->info( "result dump");
 
-        $self->app->log->info( Dumper($result));
-                        $self->app->log->info( "end result dump");
+    $self->app->log->info( Dumper($result));
+    $self->app->log->info( "end result dump");
 
 
-        
+
     return $result;
 };
 
@@ -158,8 +158,8 @@ helper recurly_get_account_details => sub {
     my $account_code = shift;
     my $res
         = $ua->get( $API
-            . '/accounts/'
-            . $account_code => { Accept => 'application/xml' } )->res;
+        . '/accounts/'
+        . $account_code => { Accept => 'application/xml' } )->res;
     my $xml = $res->body;
     my $dom = Mojo::DOM->new( $xml );
     return $dom;
@@ -170,9 +170,9 @@ helper recurly_get_billing_details => sub {
     my $account_code = shift;
     my $res
         = $ua->get( $API
-            . '/accounts/'
-            . $account_code
-            . '/billing_info' => { Accept => 'application/xml' } )->res;
+        . '/accounts/'
+        . $account_code
+        . '/billing_info' => { Accept => 'application/xml' } )->res;
     my $xml = $res->body;
     my $dom = Mojo::DOM->new( $xml );
     return $dom;
@@ -183,19 +183,19 @@ helper recurly_get_active_subs => sub {
     my $account_code = shift;
     my $res
         = $ua->get( $API
-            . '/accounts/'
-            . $account_code
-            . '/subscriptions?state=active' => { Accept => 'application/xml' } )->res;
+        . '/accounts/'
+        . $account_code
+        . '/subscriptions?state=active' => { Accept => 'application/xml' } )->res;
     my $xml = $res->body;
     my $dom = Mojo::DOM->new( $xml );
-       my $ub = Mojo::UserAgent->new;
-my $collection = $dom->find('subscription');
-my @elements = $collection->each;
-if ((scalar @elements) >= 2 ) {
- $ub->post($config->{'notify_url'} => json => {text => "Note: Count of subs for someone who just subscribed, account code $account_code are greater than 1, they are " . (scalar @elements) });
-}
+    my $ub = Mojo::UserAgent->new;
+    my $collection = $dom->find('subscription');
+    my @elements = $collection->each;
+    if ((scalar @elements) >= 2 ) {
+        $ub->post($config->{'notify_url'} => json => {text => "Note: Count of subs for someone who just subscribed, account code $account_code are greater than 1, they are " . (scalar @elements) });
+    }
     return $dom;
- 
+
 };
 
 # Set the salt and initialize the cipher
@@ -217,8 +217,153 @@ helper raiser_decode => sub {
     my $decrypted_data = $cipher->decrypt( $encrypted_data );
     return $decrypted_data;
 };
+helper mandrill_schedule_tribute_email => sub {
+    my $self = shift;
+    my $args = shift || {};
 
+    my $api_key = $config->{'mandrill_api_key'} || die "Missing mandrill_api_key";
+    my $from_email = $config->{'mandrill_from_email'} || 'builders@thetyee.ca';
+    my $from_name  = $config->{'mandrill_from_name'}  || 'The Tyee';
+    my $tz_name    = $config->{'tribute_email_time_zone'} || 'America/Vancouver';
+    my $send_hour  = defined $config->{'tribute_email_send_hour'} ? $config->{'tribute_email_send_hour'} : 9;
+    my $template_name = $config->{'mandrill_tribute_template_name'} || 'contributionhonour';
 
+    my $send_on = $args->{send_on} || die "Missing send_on";
+    my ($year, $month, $day) = $send_on =~ /^(\d{4})-(\d{2})-(\d{2})$/
+        or die "Invalid tribute send date";
+
+    my $local_dt = DateTime->new(
+        year      => $year,
+        month     => $month,
+        day       => $day,
+        hour      => $send_hour,
+        minute    => 0,
+        second    => 0,
+        time_zone => $tz_name,
+    );
+
+    my $utc_dt = $local_dt->clone->set_time_zone('UTC');
+    my $send_at = sprintf(
+        '%04d-%02d-%02d %02d:%02d:%02d',
+        $utc_dt->year,
+        $utc_dt->month,
+        $utc_dt->day,
+        $utc_dt->hour,
+        $utc_dt->minute,
+        $utc_dt->second,
+    );
+
+    my $sender = $args->{sender_name} || 'A Tyee supporter';
+    my $recipient_name = $args->{recipient_name} || '';
+    my $recipient_first_name = $recipient_name;
+    $recipient_first_name =~ s/\s+.*$// if $recipient_first_name ne '';
+    $recipient_first_name = 'friend' if !$recipient_first_name;
+
+    my $custom_message = $args->{custom_message} || '';
+    my $custom_message_block_html = '';
+
+    if ($custom_message ne '') {
+        my $escaped = $custom_message;
+        $escaped =~ s/&/&amp;/g;
+        $escaped =~ s/</&lt;/g;
+        $escaped =~ s/>/&gt;/g;
+        $escaped =~ s/\r\n|\r|\n/<br \/>/g;
+
+        $custom_message_block_html = qq{
+<p><strong>The sender included a custom message for you below:</strong></p>
+<p>$escaped</p>
+};
+    }
+
+    my $honouree = join ' ',
+        grep { defined $_ && $_ ne '' }
+            ($args->{honouree_first_name}, $args->{honouree_last_name});
+
+    my $subject = $honouree
+        ? "A contribution has been made in honour of $honouree"
+        : "A contribution has been made in someone's honour";
+
+    my $payload = {
+        key => $api_key,
+        template_name    => $template_name,
+        template_content => [],
+        message => {
+            subject    => $subject,
+            from_email => $from_email,
+            from_name  => $from_name,
+            to => [
+                {
+                    email => $args->{recipient_email},
+                    name  => $recipient_name,
+                    type  => 'to',
+                }
+            ],
+            tags => ['tribute-honour-email'],
+            metadata => {
+                transaction_id => ($args->{transaction_id} || ''),
+                tribute_type   => 'honour',
+            },
+            merge => JSON::XS::true,
+            merge_language => 'mailchimp',
+            global_merge_vars => [
+                { name => 'RECIPIENT_FIRST_NAME', content => $recipient_first_name },
+                { name => 'GIFT_GIVER_FIRST_AND_LAST_NAME', content => $sender },
+                { name => 'CUSTOM_MESSAGE_BLOCK_HTML', content => $custom_message_block_html },
+                { name => 'MC_PREVIEW_TEXT', content => "$sender has made a contribution to The Tyee in your honour." },
+            ],
+        },
+        send_at => $send_at,
+    };
+
+    $self->app->log->info("Scheduling Mandrill tribute email for " . ($args->{recipient_email} || '') . " at $send_at UTC using template $template_name");
+    $self->app->log->info("Using Mandrill template identifier: " . $template_name);
+    my $tx = $ua->post(
+        'https://mandrillapp.com/api/1.0/messages/send-template.json' =>
+            { Accept => 'application/json' } =>
+            json => $payload
+    );
+
+    my $res = $tx->res;
+    die "Mandrill request failed: " . ($res->body || 'no response body')
+        unless $res && $res->code && $res->code =~ /^2/;
+
+    my $json = $res->json;
+    die "Mandrill returned unexpected response"
+        unless ref($json) eq 'ARRAY' && @$json;
+
+    my $first = $json->[0];
+    die "Mandrill scheduling failed"
+        unless $first && $first->{_id};
+
+    return {
+        mandrill_message_id => $first->{_id},
+        status              => $first->{status} || 'scheduled',
+        send_at_utc         => $send_at,
+    };
+};
+
+helper store_tribute_email_record => sub {
+    my $self = shift;
+    my $args = shift || {};
+
+    my $dbh = $self->schema->storage->dbh;
+    my $sql = q{
+        INSERT INTO support.tribute_emails
+            (transaction_id, mandrill_message_id, recipient_email, recipient_name, send_on, status)
+        VALUES (?, ?, ?, ?, ?, ?)
+    };
+
+    $dbh->do(
+        $sql,
+        undef,
+        $args->{transaction_id},
+        $args->{mandrill_message_id},
+        $args->{recipient_email},
+        $args->{recipient_name},
+        $args->{send_on},
+        $args->{status} || 'scheduled',
+    );
+};
 
 group {
     under [ qw(GET POST) ] => '/' => sub {
@@ -304,13 +449,13 @@ group {
         #     } else {
         #    $ab = 'evergreen-squeeze'; # $display = "none";
         #   }
-        $ab = 'Dec2025'; # $display = "none";
+        $ab = 'evergreen-squeeze'; # $display = "none";
 
         $self->stash(body_id => $ab,);
         $self->flash(appeal_code => $ab);
         $self->stash(display => $display);
         $self->flash(original_params => $self->req->query_params);
-    }                    => 'Dec2025';
+    }                    => 'evergreen-squeeze';
 
     # making both of these test conditions Dec2021 so can easily ad a test if we want during campaign.  Probably a waste of resources if not using later
     any [ qw(GET POST) ] => '/Spring2024' => sub {
@@ -476,19 +621,19 @@ any [qw(GET POST)] => '/process_bank' => sub {
     my $original_params =    $self->flash( 'original_params' );
 
     # There are two possible state values, but only one should be used
-#    my $state = @$states[0] ? @$states[0] : @$states[1];
+    #    my $state = @$states[0] ? @$states[0] : @$states[1];
 
-my $state;
+    my $state;
 
-if ( ref($states) && @$states) {
+    if ( ref($states) && @$states) {
 
- if (@$states[0] ) {$state = @$states[0]
-} elsif (@$states[1]) {$state = @$states[1]
-} elsif ($params->{'state'}) { $state = $params->{'state'} }
+        if (@$states[0] ) {$state = @$states[0]
+        } elsif (@$states[1]) {$state = @$states[1]
+        } elsif ($params->{'state'}) { $state = $params->{'state'} }
 
-} else {
-$state = $params->{'state'} ;
-}
+    } else {
+        $state = $params->{'state'} ;
+    }
 
     my $transaction_details = {
         email              => $params->{'email'},
@@ -518,90 +663,90 @@ $state = $params->{'state'} ;
         referrer    => $referrer,
         user_agent  => $self->req->headers->user_agent,
     };
-    
-      my $res = $ua->post( $config->{'iats_process_proxy'} => {  Accept => '*/*' } => form => $transaction_details);
-app->log->debug( "res->body from iats proxy dump:");
 
-app->log->debug( Dumper($res->res->content->asset->{"content"}));
-   app->log->debug( "end res->body from iats proxy dump:");
-    
-      my $json_return = decode_json($res->res->content->asset->{"content"});
-      
-      
-      
+    my $res = $ua->post( $config->{'iats_process_proxy'} => {  Accept => '*/*' } => form => $transaction_details);
+    app->log->debug( "res->body from iats proxy dump:");
+
+    app->log->debug( Dumper($res->res->content->asset->{"content"}));
+    app->log->debug( "end res->body from iats proxy dump:");
+
+    my $json_return = decode_json($res->res->content->asset->{"content"});
+
+
+
     my $result = $self->find_or_new( $transaction_details, $json_return, "IATS", $params, $original_params);
     $transaction_details->{'id'} = $result->id;
     $self->flash( { transaction_details => $transaction_details, } );
-    
-    
-  
- #    app->log->debug(  Dumper $res);
 
-  
+
+
+    #    app->log->debug(  Dumper $res);
+
+
     $self->redirect_to( 'perks' );
 };
 
 
 post '/get_update_link' => sub {
-        my $self = shift;
+    my $self = shift;
     my $email;
     my $res;
     my $text;
 
-                $email = {    
-            'account' => {
-                'account_code' => $self->param( 'email' )
-                }
-            };
+    $email = {
+        'account' => {
+            'account_code' => $self->param( 'email' )
+        }
+    };
 
-        # Post the XML to the /transacdtions endpoint
-        $res = $ua->get( $API. 'accounts/' .$self->param( 'email' ) =>  { 'Content-Type' => 'application/xml', Accept => '*/*' });
-        
-             
- 
-      
-      
-     #   app->log->debug( "email is " . $self->param( 'email' ) . Dumper $res);
-     my $xml = $res->res->content->asset->{content};
-# $text .= dumper_html($res);
-      
-      
-   my $dom = Mojo::DOM->new( $xml );
-   if ( $dom->at( 'error' ) ) {    # We got an error message back
+    # Post the XML to the /transacdtions endpoint
+    $res = $ua->get( $API. 'accounts/' .$self->param( 'email' ) =>  { 'Content-Type' => 'application/xml', Accept => '*/*' });
+
+
+
+
+
+    #   app->log->debug( "email is " . $self->param( 'email' ) . Dumper $res);
+    my $xml = $res->res->content->asset->{content};
+    # $text .= dumper_html($res);
+
+
+    my $dom = Mojo::DOM->new( $xml );
+    if ( $dom->at( 'error' ) ) {    # We got an error message back
         my $error = $dom->at( 'error' )->text;
         $self->flash( { error => $error } );
         $text .=  "Your email address was not found in our system. Please send an email to builders AT thetyee DOT ca or give us a call to update your account." ;
     }
-   else {    # Otherwise, store the transaction and send to /preferences
-        
-    if ($dom->at( 'hosted_login_token' )->text && $dom->at( 'hosted_login_token' )->text ne '') {
-    #$text .= "hosted_login_token" .  'https://thetyee.recurly.com/account/' . $dom->at( 'hosted_login_token' )->text;
-     $text .= "You have been sent an email with a link to update your account with us.";
-   
-    
-  
-   $self->mail(
-    from => 'builders@thetyee.ca',
-    type => 'text/html',
-    to      => $self->param( 'email' ),
-    bcc     => 'builders@thetyee.ca',
-    subject => 'The Tyee - Modify Your Builder Account',
-    data    => 'You appear to have requested your sign-in for your builder account with The Tyee at https://support.thetyee.ca.  You can sign in to your account by visiting the following link: https://' . $subdomain .'.recurly.com/account/' .  $dom->at( 'hosted_login_token' )->text . "\n \n <br><br>"  . 'Note that for security reasons, if you are updating a card you have to re-input the entire card, expiry and security code (even if only the expiry has changed). If this was sent by mistake you can delete or ignore it - we only send this information to the email registered on the account.',
-  );
-   
-    } else {
-        
+    else {    # Otherwise, store the transaction and send to /preferences
+
+        if ($dom->at( 'hosted_login_token' )->text && $dom->at( 'hosted_login_token' )->text ne '') {
+            #$text .= "hosted_login_token" .  'https://thetyee.recurly.com/account/' . $dom->at( 'hosted_login_token' )->text;
+            $text .= "You have been sent an email with a link to update your account with us.";
+
+
+
+            $self->mail(
+                from => 'builders@thetyee.ca',
+                type => 'text/html',
+                to      => $self->param( 'email' ),
+                bcc     => 'builders@thetyee.ca',
+                subject => 'The Tyee - Modify Your Builder Account',
+                data    => 'You appear to have requested your sign-in for your builder account with The Tyee at https://support.thetyee.ca.  You can sign in to your account by visiting the following link: https://' . $subdomain .'.recurly.com/account/' .  $dom->at( 'hosted_login_token' )->text . "\n \n <br><br>"  . 'Note that for security reasons, if you are updating a card you have to re-input the entire card, expiry and security code (even if only the expiry has changed). If this was sent by mistake you can delete or ignore it - we only send this information to the email registered on the account.',
+            );
+
+        } else {
+
+        }
+
+
     }
-   
-   
-    }
-    
+
     $self->render(template => 'default',  content => $text, title => "The Tyee | Get account management link",  body_id => '');
     # $self->render(text => $text);
-    
-    
+
+
 };
-    
+
 
 # New route for processing the form post with the upgraded Recurly.js
 # Take the token, plus the plan, and send a post to the Recurly Subscrptions API
@@ -677,9 +822,9 @@ post '/process_transaction' => sub {
         # Post the XML to the /transacdtions endpoint
         $res
             = $ua->post( $API
-                . 'transactions' =>
-                { 'Content-Type' => 'application/xml', Accept => '*/*' } =>
-                $transxml )->res;
+            . 'transactions' =>
+            { 'Content-Type' => 'application/xml', Accept => '*/*' } =>
+            $transxml )->res;
     }
     else {
         $transaction = {    # It's a subscription
@@ -702,16 +847,16 @@ post '/process_transaction' => sub {
         # Post the XML to the /subscriptions endpoint
         $res
             = $ua->post( $API
-                . 'subscriptions' =>
-                { 'Content-Type' => 'application/xml', Accept => '*/*' } =>
-                $transxml )->res;
+            . 'subscriptions' =>
+            { 'Content-Type' => 'application/xml', Accept => '*/*' } =>
+            $transxml )->res;
     }
     my $xml = $res->body;
-  
-  
-$self->app->log->info("dump of transaction or subscription:");    
-$self->app->log->info( Dumper $xml );
-$self->app->log->info("end of dump:");    
+
+
+    $self->app->log->info("dump of transaction or subscription:");
+    $self->app->log->info( Dumper $xml );
+    $self->app->log->info("end of dump:");
 
     my $dom = Mojo::DOM->new( $xml );
     if ( $dom->at( 'error' ) ) {    # We got an error message back
@@ -724,7 +869,7 @@ $self->app->log->info("end of dump:");
         my $account = $self->recurly_get_account_details( $account_code );
         my $activesubs = $self->recurly_get_active_subs($account_code);
         my $billing_info = $self->recurly_get_billing_details( $account_code );
-          
+
         my $transaction_details = {
             email      => $email,
             first_name => $first_name,
@@ -732,14 +877,14 @@ $self->app->log->info("end of dump:");
 
             # Recurly data
             hosted_login_token => $account->at( 'hosted_login_token' )
-            ? $account->at( 'hosted_login_token' )->text
-            : '',
+                ? $account->at( 'hosted_login_token' )->text
+                : '',
 
             # Recurly data
             trans_date => $dom->at( 'created_at' )
-            ? $dom->at( 'created_at' )->text
-            : $dom->at( 'activated_at' ) ? $dom->at( 'activated_at' )->text
-            : '',
+                ? $dom->at( 'created_at' )->text
+                : $dom->at( 'activated_at' ) ? $dom->at( 'activated_at' )->text
+                : '',
             address1        => $address,
             city            => $city,
             state           => $state,
@@ -767,7 +912,7 @@ $self->app->log->info("end of dump:");
 
         my $xml_converter = XML::Hash->new();
         my $xml_hash = $xml_converter->fromXMLStringtoHash($xml);
-            my $raiser      = $self->flash( 'raiser' );
+        my $raiser      = $self->flash( 'raiser' );
         my $result = $self->find_or_new( $transaction_details, $xml_hash, "RECURLY", $params, $original_params);
         $transaction_details->{'id'} = $result->id;
         $self->flash( { transaction_details => $transaction_details } );
@@ -829,11 +974,11 @@ any [qw(GET POST)] => '/perks' => sub {
             return $self->render(template => 'perks');
         }
 
-my $noxml = '<?xml version="1.0" ?>' . "\n" . '<metadata>' . "\n" . '</metadata>';#creating blank xml so it will conform to expectations when received by the helper
- my $xml_converter = XML::Hash->new();
+        my $noxml = '<?xml version="1.0" ?>' . "\n" . '<metadata>' . "\n" . '</metadata>';#creating blank xml so it will conform to expectations when received by the helper
+        my $xml_converter = XML::Hash->new();
         my $xml_hash = $xml_converter->fromXMLStringtoHash($noxml);
-         my $params          = $self->req->body_params->to_hash;
-    my $original_params = $self->flash('original_params');
+        my $params          = $self->req->body_params->to_hash;
+        my $original_params = $self->flash('original_params');
         my $update = $self->find_or_new( $record , $xml_hash, "PERKS_PHASE", $params, $original_params);
         $update->update( $self->req->params->to_hash );
         $record->{'pref_lapel'} = $update->pref_lapel;
@@ -849,28 +994,117 @@ any [qw(GET POST)] => '/preferences' => sub {
     $self->flash( { transaction_details => $record } );
 
     if ( $self->req->method eq 'POST' && $record ) {    # Submitted form
-            # TODO *actually* validate parameters with custom check
+        # TODO *actually* validate parameters with custom check
         my $validation = $self->validation;
         $validation->required( 'pref_frequency' );
         $validation->required( 'pref_anonymous' );
 
+        my $on_behalf_of            = $self->param('on_behalf_of') || '';
+        my $send_honour_email       = $self->param('send_honour_email') || 'No';
+        my $tribute_recipient_name  = $self->param('tribute_recipient_name') || '';
+        my $tribute_recipient_email = $self->param('tribute_recipient_email') || '';
+        my $tribute_send_on         = $self->param('tribute_send_on') || '';
+        my $tribute_message         = $self->param('tribute_message') || '';
+
+        if ( $on_behalf_of eq 'honour' && $send_honour_email eq 'Yes' ) {
+            unless ( Email::Valid->address($tribute_recipient_email) ) {
+                $validation->error( tribute_recipient_email => ['invalid'] );
+            }
+
+            unless ( $tribute_send_on =~ /^\d{4}-\d{2}-\d{2}$/ ) {
+                $validation->error( tribute_send_on => ['invalid'] );
+            }
+
+            if ( length($tribute_message) > 1000 ) {
+                $validation->error( tribute_message => ['too_long'] );
+            }
+        }
+
         # Render form again if validation failed
-        # TODO actually render form again vs. just writing to log
         $self->app->log->info( Dumper $validation ) if $validation->has_error;
         $self->app->log->info( Dumper $self->req->params->to_hash )
             if $validation->has_error;
 
-        #return $self->render( 'preferences' ) if $validation->has_error;
-my $noxml = '<?xml version="1.0" ?>' . "\n" . '<metadata>' . "\n" . '</metadata>'; #creating blank xml so it will conform to expectations when received by the helper
- my $xml_converter = XML::Hash->new();
+        if ( $validation->has_error ) {
+            $self->stash( { record => $record } );
+            $self->flash( { transaction_details => $record } );
+            return $self->render( template => 'preferences' );
+        }
+
+        my $noxml = '<?xml version="1.0" ?>' . "\n" . '<metadata>' . "\n" . '</metadata>'; #creating blank xml so it will conform to expectations when received by the helper
+        my $xml_converter = XML::Hash->new();
         my $xml_hash = $xml_converter->fromXMLStringtoHash($noxml);
-         my $params          = $self->req->body_params->to_hash;
-    my $original_params = $self->flash('original_params'); 
-        my $update = $self->find_or_new( $record , $xml_hash, "PREFERENCES_PHASE", $params, $original_params);
-       
-        $update->update( $self->req->params->to_hash );
+        my $params          = $self->req->body_params->to_hash;
+        my $original_params = $self->flash('original_params');
+
+        my %safe_params = %{$params};
+        delete @safe_params{
+            qw(
+                send_honour_email
+                tribute_recipient_name
+                tribute_recipient_email
+                tribute_send_on
+                tribute_message
+            )
+        };
+
+        my $update = $self->find_or_new( $record , $xml_hash, "PREFERENCES_PHASE", \%safe_params, $original_params);
+
+        my %safe_update = %{ $self->req->params->to_hash };
+        delete @safe_update{
+            qw(
+                send_honour_email
+                tribute_recipient_name
+                tribute_recipient_email
+                tribute_send_on
+                tribute_message
+            )
+        };
+
+        $update->update( \%safe_update );
         $record->{'on_behalf_of'} = $update->on_behalf_of;
         $self->flash( { transaction_details => $record } );
+
+        if ( $on_behalf_of eq 'honour' && $send_honour_email eq 'Yes' ) {
+            my $sender_name = join ' ',
+                grep { defined $_ && $_ ne '' }
+                    ($record->{first_name}, $record->{last_name});
+
+            my $mandrill_result;
+            try {
+                $mandrill_result = $self->mandrill_schedule_tribute_email({
+                    transaction_id       => $record->{id},
+                    sender_name          => $sender_name,
+                    recipient_email      => $tribute_recipient_email,
+                    recipient_name       => $tribute_recipient_name,
+                    honouree_first_name  => ($self->param('on_behalf_of_name_first') || ''),
+                    honouree_last_name   => ($self->param('on_behalf_of_name_last') || ''),
+                    custom_message       => $tribute_message,
+                    send_on              => $tribute_send_on,
+                });
+
+                $self->store_tribute_email_record({
+                    transaction_id        => $record->{id},
+                    mandrill_message_id   => $mandrill_result->{mandrill_message_id},
+                    recipient_email       => $tribute_recipient_email,
+                    recipient_name        => $tribute_recipient_name,
+                    send_on               => $mandrill_result->{send_at_utc},
+                    status                => $mandrill_result->{status},
+                });
+            }
+            catch {
+                my $err = $_;
+                $self->app->log->error("Mandrill tribute scheduling failed: $err");
+                $validation->error( tribute_recipient_email => ['mandrill_failed'] );
+            };
+
+            if ( $validation->has_error ) {
+                $self->stash( { record => $record } );
+                $self->flash( { transaction_details => $record } );
+                return $self->render( template => 'preferences' );
+            }
+        }
+
         $self->redirect_to( 'share' );
     }
 } => 'preferences';
@@ -894,9 +1128,9 @@ any [qw(GET POST)] => '/help-us-grow' => sub {
     my $email = $self->param( 'email' );
     $self->stash(
         {   (   defined $email
-                ? ( 'raiser_id' => $self->raiser_encode( $email ) )
-                : ( 'raiser_id' => '' )
-            ),
+            ? ( 'raiser_id' => $self->raiser_encode( $email ) )
+            : ( 'raiser_id' => '' )
+        ),
 
         }
     );
