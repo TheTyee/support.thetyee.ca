@@ -181,6 +181,7 @@ helper recurly_get_billing_details => sub {
 helper recurly_get_active_subs => sub {
     my $self         = shift;
     my $account_code = shift;
+
     my $res
         = $ua->get( $API
         . '/accounts/'
@@ -189,13 +190,77 @@ helper recurly_get_active_subs => sub {
     my $xml = $res->body;
     my $dom = Mojo::DOM->new( $xml );
     my $ub = Mojo::UserAgent->new;
+
     my $collection = $dom->find('subscription');
     my @elements = $collection->each;
-    if ((scalar @elements) >= 2 ) {
-        $ub->post($config->{'notify_url'} => json => {text => "Note: Count of subs for someone who just subscribed, account code $account_code are greater than 1, they are " . (scalar @elements) });
-    }
-    return $dom;
+    my $recurly_count = scalar @elements;
+    my $stripe_count  = 0;
 
+    # Stripe lookup by email/account_code, if Stripe is configured
+    if ( $config->{'stripe_secret_key'} && $account_code ) {
+        try {
+            my $stripe_customer_res = $ub->get(
+                'https://api.stripe.com/v1/customers?email=' . url_escape($account_code) . '&limit=100' => {
+                    Accept        => 'application/json',
+                    Authorization => 'Bearer ' . $config->{'stripe_secret_key'},
+                }
+            )->res;
+
+            if ( $stripe_customer_res->is_success ) {
+                my $customer_json = $stripe_customer_res->json;
+
+                if ( $customer_json && ref($customer_json) eq 'HASH' && ref($customer_json->{data}) eq 'ARRAY' ) {
+                    foreach my $customer ( @{ $customer_json->{data} } ) {
+                        next unless $customer->{id};
+
+                        my $stripe_sub_res = $ub->get(
+                            'https://api.stripe.com/v1/subscriptions?customer=' . url_escape($customer->{id}) . '&status=all&limit=100' => {
+                                Accept        => 'application/json',
+                                Authorization => 'Bearer ' . $config->{'stripe_secret_key'},
+                            }
+                        )->res;
+
+                        if ( $stripe_sub_res->is_success ) {
+                            my $subs_json = $stripe_sub_res->json;
+
+                            if ( $subs_json && ref($subs_json) eq 'HASH' && ref($subs_json->{data}) eq 'ARRAY' ) {
+                                foreach my $sub ( @{ $subs_json->{data} } ) {
+                                    next unless ref($sub) eq 'HASH';
+                                    next unless $sub->{status};
+                                    if ( $sub->{status} eq 'active' ) {
+                                        $stripe_count++;
+                                    }
+                                }
+                            } else {
+                                $self->app->log->warn("Stripe subscriptions response for $account_code was not in expected format");
+                            }
+                        } else {
+                            $self->app->log->warn("Stripe subscriptions lookup failed for customer $customer->{id}, account code $account_code: " . ($stripe_sub_res->code || 'no_status'));
+                        }
+                    }
+                } else {
+                    $self->app->log->warn("Stripe customer response for $account_code was not in expected format");
+                }
+            } else {
+                $self->app->log->warn("Stripe customer lookup failed for $account_code: " . ($stripe_customer_res->code || 'no_status'));
+            }
+        }
+        catch {
+            $self->app->log->warn("Stripe recurring contribution lookup died for $account_code: $_");
+        };
+    }
+
+    my $total_count = $recurly_count + $stripe_count;
+
+    if ( $total_count >= 2 ) {
+        $ub->post(
+            $config->{'notify_url'} => json => {
+                text => "Note: Count of recurring subscriptions/contributions for someone who just subscribed, account code $account_code are greater than 1. Recurly active: $recurly_count, Stripe active: $stripe_count, total: $total_count"
+            }
+        );
+    }
+
+    return $dom;
 };
 
 # Set the salt and initialize the cipher
