@@ -206,7 +206,7 @@ helper recurly_get_active_subs => sub {
                 }
             )->res;
 
-            if ( $stripe_customer_res->is_success ) {
+            if ( $stripe_customer_res->code && $stripe_customer_res->code =~ /^2/ ) {
                 my $customer_json = $stripe_customer_res->json;
 
                 if ( $customer_json && ref($customer_json) eq 'HASH' && ref($customer_json->{data}) eq 'ARRAY' ) {
@@ -220,7 +220,7 @@ helper recurly_get_active_subs => sub {
                             }
                         )->res;
 
-                        if ( $stripe_sub_res->is_success ) {
+                        if ( $stripe_sub_res->code && $stripe_sub_res->code =~ /^2/ ) {
                             my $subs_json = $stripe_sub_res->json;
 
                             if ( $subs_json && ref($subs_json) eq 'HASH' && ref($subs_json->{data}) eq 'ARRAY' ) {
