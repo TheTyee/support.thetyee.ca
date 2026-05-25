@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-md-12">
     % if ( defined $self->stash('record') ) {
-    <div class="alert alert-success fade in" style="margin-top: 20px;"><i class="glyphicon glyphicon-check"></i>
+    <div class="alert alert-success fade in" style="margin-top: 20px;">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
         Your payment was successfully processed. If you need to adjust your transaction, or you've experienced a problem, <a href="mailto:builders@thetyee.ca">please send us a quick email</a>.
     </div>
@@ -53,59 +53,52 @@
 
 % if ( $monthly_amount >= '5') {
   <div style="float:left;">
-        <span class="glyphicon glyphicon-ok-sign" style="float:right;position:relative;left:-20px"></span>
         <img src="<%= $config->{'static_asset_path'} %>/ui/img/fishswag.jpg?v=1" width="150" />
     </div>
 % }      
 
   % if ( $monthly_amount >= '180') {
     <div style="float:left;">
-        <span class="glyphicon glyphicon-ok-sign" style="float:right;position:relative;left:-20px"></span>
         <img src="https://thetyee.ca/ui/img/support/BuilderNotebook.jpg" width="150" />
     </div>
-<!--
      <div style="float:left;">
-        <span class="glyphicon glyphicon-ok-sign" style="float:right;position:relative;left:-20px"></span>
         <img src="https://thetyee.ca/ui/img/support/hats.jpg" width="150" />
     </div>
--->
       % }
       % if ( $monthly_amount >= '240') {
     <div style="float:left;">
-        <span class="glyphicon glyphicon-ok-sign" style="float:right;position:relative;left:-20px"></span>
         <img src="https://thetyee.ca/ui/img/support/BuilderTote.jpg" width="150" />
     </div>
       % }
       % if ( $monthly_amount >= '300') {
     <div style="float:left;">
-        <span class="glyphicon glyphicon-ok-sign" style="float:right;position:relative;left:-20px"></span>
         <img src="https://thetyee.ca/ui/img/support/BuilderMug.jpg" width="150" />
     </div>
     % }
   % } else {
 % if ( $monthly_amount >= '5') {
   <div style="float:left;">
-        <span class="glyphicon glyphicon-ok-sign" style="float:right;position:relative;left:-20px"></span>
         <img src="<%= $config->{'static_asset_path'} %>/ui/img/fishswag.jpg?v=1" width="150" />
     </div>
 % }
 
   % if ( $monthly_amount >= '15') {
     <div style="float:left;">
-        <span class="glyphicon glyphicon-ok-sign" style="float:right;position:relative;left:-20px"></span>
         <img src="https://thetyee.ca/ui/img/support/BuilderNotebook.jpg" width="150" />
+    </div>
+
+<div style="float:left;">
+        <img src="https://thetyee.ca/ui/img/support/hats.jpg" width="150" />
     </div>
 
       % }
       % if ( $monthly_amount >= '25') {
     <div style="float:left;">
-        <span class="glyphicon glyphicon-ok-sign" style="float:right;position:relative;left:-20px"></span>
         <img src="https://thetyee.ca/ui/img/support/BuilderTote.jpg" width="150" />
     </div>
       % }
       % if ( $monthly_amount >= '50') {
     <div style="float:left;">
-        <span class="glyphicon glyphicon-ok-sign" style="float:right;position:relative;left:-20px"></span>
         <img src="https://thetyee.ca/ui/img/support/BuilderMug.jpg" width="150" />
     </div>
       % }
@@ -114,7 +107,6 @@
     % } elsif ($monthly_amount >= '22'){  # no plan but amount more than 5 bucks monthly_amount is a misnomer
 
     <div style="float:left;">
-        <span class="glyphicon glyphicon-ok-sign" style="float:right;position:relative;left:-20px"></span>
         <img src="<%= $config->{'static_asset_path'} %>/ui/img/fishswag.jpg?v=1" width="150" />
     </div>
 
