@@ -47,11 +47,10 @@
 
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <link href="<%= $config->{'static_asset_path'} %>/ui/css/styles.css?v=4" rel="stylesheet" media="screen">
-    <script src="<%= $config->{'static_asset_path'} %>/ui/js/modernizr.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="<%= $config->{'static_asset_path'} %>/ui/js/jquery.validate.min.js"></script>
-    <script type="text/javascript" src="//use.typekit.net/sjz2xsw.js"></script>
-    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+    <script defer src="<%= $config->{'static_asset_path'} %>/ui/js/modernizr.js"></script>
+    <script>
+      (function(d){var tk=d.createElement('script');tk.src='https://use.typekit.net/sjz2xsw.js';tk.async=true;tk.onload=function(){try{Typekit.load({async:true});}catch(e){}};d.head.appendChild(tk);})(document);
+    </script>
 
     <!-- Payment scripts: async so download starts early but doesn't block render -->
     <script>window.STRIPE_PUBLISHABLE_KEY = "<%= $config->{'stripe_publishable_key'} %>";</script>
@@ -108,6 +107,8 @@
     %= include 'header'
     <%= content %>
     %= include 'footer'
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="<%= $config->{'static_asset_path'} %>/ui/js/jquery.validate.min.js"></script>
     %= include 'footer_scripts'
 </body>
 </html>
