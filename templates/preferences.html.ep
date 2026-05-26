@@ -93,11 +93,11 @@
                 <label class="preface" for="tribute_send_on">When should we send it?</label>
                 <br />
                 <input type="date" class="form-control" name="tribute_send_on" id="tribute_send_on" value="<%= param('tribute_send_on') || '' %>">
-                <p class="help-block">We’ll send it on the morning of the date you choose.</p>
+                <p class="help-block">We’ll send it at 9 AM (Pacific) on the morning of the date you choose.</p>
             </div>
 
             <div class="form-group">
-                <label class="preface" for="tribute_message">Optional personal message</label>
+                <label class="preface" for="tribute_message">Optional personal message (we won't include the amount you gave so feel free to let them know here)</label>
                 <br />
                 <textarea class="form-control" name="tribute_message" id="tribute_message" rows="5" maxlength="1000" placeholder="Add a note to include in the email"><%= param('tribute_message') || '' %></textarea>
             </div>

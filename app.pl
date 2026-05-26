@@ -514,13 +514,13 @@ group {
         #     } else {
         #    $ab = 'evergreen-squeeze'; # $display = "none";
         #   }
-        $ab = 'evergreen-squeeze'; # $display = "none";
+        $ab = 'May2026'; # $display = "none";
 
         $self->stash(body_id => $ab,);
         $self->flash(appeal_code => $ab);
         $self->stash(display => $display);
         $self->flash(original_params => $self->req->query_params);
-    }                    => 'evergreen-squeeze';
+    }                    => 'May2026';
 
     # making both of these test conditions Dec2021 so can easily ad a test if we want during campaign.  Probably a waste of resources if not using later
     any [ qw(GET POST) ] => '/Spring2024' => sub {
@@ -1245,6 +1245,14 @@ get '/plans' => sub {    # List plans; Not used
 };
 
 app->secret( $config->{'app_secret'} );
+hook after_dispatch => sub {
+    my $c = shift;
+    my $ct = $c->res->headers->content_type // '';
+    if ($ct =~ /text\/html/) {
+        $c->res->headers->cache_control('no-cache, must-revalidate');
+    }
+};
+
 app->start;
 
 __DATA__
