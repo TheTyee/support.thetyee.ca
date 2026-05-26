@@ -292,6 +292,17 @@ __PACKAGE__->add_columns(
   { data_type => "text", is_nullable => 1 },
   "fifteenth_year_mailme",
   { data_type => "text", is_nullable => 1 },
+  # --- Stripe integration metadata ---
+  "stripe_customer_id",
+  { data_type => "text", is_nullable => 1 },
+  "stripe_subscription_id",
+  { data_type => "text", is_nullable => 1 },
+  "stripe_interval",
+  { data_type => "text", is_nullable => 1 },
+  "stripe_payment_intent_id",
+  { data_type => "text", is_nullable => 1 },
+  "stripe_currency",
+  { data_type => "text", is_nullable => 1 }
 );
 
 =head1 PRIMARY KEY

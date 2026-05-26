@@ -10,7 +10,7 @@
                 </p>
                  <h3>Frequently Asked Questions</h3>
 		<p><strong>We have compiled a list of our frequently asked questions <a href="https://thetyee.ca/faq/">here</a>.</strong></p>
-                <p>&copy; 2025 The Tyee &middot; <a href="https://thetyee.ca/privacy/">Privacy</a></p>
+                <p>&copy; 2026 The Tyee &middot; <a href="https://thetyee.ca/privacy/">Privacy</a></p>
                 <p>support.thetyee.ca v<%= $config->{'app_version'} %></p>
             </div>
         </div>

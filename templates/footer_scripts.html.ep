@@ -83,6 +83,25 @@ $( document ).ready(function() {
             }
         ]
     });
+    // Product Array
+    _paq.push(['addEcommerceItem',
+        "01234567890", // (required) SKU: Product unique identifier
+        "<%= $category %>", // (optional) Product name
+        "Donation", // (optional) Product category. You can also specify an array of up to 5 categories eg. ["Books", "New releases", "Biography"]
+        <%= $record->{'amount_in_cents'} / 100 %>, // (Recommended) Product Price
+        1 // (Optional - Defaults to 1)
+    ]);
+
+    _paq.push(['trackEcommerceOrder',
+        "<%= $record->{'id'} %>", // (Required) orderId
+        <%= $record->{'amount_in_cents'} / 100 %> // (Required) grandTotal (revenue)
+        //9.99, // (Optional) subTotal
+        //1.5, // (optional) tax
+        //1, // (optional) shipping
+        //false // (optional) discount
+    ]);
+
+
 });
 								
 % }

@@ -1032,7 +1032,7 @@ post '/process_transaction' => sub {
             ),
             appeal_code  => $appeal_code,
             referrer     => $referrer,
-            payment_type => 'one_time',
+            payment_type => 'credit',
             phone        => $phone,
             user_agent   => $self->req->headers->user_agent,
             stripe_payment_intent_id => $payment_intent_id,
@@ -1192,7 +1192,7 @@ post '/process_transaction' => sub {
         ),
         appeal_code            => $appeal_code,
         referrer               => $referrer,
-        payment_type           => 'recurring',
+        payment_type           => 'credit',
         phone                  => $phone,
         user_agent             => $self->req->headers->user_agent,
         stripe_customer_id     => $stripe_customer_id,
@@ -1228,11 +1228,64 @@ post '/process_transaction' => sub {
 
 any [qw(GET POST)] => '/perks' => sub {
     my $self   = shift;
+
+
     my $record = $self->flash('transaction_details');
     $self->stash( { record => $record, } );
     $self->flash( { transaction_details => $record } );
 
     if ( $self->req->method eq 'POST' && $record ) {
+        # ---------------------------
+        # Server-side conditional validation
+        # ---------------------------
+
+       my $v = $self->validation;
+
+        # Helper to safely trim a param string
+        my $trim = sub {
+            my ($s) = @_;
+            $s = '' unless defined $s;
+            $s =~ s/^\s+//;
+            $s =~ s/\s+$//;
+            return $s;
+        };
+
+        # Read controlling fields (trimmed)
+        my $pref_lapel = $trim->($v->optional('pref_lapel')->param);
+        my $pref_tax   = $trim->($v->optional('pref_tax')->param);
+
+        my $needs_address = ($pref_lapel eq 'Yes') || ($pref_tax eq 'Yes');
+
+        if ($needs_address) {
+            # Mark required on server
+            $v->required('address1')->size(1, 255);
+            $v->required('city')->size(1, 255);
+            $v->required('zip')->size(1, 20);
+
+            # Reject placeholder values for selects
+            $v->required('state')->like(qr/^(?!\-\-|-)..+/);   # not "--" or "-"
+            $v->required('country')->like(qr/^(?!-)..+/);      # not "-"
+
+            # Extra guard: treat whitespace-only as empty (since no ->trim filter)
+            for my $f (qw/address1 city zip/) {
+                my $val = $trim->($v->param($f));
+                $v->error($f => ['required']) if $val eq '';
+            }
+	} else {
+            # Optional
+            $v->optional('address1')->size(0, 255);
+            $v->optional('city')->size(0, 255);
+            $v->optional('zip')->size(0, 20);
+            $v->optional('state');
+            $v->optional('country');
+        }
+
+        if ($v->has_error) {
+            $self->stash(record => $record);
+            $self->flash({ transaction_details => $record });
+            return $self->render(template => 'perks');
+        }
+
         my $noxml = '<?xml version="1.0" ?>'
             . "\n"
             . '<metadata>'
@@ -1285,15 +1338,38 @@ any [qw(GET POST)] => '/preferences' => sub {
         my $xml_hash      = $xml_converter->fromXMLStringtoHash($noxml);
         my $params        = $self->req->body_params->to_hash;
         my $original_params = $self->flash('original_params');
+        my %safe_params = %{$params};
+        delete @safe_params{
+            qw(
+                send_honour_email
+                tribute_recipient_name
+                tribute_recipient_email
+                tribute_send_on
+                tribute_message
+            )
+        };
+
         my $update = $self->find_or_new(
             $record,
             $xml_hash,
             "PREFERENCES_PHASE",
-            $params,
+            \%safe_params,
             $original_params
         );
 
-        $update->update( $self->req->params->to_hash );
+        my %safe_update = %{ $self->req->params->to_hash };
+        delete @safe_update{
+            qw(
+                send_honour_email
+                tribute_recipient_name
+                tribute_recipient_email
+                tribute_send_on
+                tribute_message
+            )
+        };
+
+        $update->update( \%safe_update );
+
         $record->{'on_behalf_of'} = $update->on_behalf_of;
         $self->flash( { transaction_details => $record } );
 

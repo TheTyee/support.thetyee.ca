@@ -244,6 +244,10 @@ $("#form-monthly label.btn.default, #form-annual label.btn.default").on("click t
 // Capture the amount, set input values, show the payment types (monthly)
 $("#form-monthly .chooseown label.btn, #form-monthly label.btn.default").on("click touchstart", function( event ) {
     $("#form-monthly #other-amount").val(""); //clear custom amount
+      $('input.unit-amount-in-cents').each(function(){
+                $(this).val('');
+            });
+
 
     var selectedinput = $('input', this)[0];
     var amountInCents = selectedinput.dataset.amount;
@@ -267,6 +271,10 @@ $("#form-monthly .chooseown label.btn, #form-monthly label.btn.default").on("cli
 // Capture the amount, set input values, show the payment types (annual)
 $("#form-annual .chooseown label.btn, #form-annual label.btn.default").on("click touchstart", function( event ) {
     $("#form-annual #other-amount").val(""); //clear custom amount
+      $('input.unit-amount-in-cents').each(function(){
+                   $(this).val('');
+               });
+
     var selectedinput = $('input', this)[0];
     var amountInCents = selectedinput.dataset.amount;
     var planName = selectedinput.dataset.plan;
@@ -344,10 +352,13 @@ $(".btn.next").click(function(){
 $("#form-onetime .choose-onetime label.btn").on("click touchstart", function( event ) {
     $("#form-onetime #other-amount").val(""); //clear custom amount
 
+
     var selectedinput = $('input', this)[0];
     var amountInCents = $(selectedinput).val() * 100;
 
     $('input.amount-in-cents').val(amountInCents);
+
+
     $('input.plan-name').val('');
     $('input.plan-code').val('');
 
