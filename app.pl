@@ -40,6 +40,9 @@ my $domain    = $subdomain . '.recurly.com/v2/';
 my $apikey    = $config->{'privatekey'};
 my $API       = 'https://' . $apikey . ':@' . $domain;
 
+my %_plan_cache;
+my $_plan_cache_ttl = 300; # 5 minutes — plans rarely change mid-session
+
 hook before_dispatch => sub {
     my $c = shift;
     $c->req->url->base(Mojo::URL->new($config->{'base_url'}));
@@ -126,6 +129,11 @@ helper search_records => sub {
 helper recurly_get_plans => sub {
     my $self   = shift;
     my $filter = shift;
+
+    if ( $_plan_cache{$filter} && time() - $_plan_cache{$filter}{fetched_at} < $_plan_cache_ttl ) {
+        return $_plan_cache{$filter}{plans};
+    }
+
     my $res = $ua->get( $API . '/plans?per_page=200' => { Accept => 'application/xml' } )->res;
     my $xml   = $res->body;
     my $dom   = Mojo::DOM->new($xml);
@@ -140,6 +148,8 @@ helper recurly_get_plans => sub {
         $b->unit_amount_in_cents->CAD->text <=>
             $a->unit_amount_in_cents->CAD->text
     } @$filtered;
+
+    $_plan_cache{$filter} = { plans => $filtered, fetched_at => time() };
     return $filtered;
 };
 
@@ -293,13 +303,13 @@ group {
         my $urlstring;
         my $count;
 
-        $ab = 'Dec2025';
+        $ab = 'May2026';
 
         $self->stash( body_id => $ab, );
         $self->flash( appeal_code => $ab );
         $self->stash( display     => $display );
         $self->flash( original_params => $self->req->query_params );
-    } => 'Dec2025';
+    } => 'May2026';
 
     any [qw(GET POST)] => '/Spring2024' => sub {
         my $ab   = 'Spring2024';
