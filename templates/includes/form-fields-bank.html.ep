@@ -1,5 +1,8 @@
 <div>
-    <img src="<%= $config->{'static_asset_path'} %>/ui/img/example-cheque.jpg" />
+    <picture>
+      <source srcset="<%= $config->{'static_asset_path'} %>/ui/img/example-cheque.webp" type="image/webp">
+      <img src="<%= $config->{'static_asset_path'} %>/ui/img/example-cheque.jpg" alt="Example cheque showing routing and account numbers" loading="lazy" width="960" height="486">
+    </picture>
 </div>
 <div class="form-inline fields-bank">
     <div class="form-group">
