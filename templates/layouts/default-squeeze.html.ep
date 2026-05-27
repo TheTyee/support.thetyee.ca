@@ -52,6 +52,9 @@
       (function(d){var tk=d.createElement('script');tk.src='https://use.typekit.net/sjz2xsw.js';tk.async=true;tk.onload=function(){try{Typekit.load({async:true});}catch(e){}};d.head.appendChild(tk);})(document);
     </script>
 
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="<%= $config->{'static_asset_path'} %>/ui/js/jquery.validate.min.js"></script>
+
     <!-- Payment scripts: async so download starts early but doesn't block render -->
     <script>window.STRIPE_PUBLISHABLE_KEY = "<%= $config->{'stripe_publishable_key'} %>";</script>
     <script async src="https://js.stripe.com/v3/"></script>
@@ -107,8 +110,6 @@
     %= include 'header'
     <%= content %>
     %= include 'footer'
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="<%= $config->{'static_asset_path'} %>/ui/js/jquery.validate.min.js"></script>
     %= include 'footer_scripts'
 </body>
 </html>
