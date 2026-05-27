@@ -29,14 +29,10 @@
                 <div class="row">               
            <div id="atf"  style="clear:left;" >
                <div class="col-md-6 video-container">
-<<<<<<< HEAD
-                <img src="<%= $config->{'static_asset_path'} %>/ui/img/tyeestaffCAJ.jpg">
-=======
                 <picture>
                   <source srcset="<%= $config->{'static_asset_path'} %>/ui/img/tyeestaffCAJ.webp" type="image/webp">
                   <img src="<%= $config->{'static_asset_path'} %>/ui/img/tyeestaffCAJ.jpg" alt="Tyee staff at CAJ" loading="lazy" width="800" height="515">
                 </picture>
->>>>>>> 8b0790e (perf: async payment scripts, WebP images, May2026 template)
                    
                 <!--    <iframe width="560" height="315" src="//www.youtube.com/embed/jF1ZElM7-nA" frameborder="0" allowfullscreen></iframe>-->
                 </div>
