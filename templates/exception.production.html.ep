@@ -19,7 +19,7 @@
     %= include 'header'
     <div class="container" id="content" style="padding-top:60px;">
         <h1>Something went wrong on our end.</h1>
-        <p class="alert alert-danger"><i class="glyphicon glyphicon-exclamation-sign"></i> We hit a technical problem processing your request. If you were trying to make a donation, please <a href="mailto:builders@thetyee.ca">email us at builders@thetyee.ca</a> and we'll make sure it's sorted out. <a href="/">Return to the Tyee Builders page</a></p>
+        <p class="alert alert-danger">⚠  We hit a technical problem processing your request. If you were trying to make a donation, please <a href="mailto:builders@thetyee.ca">email us at builders@thetyee.ca</a> and we'll make sure it's sorted out. <a href="/">Return to the Tyee Builders page</a></p>
     </div>
     %= include 'footer_scripts'
 </body>

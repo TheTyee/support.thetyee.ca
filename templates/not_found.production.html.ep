@@ -54,7 +54,7 @@
     %= include 'header'
       <div class="container" id="content" style="padding-top:60px;">
           <h1>Whoops! Page Not Found...</h1> 
-          <p class="alert alert-danger"><i class="glyphicon glyphicon-exclamation-sign"></i> That page does not exist. This is probably because of an incorrectly typed URL. <a href="/">Click here to visit The Tyee's main fundraising page</a></p>
+          <p class="alert alert-danger">⚠  That page does not exist. This is probably because of an incorrectly typed URL. <a href="/">Click here to visit The Tyee's main fundraising page</a></p>
       </div>
     %= include 'footer_scripts'
     </body>
