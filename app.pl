@@ -892,7 +892,7 @@ post '/process_transaction' => sub {
         if ( $dom->at('error') ) {    # We got an error message back
             my $symbol = $dom->at('error')->attr('symbol') // '';
             my $error;
-            if ( $symbol eq 'subscribed_again_too_soon' ) {
+            if ( $symbol eq 'subscribed_again_too_soon' || $symbol eq 'already_subscribed' ) {
                 $error = 'It looks like you already have an active subscription at this level. You can manage it by checking your Builders account email, or contact us at builders@thetyee.ca.';
             } else {
                 $error = $dom->at('error')->text || 'We could not set up your subscription. Please try again or contact builders@thetyee.ca.';
