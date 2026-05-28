@@ -971,6 +971,115 @@ post '/process_transaction' => sub {
         }
     }
 
+    # ---------- 2.5) Recurly credit card: recurly-token present (one-time or subscription) ----------
+    my $recurly_token = $self->param('recurly-token');
+    if ($recurly_token) {
+        my $xmldoc = XML::Mini::Document->new();
+        my $transaction;
+        my $res;
+        if ( !$plan_code && $amount_in_cents ) {    # one-time
+            $transaction = {
+                'transaction' => {
+                    'amount_in_cents' => $amount_in_cents,
+                    'currency'        => 'CAD',
+                    'account'         => {
+                        'account_code' => lc $email,
+                        'first_name'   => $first_name,
+                        'last_name'    => $last_name,
+                        'email'        => lc $email,
+                        'billing_info' => { 'token_id' => $recurly_token }
+                    }
+                }
+            };
+            $xmldoc->fromHash($transaction);
+            my $transxml = $xmldoc->toString;
+            $res = $ua->post( $API . 'transactions' =>
+                { 'Content-Type' => 'application/xml', Accept => '*/*' } =>
+                $transxml )->res;
+        }
+        else {    # subscription
+            $transaction = {
+                'subscription' => {
+                    'plan_code'            => $plan_code,
+                    'currency'             => 'CAD',
+                    'unit_amount_in_cents' => $unit_amount_in_cents,
+                    'account'              => {
+                        'account_code' => lc $email,
+                        'first_name'   => $first_name,
+                        'last_name'    => $last_name,
+                        'email'        => lc $email,
+                        'billing_info' => { 'token_id' => $recurly_token }
+                    }
+                }
+            };
+            $xmldoc->fromHash($transaction);
+            my $transxml = $xmldoc->toString;
+            $res = $ua->post( $API . 'subscriptions' =>
+                { 'Content-Type' => 'application/xml', Accept => '*/*' } =>
+                $transxml )->res;
+        }
+
+        my $xml = $res->body;
+        $self->app->log->info("Recurly CC response: " . $xml);
+
+        my $dom = Mojo::DOM->new($xml);
+        if ( $dom->at('error') ) {
+            my $symbol = $dom->at('error')->attr('symbol') // '';
+            my $error;
+            if ( $symbol eq 'subscribed_again_too_soon' ) {
+                $error = 'It looks like you already have an active subscription at this level. You can manage it by checking your Builders account email, or contact us at builders@thetyee.ca.';
+            } else {
+                $error = $dom->at('error')->text || 'We could not set up your subscription. Please try again or contact builders@thetyee.ca.';
+            }
+            $self->flash( { error => $error } );
+            $self->redirect_to('/');
+            return;
+        }
+
+        my $account_code = $self->recurly_get_account_code( $dom->at('account') );
+        my $account      = $self->recurly_get_account_details($account_code);
+        my $activesubs   = $self->recurly_get_active_subs($account_code);
+        my $billing_info = $self->recurly_get_billing_details($account_code);
+
+        my $transaction_details = {
+            email      => $email,
+            first_name => $first_name,
+            last_name  => $last_name,
+            hosted_login_token => $account->at('hosted_login_token')
+                ? $account->at('hosted_login_token')->text : '',
+            trans_date => $dom->at('created_at') ? $dom->at('created_at')->text
+                : $dom->at('activated_at') ? $dom->at('activated_at')->text : '',
+            address1        => $address,
+            city            => $city,
+            state           => $state,
+            country         => $country,
+            zip             => $postal,
+            amount_in_cents => $amount_in_cents,
+            plan_name       => $plan_name,
+            plan_code       => $plan_code,
+            campaign        => $campaign,
+            appeal_code     => $appeal_code,
+            referrer        => $referrer,
+            payment_type    => $payment_type,
+            phone           => $phone,
+            user_agent      => $self->req->headers->user_agent,
+        };
+
+        my $xml_converter = XML::Hash->new();
+        my $xml_hash = $xml_converter->fromXMLStringtoHash($xml);
+
+        my $result = $self->find_or_new( $transaction_details, $xml_hash, "RECURLY", $params, $original_params );
+        $transaction_details->{'id'} = $result->id;
+        $self->flash( { transaction_details => $transaction_details } );
+
+        if ( $self->stash('iframe') | $self->flash('iframe') ) {
+            $self->stash( 'iframe' => 1 );
+            $self->flash( 'iframe' => 1 );
+        }
+        $self->redirect_to('/perks');
+        return;
+    }
+
     # ---------- 3) ONE-TIME card: no plan_code + amount_in_cents => Stripe PaymentIntent ----------
     if ( !$plan_code && $amount_in_cents ) {
         my $payment_intent_id = $self->param('payment_intent_id');
