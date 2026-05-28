@@ -149,11 +149,13 @@ etyee.ca">account.thetyee.ca</a> to manage your level.  Or give us a shout at 60
                 </div>
             </div>
         </div>
-    </div>
 
     <div id="errors"<% if ($error) { %> style="display:block;"<% } else { %> style="display:none;"<% } %>>
         <p class="alert alert-danger">⚠ <span class="message"><%= $error // '' %></span></p>
     </div>
+
+    </div>
+
 
     <div class="payment-fields">
         <div id="form-credit" class="form" style="display:none;">
