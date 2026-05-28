@@ -1215,7 +1215,7 @@ post '/process_transaction' => sub {
             "Missing Stripe info for subscription (cust or pm or secret)");
         $self->flash(
             {   error =>
-                'We were unable to process your subscription. If you\'re already a Tyee Builder and want to change your level, please visit account.thetyee.ca or contact builders@thetyee.ca.'
+                'We had a problem processing your payment. Please try again, or contact builders@thetyee.ca for help.'
             }
         );
         $self->redirect_to('/');
