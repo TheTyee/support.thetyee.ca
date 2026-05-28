@@ -80,7 +80,30 @@ helper find_or_new => sub {
         );
     }
     catch {
-        $self->app->log->warn($_);
+        my $err = $_;
+        if ($err =~ /duplicate key value violates unique constraint/i) {
+            $self->app->log->error("Transaction sequence out of sync; resyncing and retrying.");
+            eval {
+                my $raw_dbh = $dbh->storage->dbh;
+                $raw_dbh->do("SELECT setval('support.transactions_id_seq', (SELECT MAX(id) FROM support.transactions))");
+            };
+            if ($@) {
+                $self->app->log->error("Sequence resync failed: $@");
+            } else {
+                try {
+                    $result = $dbh->txn_do(sub {
+                        my $rs = $dbh->resultset('Transaction')
+                            ->find_or_new( {%$doc} );
+                        unless ( $rs->in_storage ) { $rs->insert; }
+                        return $rs;
+                    });
+                } catch {
+                    $self->app->log->error("Insert failed after sequence resync: $_");
+                };
+            }
+        } else {
+            $self->app->log->warn($err);
+        }
     };
     return unless $result;
 
