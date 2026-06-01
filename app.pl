@@ -1249,7 +1249,7 @@ hook after_dispatch => sub {
     my $c = shift;
     my $ct = $c->res->headers->content_type // '';
     if ($ct =~ /text\/html/) {
-        $c->res->headers->cache_control('no-cache, must-revalidate');
+        $c->res->headers->cache_control('no-store');
     }
 };
 
