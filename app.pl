@@ -796,6 +796,7 @@ post '/process_transaction' => sub {
 
     my $stripe_secret = $config->{'stripe_secret_key'};
 
+    $self->app->log->debug('process_transaction params: plan=' . ($plan_code||'') . ' recurly_token=' . ($self->param('recurly-token')||'NONE') . ' stripe_cid=' . ($self->param('stripe_customer_id')||'NONE'));
     # ---------- 1) Bank / EFT: unchanged, still goes through /process_bank ----------
     if ( $payment_type eq 'bank' ) {
         $self->flash(
@@ -1512,6 +1513,14 @@ get '/plans' => sub {    # List plans; Not used
 };
 
 app->secret( $config->{'app_secret'} );
+hook after_dispatch => sub {
+    my $c = shift;
+    my $ct = $c->res->headers->content_type // '';
+    if ($ct =~ /text\/html/) {
+        $c->res->headers->cache_control('no-store');
+    }
+};
+
 app->start;
 
 __DATA__
