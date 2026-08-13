@@ -816,6 +816,21 @@ post '/get_update_link' => sub {
 # New route for processing the form post with the upgraded Recurly.js
 # Take the token, plus the plan, and send a post to the Recurly Subscrptions API
 # post '/process_transaction
+    # Where a donor lands when their 3-D Secure challenge could not be
+    # completed. Sets the form's standard error flash so the page explains
+    # itself, and carries their details back through the query string so they
+    # only have to re-enter the card — never their name, email or address.
+get '/card-declined' => sub {
+    my $self = shift;
+    $self->flash(
+        {   error =>
+                'Your bank could not verify that card, so your contribution was not completed and your card was not charged. Please try again below with a different card, or call us at 604-689-7489.'
+        }
+    );
+    $self->redirect_to(
+        $self->url_for('/')->query( $self->req->query_params->to_hash ) );
+};
+
 post '/process_transaction' => sub {
     my $self = shift;
 
@@ -828,6 +843,30 @@ post '/process_transaction' => sub {
     my $token        = $self->param( 'recurly-token' );
     my $plan_name    = $self->param( 'plan-name' );
     my $plan_code    = $self->param( 'plan-code' );
+
+    # --- 3-D Secure (SCA) support -------------------------------------------
+    # When a gateway demands 3DS, Recurly rejects the first attempt and hands
+    # back a three_d_secure_action_token_id. The browser runs the challenge via
+    # Recurly.js and re-posts this form with the resulting result-token, which
+    # we attach to billing_info to complete the same charge.
+    my $tds_result_token = $self->param( 'three-d-secure-result-token' );
+    my $tds_attempt      = $self->param( 'three-d-secure-attempt' ) || 0;
+
+    # billing_info payload, shared by the transaction and subscription paths
+    my $billing_info = { 'token_id' => $token };
+    $billing_info->{'three_d_secure_action_result_token_id'} = $tds_result_token
+        if $tds_result_token;
+
+    # Recurly defaults this account to API version 2.0, and
+    # three_d_secure_action_result_token_id was only added in 2.21 — under 2.0
+    # the subscriptions endpoint returns <symbol>unavailable_in_api_version</symbol>
+    # and the transactions endpoint silently ignores the token. The version is
+    # selected with the X-Api-Version header (NOT a versioned Accept header,
+    # which Recurly ignores). Only the 3DS retry opts in, so every other
+    # request keeps today's 2.0 behaviour.
+    my %recurly_headers = ( 'Content-Type' => 'application/xml', Accept => '*/*' );
+    $recurly_headers{'X-Api-Version'} = '2.21' if $tds_result_token;
+    # ------------------------------------------------------------------------
 
     # TODO remove $amount
     my $amount          = $self->param( 'amount' );
@@ -867,28 +906,45 @@ post '/process_transaction' => sub {
     my $transaction;
     my $res;
     if ( !$plan_code && $amount_in_cents )
-    {    # It's a transaction, not a subscription
+    {    # It's a one-time gift
+
+        # One-time gifts go through /v2/purchases rather than the legacy
+        # /v2/transactions endpoint. Reason: 3DS action tokens can only be
+        # redeemed by the same kind of action that minted them, and
+        # /v2/transactions ignores three_d_secure_action_result_token_id
+        # outright (Recurly answers three_d_secure_action_result_token_mismatch
+        # if you try to redeem it anywhere else). /v2/purchases supports 3DS,
+        # so both the first attempt and the retry use it.
+        # Purchases require API >= 2.21, which we already need for 3DS.
+        $recurly_headers{'X-Api-Version'} = '2.21';
+
         $transaction = {
-            'transaction' => {
-                'amount_in_cents' => $amount_in_cents,
-                'currency'        => 'CAD',
-                'account'         => {
+            'purchase' => {
+                'currency' => 'CAD',
+                'account'  => {
                     'account_code' => lc $email,
                     'first_name'   => $first_name,
                     'last_name'    => $last_name,
                     'email'        => lc $email,
-                    'billing_info' => { 'token_id' => $token }
-                }
+                    'billing_info' => $billing_info
+                },
+                'adjustments' => {
+                    'adjustment' => {
+                        'unit_amount_in_cents' => $amount_in_cents,
+                        'quantity'             => 1,
+                        'description'          =>
+                            'A one-time contribution to The Tyee',
+                    }
+                },
             }
         };
         $xmldoc->fromHash( $transaction );
         my $transxml = $xmldoc->toString;
 
-        # Post the XML to the /transacdtions endpoint
         $res
             = $ua->post( $API
-            . 'transactions' =>
-            { 'Content-Type' => 'application/xml', Accept => '*/*' } =>
+            . 'purchases' =>
+            \%recurly_headers =>
             $transxml )->res;
     }
     else {
@@ -902,7 +958,7 @@ post '/process_transaction' => sub {
                     'first_name'   => $first_name,
                     'last_name'    => $last_name,
                     'email'        => lc $email,
-                    'billing_info' => { 'token_id' => $token }
+                    'billing_info' => $billing_info
                 }
             }
         };
@@ -913,17 +969,85 @@ post '/process_transaction' => sub {
         $res
             = $ua->post( $API
             . 'subscriptions' =>
-            { 'Content-Type' => 'application/xml', Accept => '*/*' } =>
+            \%recurly_headers =>
             $transxml )->res;
     }
     my $xml = $res->body;
 
+    # A successful /v2/purchases call answers with an <invoice_collection>
+    # wrapping the charge invoice and its transactions. Unwrap the transaction
+    # so that everything downstream — transaction_details, find_or_new, the
+    # XML::Hash payload posted to Drupal — sees exactly the same shape it has
+    # always seen for one-time gifts.
+    if ( !$plan_code && $amount_in_cents && $xml =~ /<invoice_collection/ ) {
+        my $pdom = Mojo::DOM->new( $xml );
+        my $tnode = $pdom->at('transactions > transaction')
+            || $pdom->at('transaction');
+        if ($tnode) {
+            $xml = "$tnode";   # Mojo::DOM stringifies to XML
+        }
+        else {
+            $self->app->log->error(
+                "3DS one-time: no <transaction> in purchase response: $xml");
+        }
+    }
 
     $self->app->log->info("dump of transaction or subscription:");
     $self->app->log->info( Dumper $xml );
     $self->app->log->info("end of dump:");
 
     my $dom = Mojo::DOM->new( $xml );
+
+    # --- 3-D Secure challenge required --------------------------------------
+    # Recurly returns a three_d_secure_action_token_id instead of completing the
+    # charge. Hand it to the browser, which runs the issuer challenge through
+    # Recurly.js and re-posts this same form with the result token attached.
+    my $tds_action_el = $dom->at( 'three_d_secure_action_token_id' );
+    if ( $tds_action_el && $tds_action_el->text ) {
+        my $action_token_id = $tds_action_el->text;
+
+        if ( $tds_attempt >= 2 ) {
+            $self->app->log->error(
+                "3DS: giving up after $tds_attempt attempts for " . ( lc $email ) );
+            $self->flash( { error =>
+                    'We could not verify your card with your bank. Please try a different card, or contact us at builders@thetyee.ca.'
+            } );
+            $self->redirect_to( '/' );
+            return;
+        }
+
+        $self->app->log->info( "3DS: challenge required (attempt "
+                . ( $tds_attempt + 1 )
+                . "), action token $action_token_id for "
+                . ( lc $email ) );
+
+        # Carry the campaign context across the extra round trip
+        $self->flash(
+            {   campaign          => $campaign,
+                appeal_code       => $appeal_code,
+                original_referrer => $referrer,
+                raiser            => $raiser,
+                original_params   => $original_params,
+            }
+        );
+
+        # Re-post every field exactly as submitted, minus our own control fields
+        my %resubmit = %$params;
+        delete $resubmit{'three-d-secure-result-token'};
+        delete $resubmit{'three-d-secure-attempt'};
+
+        $self->stash(
+            {   action_token_id => $action_token_id,
+                resubmit        => \%resubmit,
+                next_attempt    => $tds_attempt + 1,
+                public_key      => $config->{'pkey'},
+                body_id         => 'three-d-secure',
+            }
+        );
+        return $self->render( template => 'three_d_secure' );
+    }
+    # ------------------------------------------------------------------------
+
     if ( $dom->at( 'error' ) ) {    # We got an error message back
         my $error = $dom->at( 'error' )->text;
         $self->flash( { error => $error } );

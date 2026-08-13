@@ -1,0 +1,193 @@
+% layout 'default-b', title => 'Verifying your card -- The Tyee';
+
+<div class="container" id="three-d-secure-page">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+
+            <h2 id="three-d-secure-heading">One last step: your bank needs to verify this card</h2>
+            <div id="three-d-secure-intro">
+                <p>
+                    Your bank asks us to confirm it's really you before your
+                    contribution to The Tyee can go through. Please complete the
+                    check below &mdash; it usually takes a few seconds.
+                </p>
+                <p><strong>Please don't close this window or press back.</strong></p>
+            </div>
+
+            <div id="three-d-secure-errors" class="alert alert-danger" style="display:none;">
+                <span class="message"></span>
+            </div>
+
+            <div id="three-d-secure-waiting">
+                <p><em>Contacting your bank&hellip;</em></p>
+            </div>
+
+            <!-- prototype diagnostics; remove before production -->
+            <div id="three-d-secure-diag" style="display:none; font:12px/1.5 monospace; background:#f5f5f1; border:1px solid #ddd; padding:8px; margin-bottom:1em; white-space:pre-wrap;"></div>
+
+            <!-- Recurly.js renders the issuer challenge into this container.
+                 Recurly sizes its own inner div to height:100%, so this element
+                 needs a real height (not just min-height) or the challenge
+                 collapses and its buttons end up clipped — the iframe is
+                 rendered with scrolling="no", so there is no way to scroll to
+                 them. -->
+            <div id="three-d-secure-container"
+                 style="height:600px; max-width:100%; margin-bottom:1em;"></div>
+
+            <!-- Shown only when the challenge fails, so the donor is never left
+                 on a page whose challenge has disappeared. -->
+            <div id="three-d-secure-retry" style="display:none; margin-bottom:2em;">
+                <p>
+                    Your contribution has <strong>not</strong> been taken, and your
+                    card has not been charged. You're welcome to try again with a
+                    different card, or get in touch and we'll take it over the phone.
+                </p>
+                <p>
+                    <!-- Belt and braces: this page is rendered from a POST and the
+                         layout rewrites the URL to "/" via pushState, so a bare
+                         href="/" is a same-URL link and does not reliably navigate.
+                         Force it. -->
+                    % my $back = Mojo::URL->new('/card-declined')->query(
+                    %     'first-name'  => ($resubmit->{'first-name'}  // ''),
+                    %     'last-name'   => ($resubmit->{'last-name'}   // ''),
+                    %     'email'       => ($resubmit->{'email'}       // ''),
+                    %     'postal-code' => ($resubmit->{'postal-code'} // ''),
+                    % );
+                    <a href="<%= $back %>" id="three-d-secure-retry-link"
+                       class="btn btn-success btn-lg"
+                       onclick="window.location.assign('<%= $back %>'); return false;">Try a different card</a>
+                </p>
+                <p>
+                    Or contact us at <a href="mailto:builders@thetyee.ca">builders@thetyee.ca</a>
+                    or 604-689-7489.
+                </p>
+            </div>
+
+            <!-- Every field from the original form, re-posted verbatim once the
+                 challenge produces a result token. -->
+            <form id="three-d-secure-form" method="post" action="/process_transaction">
+                % for my $k ( sort keys %$resubmit ) {
+                    % my $v = $resubmit->{$k};
+                    % for my $item ( ref $v eq 'ARRAY' ? @$v : ($v) ) {
+                        <input type="hidden" name="<%= $k %>" value="<%= $item %>">
+                    % }
+                % }
+                <input type="hidden" name="three-d-secure-attempt" value="<%= $next_attempt %>">
+                <input type="hidden" name="three-d-secure-result-token" id="three-d-secure-result-token" value="">
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var container = document.getElementById('three-d-secure-container');
+    var waiting   = document.getElementById('three-d-secure-waiting');
+    var errorBox  = document.getElementById('three-d-secure-errors');
+
+    // When the challenge cannot be completed, the challenge iframe removes
+    // itself — so the "complete the check below" framing becomes nonsense and
+    // the donor is left with nowhere to go. Swap the page over to a dead end
+    // with an exit: explain what happened and offer the form back.
+    function fail (msg) {
+        waiting.style.display = 'none';
+        errorBox.querySelector('.message').textContent = msg;
+        errorBox.style.display = 'block';
+        document.getElementById('three-d-secure-intro').style.display = 'none';
+        container.style.display = 'none';
+        document.getElementById('three-d-secure-retry').style.display = 'block';
+        document.getElementById('three-d-secure-heading').textContent
+            = 'We could not verify that card';
+    }
+
+    if (typeof recurly === 'undefined') {
+        fail('We could not load the card verification step. Please try again, or contact builders@thetyee.ca.');
+        return;
+    }
+
+    recurly.configure({ publicKey: '<%= $public_key %>' });
+
+    var risk, threeDSecure;
+    try {
+        risk = recurly.Risk();
+        threeDSecure = risk.ThreeDSecure({ actionTokenId: '<%= $action_token_id %>' });
+    } catch (e) {
+        fail('We could not start the card verification step. Please try again, or contact builders@thetyee.ca.');
+        return;
+    }
+
+    // Success: Recurly hands back a result token, which the back end attaches
+    // to billing_info to complete the original charge.
+    threeDSecure.on('token', function (token) {
+        document.getElementById('three-d-secure-result-token').value = token.id;
+        waiting.style.display = 'none';
+        document.getElementById('three-d-secure-form').submit();
+    });
+
+    threeDSecure.on('error', function (err) {
+        if (window.console) console.error('3DS error', err);
+        fail('Your bank could not verify this card. Please try again, use a different card, or contact us at builders@thetyee.ca.');
+        diag('recurly.js reported an error: ' + safe(err));
+    });
+
+    threeDSecure.attach(container);
+    waiting.style.display = 'none';
+
+    // ---- prototype diagnostics (remove before production) ----------------
+    // The challenge runs in a cross-origin iframe, so when it silently fails
+    // there is nothing to see. Surface it on the page instead.
+    var diagBox = document.getElementById('three-d-secure-diag');
+    function safe (o) {
+        try { return JSON.stringify(o, Object.getOwnPropertyNames(Object(o))).slice(0, 500); }
+        catch (e) { return String(o); }
+    }
+    function diag (msg) {
+        diagBox.style.display = 'block';
+        diagBox.innerHTML += '<div>' + new Date().toISOString().slice(11, 19) + ' — ' + msg + '</div>';
+    }
+
+    // Beacon back to the server so failures are visible in the log even if
+    // nobody screenshots the page. Path 404s; the request line is what matters.
+    var who = '<%= $resubmit->{email} // "unknown" %>';
+    function beacon (what) {
+        // put the detail in the PATH: Mojolicious logs the path, not the query
+        try { (new Image()).src = '/3ds-beacon/'
+            + encodeURIComponent(who.replace(/[^a-zA-Z0-9@._-]/g, '')) + '/'
+            + encodeURIComponent(String(what).slice(0, 120).replace(/[^a-zA-Z0-9:._ -]/g, '_'))
+            + '/' + (+new Date()); } catch (e) {}
+    }
+
+    // THE channel that breaks under third-party-storage blocking: the challenge
+    // iframe postMessage-ing its result back to us. Log every message we get.
+    window.addEventListener('message', function (ev) {
+        var d = ev.data;
+        if (typeof d === 'string' && d.length > 120) d = d.slice(0, 120) + '…';
+        else if (typeof d === 'object') { try { d = JSON.stringify(d).slice(0, 120); } catch (e) { d = '[obj]'; } }
+        diag('postMessage from ' + ev.origin + ': ' + d);
+        beacon('message from ' + ev.origin);
+    });
+
+    diag('challenge attached, waiting for you to complete it…');
+    beacon('challenge attached');
+
+    threeDSecure.on('token', function (t) { diag('got result token ' + t.id + ' — submitting'); beacon('token ' + t.id); });
+
+    // Did the iframe ever navigate (i.e. did the click register at all)?
+    var seen = 0;
+    setInterval(function () {
+        var n = container.querySelectorAll('iframe').length;
+        if (n !== seen) { seen = n; diag('challenge iframe count now ' + n); }
+    }, 1000);
+
+    setTimeout(function () {
+        if (!document.getElementById('three-d-secure-result-token').value) {
+            diag('still no result token after 45s. If you clicked "Succeed Test '
+               + 'Authentication" and nothing happened, the challenge iframe could not '
+               + 'message back to this page — usually third-party-cookie / tracking '
+               + 'protection (Brave Shields, Safari ITP). Try another browser to confirm.');
+        }
+    }, 45000);
+    // ----------------------------------------------------------------------
+})();
+</script>
