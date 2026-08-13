@@ -61,9 +61,12 @@
     <div style="float:left;">
         <img src="https://thetyee.ca/ui/img/support/BuilderNotebook.jpg" width="150" />
     </div>
+<!--
      <div style="float:left;">
         <img src="https://thetyee.ca/ui/img/support/hats.jpg" width="150" />
     </div>
+
+-->
       % }
       % if ( $monthly_amount >= '240') {
     <div style="float:left;">
@@ -86,11 +89,11 @@
     <div style="float:left;">
         <img src="https://thetyee.ca/ui/img/support/BuilderNotebook.jpg" width="150" />
     </div>
-
+<!--
 <div style="float:left;">
         <img src="https://thetyee.ca/ui/img/support/hats.jpg" width="150" />
     </div>
-
+-->
       % }
       % if ( $monthly_amount >= '25') {
     <div style="float:left;">
