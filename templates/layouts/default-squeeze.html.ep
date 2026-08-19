@@ -47,24 +47,39 @@
 
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <link href="<%= $config->{'static_asset_path'} %>/ui/css/styles.css?v=4" rel="stylesheet" media="screen">
-    <script defer src="<%= $config->{'static_asset_path'} %>/ui/js/modernizr.js"></script>
-    <script>
-      (function(d){var tk=d.createElement('script');tk.src='https://use.typekit.net/sjz2xsw.js';tk.async=true;tk.onload=function(){try{Typekit.load({async:true});}catch(e){}};d.head.appendChild(tk);})(document);
-    </script>
-
+    <script src="<%= $config->{'static_asset_path'} %>/ui/js/modernizr.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="<%= $config->{'static_asset_path'} %>/ui/js/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="//use.typekit.net/sjz2xsw.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 
-    <!-- Payment scripts: async so download starts early but doesn't block render -->
-    <script>window.STRIPE_PUBLISHABLE_KEY = "<%= $config->{'stripe_publishable_key'} %>";</script>
-    <script async src="https://js.stripe.com/v3/"></script>
-    <script>window._recurlyPkey = '<%= $config->{pkey} %>';</script>
-    <script async src="https://js.recurly.com/v4/recurly.js" onload="recurly.configure({publicKey:window._recurlyPkey}); recurly.on('error',function(e){console.error('Recurly:',e);});"></script>
+    <!-- Recurly.js for PayPal (card is Stripe) -->
+    <script src="https://js.recurly.com/v4/recurly.js"></script>
+    <script>
+      if (window.recurly) {
+        recurly.configure({
+          publicKey: '<%= $config->{pkey} %>'
+        });
+
+        // Optional: global error hook for extra noise
+        recurly.on('error', function (err) {
+          console.error('Recurly global error:', err);
+        });
+      } else {
+        console.error('Recurly.js failed to load');
+      }
+    </script>
+
+
+    <!-- Stripe.js v3 -->
+    <script src="https://js.stripe.com/v3/"></script>
+
+    <!-- Make publishable key available to our form JS -->
+    <script>
+      window.STRIPE_PUBLISHABLE_KEY = "<%= $config->{'stripe_publishable_key'} %>";
+    </script>
 
     <link rel="shortcut icon" href="https://thetyee.ca/design-article.thetyee.ca/ui/img/favicon_new.ico">
-    <link rel="preconnect" href="https://js.stripe.com">
-    <link rel="preconnect" href="https://js.recurly.com">
-    <link rel="preconnect" href="<%= $config->{'widget_asset_path'} %>">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-0W29ZX6R12"></script>
     <script>
@@ -72,24 +87,23 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'G-0W29ZX6R12', { 'debug_mode':true });
-    </script>
-
- <!-- Matomo -->
+  gtag('config', 'G-0W29ZX6R12', { 'debug_mode':false });
+</script>
+<!-- Matomo -->
  <script>
   var _paq = window._paq = window._paq || [];
   /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
   _paq.push(['trackPageView']);
   _paq.push(['enableLinkTracking']);
   (function() {
-   var u="//matomo.thetyee.ca/";
-   _paq.push(['setTrackerUrl', u+'matomo.php']);
-   _paq.push(['setSiteId', '2']);
-   var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-   g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    var u="//matomo.thetyee.ca/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '2']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
   })();
- </script>
- <!-- End Matomo Code -->
+</script>
+
 </head>
 <body id="<%= $body_id %>">
     <!-- Google Tag Manager -->

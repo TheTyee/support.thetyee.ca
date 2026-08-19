@@ -118,7 +118,7 @@ padding: 10px;
             <div class="col-md-4" id="widgetwrap">
                     %= include 'includes/widget-2021-B'
                 </div>
-<!--<p style="display:block;clear:both;" class="alert alert-warning"><i class="glyphicon glyphicon-fire"></i>Campaign update: We hit our target of $75,000 early. Join us and help us hit our stretch goal of $100,000!</big></p>-->
+<p style="display:block;clear:both;" class="alert alert-warning"><i class="glyphicon glyphicon-fire"></i>Campaign update: We hit our target of $50,000 early. Join us and help us hit our stretch goal of $70,000!</big></p>
             <span id="campaign-end" style="display:block;clear:both;"></span>
             %= include 'includes/form'
             

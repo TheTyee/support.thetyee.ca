@@ -29,10 +29,7 @@
                 <div class="row">               
            <div id="atf"  style="clear:left;" >
                <div class="col-md-6 video-container">
-                <picture>
-                  <source srcset="<%= $config->{'static_asset_path'} %>/ui/img/tyeestaffCAJ.webp" type="image/webp">
-                  <img src="<%= $config->{'static_asset_path'} %>/ui/img/tyeestaffCAJ.jpg" alt="Tyee staff at CAJ" loading="lazy" width="800" height="515">
-                </picture>
+                <img src="<%= $config->{'static_asset_path'} %>/ui/img/tyeestaffCAJ.jpg">
                    
                 <!--    <iframe width="560" height="315" src="//www.youtube.com/embed/jF1ZElM7-nA" frameborder="0" allowfullscreen></iframe>-->
                 </div>

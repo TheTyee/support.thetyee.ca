@@ -1,5 +1,5 @@
 
 <div class="form-group">
       <label for="postal-code">Postal code</label>
-    <input class="form-control required" data-recurly="postal_code" id="postal_code" name="postal-code" placeholder="Postal/Zip" type="text" required />
+    <input class="form-control required" data-recurly="postal_code" id="postal_code" name="postal-code" placeholder="Postal/Zip" type="text" value="<%= param('postal-code') // '' %>" required />
 </div>

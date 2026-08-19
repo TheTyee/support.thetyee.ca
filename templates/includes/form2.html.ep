@@ -1,22 +1,9 @@
-%# Which contribution frequency the form opens on. Annual is now the default;
-%# ?def=mon opens on Monthly, and the older ?def=ann still opens on Annual.
-%# The starting amount is preselected to match, both server-side (the "active"
-%# class on the plan button below) and client-side (setDefault() further down).
-% my $def_freq = ( ( $self->param( 'def' ) // '' ) eq 'mon' ) ? 'monthly' : 'annual';
+<% if ( $error ) { %>
+<p class="alert alert-danger"><i class="glyphicon glyphicon-exclamation-sign">&nbsp;</i><%= $error %></p>
+<% } %>
     <div id="form">
-        <!-- Server-side errors (declines, 3-D Secure failures) and Recurly
-             field-validation errors share this one box. It lives INSIDE #form
-             so it stays within the form column instead of spilling across the
-             headline, and above the tabs so it is visible whichever tab is
-             active. (develop's variant sits above the securities note, which
-             only works there because that help text was consolidated out of
-             the tabs; in this tree it still appears once per tab.) -->
-        <div id="errors"<% if ( $error ) { %> style="display:block;"<% } else { %> style="display:none;"<% } %>>
-            <p class="alert alert-danger">&#9888; <span class="message"><%= $error // '' %></span></p>
-        </div>
-
         <ul class="nav nav-tabs">
-            <li id="monthly" class="<%= $def_freq eq 'monthly' ? 'active' : '' %>"><a href="#form-monthly" data-toggle="tab">Monthly</a></li><li id="annual" class="<%= $def_freq eq 'annual' ? 'active' : '' %>"><a href="#form-annual" data-toggle="tab">Annual</a></li>
+            <li id="monthly" class="<%= $self->param( 'def' ) eq 'ann' ? '' : 'active' %>"><a href="#form-monthly" data-toggle="tab">Monthly</a></li><li id="annual" class="<%= $self->param( 'def' ) eq 'ann' ? 'active' : '' %>"><a href="#form-annual" data-toggle="tab">Annual</a></li>
                         <li id="onetime" class="" ><a href="#form-onetime" data-toggle="tab">One-time</a></li>
 
             <li id="offline" ><a href="#form-offline" data-toggle="tab">Offline</a></li>
@@ -24,7 +11,7 @@
 
         <div class="tab-content">
             <!-- Monthly -->
-            <div class="tab-pane <%= $def_freq eq 'monthly' ? 'active' : '' %>" id="form-monthly">
+            <div class="tab-pane <%= $self->param( 'def' ) eq 'ann' ? '' : 'active' %>" id="form-monthly">
        
 
 <div class="chooseown" ">
@@ -50,7 +37,7 @@
                 
                             <br>                
                  </div>  
-                <label rel="popover" class="btn btn-primary btn-lg next">PROCEED TO PAYMENT OPTIONS ⇨</label>
+                <label rel="popover" class="btn btn-primary btn-lg next">Choose payment options ⇨</label>
                 
                             <br>
                 
@@ -60,21 +47,20 @@
                     <br style="clear:both;" /> 
                     <p>Choose your <b>payment method:</b></p>
                     <a class="btn btn-primary" role="button" data-payment="credit" href="">Credit Card</a> <a class="btn btn-primary" role="button" data-payment="paypal" href="">Paypal</a> <a class="btn btn-primary" role="button" data-payment="bank" href="">Bank</a>
+                    <a class="btn btn-primary" role="button" data-payment="apple" href="">Apple Pay</a>
+                    
+                    
                 </div>
 
-             
-                    <br style="clear:both;" /> 
 
-                   <p class="help-block">
-If you would like to donate securities or mutual funds, please click <a href="https://www.canadahelps.org/en/dn/143918">here</a>.<br>
-If you are already a recurring contributor  and would like to increase your contribution, please log in to your account at <a href="https://account.thetyee.ca">account.thetyee.ca</a> to manage your level.  Or give us a shout at 604-689-7489 or <a  href="mailto:builders@thetyee.ca" target="_blank">builders@thetyee.ca</a> to change your contribution — or discuss other ways you can support The Tyee's journalism.
-                    </p>        
+                    <p class="help-block">If you are already a recurring contributor  and would like to increase your contribution, please log in to your account at <a href="https://account.thetyee.ca">account.thetyee.ca</a> to manage your level.  Or give us a shout at 604-689-7489 or <a  href="mailto:builders@thetyee.ca" target="_blank">builders@thetyee.ca</a>.
+                    </p>           
 
                 </div>
      
             <!--/Monthly-->
             
-                        <div class="tab-pane <%= $def_freq eq 'annual' ? 'active' : '' %>" id="form-annual">
+                        <div class="tab-pane <%= $self->param( 'def' ) eq 'ann' ? 'active' : '' %>" id="form-annual">
        
 
 <div class="chooseown" ">
@@ -100,7 +86,7 @@ If you are already a recurring contributor  and would like to increase your cont
                 
                             <br>                
                  </div>  
-                <label rel="popover" class="btn btn-primary btn-lg next">PROCEED TO  PAYMENT OPTIONS ⇨</label>
+                <label rel="popover" class="btn btn-primary btn-lg next">Choose payment options ⇨</label>
                 
                             <br>
                 
@@ -109,13 +95,12 @@ If you are already a recurring contributor  and would like to increase your cont
                 <div class="options-payment" id="monthlypayment"  style="display:none;">
                     <br style="clear:both;" /> 
                     <p>Choose your <b>payment method:</b></p>
-                    <a class="btn btn-primary" role="button" data-payment="credit" href="">Credit Card</a> <a class="btn btn-primary" role="button" data-payment="paypal" href="">Paypal</a> <a class="btn btn-primary" role="button" data-payment="bank" href="">Bank</a>
+                    <a class="btn btn-primary" role="button" data-payment="credit" href="">Credit Card</a> <a class="btn btn-primary" role="button" data-payment="paypal" href="">Paypal</a> <a class="btn btn-primary" role="button" data-payment="bank" href="">Bank</a> <a class="btn btn-primary" role="button" data-payment="apple" href="">Apple Pay</a>
                 </div>
 
              
                     <br style="clear:both;" /> 
                     <p class="help-block">
-If you would like to donate securities or mutual funds, please click <a href="https://www.canadahelps.org/en/dn/143918">here</a>.<br>
 If you are already a recurring contributor  and would like to increase your contribution, please log in to your account at <a href="https://account.thetyee.ca"
 >account.thetyee.ca</a> to manage your level.  Or give us a shout at 604-689-7489 or <a  href="mailto:builders@thetyee.ca" target="_blank">builders@thetyee.ca</a>.
                     </p>           
@@ -125,6 +110,7 @@ If you are already a recurring contributor  and would like to increase your cont
 <!--/annual-->
             <div class="tab-pane" id="form-onetime">
                 <div class="form-group">
+                    <p>Select your <b>one-time</b> amount:</p>
                     <div class="btn-group choose-onetime" data-toggle="buttons">
                         % for my $p ( @$plans_onetime ) {
                         <label rel="popover" class="btn onetime-<%= $p->{'amount'} %> btn-primary btn-lg" data-trigger="hover" data-container="body" data-placement="top" data-content="<%= $p->{'text'} %>" data-original-title="$<%= $p->{'amount'} %> one-time gift" title="$<%= $p->{'amount'} %> one-time gift">
@@ -140,13 +126,10 @@ If you are already a recurring contributor  and would like to increase your cont
                         <span class="input-group-addon">.00</span>
                     </div>
                     
-                                    <label rel="popover" class="btn btn-primary btn-lg next">PROCEED TO PAYMENT OPTIONS ⇨</label>
+                                    <label rel="popover" class="btn btn-primary btn-lg next">Choose payment options ⇨</label>
                 
                             <br>
-                    <p class="help-block">
-If you would like to donate securities or mutual funds, please click <a href="https://www.canadahelps.org/en/dn/143918">here</a>.<br>
-Or, consider becoming a <a href="/" id="link-tab-monthly">sustaining monthly supporter</a> at any amount. Monthly contributions help us plan ahead and support staff positions.
-                    </p>
+                    <p class="help-block">Or, consider becoming a <a href="/" id="link-tab-monthly">sustaining monthly supporter</a> at any amount. Monthly contributions help us plan ahead and support staff positions.</p>
 
 
 
@@ -154,7 +137,7 @@ Or, consider becoming a <a href="/" id="link-tab-monthly">sustaining monthly sup
                     <div class="options-payment" style="display:none;">
                         <br style="clear:both;" /> 
                         <p>Choose your <b>payment method:</b></p>
-                        <a class="btn btn-primary" role="button" data-payment="credit" href="">Credit Card</a> <a class="btn btn-primary" role="button" data-payment="paypal" href="">Paypal</a> 
+                        <a class="btn btn-primary" role="button" data-payment="credit" href="">Credit Card</a> <a class="btn btn-primary" role="button" data-payment="paypal" href="">Paypal</a>  <a class="btn btn-primary" role="button" data-payment="apple" href="">Apple Pay</a>
                     </div>
 
 
@@ -183,12 +166,12 @@ Or, consider becoming a <a href="/" id="link-tab-monthly">sustaining monthly sup
                 <div style="margin-left:20px;">
                     <p>Would your organization or business be interested in making a larger contribution? You can do so by cheque as outlined above, or if you're interested in offering a matching contribution, give us a shout. Matching contributions can really help ramp up a campaign, and your organization gets great exposure as a supporter of independent journalism in the process.  If this is you, contact us by <a href="mailto:builders@thetyee.ca">email</a> or phone (604-689-7409).<p>
                         </div>
-                    <p class="help-block">
-If you would like to donate securities or mutual funds, please click <a href="https://www.canadahelps.org/en/dn/143918">here</a>.
-                    </p>
                     </div>
                 </div>
+            </div>
 
+            <div id="errors" style="display:none;">
+                <p class="alert alert-danger"><i class="glyphicon glyphicon-exclamation-sign">&nbsp;</i><span class="message"></span></p>
             </div>
 
             <div class="payment-fields">
@@ -201,15 +184,15 @@ If you would like to donate securities or mutual funds, please click <a href="ht
                 <div id="form-bank" class="form" style="display:none;">
                     %= include 'includes/form-full-bank'
                 </div>
+                  <div id="form-apple" class="form" style="display:none;">
+                    %= include 'includes/form-full-apple'
+                </div>
+                
             </div>
 
 % content_for javascript => begin
 %= javascript begin
 
-
-$(".nav-tabs li").click(function(e){
-// $(this).children("a").click();
-})
 
 // jQuery function for scrolling to elements
 $.fn.scrollView = function () {
@@ -248,12 +231,15 @@ $('ul.nav-tabs').on('click', function( event ) {
     $('#errors').hide();
 });
 
+
 // Kludge to udpate a payment confirmation panel
 var paymentString = '';
 function updateConfirmPayment(type) {
+  console.log("update confirm running");
     var amount = $('input.amount-in-cents').val();
   
     amount = amount / 100; // To dollars
+    var amountnum = amount;
     amount = '$' + amount  // $ sign
  
                      if ( $("#annual").hasClass("active") ) {
@@ -267,6 +253,120 @@ function updateConfirmPayment(type) {
     
     
     $('.confirm-payment span').text(paymentString);
+  
+   
+
+ var appleButton = '<img class="applebutton" id="my-apple-pay-button' +appleCount + '" src="https://developers.apple.com/design/human-interface-guidelines/technologies/apple-pay/images/button-contribute-with_2x.png" class="" width="238" height="50" alt="Contribute with Apple Pay button" data-hires-status="pending"><br style="clear:both;" />';
+
+  $('.applebutton').hide();
+
+ $('#apple_holder').append(appleButton)
+ .ready(function () {
+
+
+function onPaymentAuthorized({ payment }) {
+  const { recurlyToken: token, billingContact, shippingContact } = payment;
+  // Submit the token to your server
+  console.log('Apple Pay succeeded.',
+              'Token:', token.id,
+              'billingContact:', billingContact,
+              'shippingContact', shippingContact);
+          
+console.log("fist name" + shippingContact.givenName);
+console.log("email" + shippingContact.emailAddress);
+console.log(token);
+
+    // Reset the errors display
+    $('#errors span.message').text('');
+    $('label.control-label').removeClass('has-error');
+    $('input').removeClass('has-error');
+    $("#apple_first").val(shippingContact.givenName);
+    $("#apple_last").val(shippingContact.familyName);
+        $("#apple_email").val(shippingContact.emailAddress);
+    $("#recurly_apple_token").val(token.id);
+
+    // Disable the submit button
+   // $('button').prop('disabled', true);
+
+    var form = $("#form-full-apple");
+    
+   $(form).input
+    // Now we call recurly.token with the form. It goes to Recurly servers
+    // to tokenize the credit card information, then injects the token into the
+    // data-recurly="token" field above
+    
+    applePay.on('token', function (token) {
+       $("#form-full-apple").submit();
+        });
+    
+    
+
+                 
+}
+
+
+
+
+        const startDate = new Date();
+        const billingInterval = {
+          paymentTiming: 'recurring',
+          recurringPaymentStartDate: startDate,
+          recurringPaymentIntervalUnit: 'month',
+          recurringPaymentIntervalCount: 1,
+        };
+        
+    
+    
+         const applePay = recurly.ApplePay({
+         requiredShippingContactFields: [
+         "email","name"
+         ],
+          country: 'CA',
+          currency: 'CAD',
+          label: "Tyee Builder Contribution", // This text will be displayed on the Apple Pay payment sheet as "My Subscription"
+          total: amountnum,
+          recurring: true,
+          recurringPaymentRequest: {
+              paymentDescription: 'Tyee Builder Contribution',
+              regularBilling: { label: 'paymentString', amount: amountnum, ...billingInterval },
+              total : amountnum,
+                        requiredShippingContactFields: [
+         "email","name"
+         ]
+            },
+          callbacks: {
+            onPaymentAuthorized,
+          },
+          form: document.querySelector('#form-full-apple')
+        });
+        
+        
+        
+        // When the ApplePay instance is ready, bind the Apple Pay button click
+        // to applePay.begin
+        applePay.ready(function () {
+          $('.applebutton').on('click', function () {
+            applePay.begin();   
+          });
+        });
+        
+        // Handle errors. These may occur at any point in the Apple Pay flow
+        applePay.on('error', function (err) {
+          // err.code, err.message
+          console.error('Apple Pay error', err);
+        });
+        
+        appleCount++
+    
+  });
+
+ 
+
+
+
+
+
+    
 
 }
 
@@ -301,9 +401,7 @@ $("div.chooseown").hide();
 // Capture the amount, set input values, show the payment types
 $( "#form-monthly .chooseown label.btn, #form-monthly label.btn.default" ).on( "click touchstart", function( event ) {
 $("#form-monthly #other-amount").val(""); //clear custom amount
-$('input.unit-amount-in-cents').each(function(){
-                $(this).val('');
-            });
+
     var selectedinput = $('input', this)[0];
     var amountInCents = selectedinput.dataset.amount;
     var planName = selectedinput.dataset.plan;
@@ -328,9 +426,6 @@ $('input.unit-amount-in-cents').each(function(){
 
 $( "#form-annual .chooseown label.btn, #form-annual label.btn.default" ).on( "click touchstart", function( event ) {
 $("#form-annual #other-amount").val(""); //clear custom amount
-$('input.unit-amount-in-cents').each(function(){
-                $(this).val('');
-            });
     var selectedinput = $('input', this)[0];
     var amountInCents = selectedinput.dataset.amount;
     var planName = selectedinput.dataset.plan;
@@ -381,10 +476,7 @@ var freq;
 
 $(".btn.next").click(function(){
         if ( $("#monthly").hasClass("active") ) {
-                    // Scoped to the monthly pane: #other-amount is repeated in every
-                    // tab, so a bare $('input#other-amount') only happened to work
-                    // while monthly was the first pane in the document.
-                    var selectedinput = $('#form-monthly input#other-amount');
+                    var selectedinput = $('input#other-amount');
                     var amount = selectedinput.val();
                             if (amount >= .01) {
                                             var amountInCents = amount * 100;
@@ -432,9 +524,6 @@ $(".btn.next").click(function(){
 $( "#form-onetime .choose-onetime label.btn" ).on( "click touchstart", function( event ) {
 // console.log("click onetime");
 $("#form-onetime #other-amount").val(""); //clear custom amount
-$('input.unit-amount-in-cents').each(function(){
-                $(this).val('');
-            });
 
     var selectedinput = $('input', this)[0];
     var amountInCents = $(selectedinput).val() * 100;
@@ -637,6 +726,7 @@ recurly.configure({
 
 // On form submit, we stop submission to go get the token
 // and figure out what type of payment needs to be processed
+
 $('#form-credit form').on('submit', function (event) {
     // Prevent the form from submitting while we retrieve the token from Recurly
     event.preventDefault();
@@ -690,27 +780,6 @@ $('#form-paypal form').on('submit', function (event) {
 });
 
 
-// Whichever tab is showing, click its starting amount so the hidden plan-code /
-// plan-name / amount-in-cents fields are populated and the button reads as
-// selected. Monthly and annual are handled the same way — the only difference is
-// which plan button gets the click. Keep these plan codes in step with the
-// server-side "active" class in the markup at the top of this file.
-var DEFAULT_PLAN_BTN = {
-    monthly: ".builder-15.btn",
-    annual:  ".annual-bxilder-240.btn"
-};
-
-// Click the named default for a tab; if that plan code is no longer in the
-// Recurly plan list, fall back to whichever button the server marked active,
-// then to the first one, so a tab is never left with no amount selected.
-function selectDefaultPlan(paneSelector, defaultBtnSelector) {
-    var $pane = $(paneSelector);
-    var $btn  = $pane.find(defaultBtnSelector);
-    if ( !$btn.length ) { $btn = $pane.find(".chooseown label.btn.active"); }
-    if ( !$btn.length ) { $btn = $pane.find(".chooseown label.btn").first(); }
-    $btn.first().click();
-}
-
 function setDefault() {
         if ( $("#onetime").hasClass("active") ) {
             console.log("onetime active");
@@ -732,20 +801,14 @@ $('input.amount-in-cents').each(function(){
             
         } else if ( $("#form-monthly").hasClass("active") ) {
     console.log("monthly active");
-                  selectDefaultPlan("#form-monthly", DEFAULT_PLAN_BTN.monthly);
+                  $(".builder-15.btn").click();
 
         } else if ( $("#form-annual").hasClass("active") ) {
     console.log("annual active");
-        selectDefaultPlan("#form-annual", DEFAULT_PLAN_BTN.annual);
+        $(".annual-bxilder-240.btn").click();
 };
 
  };
-
-$(".options-payment .btn").click(function(e){
- $(".options-payment .btn").removeClass("active");
- $(this).addClass("active");
-
-})
 
 $(".nav.nav-tabs a").click(function(e){
     $('.next').show();
@@ -758,6 +821,8 @@ $(document).ready(function(){
 setDefault();
 
 });
+var appleCount = 0;
+
 
 
 
