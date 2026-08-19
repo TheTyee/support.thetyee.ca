@@ -1,3 +1,8 @@
+%# Which contribution frequency the form opens on. Annual is now the default;
+%# ?def=mon opens on Monthly, and the older ?def=ann still opens on Annual.
+%# The starting amount is preselected to match, both server-side (the "active"
+%# class on the plan button below) and client-side (setDefault() further down).
+% my $def_freq = ( ( $self->param( 'def' ) // '' ) eq 'mon' ) ? 'monthly' : 'annual';
     <div id="form">
         <!-- Server-side errors (declines, 3-D Secure failures) and Recurly
              field-validation errors share this one box. It lives INSIDE #form
@@ -11,7 +16,7 @@
         </div>
 
         <ul class="nav nav-tabs">
-            <li id="monthly" class="<%= $self->param( 'def' ) eq 'ann' ? '' : 'active' %>"><a href="#form-monthly" data-toggle="tab">Monthly</a></li><li id="annual" class="<%= $self->param( 'def' ) eq 'ann' ? 'active' : '' %>"><a href="#form-annual" data-toggle="tab">Annual</a></li>
+            <li id="monthly" class="<%= $def_freq eq 'monthly' ? 'active' : '' %>"><a href="#form-monthly" data-toggle="tab">Monthly</a></li><li id="annual" class="<%= $def_freq eq 'annual' ? 'active' : '' %>"><a href="#form-annual" data-toggle="tab">Annual</a></li>
                         <li id="onetime" class="" ><a href="#form-onetime" data-toggle="tab">One-time</a></li>
 
             <li id="offline" ><a href="#form-offline" data-toggle="tab">Offline</a></li>
@@ -19,7 +24,7 @@
 
         <div class="tab-content">
             <!-- Monthly -->
-            <div class="tab-pane <%= $self->param( 'def' ) eq 'ann' ? '' : 'active' %>" id="form-monthly">
+            <div class="tab-pane <%= $def_freq eq 'monthly' ? 'active' : '' %>" id="form-monthly">
        
 
 <div class="chooseown" ">
@@ -69,7 +74,7 @@ If you are already a recurring contributor  and would like to increase your cont
      
             <!--/Monthly-->
             
-                        <div class="tab-pane <%= $self->param( 'def' ) eq 'ann' ? 'active' : '' %>" id="form-annual">
+                        <div class="tab-pane <%= $def_freq eq 'annual' ? 'active' : '' %>" id="form-annual">
        
 
 <div class="chooseown" ">
@@ -376,7 +381,10 @@ var freq;
 
 $(".btn.next").click(function(){
         if ( $("#monthly").hasClass("active") ) {
-                    var selectedinput = $('input#other-amount');
+                    // Scoped to the monthly pane: #other-amount is repeated in every
+                    // tab, so a bare $('input#other-amount') only happened to work
+                    // while monthly was the first pane in the document.
+                    var selectedinput = $('#form-monthly input#other-amount');
                     var amount = selectedinput.val();
                             if (amount >= .01) {
                                             var amountInCents = amount * 100;
@@ -682,6 +690,27 @@ $('#form-paypal form').on('submit', function (event) {
 });
 
 
+// Whichever tab is showing, click its starting amount so the hidden plan-code /
+// plan-name / amount-in-cents fields are populated and the button reads as
+// selected. Monthly and annual are handled the same way — the only difference is
+// which plan button gets the click. Keep these plan codes in step with the
+// server-side "active" class in the markup at the top of this file.
+var DEFAULT_PLAN_BTN = {
+    monthly: ".builder-15.btn",
+    annual:  ".annual-bxilder-240.btn"
+};
+
+// Click the named default for a tab; if that plan code is no longer in the
+// Recurly plan list, fall back to whichever button the server marked active,
+// then to the first one, so a tab is never left with no amount selected.
+function selectDefaultPlan(paneSelector, defaultBtnSelector) {
+    var $pane = $(paneSelector);
+    var $btn  = $pane.find(defaultBtnSelector);
+    if ( !$btn.length ) { $btn = $pane.find(".chooseown label.btn.active"); }
+    if ( !$btn.length ) { $btn = $pane.find(".chooseown label.btn").first(); }
+    $btn.first().click();
+}
+
 function setDefault() {
         if ( $("#onetime").hasClass("active") ) {
             console.log("onetime active");
@@ -703,11 +732,11 @@ $('input.amount-in-cents').each(function(){
             
         } else if ( $("#form-monthly").hasClass("active") ) {
     console.log("monthly active");
-                  $(".builder-15.btn").click();
+                  selectDefaultPlan("#form-monthly", DEFAULT_PLAN_BTN.monthly);
 
         } else if ( $("#form-annual").hasClass("active") ) {
     console.log("annual active");
-        $(".annual-bxilder-240.btn").click();
+        selectDefaultPlan("#form-annual", DEFAULT_PLAN_BTN.annual);
 };
 
  };
