@@ -1377,6 +1377,17 @@ hook after_dispatch => sub {
     }
 };
 
+# --- Maintenance mode -------------------------------------------------------
+# When the flag file exists, serve a 503 maintenance page for every route.
+# Enable:   touch $FindBin::Bin/maintenance.on
+# Disable:  rm    $FindBin::Bin/maintenance.on
+app->hook(before_routes => sub {
+    my $c = shift;
+    return unless -e "$FindBin::Bin/maintenance.on";
+    $c->res->headers->header('Retry-After' => 3600);
+    $c->render(template => 'maintenance', status => 503);
+});
+
 app->start;
 
 __DATA__

@@ -1,0 +1,15 @@
+% layout undef;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Tyee Builders — back shortly</title>
+<style>body{font-family:Georgia,serif;max-width:600px;margin:14vh auto;padding:0 24px;color:#222;line-height:1.55}h1{font-size:1.6rem}a{color:#b8123a}</style>
+</head>
+<body>
+<h1>We will be right back</h1>
+<p>The Tyee Builders contribution system is briefly offline for scheduled maintenance. Please check back in a little while.</p>
+<p>If you need a hand in the meantime, email <a href="mailto:builders@thetyee.ca">builders@thetyee.ca</a>.</p>
+</body>
+</html>

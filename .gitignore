@@ -10,3 +10,5 @@ local
 cpanfile.snapshot
 /.perl-version
 /cpanfile.snapshot
+maintenance.on
+app.pl.bak-maint-*
